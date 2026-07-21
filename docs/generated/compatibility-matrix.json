@@ -1,0 +1,16 @@
+{
+  "schema": "quantik-compatibility-matrix.v1",
+  "entries": [
+    {
+      "contracts_release": "1.2.0",
+      "wire_contracts": ["qfen.v1", "bitboard.v1", "action-index.v1", "selfplay.v1", "tensor-board.v1", "arrow-parquet-selfplay.v1", "opening-book.v1", "opening-book-summary.v1", "observation.v1", "game-result.v1", "model-checkpoint.v1", "search-summary.v1"],
+      "quantik-core-py": "dirty 1.2.0 candidate over committed 1.1.0",
+      "quantik-core-rust": "1.2.0 candidate",
+      "quantik-models-py": "0.1.0 declaring contracts 1.1.0",
+      "action_reference": null,
+      "status": "migration",
+      "evidence": ["contracts unit and source fixture/schema validation on 2026-07-21"],
+      "notes": "Consumer and published-action evidence incomplete."
+    }
+  ]
+}

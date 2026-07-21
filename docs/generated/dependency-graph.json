@@ -1,0 +1,68 @@
+{
+  "dependencies": [
+    {
+      "from": "quantik-core-py",
+      "to": "quantik-core-contracts",
+      "types": [
+        "contract",
+        "fixture",
+        "schema",
+        "github-action",
+        "release-order"
+      ]
+    },
+    {
+      "from": "quantik-core-rust",
+      "to": "quantik-core-contracts",
+      "types": [
+        "contract",
+        "fixture",
+        "schema",
+        "github-action",
+        "release-order"
+      ]
+    },
+    {
+      "from": "quantik-models-py",
+      "to": "quantik-core-contracts",
+      "types": [
+        "contract",
+        "schema",
+        "generated-data",
+        "release-order"
+      ]
+    },
+    {
+      "from": "quantik-models-py",
+      "to": "quantik-core-py",
+      "types": [
+        "build",
+        "runtime",
+        "generated-data",
+        "semantic-compatibility"
+      ]
+    },
+    {
+      "from": "quantik-models-py",
+      "to": "quantik-core-rust",
+      "types": [
+        "generated-data",
+        "semantic-compatibility"
+      ]
+    },
+    {
+      "from": "quantik-core-py",
+      "to": "quantik-core-rust",
+      "types": [
+        "semantic-compatibility"
+      ]
+    }
+  ],
+  "repositories": [
+    "quantik-core-py",
+    "quantik-core-rust",
+    "quantik-core-contracts",
+    "quantik-models-py"
+  ],
+  "schema": "quantik-dependency-map.v1"
+}
