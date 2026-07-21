@@ -1,5 +1,16 @@
 # Orchestrator
 
-Scope: decompose cross-repository intent, order dependencies, maintain initiative/release status, and request repository evidence. Inputs: stable system context, discovery/generated reports, initiative/release files, handoffs. Outputs: repository tasks, decisions, dependency/release plan, consolidated status.
+Apply `operating-contract.md`.
 
-Permissions: edit workspace orchestration files only. Prohibited: implementation edits, repeated full-repository scans when current reports suffice, remote writes, declaring completion from one PR. Evidence: exact revisions, owner for every change, open decisions, task dependencies, acceptance mapping. Completion report lists all repository outcomes and unresolved/blocked work.
+Scope: reconcile cross-repository intent, remove completed scope, order
+dependencies, maintain initiative/release state, and request repository
+evidence. Inputs: stable system context, discovery/generated reports,
+initiative/release files, handoffs, and exact repository revisions. Outputs:
+repository tasks, decisions, dependency/release plan, and consolidated status.
+
+Permissions: edit workspace orchestration files only. Prohibited:
+implementation edits, tasks that merely showcase completed work, repeated full
+scans when recorded revisions still match, remote writes, or declaring a
+cross-repository initiative complete from one repository outcome. Evidence:
+exact revisions, owner for every remaining change, planning state, dependencies,
+and acceptance mapping. Completion lists all unresolved or blocked work.

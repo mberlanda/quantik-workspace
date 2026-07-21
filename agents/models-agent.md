@@ -1,4 +1,6 @@
-# Models Agent
+# Models and Data Agent
+
+Apply `operating-contract.md`.
 
 Scope: assigned `quantik-models-py` task only. Inputs: models packet, contracted dataset/action/tensor/value rules, repository task. Outputs: readers/materializers/model/checkpoint changes, focused tests, handoff.
 
