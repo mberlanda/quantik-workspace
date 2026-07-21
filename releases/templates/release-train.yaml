@@ -1,0 +1,10 @@
+{
+  "id": "QREL-2026-001",
+  "status": "planned",
+  "producer": {"repository": "quantik-core-contracts", "previous_version": "1.1.0", "version": "1.2.0", "tag": "v1.2.0", "branch": "release/v1.2.0", "commit": null},
+  "version_sources": {"primary": {"path": "VERSION", "kind": "text"}, "mirrors": [{"path": "contracts.json", "kind": "json", "pointer": "/release_version"}]},
+  "published_interfaces": {"github_actions": {"cross-language-smoke": "actions/cross-language-smoke"}},
+  "consumers": {},
+  "compatibility": {"breaking_changes": [], "additive_changes": [], "required_checks": []},
+  "release_order": ["quantik-core-contracts"]
+}

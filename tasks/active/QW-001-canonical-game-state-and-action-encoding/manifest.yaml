@@ -1,0 +1,17 @@
+{
+  "id": "QW-001",
+  "title": "Canonical Game State and Action Encoding Contract",
+  "status": "planned",
+  "problem": "State identity, canonicalization, action remapping, legal masks, and value perspective are implemented across engines and models but are not covered by one executable cross-stack contract.",
+  "affected_repositories": ["quantik-core-contracts", "quantik-core-py", "quantik-core-rust", "quantik-models-py"],
+  "affected_contracts": ["qfen.v1", "bitboard.v1", "action-index.v1", "tensor-board.v1", "selfplay.v1", "arrow-parquet-selfplay.v1"],
+  "preserved_invariants": ["4x4 row-major board", "eight player/shape planes", "shape-major 64-action indexing", "side-to-move value perspective", "deterministic serialization"],
+  "release_order": ["quantik-core-contracts", "quantik-core-py", "quantik-core-rust", "quantik-models-py"],
+  "acceptance_criteria": [
+    "Normative JSONL fixtures cover state, current player, legal actions, ordering, action indices, symmetries, canonicalization, masks, and value perspective.",
+    "Arrow/Parquet logical and physical schemas carry explicit release and generator metadata.",
+    "Python and Rust repository-owned adapters produce structurally identical reports or classified differences.",
+    "Models consumes the contracted indices and perspectives without undocumented engine internals.",
+    "Unresolved color-swap, stalemate, invalid-state, and transform-remapping behavior is decided or explicitly excluded."
+  ]
+}
