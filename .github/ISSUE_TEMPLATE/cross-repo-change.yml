@@ -1,0 +1,18 @@
+name: Cross-repository change
+description: Propose an initiative decomposed by repository.
+title: "[QW] "
+body:
+  - type: input
+    id: initiative
+    attributes: {label: Initiative ID}
+  - type: textarea
+    id: problem
+    attributes: {label: Problem, description: Current and desired behavior, motivation, and exclusions.}
+    validations: {required: true}
+  - type: textarea
+    id: repositories
+    attributes: {label: Affected repositories and owners}
+    validations: {required: true}
+  - type: textarea
+    id: evidence
+    attributes: {label: Contracts, invariants, tests, migration, and release order}

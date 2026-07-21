@@ -1,0 +1,65 @@
+name: scheduled-drift-check
+
+on:
+  schedule:
+    - cron: "23 4 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  drift:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: quantik-workspace
+      - uses: actions/checkout@v4
+        with:
+          repository: mberlanda/quantik-core-py
+          path: quantik-core-py
+      - uses: actions/checkout@v4
+        with:
+          repository: mberlanda/quantik-core-rust
+          path: quantik-core-rust
+      - uses: actions/checkout@v4
+        with:
+          repository: mberlanda/quantik-core-contracts
+          path: quantik-core-contracts
+      - uses: actions/checkout@v4
+        with:
+          repository: mberlanda/quantik-models-py
+          path: quantik-models-py
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - working-directory: quantik-workspace
+        run: python -m pip install -e .
+      - working-directory: quantik-workspace
+        run: quantik-workspace repos status --json > repository-status.json
+      - working-directory: quantik-workspace
+        run: quantik-workspace release drift --json > release-drift.json || true
+      - uses: actions/upload-artifact@v4
+        with:
+          name: scheduled-drift-evidence
+          path: |
+            quantik-workspace/repository-status.json
+            quantik-workspace/release-drift.json
+      - name: Open issue only when explicitly enabled and meaningful drift exists
+        if: ${{ vars.ENABLE_DRIFT_ISSUES == 'true' }}
+        working-directory: quantik-workspace
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python -c 'import json,sys; d=json.load(open("release-drift.json")); sys.exit(0 if d["issues"] else 1)'
+          issue_number="$(gh issue list --state open --search 'Scheduled Quantik release drift in:title' --json number --jq '.[0].number // empty')"
+          if [ -z "$issue_number" ]; then
+            gh issue create --title "Scheduled Quantik release drift" --body-file release-drift.json
+          else
+            gh issue view "$issue_number" --json body --jq .body > existing-drift.json
+            if ! cmp -s existing-drift.json release-drift.json; then
+              gh issue edit "$issue_number" --body-file release-drift.json
+            fi
+          fi

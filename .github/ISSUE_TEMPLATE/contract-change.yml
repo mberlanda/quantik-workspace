@@ -1,0 +1,15 @@
+name: Contract change
+description: Propose a schema, fixture, wire interpretation, or compatibility policy change.
+title: "[Contract] "
+body:
+  - type: textarea
+    id: change
+    attributes: {label: Proposed interpretation and owner}
+    validations: {required: true}
+  - type: textarea
+    id: compatibility
+    attributes: {label: Additive/breaking analysis, migration, fixtures, and consumers}
+    validations: {required: true}
+  - type: textarea
+    id: versions
+    attributes: {label: Contracts release, wire IDs, action refs, and package axes}

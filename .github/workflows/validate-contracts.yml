@@ -1,0 +1,26 @@
+name: validate-contracts
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  contracts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: quantik-workspace
+      - uses: actions/checkout@v4
+        with:
+          repository: mberlanda/quantik-core-contracts
+          path: quantik-core-contracts
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - working-directory: quantik-workspace
+        run: python -m pip install -e .
+      - working-directory: quantik-workspace
+        run: quantik-workspace validate contracts
+      - working-directory: quantik-workspace
+        run: quantik-workspace validate fixtures
