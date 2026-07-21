@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/mberlanda/quantik-workspace/schemas/repository-summary.schema.json",
+  "type": "object",
+  "required": ["name", "path", "exists", "is_git"],
+  "properties": {
+    "name": {"type": "string"}, "path": {"type": "string"}, "exists": {"type": "boolean"},
+    "is_git": {"type": "boolean"}, "branch": {"type": ["string", "null"]},
+    "commit": {"type": ["string", "null"]}, "dirty": {"type": "boolean"},
+    "untracked": {"type": "integer"}, "repository_version": {"type": ["string", "null"]},
+    "supported_contracts_release": {"type": ["string", "null"]}
+  }
+}

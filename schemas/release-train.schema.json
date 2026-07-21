@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/mberlanda/quantik-workspace/schemas/release-train.schema.json",
+  "type": "object",
+  "required": ["id", "status", "producer", "consumers", "release_order"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^QREL-[0-9]{4}-[0-9]{3}$"},
+    "status": {"type": "string", "enum": ["planned", "prepared", "candidate-green", "tagged", "published", "producer-verified", "consumer-updates-open", "consumer-compatible", "completed", "failed", "rolled-back"]},
+    "producer": {
+      "type": "object",
+      "required": ["repository", "version", "tag", "branch"],
+      "properties": {
+        "repository": {"type": "string"}, "previous_version": {"type": ["string", "null"]},
+        "version": {"type": "string"}, "tag": {"type": "string"}, "branch": {"type": "string"},
+        "commit": {"type": ["string", "null"]}
+      }
+    },
+    "consumers": {"type": "object"},
+    "release_order": {"type": "array", "minItems": 1, "items": {"type": "string"}}
+  }
+}

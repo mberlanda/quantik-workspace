@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/mberlanda/quantik-workspace/schemas/release-lock.schema.json",
+  "type": "object",
+  "required": ["producer", "interfaces"],
+  "properties": {
+    "producer": {
+      "type": "object",
+      "required": ["repository", "version", "tag", "commit"],
+      "properties": {
+        "repository": {"type": "string"}, "version": {"type": "string"},
+        "tag": {"type": "string"}, "commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"}
+      }
+    },
+    "interfaces": {"type": "object"}
+  }
+}

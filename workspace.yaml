@@ -1,0 +1,136 @@
+{
+  "version": 1,
+  "workspace": {
+    "name": "quantik-workspace",
+    "repository_layout": "siblings",
+    "context_budget_tokens": 12000
+  },
+  "repositories": {
+    "quantik-core-py": {
+      "url": "https://github.com/mberlanda/quantik-core-py",
+      "path": "../quantik-core-py",
+      "language": "python",
+      "role": "reference-engine",
+      "default_branch": "main",
+      "package": "quantik-core",
+      "commands": {
+        "test": [".venv/bin/python", "-m", "pytest"],
+        "lint": ["./auto-lint.sh"],
+        "format_check": [".venv/bin/python", "-m", "black", "--check", "."],
+        "build": [".venv/bin/python", "-m", "build"],
+        "benchmark": [".venv/bin/python", "examples/cross_engine_benchmark.py", "run"]
+      },
+      "versions": {
+        "repository_source": {"path": "pyproject.toml", "kind": "toml", "pointer": "project.version"},
+        "release_mirrors": [],
+        "supported_contracts_source": {"path": "src/quantik_core/contracts.py", "pattern": "SUPPORTED_CONTRACTS_RELEASE\\s*=\\s*[\"'](?P<version>[^\"']+)"}
+      },
+      "contracts": {
+        "consumes": ["qfen.v1", "bitboard.v1", "action-index.v1", "selfplay.v1", "tensor-board.v1", "arrow-parquet-selfplay.v1", "opening-book.v1", "opening-book-summary.v1", "observation.v1", "game-result.v1", "model-checkpoint.v1", "search-summary.v1"],
+        "owner": "quantik-core-contracts"
+      },
+      "workflows": [".github/workflows/contracts.yml", ".github/workflows/test.yml", ".github/workflows/build.yml", ".github/workflows/integration.yml", ".github/workflows/publish.yml", ".github/workflows/daily-smoke.yml"],
+      "release_artifacts": ["PyPI distribution", "wheel", "sdist"],
+      "generated_outputs": ["benchmark reports", "training dataset NPZ", "opening-book summaries", "portability reports"],
+      "compatibility_adapters": {
+        "portability": [".venv/bin/python", "-m", "quantik_core.api_portability_report"]
+      }
+    },
+    "quantik-core-rust": {
+      "url": "https://github.com/mberlanda/quantik-core-rust",
+      "path": "../quantik-core-rust",
+      "language": "rust",
+      "role": "optimized-engine",
+      "default_branch": "main",
+      "package": "quantik-core",
+      "commands": {
+        "test": ["cargo", "test", "--workspace", "--all-targets", "--all-features"],
+        "lint": ["cargo", "clippy", "--workspace", "--all-targets", "--all-features", "--", "-D", "warnings"],
+        "format_check": ["cargo", "fmt", "--all", "--", "--check"],
+        "build": ["cargo", "build", "--release"],
+        "benchmark": ["cargo", "run", "--release", "--bin", "cross_engine_benchmark", "--"]
+      },
+      "versions": {
+        "repository_source": {"path": "crates/quantik-core/Cargo.toml", "kind": "toml", "pointer": "package.version"},
+        "release_mirrors": [],
+        "supported_contracts_source": {"path": "crates/quantik-core/src/bench/contracts.rs", "pattern": "pub const CONTRACT_VERSION:\\s*&str\\s*=\\s*\"(?P<version>[^\"]+)\""}
+      },
+      "contracts": {
+        "consumes": ["qfen.v1", "bitboard.v1", "action-index.v1", "selfplay.v1", "tensor-board.v1", "arrow-parquet-selfplay.v1", "opening-book.v1", "opening-book-summary.v1", "observation.v1", "game-result.v1", "model-checkpoint.v1", "search-summary.v1"],
+        "owner": "quantik-core-contracts"
+      },
+      "workflows": [".github/workflows/rust.yml"],
+      "release_artifacts": ["crates.io crate", "binaries"],
+      "generated_outputs": ["SQLite opening books", "Parquet datasets", "JSONL fixtures", "benchmark reports", "portability reports"],
+      "compatibility_adapters": {"portability": ["cargo", "run", "--bin", "quantik-portability-report", "--"]}
+    },
+    "quantik-core-contracts": {
+      "url": "https://github.com/mberlanda/quantik-core-contracts",
+      "path": "../quantik-core-contracts",
+      "language": "python",
+      "role": "interoperability-contracts",
+      "default_branch": "main",
+      "package": null,
+      "commands": {
+        "test": ["python3", "-m", "unittest", "discover", "-s", "tests", "-v"],
+        "lint": [],
+        "format_check": [],
+        "build": [],
+        "benchmark": []
+      },
+      "versions": {
+        "repository_source": {"path": "VERSION", "kind": "text"},
+        "release_mirrors": [{"path": "contracts.json", "kind": "json", "pointer": "/release_version"}],
+        "supported_contracts_source": null
+      },
+      "contracts": {
+        "owns": ["qfen.v1", "bitboard.v1", "action-index.v1", "selfplay.v1", "tensor-board.v1", "arrow-parquet-selfplay.v1", "opening-book.v1", "opening-book-summary.v1", "observation.v1", "game-result.v1", "model-checkpoint.v1", "search-summary.v1"]
+      },
+      "workflows": [".github/workflows/validate-contracts.yml", ".github/workflows/release-contracts.yml", ".github/workflows/python-contract.yml", ".github/workflows/rust-contract.yml", ".github/workflows/release-smoke.yml", ".github/workflows/opening-book-release-consistency.yml"],
+      "published_interfaces": {
+        "github_actions": {
+          "cross-language-smoke": "actions/cross-language-smoke",
+          "opening-book-consistency": "actions/opening-book-consistency"
+        },
+        "reusable_workflows": [".github/workflows/python-contract.yml", ".github/workflows/rust-contract.yml"]
+      },
+      "release_artifacts": ["GitHub Release", "quantik-core-contracts-vX.Y.Z.tar.gz", "SHA-256 checksum"],
+      "generated_outputs": ["release-manifest.json"]
+    },
+    "quantik-models-py": {
+      "url": "https://github.com/mberlanda/quantik-models-py",
+      "path": "../quantik-models-py",
+      "language": "python",
+      "role": "training-and-inference",
+      "default_branch": "main",
+      "package": "quantik-models",
+      "commands": {
+        "test": ["python", "-m", "pytest"],
+        "lint": ["python", "-m", "mypy", "src/quantik_models"],
+        "format_check": [],
+        "build": [],
+        "benchmark": []
+      },
+      "versions": {
+        "repository_source": {"path": "pyproject.toml", "kind": "toml", "pointer": "project.version"},
+        "release_mirrors": [{"path": "src/quantik_models/__init__.py", "pattern": "__version__\\s*=\\s*[\"'](?P<version>[^\"']+)"}],
+        "supported_contracts_source": {"path": "src/quantik_models/export/checkpoint.py", "pattern": "contract_version:\\s*str\\s*=\\s*\"(?P<version>[^\"]+)\""}
+      },
+      "contracts": {
+        "consumes": ["tensor-board.v1", "action-index.v1", "selfplay.v1", "arrow-parquet-selfplay.v1", "observation.v1", "game-result.v1", "model-checkpoint.v1"],
+        "owner": "quantik-core-contracts"
+      },
+      "workflows": [".github/workflows/e2e-data-pipeline.yml", ".github/workflows/train-smoke.yml"],
+      "release_artifacts": ["model checkpoint", "safetensors", "training report"],
+      "generated_outputs": ["NPZ training view", "checkpoint manifest"]
+    }
+  },
+  "dependencies": [
+    {"from": "quantik-core-py", "to": "quantik-core-contracts", "types": ["contract", "fixture", "schema", "github-action", "release-order"]},
+    {"from": "quantik-core-rust", "to": "quantik-core-contracts", "types": ["contract", "fixture", "schema", "github-action", "release-order"]},
+    {"from": "quantik-models-py", "to": "quantik-core-contracts", "types": ["contract", "schema", "generated-data", "release-order"]},
+    {"from": "quantik-models-py", "to": "quantik-core-py", "types": ["build", "runtime", "generated-data", "semantic-compatibility"]},
+    {"from": "quantik-models-py", "to": "quantik-core-rust", "types": ["generated-data", "semantic-compatibility"]},
+    {"from": "quantik-core-py", "to": "quantik-core-rust", "types": ["semantic-compatibility"]}
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/mberlanda/quantik-workspace/schemas/compatibility-report.schema.json",
+  "type": "object",
+  "required": ["schema", "mode", "status", "results"],
+  "properties": {
+    "schema": {"type": "string", "enum": ["quantik-compatibility-report.v1"]},
+    "mode": {"type": "string", "enum": ["smoke", "full"]},
+    "status": {"type": "string", "enum": ["passed", "failed", "incomplete"]},
+    "results": {"type": "array", "items": {"type": "object"}}
+  }
+}

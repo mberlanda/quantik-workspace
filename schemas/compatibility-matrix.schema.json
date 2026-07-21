@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/mberlanda/quantik-workspace/schemas/compatibility-matrix.schema.json",
+  "type": "object",
+  "required": ["schema", "entries"],
+  "properties": {
+    "schema": {"type": "string", "enum": ["quantik-compatibility-matrix.v1"]},
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["contracts_release", "wire_contracts", "status", "evidence"],
+        "properties": {
+          "contracts_release": {"type": "string"},
+          "wire_contracts": {"type": "array", "items": {"type": "string"}},
+          "status": {"type": "string", "enum": ["supported", "partially-supported", "migration", "deprecated", "incompatible", "unknown"]},
+          "evidence": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    }
+  }
+}

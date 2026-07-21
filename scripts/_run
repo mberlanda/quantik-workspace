@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+set -eu
+SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+WORKSPACE_ROOT=$(dirname "$SCRIPT_DIR")
+export PYTHONPATH="$WORKSPACE_ROOT/src${PYTHONPATH:+:$PYTHONPATH}"
+exec python3 -m quantik_workspace.cli "$@"

@@ -1,0 +1,29 @@
+#!/usr/bin/env sh
+set -eu
+SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+WORKSPACE_ROOT=$(dirname "$SCRIPT_DIR")
+
+command -v git >/dev/null 2>&1 || { echo "git is required" >&2; exit 2; }
+command -v python3 >/dev/null 2>&1 || { echo "python3 is required" >&2; exit 2; }
+python3 -c 'import sys; assert sys.version_info >= (3, 12), "Python >=3.12 is required"'
+
+if [ ! -x "$WORKSPACE_ROOT/.venv/bin/python" ]; then
+  python3 -m venv "$WORKSPACE_ROOT/.venv"
+fi
+QUANTIK_BOOTSTRAP_ROOT="$WORKSPACE_ROOT" "$WORKSPACE_ROOT/.venv/bin/python" -c '
+import os
+from pathlib import Path
+import sysconfig
+
+root = Path(os.environ["QUANTIK_BOOTSTRAP_ROOT"]).resolve()
+purelib = Path(sysconfig.get_paths()["purelib"])
+purelib.mkdir(parents=True, exist_ok=True)
+(purelib / "quantik_workspace.pth").write_text(str(root / "src") + "\n", encoding="utf-8")
+entrypoint = root / ".venv" / "bin" / "quantik-workspace"
+python = root / ".venv" / "bin" / "python"
+entrypoint.write_text(f"#!/usr/bin/env sh\nexec \"{python}\" -m quantik_workspace.cli \"$@\"\n", encoding="utf-8")
+entrypoint.chmod(0o755)
+'
+"$WORKSPACE_ROOT/.venv/bin/quantik-workspace" --workspace "$WORKSPACE_ROOT/workspace.yaml" validate workspace
+"$WORKSPACE_ROOT/.venv/bin/quantik-workspace" --workspace "$WORKSPACE_ROOT/workspace.yaml" repos status
+echo "Next: ./scripts/validate; ./scripts/context repo quantik-core-rust; ./scripts/release status"
