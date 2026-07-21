@@ -1,0 +1,15 @@
+{
+  "id": "QW-004",
+  "title": "Opening Probe Contract and Runtime",
+  "status": "plan-required",
+  "problem": "Opening-book data exists, but there is no compact opening-probe contract or symmetry-safe engine abstraction for portable runtime lookup.",
+  "affected_repositories": ["quantik-core-contracts", "quantik-core-rust"],
+  "affected_contracts": ["opening-book.v1", "opening-probe.v1", "bitboard.v1", "action-index.v1"],
+  "dependencies": ["QW-001"],
+  "acceptance_criteria": [
+    "An approved contract design and implementation plan define probe keys, values, bounds, move/action transforms, metadata, errors, and migration.",
+    "Contracts register opening-probe.v1 with normative fixtures and validators.",
+    "Rust implements a fail-fast probe abstraction that handles representative orientation correctly.",
+    "Cross-produced evidence covers hits, misses, corrupt data, incompatible versions, and transformed moves."
+  ]
+}

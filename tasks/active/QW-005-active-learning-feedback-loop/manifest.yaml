@@ -1,0 +1,15 @@
+{
+  "id": "QW-005",
+  "title": "Search and H2H Active-Learning Feedback Loop",
+  "status": "plan-required",
+  "problem": "Search summaries, game results, observations, self-play, books, and checkpoints exist as disconnected stages; no implemented mechanism selects informative positions, writes discoveries back, or proves the next corpus/model is better.",
+  "affected_repositories": ["quantik-core-contracts", "quantik-core-rust", "quantik-models-py"],
+  "affected_contracts": ["search-summary.v1", "game-result.v1", "observation.v1", "selfplay.v1", "opening-book.v1", "model-checkpoint.v1"],
+  "dependencies": ["QW-002", "QW-003", "QW-004", "QW-006", "QW-007"],
+  "acceptance_criteria": [
+    "An approved design specification and PR-sized implementation plan define the smallest measurable v1 loop.",
+    "Selection inputs, disagreement semantics, book write-back authority, iteration state, and reproducibility are explicit.",
+    "Evaluation gates compare candidate and baseline with declared sample size, confidence, and regression policy.",
+    "One bounded loop iteration produces traceable artifacts and either promotes or rejects the candidate without manual data surgery."
+  ]
+}

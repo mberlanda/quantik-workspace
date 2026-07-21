@@ -8,7 +8,11 @@
     "tag": "v1.2.0",
     "branch": "release/v1.2.0",
     "commit": "beb26e7e07184b2fd61b9aef242358788400d861",
-    "release_notes": null
+    "release_notes": null,
+    "remote_pr": 19,
+    "remote_head": "f444652c07e0b3fb637f861d57f7339d1502ff49",
+    "remote_head_verified_at": "2026-07-21",
+    "local_head_reconciliation_required": true
   },
   "version_sources": {
     "primary": {"path": "VERSION", "kind": "text"},
@@ -23,14 +27,14 @@
   },
   "consumers": {
     "quantik-core-py": {"required": true, "current_contracts_release": "1.1.0", "target_contracts_release": "1.2.0", "current_action_ref": "v1.1.0", "target_action_ref": "v1.2.0", "adoption_status": "pending", "notes": "Working tree has uncommitted 1.2.0 source changes; preserve it."},
-    "quantik-core-rust": {"required": true, "current_contracts_release": "1.2.0", "target_contracts_release": "1.2.0", "current_action_ref": "v1.1.0", "target_action_ref": "v1.2.0", "adoption_status": "pending"},
+    "quantik-core-rust": {"required": true, "current_contracts_release": "1.2.0", "target_contracts_release": "1.2.0", "current_action_ref": "v1.1.0", "target_action_ref": "v1.2.0", "adoption_status": "pending", "remote_pr": 37, "remote_head": "e141b93c4d9c3c8ee2464f8ecc1a2b30f96f7ee1", "local_head_reconciliation_required": true},
     "quantik-models-py": {"required": true, "current_contracts_release": "1.1.0", "target_contracts_release": "1.2.0", "current_action_ref": null, "target_action_ref": "v1.2.0", "adoption_status": "pending"}
   },
   "compatibility": {
     "breaking_changes": [],
     "additive_changes": ["search-summary.v1 registration", "model/data contract additions and release metadata"],
     "required_checks": ["contracts-source-validation", "action-source-smoke", "release-tag-validation", "published-action-smoke", "quantik-core-py-consumer-smoke", "quantik-core-rust-consumer-smoke", "quantik-models-py-consumer-smoke"],
-    "evidence": ["2026-07-21: contracts 35-unit-test suite passed; 15 schema/metadata JSON files and 11 JSONL rows validated locally"]
+    "evidence": ["2026-07-21: contracts 35-unit-test suite passed; 15 schema/metadata JSON files and 11 JSONL rows validated locally", "2026-07-21: public GitHub verification found contracts PR #19 and Rust PR #37 open, no Python release PR, and no v1.2.0 tags"]
   },
   "release_order": ["quantik-core-contracts", "quantik-core-py", "quantik-core-rust", "quantik-models-py"]
 }

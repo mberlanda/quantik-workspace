@@ -1,0 +1,15 @@
+{
+  "id": "QW-002",
+  "title": "Versioned ML Pipeline Profiles",
+  "status": "plan-required",
+  "problem": "The models repository has a working smoke pipeline and trainer, but run tiers are assembled from scattered environment variables and duplicated wrappers rather than one versioned pipeline definition.",
+  "affected_repositories": ["quantik-models-py"],
+  "affected_contracts": ["observation.v1", "selfplay.v1", "model-checkpoint.v1"],
+  "dependencies": [],
+  "acceptance_criteria": [
+    "An approved design and implementation plan define profile schema, overrides, stages, migration, and reproducibility metadata.",
+    "One runner executes data generation, materialization, optional training, evaluation, and verification for smoke, CI, small, and target profiles.",
+    "Committed profiles replace duplicated tier defaults while retaining explicit overrides.",
+    "CI and local examples use the same runner and tests prove profile validation and override precedence."
+  ]
+}

@@ -2,6 +2,7 @@
 
 ## Candidate
 
+- [ ] Reconcile local contracts/Rust release branches with their newer public PR heads.
 - [x] `VERSION` and `contracts.json` agree on 1.2.0.
 - [x] Contracts unit tests and fixture/schema validation pass locally.
 - [ ] Candidate composite actions are exercised from relative paths.
@@ -17,6 +18,7 @@
 
 ## Consumers
 
+- [ ] Open and validate the Python release PR without overwriting its dirty worktree.
 - [ ] Python adoption complete without overwriting current user changes.
 - [ ] Rust adoption complete; workflow ref/expectation agree.
 - [ ] Models adoption complete; explicit supported release exists.

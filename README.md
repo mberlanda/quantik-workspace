@@ -89,7 +89,12 @@ Tagging and publication are separate and print dry runs unless `--execute` is su
 
 ## Current baseline
 
-Discovery on 2026-07-21 found a contracts 1.2.0 candidate with only `v1.1.0` published, stale/mismatched consumer expectations, and no source-mode composite-action coverage. See `docs/discovery/` and the prepared, non-executed `QREL-2026-001` and `QW-001` packets.
+Reconciliation on 2026-07-21 found a contracts 1.2.0 candidate with only
+`v1.1.0` published, newer remote release PR heads than the local checkouts, and
+an uncommitted Python adoption. It also removed already-shipped search/Parquet
+work from the queue and added only outstanding `QW-002` through `QW-007`
+initiatives, each with an explicit planning gate where required. See
+`docs/discovery/namespace-tracker-reconciliation-2026-07-21.md`.
 
 ## Development
 

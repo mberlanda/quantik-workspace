@@ -1,0 +1,15 @@
+{
+  "id": "QW-006",
+  "title": "Search-Derived Observation Policy Targets",
+  "status": "plan-required",
+  "problem": "The observation exporter records one visit on the selected action instead of the search distribution, producing structurally valid but weak policy supervision for real training.",
+  "affected_repositories": ["quantik-core-rust", "quantik-models-py"],
+  "affected_contracts": ["observation.v1", "search-summary.v1"],
+  "dependencies": ["QW-001"],
+  "acceptance_criteria": [
+    "An approved plan defines engine-specific policy mass semantics and compatibility with observation.v1.",
+    "Rust exports faithful deterministic root policy distributions for supported engines or explicitly marks unsupported cases.",
+    "Models materialization/training validates and uses the distributions with documented weighting and fallback behavior.",
+    "Evaluation demonstrates label coverage and compares the new target distribution against the one-hot baseline."
+  ]
+}

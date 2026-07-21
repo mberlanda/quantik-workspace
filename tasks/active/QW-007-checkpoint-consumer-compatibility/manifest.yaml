@@ -1,0 +1,15 @@
+{
+  "id": "QW-007",
+  "title": "Checkpoint Consumer Compatibility",
+  "status": "plan-required",
+  "problem": "model-checkpoint.v1 artifacts are produced, but Python and Rust engines do not have an approved, fail-fast compatibility surface for loading supported weights and evaluating positions.",
+  "affected_repositories": ["quantik-core-contracts", "quantik-core-py", "quantik-core-rust", "quantik-models-py"],
+  "affected_contracts": ["model-checkpoint.v1", "tensor-board.v1", "action-index.v1"],
+  "dependencies": ["QW-001"],
+  "acceptance_criteria": [
+    "An approved design selects initial runtime/weights formats and defines capability negotiation and failure behavior.",
+    "Contracts fixtures cover supported and unsupported format, architecture, tensor, action, and value metadata.",
+    "Python and Rust consumers fail fast before inference on incompatible checkpoints.",
+    "At least one repository-owned inference adapter matches models-py reference outputs within an approved tolerance."
+  ]
+}

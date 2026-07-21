@@ -1,0 +1,15 @@
+{
+  "id": "QW-003",
+  "title": "Book-Guided Self-Play Runner",
+  "status": "plan-required",
+  "problem": "The Rust self-play exporter only supports MCTS versus MCTS from the empty board and cannot select books, openings, engine pairs, or provenance needed for iterative training.",
+  "affected_repositories": ["quantik-core-contracts", "quantik-core-rust", "quantik-models-py"],
+  "affected_contracts": ["selfplay.v1", "opening-book.v1", "game-result.v1"],
+  "dependencies": ["QW-001"],
+  "acceptance_criteria": [
+    "An approved v1 design and implementation plan define opening selection, engine pairing, determinism, provenance, and compatibility behavior.",
+    "The Rust runner supports an opening book and explicit opening policy without unsafe canonical-orientation move reuse.",
+    "Engine pairs and seeds are reproducible and emitted provenance is contract-compatible.",
+    "The models pipeline can invoke the runner and a maintained self-play workflow document covers current behavior and planned extensions."
+  ]
+}
