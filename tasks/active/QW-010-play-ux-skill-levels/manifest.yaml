@@ -1,15 +1,22 @@
 {
   "id": "QW-010",
-  "title": "Play UX for Non-Expert Players — Skill Levels and How-to-Play",
+  "title": "Play UX for Non-Expert Players \u2014 Skill Levels and How-to-Play",
   "status": "not-started",
   "problem": "The play service (QW-008) exposes twenty opponents keyed by architecture and simulation count, which assumes the player already knows what cpool@128 means. Public deployment (QW-009) needs an easy/medium/hard mapping and a rules explainer, but the level-to-opponent mapping must come from arena numbers, not intuition, because the seat effect (mover 68-88%, responder 15-39%) is larger than the strength gaps between most opponents.",
-  "affected_repositories": ["quantik-models-py"],
+  "affected_repositories": [
+    "quantik-models-py"
+  ],
   "affected_contracts": [],
-  "dependencies": ["QW-008"],
+  "dependencies": [
+    "QW-008",
+    "QW-012"
+  ],
   "acceptance_criteria": [
-    "A written derivation, with numbers, maps each skill level to a specific opponent spec, sourced from docs/oracle-benchmark.md and the lineup arena tables and controlling for the seat effect explicitly (balanced-seat win rates, not raw ones).",
+    "A balanced arena from start ply 0 and ply 1 exists before any skill-level mapping is written. No arena on disk starts before ply 3, and at ply 0 every checkpoint is uniform to three decimal places (max legal prior 0.016-0.023), so the regime a human game actually starts in is currently unmeasured for every model.",
+    "A written derivation, with numbers, maps each skill level to a specific opponent spec, sourced from the ply-0/ply-1 arena above plus docs/oracle-benchmark.md and the lineup tables, controlling for the seat effect explicitly (balanced-seat win rates, not raw ones).",
+    "No v3-corpus checkpoint enters the skill-level mapping or the Hub on current evidence. cpool-v3, patience-v2 and patience-v3 stay local staging symlinks in runs/play/models/ only.",
     "The derivation is reviewed and approved before any quantik-qfen-visualizer UI change is made against it.",
     "A collapsible how-to-play explainer's rule text is drafted and checked against quantik-core-contracts' own rule statement for consistency.",
-    "The 'advanced' toggle that exposes the full twenty-opponent roster is specified, not just the default simplified view."
+    "The 'advanced' toggle that exposes the full opponent roster is specified, not just the default simplified view. The roster is 6 classical opponents plus 2 per discovered model, so its size is a function of what is staged, not a fixed number."
   ]
 }

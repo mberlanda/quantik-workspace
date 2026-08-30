@@ -1,0 +1,21 @@
+{
+  "acceptance_criteria": [
+    "cpool/medium is trained on exact-sampled-v2.npz at --epochs 120 --patience 5, lr 6e-4, seed 20260828 \u2014 a cap high enough that early stopping is the expected outcome, not the 40-epoch cap patience-cpool-v2 hit.",
+    "The run is confirmed to have early-stopped before any conclusion is drawn from it. A run that hits 120 is not a converged run and the initiative is not complete.",
+    "One arena contains patience-cpool and the new checkpoint at start plies 3, 6 and 9, side-balanced, on a seed that is not 20260829 or 20260909 \u2014 both are spent.",
+    "The write-up states one variable moved (corpus) with both arms converged, and reports the shared probe alongside the arena rather than instead of it.",
+    "ADR 0014 is updated with the result: confirmed, weakened, or overturned. A null result here is a real outcome and must be recorded as one."
+  ],
+  "affected_contracts": [],
+  "affected_repositories": [
+    "quantik-models-py"
+  ],
+  "created": "2026-08-30",
+  "id": "QW-023",
+  "problem": "The experiment that would settle whether shallow-ply coverage helps has never been run. Every corpus comparison on disk either compares a converged run against a capped one, or two runs that both hit their cap. patience-cpool (v1) early-stopped at 43 and is converged; patience-cpool-v2 and -v3 both ran all 40 epochs and hit their cap, so neither is. ADR 0014's central finding \u2014 that shallow coverage is corpus-caused and epochs cannot buy it \u2014 rests on comparing a converged v1 run against non-converged v2/v3 runs, which is the weakest possible form of the right answer.",
+  "status": "not-started",
+  "title": "Settle the Corpus Axis at Converged Budget",
+  "dependencies": [
+    "QW-012"
+  ]
+}
