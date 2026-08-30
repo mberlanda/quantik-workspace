@@ -18,7 +18,7 @@ paid for once: `cpool` and `attn` had been trained at `2e-3` — the ResNet's de
 and when the rate was swept, **three published conclusions reversed**. An inherited
 hyperparameter had produced a plausible, detailed, statistically significant story about
 architectural behaviour that was not true. Read
-`docs/learning-rate-sweep.md` and the warning box in [`WORKSTREAMS.md`](../docs/history/workstreams-archive.md) §11 before
+`docs/learning-rate-sweep.md` and the warning box in [`WORKSTREAMS.md`](../../../docs/history/workstreams-archive.md) §11 before
 starting, so you know what the failure looks like from the inside.
 
 The specific evidence that the epoch budget is the same flaw:
@@ -50,7 +50,7 @@ being cut off mid-climb.
 
 ## Two implementation decisions already taken — do not relitigate
 
-Both are recorded in [`WORKSTREAMS.md`](../docs/history/workstreams-archive.md) §11 and in `docs/retrain-and-finetune.md`:
+Both are recorded in [`WORKSTREAMS.md`](../../../docs/history/workstreams-archive.md) §11 and in `docs/retrain-and-finetune.md`:
 
 1. **A tie does not buy more epochs.** `best/` is only rewritten on a *strict* decrease,
    so an epoch that merely equals the best did not produce the weights on disk and must
@@ -131,7 +131,7 @@ exercise exists to answer:
 > **Does the `cpool`/`attn` tie survive giving `attn` the epochs it wanted?**
 
 Update `docs/decisions/0001-architecture-lineup.md`, the results table in
-[`WORKSTREAMS.md`](../docs/history/workstreams-archive.md) §11, `docs/shift-evaluation.md` and `docs/autoplay.md`. Every one of
+[`WORKSTREAMS.md`](../../../docs/history/workstreams-archive.md) §11, `docs/shift-evaluation.md` and `docs/autoplay.md`. Every one of
 those currently carries a fixed-budget number presented without that qualifier.
 
 ## Guard rails — how this goes wrong quietly
@@ -163,7 +163,7 @@ those currently carries a fixed-budget number presented without that qualifier.
 
 ## Where to read first
 
-- [`WORKSTREAMS.md`](../docs/history/workstreams-archive.md) §11 — "A second methodological flaw", and the learning-rate warning box
+- [`WORKSTREAMS.md`](../../../docs/history/workstreams-archive.md) §11 — "A second methodological flaw", and the learning-rate warning box
 - `docs/corpus-v3.md` — the resolution section; this is the precedent for the whole task
 - `docs/retrain-and-finetune.md` — `--patience`, `--init-from`, `--freeze`, and two silent failures
 - `docs/decisions/0001-architecture-lineup.md` — the ADR this updates

@@ -33,6 +33,18 @@ class TaskContextTests(unittest.TestCase):
             self.assertIn("repository task", bundle.text)
             self.assertIn("repos/repo.md", bundle.text)
 
+    def test_optional_plan_is_composed_when_present(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            config = self._workspace(root)
+            path = create_task(config, "QW-124-planned", "Planned", ["repo"])
+            self.assertNotIn("plan.md", initiative_context(config, "QW-124", "repo", budget=5000).text)
+            (path / "plan.md").write_text("# Charter\n\nThe delegable plan.\n", encoding="utf-8")
+            bundle = initiative_context(config, "QW-124", "repo", budget=5000)
+            self.assertIn("tasks/active/QW-124-planned/plan.md", bundle.sources)
+            self.assertIn("The delegable plan.", bundle.text)
+            self.assertEqual(validate_initiative(path, {"repo"}), [])
+
     def test_task_validation_error(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory)

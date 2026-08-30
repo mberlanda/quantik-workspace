@@ -81,7 +81,7 @@ def initiative_context(config: WorkspaceConfig, identifier: str, repository: str
     if len(matches) != 1:
         raise ValueError(f"expected one active initiative for {identifier}, found {len(matches)}")
     initiative = matches[0]
-    paths = [config.root / "context/system/canonical-invariants.md", initiative / "initiative.md", initiative / "manifest.yaml", initiative / "decisions.md", initiative / "status.md"]
+    paths = [config.root / "context/system/canonical-invariants.md", initiative / "initiative.md", initiative / "plan.md", initiative / "manifest.yaml", initiative / "decisions.md", initiative / "status.md"]
     if repository:
         paths.extend([config.root / f"context/repositories/{repository}.md", initiative / "repos" / f"{repository}.md"])
     sections, sources = _read_sources(config.root, paths)

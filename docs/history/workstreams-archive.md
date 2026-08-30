@@ -44,7 +44,8 @@ graphs in the test suite, and the exported graph signature matches the one-metho
 Everything else about the storeless deployment already works — `--no-store` opens no
 database and `POST /api/games` answers 503.
 
-**Delegation briefs live in [`briefs/`](../../briefs/).** Two charters are written up in full
+**Delegation briefs are now the `plan.md` of their task packet** — [`QW-012`](../../tasks/active/QW-012-lineup-under-patience/plan.md) and [`QW-013`](../../tasks/active/QW-013-play-store-solver-queue-export/plan.md); the
+top-level `briefs/` directory this line originally named no longer exists. Two charters are written up in full
 for a separate session, both single-repo (`quantik-models-py`) and needing none of the
 cross-repo context in this file. **The play-store solver-queue export is done** (py#53,
 see §11 "Still to build"). **The `--patience` lineup rerun is still open** — its shape

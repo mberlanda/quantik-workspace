@@ -18,7 +18,7 @@ honored, whether it has been run end to end against the real
 the human-games branch the brief's working agreement requires. Not re-verified
 here to avoid interfering with in-flight work.
 
-Full charter: [`briefs/play-solver-queue-export.md`](../../../briefs/play-solver-queue-export.md).
+Full charter: [`plan.md`](plan.md).
 
 Next action: whoever picks this up should check the current state of
 `src/quantik_models/play/export.py` before writing anything — it may already
