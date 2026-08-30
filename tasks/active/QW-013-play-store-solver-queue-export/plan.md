@@ -137,7 +137,7 @@ is worth it. Say so plainly.
 - Commit as the user only — **no `Co-Authored-By:` or `Claude-Session:` trailers**.
 - Failing test first for the filter behaviour, per the trap section.
 - Documentation in the same PR: `docs/autoplay.md` describes the position pipeline and
-  should gain the human-games branch; [`WORKSTREAMS.md`](../docs/history/workstreams-archive.md) §11 "Still to build" lists this.
+  should gain the human-games branch; [`WORKSTREAMS.md`](../../../docs/history/workstreams-archive.md) §11 "Still to build" lists this.
 
 ## Where to read first
 

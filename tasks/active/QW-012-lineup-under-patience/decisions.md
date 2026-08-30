@@ -1,7 +1,7 @@
 # QW-012 Decisions
 
 All substantive decisions are recorded in
-[`briefs/lineup-under-patience.md`](../../../briefs/lineup-under-patience.md)
+[`plan.md`](plan.md)
 and are not repeated here. That brief is the plan; this file exists so the
 initiative is not "plan-required" — the plan already exists and is approved.
 
