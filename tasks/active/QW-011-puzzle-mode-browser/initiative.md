@@ -52,7 +52,7 @@ N/A — new, additive feature; no existing behavior changes.
 
 Excludes skill levels (QW-010) and the storeless deployment container (QW-009);
 independent of both and the fastest of the three to ship, per
-`quantik-ns/WORKSTREAMS.md` workstream 15's own note.
+[`WORKSTREAMS.md`](../../../docs/history/workstreams-archive.md) workstream 15's own note.
 
 ## Acceptance criteria
 

@@ -22,3 +22,7 @@ Remaining edges, not yet picked up:
 
 Nothing here blocks QW-009, QW-010, or QW-011, all of which build on this
 service rather than modify it.
+
+## 2026-08-30 — closed
+
+Every acceptance criterion is met: the `play/` modules and their tests are the implementation, each endpoint has a focused test, and the seed finding is recorded in `docs/autoplay.md`. The one remaining edge — the browser client showing a storage error against a `--no-store` server — is carried by QW-009, which owns the storeless deployment, rather than holding this initiative open.

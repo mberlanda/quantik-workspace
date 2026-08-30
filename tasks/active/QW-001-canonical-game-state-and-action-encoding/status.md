@@ -14,7 +14,7 @@ adapter work exists). Verified in code, not assumed:
 - `quantik-models-py` gained a second, **mover-relative** tensor encoding
   (`fastboard.encode_tensors`) distinct from the color-ordered
   `quantik_core.ml_data.qfen_to_tensor` this initiative's `tensor-board.v1` scope already
-  named — see `quantik-ns/WORKSTREAMS.md` workstream 4. This sharpens open decision 2
+  named — see [`WORKSTREAMS.md`](../../../docs/history/workstreams-archive.md) workstream 4. This sharpens open decision 2
   (action/orientation mapping): a runtime built to the wrong encoding is silently wrong on
   half of all positions, which is exactly the class of bug decision 2 is meant to prevent.
   No fixture or contract change has been made in response yet.

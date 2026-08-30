@@ -35,6 +35,6 @@ No Markdown tables anywhere — Substack does not render them (`grep '^|' *.md` 
 
 ## Current state, 2026-08-30
 
-Three "Season Two" drafts (`part-v-the-tournament.md`, `part-vi-the-apprentice.md`, `part-vii-the-audit.md`, ~1,900–2,050 words each) are already committed on local `main`, with `verify_claims.py` reporting **ALL CLAIMS VERIFIED**. **They are not mentioned anywhere in the workspace root `WORKSTREAMS.md`**, which tracks only the unrelated `the-deadlock.md` piece under workstream 3 — a tracking gap worth closing, not a contradiction to resolve by picking a side.
+Three "Season Two" drafts (`part-v-the-tournament.md`, `part-vi-the-apprentice.md`, `part-vii-the-audit.md`, ~1,900–2,050 words each) are already committed on local `main`, with `verify_claims.py` reporting **ALL CLAIMS VERIFIED**. **They are not mentioned anywhere in the workspace root [`WORKSTREAMS.md`](../../docs/history/workstreams-archive.md)**, which tracks only the unrelated `the-deadlock.md` piece under workstream 3 — a tracking gap worth closing, not a contradiction to resolve by picking a side.
 
 `the-deadlock.md` itself (workstream 3: draft complete, unpublished, ~2,750 words against a 1,750–2,050-word house length) is present but **not yet committed** — `git status` shows it and its four figures, plus `make_preview.py`/`make_release_figures.py`/`preview-the-deadlock.html`/`preview.css`, as untracked, and `README.md` as modified. Since there is no remote, an uncommitted draft here exists in exactly one place.

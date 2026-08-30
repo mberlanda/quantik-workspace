@@ -11,7 +11,7 @@ Seven repository-scoped PRs in `quantik-models-py` (#45, #47–#51) and three in
 `quantik-qfen-visualizer` (#3–#6) — ten total, both merged 2026-08-29 — built a
 service that serves the visualizer, plays twenty opponents, analyses positions, and
 records finished games to `~/.local/share/quantik/games.db` with symmetry-aware
-dedup. This was tracked only in `quantik-ns/WORKSTREAMS.md`, never here, so the
+dedup. This was tracked only in [`WORKSTREAMS.md`](../../../docs/history/workstreams-archive.md), never here, so the
 control plane undercounts the repository's actual surface.
 
 ## Existing and desired behaviour

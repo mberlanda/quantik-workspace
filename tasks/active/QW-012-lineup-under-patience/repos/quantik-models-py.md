@@ -26,7 +26,7 @@ Commands and focused tests: see the brief's "Smoke test before any long run"
 and "Re-run the whole evaluation" sections verbatim.
 
 Expected artifacts: four new checkpoints, one new evaluation directory, updated
-`docs/decisions/0001-architecture-lineup.md`, `WORKSTREAMS.md` §11,
+`docs/decisions/0001-architecture-lineup.md`, [`WORKSTREAMS.md`](../../../../docs/history/workstreams-archive.md) §11,
 `docs/shift-evaluation.md`, `docs/autoplay.md`.
 
 Completion criteria: the brief's step 4 report answers, explicitly, whether the
