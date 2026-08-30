@@ -51,7 +51,7 @@ the existing autoplay-produced `to-solve.qfen.gz`.
 ## Release strategy and ordering
 
 The full charter is written up as
-[`briefs/play-solver-queue-export.md`](../../../../briefs/play-solver-queue-export.md)
+[`briefs/play-solver-queue-export.md`](../../../briefs/play-solver-queue-export.md)
 — that document is the plan; this packet links to it rather than duplicating it.
 One PR, atomic commits, merged when CI is green.
 

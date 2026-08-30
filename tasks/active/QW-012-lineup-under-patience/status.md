@@ -9,7 +9,7 @@ corpora, not the `exact-sampled.npz` corpus the published lineup
 (`swept-cpool`, `lineup-{resnet,mlp,attn}`) was trained on — see `decisions.md`
 for why they cannot be reused as this initiative's `cpool` arm.
 
-Full charter: [`briefs/lineup-under-patience.md`](../../../../briefs/lineup-under-patience.md).
+Full charter: [`briefs/lineup-under-patience.md`](../../../briefs/lineup-under-patience.md).
 That brief is long-compute, low-ambiguity — the work is mechanical, the write-up
 is the deliverable.
 

@@ -1,7 +1,7 @@
 # quantik-models-py Packet
 
 > **Purpose:** training, dataset materialization, autoplay/arena, checkpoint export, evaluation, and the play HTTP service.
-> **Load with:** [`../../../quantik-models-py/AGENTS.md`](../../../quantik-models-py/AGENTS.md), [`../system/current-architecture.md`](../system/current-architecture.md), [`quantik-core-py.md`](quantik-core-py.md), [`quantik-core-contracts.md`](quantik-core-contracts.md)
+> **Load with:** [`https://github.com/mberlanda/quantik-models-py/blob/main/AGENTS.md`](https://github.com/mberlanda/quantik-models-py/blob/main/AGENTS.md), [`../system/current-architecture.md`](../system/current-architecture.md), [`quantik-core-py.md`](quantik-core-py.md), [`quantik-core-contracts.md`](quantik-core-contracts.md)
 
 Important modules: data materialization/dataset/labels, model spec/network, trainer, export/checkpoint, and `play/` (server, service, registry of ~20 opponents, SQLite game recorder, puzzle generator — added 2026-08-30, see `AGENTS.md`). Version source/mirror: pyproject and package `__version__` (`0.1.0`). Inspected clean `main` at `9a29d30` (2026-08-30); two untracked files present that day (`play/export.py`, `tests/test_play_export.py`), not yet committed.
 

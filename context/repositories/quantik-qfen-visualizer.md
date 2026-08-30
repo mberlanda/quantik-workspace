@@ -1,7 +1,7 @@
 # quantik-qfen-visualizer Packet
 
 > **Purpose:** dependency-free browser app for playing Quantik, watching engines play, and exporting game traces.
-> **Load with:** [`../../../quantik-qfen-visualizer/AGENTS.md`](../../../quantik-qfen-visualizer/AGENTS.md), [`quantik-api-rust.md`](quantik-api-rust.md), [`quantik-models-py.md`](quantik-models-py.md), [`../system/domain-glossary.md`](../system/domain-glossary.md)
+> **Load with:** [`https://github.com/mberlanda/quantik-qfen-visualizer/blob/main/AGENTS.md`](https://github.com/mberlanda/quantik-qfen-visualizer/blob/main/AGENTS.md), [`quantik-api-rust.md`](quantik-api-rust.md), [`quantik-models-py.md`](quantik-models-py.md), [`../system/domain-glossary.md`](../system/domain-glossary.md)
 
 ## Ownership
 

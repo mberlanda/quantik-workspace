@@ -1,6 +1,6 @@
 # quantik-models-py task
 
-Objective: execute [`briefs/play-solver-queue-export.md`](../../../../../briefs/play-solver-queue-export.md)
+Objective: execute [`briefs/play-solver-queue-export.md`](../../../../briefs/play-solver-queue-export.md)
 exactly as written. Check `src/quantik_models/play/export.py`'s current state
 first — an implementation already exists, untracked, as of 2026-08-30 (see
 `status.md`); this may be a review-and-finish task rather than a from-scratch

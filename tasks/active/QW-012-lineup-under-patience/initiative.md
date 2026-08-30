@@ -52,7 +52,7 @@ directories; nothing existing is replaced.
 ## Release strategy and ordering
 
 The full charter is written up as
-[`briefs/lineup-under-patience.md`](../../../../briefs/lineup-under-patience.md)
+[`briefs/lineup-under-patience.md`](../../../briefs/lineup-under-patience.md)
 — that document is the plan; this packet links to it rather than duplicating it.
 One PR, atomic commits, merged when CI is green.
 

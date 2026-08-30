@@ -1,6 +1,6 @@
 # quantik-models-py task
 
-Objective: execute [`briefs/lineup-under-patience.md`](../../../../../briefs/lineup-under-patience.md)
+Objective: execute [`briefs/lineup-under-patience.md`](../../../../briefs/lineup-under-patience.md)
 exactly as written — that document is the repository task; this file is a
 pointer to it plus the one correction in `decisions.md`.
 
