@@ -48,6 +48,34 @@ The staged layout — one subdirectory per model holding `manifest.json` and wei
 exactly what the play service's model registry scans, so a staged Hub repository is a
 model directory with no conversion.
 
+**Development data is published too, as two private Hugging Face *dataset* repos.**
+`runs/` in `quantik-models-py` is ~1.3 GB of solver output, corpora, enumerations, the
+held-out probe, every checkpoint and every arena result. It is gitignored and lives on
+one machine, and a model repo does not help — it carries weights and a card, not the
+corpus the weights were fitted to.
+
+| dataset repository | holds | rewritten |
+| --- | --- | --- |
+| [`brpoplpush/quantik-dev-data`](https://huggingface.co/datasets/brpoplpush/quantik-dev-data) | solver output, corpora, enumerations, probe, opening book | never — appended to only |
+| `brpoplpush/quantik-dev-runs` | checkpoints (with resume state), sweeps, autoplay, evaluations | every training generation |
+
+Split **by churn, not subject**: Hub history is permanent, so the churny half would
+otherwise inflate the history of the irreplaceable half. `quantik-dev-runs` can be
+squashed to reclaim space; `quantik-dev-data` never has to be.
+
+To work with them, from `quantik-models-py`:
+
+```bash
+git lfs install
+git clone git@hf.co:datasets/brpoplpush/quantik-dev-data runs/devdata
+scripts/sync_dev_data.sh          # clone-or-pull, re-stage, show diff; never pushes
+```
+
+**A clone is not a working tree.** The layout is `<group>/runs/...`, so nothing under
+`runs/devdata/` is on a path the trainer looks at — restoring means
+`cp -r runs/devdata/corpora/runs/ .`. See
+[`dev-data.md`](https://github.com/mberlanda/quantik-models-py/blob/main/docs/dev-data.md).
+
 Package registries, for contrast: `quantik-core` publishes to
 [crates.io](https://crates.io/crates/quantik-core) and
 [PyPI](https://pypi.org/project/quantik-core/). **`quantik-models` is not on PyPI**
