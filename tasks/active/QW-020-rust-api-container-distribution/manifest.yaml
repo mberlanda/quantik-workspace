@@ -1,0 +1,21 @@
+{
+  "acceptance_criteria": [
+    "A multi-stage Dockerfile builds a static binary onto a distroless or scratch base, and the resulting image size is recorded.",
+    "Images publish to ghcr.io on tag, multi-arch for linux/amd64 and linux/arm64 via buildx \u2014 arm64 is not optional, local development is arm64.",
+    "Two variants exist once QW-017 lands: quantik-api:X.Y.Z with no ML dependency and quantik-api:X.Y.Z-model. The base variant is shippable before QW-017 and should not wait for it.",
+    "A recorded decision states whether this image or the QW-009 Python play container is the public deployment, or why both ship.",
+    "The image runs the engines it claims: a container-level smoke test posts one request per engine kind and asserts a legal move."
+  ],
+  "affected_contracts": [],
+  "affected_repositories": [
+    "quantik-api-rust"
+  ],
+  "created": "2026-08-30",
+  "id": "QW-020",
+  "problem": "quantik-api-rust ships as source only. There is no Dockerfile, no image, and no CI that builds one. The section that tracked this carried 'the repo has no git remote, nothing for CI to build from' for weeks; that is false and was false when written \u2014 origin is git@github.com:mberlanda/quantik-api-rust.git and local main is in sync at f814093, verified three ways on 2026-08-30. The work is unblocked and simply not started.",
+  "status": "not-started",
+  "title": "Container Distribution for the Rust API",
+  "dependencies": [
+    "QW-017"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "acceptance_criteria": [
+    "The length decision is taken and recorded: cut to house length, or publish long and say why the slot tolerates it.",
+    "the-deadlock.md is published to the Wednesday slot with its four figures, carrying no 'Part N' \u2014 the Wednesday slot has never used one and Parts VI/VII are already queued.",
+    "The article's technical claims are re-checked against the repository before publication, specifically the validator line numbers, which QW-015 may have changed by then.",
+    "articles has a git remote and the three Season Two drafts are pushed, or a deliberate decision to keep the repo local is recorded in decisions.md with the backup arrangement named."
+  ],
+  "affected_contracts": [],
+  "affected_repositories": [
+    "articles"
+  ],
+  "created": "2026-08-30",
+  "id": "QW-016",
+  "problem": "articles/the-deadlock.md is a finished draft with four watermarked 2400x1350 figures and a local preview, and it has never been published. It runs ~2,750 words against a house length of 1,750-2,050, so publishing requires a length decision that has not been taken. The repo also has no git remote \u2014 verified 2026-08-30, git remote -v is empty at commit 7d8b75b \u2014 so three finished Season Two drafts exist only on one machine.",
+  "status": "draft-complete-unpublished",
+  "title": "Season Two Article Publication",
+  "dependencies": [
+    "QW-015"
+  ]
+}

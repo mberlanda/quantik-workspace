@@ -1,0 +1,24 @@
+{
+  "acceptance_criteria": [
+    "Both schemas are registered in quantik-core-contracts with golden fixtures, and the naming is settled \u2014 every registered contract is observation.v1, qfen.v1 with no quantik. prefix, so either the prefix goes or the convention is amended in writing.",
+    "The format decision is recorded: OpenAPI 3.1 (JSON Schema 2020-12 compatible, enabling client generation) versus a plain JSON Schema pair.",
+    "The spec is contract-first with CI asserting the implementation matches it \u2014 not generated from handlers, which inverts the source of truth.",
+    "All three implementations validate against the registered schema in their own test suites: the Rust const, the JS literal, and the Python play service.",
+    "A deliberate migration is recorded if the schema string changes, because a rename breaks every deployed client that pins the old string."
+  ],
+  "affected_contracts": [
+    "engine-request.v1",
+    "engine-response.v1"
+  ],
+  "affected_repositories": [
+    "quantik-core-contracts",
+    "quantik-api-rust",
+    "quantik-qfen-visualizer"
+  ],
+  "created": "2026-08-30",
+  "id": "QW-019",
+  "problem": "quantik.engine-request.v1 and quantik.engine-response.v1 are phantom contracts. They use the contract naming convention and the API rejects requests whose schema field does not match, but they appear nowhere in the contracts registry. Verified 2026-08-30: the string is a Rust const at quantik-api-rust/src/lib.rs:22 and a JS literal at quantik-qfen-visualizer/src/engines.js:54, with nothing keeping the two in agreement and no schema either can be validated against. Two further defects ride along: the quantik. prefix breaks the registry's naming convention, and the Python play service is now a third independent implementation of the same wire format.",
+  "status": "not-started",
+  "title": "Register the Phantom Engine API Contracts",
+  "dependencies": []
+}
