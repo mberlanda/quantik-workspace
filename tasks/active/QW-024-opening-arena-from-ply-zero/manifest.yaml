@@ -1,0 +1,19 @@
+{
+  "acceptance_criteria": [
+    "scripts/evaluate_opening_arena.sh is run at plies 0 and 1 over the published four plus patience-cpool and patience-cpool-v2, with the uniform-mcts control included.",
+    "Every run's 'distinct games: worst pairing N/GAMES' line is checked BEFORE any win rate is read. If N is far below GAMES the numbers are not reported \u2014 they rest on fewer independent games than were played and every interval is too narrow.",
+    "The write-up answers the question that blocks QW-010: is there a strength ordering at ply 0 at all, or are the networks indistinguishable there? The uniform-mcts control is what separates 'these networks are close' from 'no network knows anything here'.",
+    "Results are reported side-balanced. The seat effect (mover 68-88%, responder 15-39%) is larger than any difference expected between these checkpoints.",
+    "The arena seed is neither 20260829 nor 20260909 \u2014 both are spent \u2014 and is not a training seed."
+  ],
+  "affected_contracts": [],
+  "affected_repositories": [
+    "quantik-models-py"
+  ],
+  "created": "2026-08-30",
+  "id": "QW-024",
+  "problem": "No arena on disk starts before ply 3. Every start ply in runs/arena/*.json and runs/eval/*/*/games.json is 3, 4, 5, 6 or 9, so the phase a human game actually opens in is unmeasured for every checkpoint in the family. The mechanical reason is visible in the corpora: no corpus holds a single position from plies 0, 1 or 2, and every checkpoint is correspondingly uniform to three decimal places on the empty board (max legal prior 0.016-0.023). QW-010's skill-level mapping is blocked on this, because a ladder derived from ply-3 numbers ranks opponents on a phase the player never starts in.",
+  "status": "ready-to-run",
+  "title": "The Opening Arena \u2014 Measuring From Ply 0",
+  "dependencies": []
+}
