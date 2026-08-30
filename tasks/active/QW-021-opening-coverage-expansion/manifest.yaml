@@ -1,0 +1,24 @@
+{
+  "acceptance_criteria": [
+    "A new train/test partition is designed and written down BEFORE any labelling run, because training on plies 4-6 destroys the current held-out probe and the 99.63% figure with it.",
+    "A smoke run labels a small slice of one level and confirms throughput and correctness before the full solve starts, per the project's pre-expensive-run discipline.",
+    "Plies 0-6 are labelled by the exact oracle and merged through data/merge_corpus.py \u2014 the same path every other corpus takes.",
+    "The resulting model is evaluated in the ARENA against the current lineup, not only on held-out accuracy, because held-out accuracy has failed to predict play strength four times in this project.",
+    "Every published claim that quotes the old 99.63% generalization figure is either updated or explicitly scoped to the old partition; the articles quoting it are listed and handled.",
+    "The exact opening book remains preferred over the network for opening play, and the deployment reflects that; a stronger network in the opening does not change which one should answer."
+  ],
+  "affected_contracts": [
+    "observation.v1"
+  ],
+  "affected_repositories": [
+    "quantik-models-py"
+  ],
+  "created": "2026-08-30",
+  "id": "QW-021",
+  "problem": "The flagship network trained on zero positions below ply 6, including plies 4 and 5 where the contest actually lives. Plies 0-6 hold 1,019,275 canonical live positions in total \u2014 fewer than the 3,087,356 rows already trained on \u2014 so complete coverage of the entire opening is a smaller corpus than the one that exists. The enumerations are already on disk as runs/canonical/level01.npy through level08.npy, verified present 2026-08-30; only oracle labelling is missing, and solving is known feasible because the probe already contains 1,240 solved positions at ply 4 and 1,240 at ply 5. The catch is that plies 4-6 ARE the held-out probe.",
+  "status": "not-started",
+  "title": "Opening Coverage Expansion \u2014 Plies 0 to 6",
+  "dependencies": [
+    "QW-012"
+  ]
+}

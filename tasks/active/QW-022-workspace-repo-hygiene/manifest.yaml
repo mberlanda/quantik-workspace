@@ -1,0 +1,19 @@
+{
+  "acceptance_criteria": [
+    "e2e-data-pipeline.yml either pins a ref for quantik-core-py or installs the published package, matching what tests.yml already does deliberately; whichever is chosen is recorded, since the two workflows answer different questions.",
+    "articles has a remote and the Season Two drafts are pushed, or the deliberate alternative and its backup arrangement are recorded \u2014 tracked as an acceptance criterion of QW-016 and cross-checked here.",
+    ".oracle-worktree/ is either documented with its owner and purpose or removed, and the workspace root is left with nothing unexplained in it.",
+    "The quantik-api-rust no-remote correction stays visible in the archive rather than being deleted, because it was repeated as fact for weeks."
+  ],
+  "affected_contracts": [],
+  "affected_repositories": [
+    "quantik-models-py",
+    "articles"
+  ],
+  "created": "2026-08-30",
+  "id": "QW-022",
+  "problem": "Three hygiene items survive from the old repo-hygiene workstream, and one of its entries was false for weeks and shaped a delegation plan. Open: e2e-data-pipeline.yml checks out quantik-core-py with no ref (lines 78-79, verified 2026-08-30), so it silently tracks that repo's main and inherits its breakage; articles has no git remote, leaving three finished Season Two drafts on one machine; and .oracle-worktree/ sits at the workspace root with no recorded owner. Corrected: quantik-api-rust DOES have a remote \u2014 the opposite claim propagated into the root CLAUDE.md and into the Docker workstream, where it read as a blocker.",
+  "status": "partially-resolved",
+  "title": "Workspace Repo Hygiene \u2014 Remaining Items",
+  "dependencies": []
+}
