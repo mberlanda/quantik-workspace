@@ -72,9 +72,13 @@ scope problem noted above, `resnet` and `mlp` did not converge (hit the
 floors, same as the fixed-16-epoch numbers were — this run answers the
 initiative's question for `cpool`/`attn` and does not settle it for all four.
 
-**Open decision, not yet made:** whether the seed violation is acceptable to
-publish as-is (with the caveat recorded prominently, which the three
-`quantik-models-py` docs above now do) or whether the arena half needs
-re-running on a genuinely fresh seed before this initiative is called done.
-Re-running is another ~3.6h. Training does not need to be repeated either
-way — only the arena/shift evaluation step consumes the seed.
+**Resolved 2026-08-30: spun off rather than blocking this task.** The result
+is published as-is, with the seed caveat recorded prominently in the three
+`quantik-models-py` docs above and here. Confirming it on an independent seed
+is real, necessary follow-up — but it does not require retraining and does
+not change anything about QW-012's training deliverable, so it is tracked
+separately as [`QW-026`](../../active/QW-026-patience-arena-independent-seed/initiative.md)
+rather than left as an open decision on this packet. This task's own
+acceptance criteria (train all four, correctly decline `patience-cpool-v2/v3`,
+state the per-architecture outcome, answer whether the cpool/attn tie
+survives, leave the fixed-budget checkpoints untouched) are met.

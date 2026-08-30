@@ -32,5 +32,5 @@ Expected artifacts: four new checkpoints, one new evaluation directory, updated
 Completion criteria: the brief's step 4 report answers, explicitly, whether the
 cpool/attn tie survives.
 
-Handoff path: create `tasks/active/QW-012-lineup-under-patience/handoffs/` only
+Handoff path: create `tasks/completed/QW-012-lineup-under-patience/handoffs/` only
 once a handoff exists.

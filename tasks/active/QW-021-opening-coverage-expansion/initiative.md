@@ -57,7 +57,7 @@ and every claim about the old one either restated or scoped.
 
 ## Ordering
 
-Sequenced after [`QW-012`](../QW-012-lineup-under-patience/initiative.md). QW-012 is
+Sequenced after [`QW-012`](../../completed/QW-012-lineup-under-patience/initiative.md). QW-012 is
 already isolating one variable — the epoch budget — on a fixed corpus. Changing the
 corpus underneath it would confound the two, which is the failure QW-012's own packet
 was written to avoid.

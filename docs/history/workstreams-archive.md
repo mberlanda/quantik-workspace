@@ -34,7 +34,7 @@ in the packet's `status.md`.
 | 8 | Dockerize the API | [`QW-020`](../../tasks/active/QW-020-rust-api-container-distribution/initiative.md) |
 | 9 | NN as an opt-in add-on | folded into [`QW-017`](../../tasks/active/QW-017-onnx-model-serving-rust-api/initiative.md) — it is §4's packaging and has no value without it |
 | 10 | Coverage expansion | [`QW-021`](../../tasks/active/QW-021-opening-coverage-expansion/initiative.md) |
-| 11 | Training program | [`QW-014`](../../tasks/completed/QW-014-training-program-lineup-and-corpus/initiative.md), completed; the open remnant is [`QW-012`](../../tasks/active/QW-012-lineup-under-patience/initiative.md) |
+| 11 | Training program | [`QW-014`](../../tasks/completed/QW-014-training-program-lineup-and-corpus/initiative.md), completed; the open remnant is [`QW-012`](../../tasks/completed/QW-012-lineup-under-patience/initiative.md) |
 | 12 | Repo hygiene | [`QW-022`](../../tasks/active/QW-022-workspace-repo-hygiene/initiative.md) |
 | 13 | Public play deployment | [`QW-009`](../../tasks/active/QW-009-public-play-deployment/initiative.md) |
 | 14 | Play UX | [`QW-010`](../../tasks/active/QW-010-play-ux-skill-levels/initiative.md) |
@@ -69,7 +69,7 @@ graphs in the test suite, and the exported graph signature matches the one-metho
 Everything else about the storeless deployment already works — `--no-store` opens no
 database and `POST /api/games` answers 503.
 
-**Delegation briefs are now the `plan.md` of their task packet** — [`QW-012`](../../tasks/active/QW-012-lineup-under-patience/plan.md) and [`QW-013`](../../tasks/active/QW-013-play-store-solver-queue-export/plan.md); the
+**Delegation briefs are now the `plan.md` of their task packet** — [`QW-012`](../../tasks/completed/QW-012-lineup-under-patience/plan.md) and [`QW-013`](../../tasks/active/QW-013-play-store-solver-queue-export/plan.md); the
 top-level `briefs/` directory this line originally named no longer exists. Two charters are written up in full
 for a separate session, both single-repo (`quantik-models-py`) and needing none of the
 cross-repo context in this file. **The play-store solver-queue export is done** (py#53,
