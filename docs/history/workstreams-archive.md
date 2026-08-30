@@ -15,6 +15,31 @@
 > `quantik-api-rust` has no git remote. It has one, in sync. That false claim shaped a
 > delegation plan for weeks.
 
+## Every section is now a task packet
+
+Migrated 2026-08-30. **The task is authoritative; this file is provenance.** Every
+open claim below was re-verified against the working tree at migration time, so where
+a section and its packet disagree, the packet is right and the difference is recorded
+in the packet's `status.md`.
+
+| § | section | now |
+|---|---|---|
+| 1 | The 1.2.0 release | done — history only |
+| 2 | Release-engineering hardening | [`QW-015`](../../tasks/active/QW-015-release-engineering-hardening/initiative.md) |
+| 3 | Substack article | [`QW-016`](../../tasks/active/QW-016-season-two-article-publication/initiative.md) |
+| 4 | Model serving in the Rust API | [`QW-017`](../../tasks/active/QW-017-onnx-model-serving-rust-api/initiative.md) |
+| 5 | Publishing checkpoints to Hugging Face | done — live at <https://huggingface.co/brpoplpush> |
+| 6 | API response type | [`QW-018`](../../tasks/active/QW-018-engine-response-type/initiative.md) |
+| 7 | Engine API contract | [`QW-019`](../../tasks/active/QW-019-engine-api-contract-registration/initiative.md) |
+| 8 | Dockerize the API | [`QW-020`](../../tasks/active/QW-020-rust-api-container-distribution/initiative.md) |
+| 9 | NN as an opt-in add-on | folded into [`QW-017`](../../tasks/active/QW-017-onnx-model-serving-rust-api/initiative.md) — it is §4's packaging and has no value without it |
+| 10 | Coverage expansion | [`QW-021`](../../tasks/active/QW-021-opening-coverage-expansion/initiative.md) |
+| 11 | Training program | [`QW-014`](../../tasks/completed/QW-014-training-program-lineup-and-corpus/initiative.md), completed; the open remnant is [`QW-012`](../../tasks/active/QW-012-lineup-under-patience/initiative.md) |
+| 12 | Repo hygiene | [`QW-022`](../../tasks/active/QW-022-workspace-repo-hygiene/initiative.md) |
+| 13 | Public play deployment | [`QW-009`](../../tasks/active/QW-009-public-play-deployment/initiative.md) |
+| 14 | Play UX | [`QW-010`](../../tasks/active/QW-010-play-ux-skill-levels/initiative.md) |
+| 15 | Puzzle mode | [`QW-011`](../../tasks/active/QW-011-puzzle-mode-browser/initiative.md) |
+
 ---
 
 ## Status snapshot — 2026-08-29
