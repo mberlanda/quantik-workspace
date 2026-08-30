@@ -14,7 +14,7 @@ files each bundle contains:
 | command | composes |
 |---|---|
 | `context repo <name>` | `system/repository-map.md` + `system/canonical-invariants.md` + `repositories/<name>.md` |
-| `context initiative <QW-ID>` | `system/canonical-invariants.md` + the initiative's `initiative.md`, `manifest.yaml`, `decisions.md`, `status.md` |
+| `context initiative <QW-ID>` | `system/canonical-invariants.md` + the initiative's `initiative.md`, `plan.md` (optional), `manifest.yaml`, `decisions.md`, `status.md` |
 | `context task <QW-ID> <repo>` | the above **plus** `repositories/<repo>.md` and the initiative's `repos/<repo>.md` |
 | `context release <ID>` | `system/release-model.md` + the release's `release.yaml`, `checklist.md`, `status.md` |
 
