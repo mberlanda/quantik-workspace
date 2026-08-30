@@ -1,6 +1,9 @@
 # quantik-core-py Packet
 
-Purpose: readable/reference Python behavior and adapters. Important modules: core/state/QFEN, move/board/game utils/validator, symmetry, artifact/ml/training data, opening-book, search, telemetry, portability report. Public exports are in `quantik_core.__all__`.
+> **Purpose:** readable/reference Python engine and adapters, published as `quantik-core` on PyPI.
+> **Load with:** [`../system/canonical-invariants.md`](../system/canonical-invariants.md), [`../system/current-architecture.md`](../system/current-architecture.md), [`quantik-core-contracts.md`](quantik-core-contracts.md)
+
+Important modules: core/state/QFEN, move/board/game utils/validator, symmetry, artifact/ml/training data, opening-book, search, telemetry, portability report. Public exports are in `quantik_core.__all__`. Latest tag `v1.2.0` (verified 2026-08-30 — `git tag`); `pyproject.toml` reads `1.2.0`.
 
 Version source: `pyproject.toml`; supported release: `contracts.py`. Inspected commit `728b03205707a8bb5a21afd091c6656b7c69c3fa`; local `release/v1.2.0` has 13 uncommitted release edits and no upstream. Preserve them. Commands: `./auto-lint.sh`, then `./dev-check.sh` in the repository virtualenv.
 
