@@ -41,3 +41,40 @@ that silently mixes two converged arms with two truncated ones.
 
 **Arena seed constraint:** 20260829 (epoch-test) and 20260909 (lineup) are both
 spent. Use a third.
+
+## Update 2026-08-30 — arena run, but on the seed this brief said not to use
+
+`scripts/evaluate_lineup.sh runs/eval/patience-2026-08-30` was launched and ran
+to completion (shift eval + policy/MCTS-128 arenas at plies 3/6/9 and 3/6) —
+but **without overriding `SEED`**, so it took the script's default, `20260829`.
+That is exactly the value `plan.md` line 121 says not to use ("Use a fresh
+arena seed, not `20260829`") and the value this file already flagged above as
+spent on `runs/eval/epoch-test/`. **This is a plan violation, caught after the
+~3.6h run finished, not before.** Confirmed on disk: every `games.json` under
+`runs/eval/patience-2026-08-30/{policy,mcts}-p*/` records `"seed": 20260829`.
+
+Results as measured (full tables in `quantik-models-py`'s
+`docs/decisions/0001-architecture-lineup.md`, `docs/shift-evaluation.md`,
+`docs/autoplay.md`, all updated 2026-08-30):
+
+| model | val top-1 | shift all | arena @p3 MCTS-128 | arena @p6 MCTS-128 |
+|---|---|---|---|---|
+| `cpool` | **0.9916** | **0.9626** | **66.4%** | 57.6% |
+| `attn` | 0.9900 | 0.9472 | 59.9% | **58.4%** |
+| `resnet` | 0.9793 | 0.9429 | 61.8% | 57.0% |
+| `mlp` | 0.9660 | 0.9318 | 61.5% | 56.1% |
+
+**Does the cpool/attn tie survive?** For `cpool` vs `attn`, no — `cpool` wins
+the shift metric and the ply-3 MCTS arena outright (widest gap in either
+table); `attn` only edges ahead at ply-6 MCTS by 0.8 points. But per the
+scope problem noted above, `resnet` and `mlp` did not converge (hit the
+60-epoch cap still improving), so their numbers in this table are still
+floors, same as the fixed-16-epoch numbers were — this run answers the
+initiative's question for `cpool`/`attn` and does not settle it for all four.
+
+**Open decision, not yet made:** whether the seed violation is acceptable to
+publish as-is (with the caveat recorded prominently, which the three
+`quantik-models-py` docs above now do) or whether the arena half needs
+re-running on a genuinely fresh seed before this initiative is called done.
+Re-running is another ~3.6h. Training does not need to be repeated either
+way — only the arena/shift evaluation step consumes the seed.

@@ -1,7 +1,7 @@
 {
   "id": "QW-012",
   "title": "Re-run the Architecture Lineup Under --patience",
-  "status": "not-started",
+  "status": "trained-and-evaluated-pending-seed-decision",
   "problem": "Every published lineup number was measured at a fixed sixteen-epoch budget chosen when the ResNet was the only architecture. The --patience mechanism that fixes this (py#38) is merged; the lineup has not been re-run under it. attn was still climbing when its budget ran out, so its recorded 0.9879 IID top-1 is a floor, and the lineup's central finding (cpool/attn tie on policy accuracy) rests on that floor.",
   "affected_repositories": ["quantik-models-py"],
   "affected_contracts": [],
