@@ -7,9 +7,13 @@ a collaborator with the required capability.
 Apply prompts in this order:
 
 1. `operating-contract.md` for shared authority, safety, evidence, and handoff
-   rules;
+   rules — this also names the model-routing heuristic (`model-routing.md`)
+   that decides which capability tier a task goes to;
 2. `initiative-planner.md` when a task is marked `plan-required`;
-3. exactly one repository/review role for implementation or verification;
+3. exactly one repository/review role for implementation or verification:
+   `contract-reviewer.md`, `python-core-agent.md`, `rust-core-agent.md`,
+   `models-agent.md`, `visualizer-agent.md`, `deployment-agent.md`,
+   `compatibility-reviewer.md`, or `release-reviewer.md`;
 4. the task packet and bounded context generated for that role.
 
 The historical `quantik-ai` prompts were reviewed as source material. Their
