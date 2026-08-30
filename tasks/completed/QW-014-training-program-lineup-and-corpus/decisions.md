@@ -20,5 +20,5 @@ executed:
 One open item this initiative surfaces rather than resolves:
 
 5. **Whether the published model should optimise arena strength or held-out
-   accuracy** is explicitly undecided in `WORKSTREAMS.md` §11, ahead of any Hub
+   accuracy** is explicitly undecided in [`WORKSTREAMS.md`](../../../docs/history/workstreams-archive.md) §11, ahead of any Hub
    revision. Not this initiative's call to make.

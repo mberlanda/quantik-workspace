@@ -5,7 +5,7 @@ Objective: produce a written, numbers-backed skill-level derivation document
 from `play/opponents.py`'s roster, using seat-balanced win rates only.
 
 Relevant modules: `docs/oracle-benchmark.md`, the lineup tables in
-`WORKSTREAMS.md` §11 / `docs/decisions/0001-architecture-lineup.md`,
+[`WORKSTREAMS.md`](../../../../docs/history/workstreams-archive.md) §11 / `docs/decisions/0001-architecture-lineup.md`,
 `src/quantik_models/play/opponents.py` (the roster this mapping selects from).
 
 Inputs and outputs: reads existing `runs/eval/*/games.json` leaderboards; writes

@@ -32,7 +32,7 @@ missing, and is exactly this initiative's remaining scope:
    `opening-book.v1` — the loop only ever produces a training corpus. Decision 2 in
    `decisions.md` ("what evidence may update the opening book") is still fully open.
 3. **The v3 promotion decision is itself unresolved**, not just unautomated:
-   `WORKSTREAMS.md` records that v3 is not published pending the epoch-budget protocol
+   [`WORKSTREAMS.md`](../../../docs/history/workstreams-archive.md) records that v3 is not published pending the epoch-budget protocol
    question (see new initiative QW-014). A human is still the promotion gate; there is
    no "either promotes or rejects without manual data surgery" mechanism.
 4. **The play-store solver-queue export** (new initiative QW-013, in progress) adds a

@@ -47,7 +47,7 @@ reflex. See [ADR 0006](../docs/adr/0006-bounded-ai-context.md).
 
 **Every fact is stated in exactly one file; everywhere else links to it.** The drift this
 structure exists to prevent came from the opposite habit — the same claim restated in a
-root `CLAUDE.md`, a `WORKSTREAMS.md` and a repo doc, then corrected in one of them. On
+root `CLAUDE.md`, a [`WORKSTREAMS.md`](../docs/history/workstreams-archive.md) and a repo doc, then corrected in one of them. On
 2026-08-30 that produced a false blocker (`quantik-api-rust` "has no git remote"; it has
 one, in sync) that had shaped a delegation plan for weeks.
 

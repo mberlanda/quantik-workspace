@@ -13,7 +13,7 @@ Do not confuse this with two things that sound related but are not it:
 
 - `quantik-models-py/src/quantik_models/arena/probe.py` is the **H2H accuracy harness**
   (agent-vs-exact-truth scoring), not a runtime opening-book lookup surface.
-- `WORKSTREAMS.md` workstream 10 ("coverage expansion") is about labelling more of
+- [`WORKSTREAMS.md`](../../../docs/history/workstreams-archive.md) workstream 10 ("coverage expansion") is about labelling more of
   `runs/canonical/level0N.npy` with the exact oracle so the network trains on shallower
   plies — a corpus-size question, not the compact probe-key/value/bound contract and
   symmetry-safe Rust lookup this initiative specifies. It is a plausible *consumer* of

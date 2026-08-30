@@ -23,3 +23,10 @@ Full charter: [`briefs/play-solver-queue-export.md`](../../../briefs/play-solver
 Next action: whoever picks this up should check the current state of
 `src/quantik_models/play/export.py` before writing anything — it may already
 be substantially finished.
+
+## 2026-08-30 — implemented, in review
+
+`src/quantik_models/play/export.py` and `tests/test_play_export.py` are committed on
+`feat/play-solver-export` (`56b7d43`) and open as **quantik-models-py PR #53**. Seven
+focused tests pass locally. Not yet on `main`, so this initiative stays active until the
+PR merges rather than being closed on a green branch.

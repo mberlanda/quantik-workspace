@@ -23,4 +23,4 @@ One consequence: `docs/model-serving.md`'s mover-relative-encoding correction, w
 
 ## Current state, 2026-08-30
 
-`docs/model-serving.md` still has an open runtime decision (candle vs. ONNX, via `tract-onnx`) for running the policy/value network inside this gateway — not yet picked. That decision, and the Dockerize-this-service workstream, both depend on this repo and are tracked in the workspace root `WORKSTREAMS.md` (workstreams 4 and 8), not duplicated here.
+`docs/model-serving.md` still has an open runtime decision (candle vs. ONNX, via `tract-onnx`) for running the policy/value network inside this gateway — not yet picked. That decision, and the Dockerize-this-service workstream, both depend on this repo and are tracked in the workspace root [`WORKSTREAMS.md`](../../docs/history/workstreams-archive.md) (workstreams 4 and 8), not duplicated here.
