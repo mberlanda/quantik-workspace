@@ -1,0 +1,16 @@
+{
+  "id": "QW-026",
+  "title": "Re-run the Patience-Lineup Arena on an Independent Seed",
+  "status": "not-started",
+  "problem": "QW-012's evaluation of the patience-trained lineup ran scripts/evaluate_lineup.sh without overriding SEED, so it took the script's default, 20260829 - the exact value QW-012's own plan.md said not to reuse, already spent on a different comparison (runs/eval/epoch-test/). The cpool/attn ply-6 MCTS-128 margin that run reported is only 0.8 points, small enough that a seed-linked artifact is a live explanation, not a remote one.",
+  "affected_repositories": ["quantik-models-py"],
+  "affected_contracts": [],
+  "dependencies": ["QW-012"],
+  "acceptance_criteria": [
+    "scripts/evaluate_lineup.sh is run again against the same four runs/train/patience-{resnet,mlp,cpool,attn}/best checkpoints, with SEED set to a value never used before in this project (not 20260827, 20260828, 20260829, 20260901 or 20260909) - name the seed used and confirm it against that list before launching.",
+    "No architecture is retrained. The checkpoints and runs/eval/patience-2026-08-30/ are left on disk, unmodified.",
+    "The write-up reports both runs' numbers side by side, not just the new one, and states directly whether the cpool-vs-attn ranking (and specifically the 0.8-point ply-6 MCTS-128 margin) holds up on the second seed or reverses.",
+    "The three quantik-models-py docs carrying the seed caveat (docs/decisions/0001-architecture-lineup.md, docs/shift-evaluation.md, docs/autoplay.md) are updated to report the confirmed (or corrected) result once this run lands.",
+    "QW-012's status.md and manifest.yaml are updated to close its 'pending-seed-decision' status once this task's result is in."
+  ]
+}

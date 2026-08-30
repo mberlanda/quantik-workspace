@@ -6,7 +6,7 @@ Verified 2026-08-30 from each run's `metrics.jsonl` against its `config.json`:
 `patience-cpool` ran 43 of a 60 cap (early-stopped); `patience-cpool-v2` and
 `-v3` each ran all 40 of a 40 cap.
 
-Blocked on [`QW-012`](../QW-012-lineup-under-patience/initiative.md) — it is
+Blocked on [`QW-012`](../../completed/QW-012-lineup-under-patience/initiative.md) — it is
 isolating the epoch budget on the published corpus and the corpus must not move
 underneath it.
 

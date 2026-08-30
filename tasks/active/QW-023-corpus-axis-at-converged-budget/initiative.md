@@ -56,7 +56,7 @@ evaluation.
 
 ## Ordering
 
-After [`QW-012`](../QW-012-lineup-under-patience/initiative.md), which is
+After [`QW-012`](../../completed/QW-012-lineup-under-patience/initiative.md), which is
 isolating the epoch budget on a fixed corpus and must not have the corpus moved
 underneath it.
 
