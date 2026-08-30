@@ -56,13 +56,47 @@
       "types": [
         "semantic-compatibility"
       ]
+    },
+    {
+      "from": "quantik-api-rust",
+      "to": "quantik-core-rust",
+      "types": [
+        "build",
+        "runtime"
+      ]
+    },
+    {
+      "from": "quantik-qfen-visualizer",
+      "to": "quantik-api-rust",
+      "types": [
+        "runtime",
+        "contract"
+      ]
+    },
+    {
+      "from": "quantik-qfen-visualizer",
+      "to": "quantik-models-py",
+      "types": [
+        "runtime",
+        "contract"
+      ]
+    },
+    {
+      "from": "articles",
+      "to": "quantik-models-py",
+      "types": [
+        "generated-data"
+      ]
     }
   ],
   "repositories": [
     "quantik-core-py",
     "quantik-core-rust",
     "quantik-core-contracts",
-    "quantik-models-py"
+    "quantik-models-py",
+    "quantik-api-rust",
+    "quantik-qfen-visualizer",
+    "articles"
   ],
   "schema": "quantik-dependency-map.v1"
 }
