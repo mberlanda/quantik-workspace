@@ -1,0 +1,26 @@
+{
+  "acceptance_criteria": [
+    "docs/model-serving.md recommends ONNX, keeps the candle recommendation visible as superseded, and states the three pieces of evidence that reversed it; a workspace ADR records the same decision for the Rust runtime, distinct from ADR 0009 which covers Python only.",
+    "tract-onnx and ort are settled by loading all four published graphs, not by argument \u2014 LayerNormalization (fused, opset 17+) is the operator to check, and the losing runtime's failure is recorded.",
+    "A parity test asserts the Rust encoder is MOVER-RELATIVE, using QFEN \"A.../..../..../....\" \u2014 one piece, so side_to_move == 1, so the 1.0 belongs at channel 4 and NOT channel 0. Shape-only equality does not satisfy this.",
+    "Rust inference output matches the Python evaluator on a fixture set to a stated tolerance, with the Python play service as the parity oracle.",
+    "Model support is a Cargo feature: without it the binary has no ML dependencies. Two images are produced, quantik-api:X.Y.Z and quantik-api:X.Y.Z-model.",
+    "Checkpoints load with weights_hash/onnx_hash verified, and a hash mismatch is refused rather than warned about. Serving zero models is a valid state."
+  ],
+  "affected_contracts": [
+    "model-checkpoint.v1",
+    "tensor-board.v1"
+  ],
+  "affected_repositories": [
+    "quantik-api-rust",
+    "quantik-models-py"
+  ],
+  "created": "2026-08-30",
+  "id": "QW-017",
+  "problem": "quantik-api-rust cannot run a policy/value network. Its only design document, docs/model-serving.md, still says 'decision not yet made' and recommends candle on the strength of 'the architecture has been identical across all twelve checkpoints' \u2014 a premise that named its own reversal trigger and has since fired: four architectures now exist with different module trees. Every checkpoint already ships a verified ONNX graph with onnx_hash in the manifest, which also voids the document's objection that weights_hash covers safetensors while the server runs ONNX.",
+  "status": "decision-superseded-not-started",
+  "title": "ONNX Model Serving in the Rust API",
+  "dependencies": [
+    "QW-019"
+  ]
+}

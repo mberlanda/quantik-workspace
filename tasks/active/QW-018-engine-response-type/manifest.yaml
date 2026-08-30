@@ -1,0 +1,24 @@
+{
+  "acceptance_criteria": [
+    "The response carries ranked candidates with per-move scores in the units the engine actually produced (visits, logits, exact values), each labelled with which.",
+    "The principal variation is returned where the engine has one; lib.rs:192 stops discarding MinimaxResult.pv.",
+    "certainty is a required field with exactly two values, estimate and proof. A network tanh value is always estimate; an exact oracle result is proof. No engine may omit it and no engine may blur them.",
+    "For model engines engine_version carries the model_id, not the core revision, so an exported game records which network played.",
+    "The extended response is registered as a schema in quantik-core-contracts (QW-019) rather than hardcoded, and the visualizer tolerates the new fields being absent from an older server."
+  ],
+  "affected_contracts": [
+    "engine-response.v1"
+  ],
+  "affected_repositories": [
+    "quantik-api-rust",
+    "quantik-core-contracts"
+  ],
+  "created": "2026-08-30",
+  "id": "QW-018",
+  "problem": "The engine response returns a single move and discards everything the search already computed. quantik-api-rust/src/lib.rs:192 returns Ok((result.best_move, None)) \u2014 MinimaxResult.pv is populated on every search and thrown away. The network emits all 64 logits and a value per forward pass; MCTS has visit counts; the oracle scores every legal move. Nothing distinguishes an estimate from a proof, so a tanh value and an exact oracle result reach the client as the same kind of claim.",
+  "status": "specified-not-built",
+  "title": "Engine Response Type \u2014 Candidates, PV, Certainty",
+  "dependencies": [
+    "QW-019"
+  ]
+}
