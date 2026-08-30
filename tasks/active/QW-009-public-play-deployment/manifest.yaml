@@ -1,0 +1,16 @@
+{
+  "id": "QW-009",
+  "title": "Public Play Deployment — Storeless Docker",
+  "status": "not-started",
+  "problem": "Shipping the play service (QW-008) plus the visualizer as one public, storeless container is requested and scoped, but no evaluator, Dockerfile, or image exists. The runtime question (torch vs ONNX) was framed as an open decision; measured 2026-08-30, it is not close: torch is 529 MB installed against onnxruntime's 80 MB, onnxruntime is already a declared extra already executing graphs in tests, and the exported ONNX graph signature matches the project's one-method Evaluator protocol exactly.",
+  "affected_repositories": ["quantik-models-py"],
+  "affected_contracts": ["model-checkpoint.v1"],
+  "dependencies": ["QW-008"],
+  "acceptance_criteria": [
+    "A torch-vs-ONNX numerical agreement test exists, runs against a real checkpoint (not a synthetic tensor), and passes before OnnxEvaluator is treated as correct.",
+    "OnnxEvaluator implements selfplay/evaluator.Evaluator's (boards, legal) -> (priors, values) signature using onnxruntime and numpy softmax only, no torch import.",
+    "A Dockerfile builds an image that pulls weights from the Hugging Face Hub (brpoplpush, CC-BY-NC-4.0) at build time rather than baking a local runs/ copy, and the image carries both the MIT code licence and the CC-BY-NC-4.0 weights licence explicitly.",
+    "--no-store behavior (no database opened, POST /api/games answers 503) is preserved unchanged inside the container.",
+    "The image publishes to GHCR, not Docker Hub, per the rate-limit rationale already recorded for workstream 8."
+  ]
+}

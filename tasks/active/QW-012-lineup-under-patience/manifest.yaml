@@ -1,0 +1,16 @@
+{
+  "id": "QW-012",
+  "title": "Re-run the Architecture Lineup Under --patience",
+  "status": "not-started",
+  "problem": "Every published lineup number was measured at a fixed sixteen-epoch budget chosen when the ResNet was the only architecture. The --patience mechanism that fixes this (py#38) is merged; the lineup has not been re-run under it. attn was still climbing when its budget ran out, so its recorded 0.9879 IID top-1 is a floor, and the lineup's central finding (cpool/attn tie on policy accuracy) rests on that floor.",
+  "affected_repositories": ["quantik-models-py"],
+  "affected_contracts": [],
+  "dependencies": ["QW-014"],
+  "acceptance_criteria": [
+    "A smoke run (--epochs 4 --patience 2) confirms stopped_early is recorded correctly in both directions before any long run starts, per the brief's mandatory step 1.",
+    "All four architectures are retrained at their own swept rate (cpool/attn 6e-4, resnet/mlp 2e-3) with a generous patience budget, from scratch, seed 20260828 — matching the published family except for the epoch budget.",
+    "patience-cpool-v2 is checked against the target config before being re-run; if it already matches (medium, v2 corpus, 6e-4, seed 20260828, 40/5), it is reused, not repeated.",
+    "The write-up states, per architecture, the epoch it stopped at, whether it hit the cap or stopped early, and answers directly: does the cpool/attn tie survive giving attn the epochs it wanted?",
+    "The fixed-budget checkpoints and runs/eval/swept-2026-08-30/ are left on disk, unmodified, so previously published numbers stay reproducible."
+  ]
+}

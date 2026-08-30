@@ -1,0 +1,17 @@
+{
+  "id": "QW-013",
+  "title": "Play-Store Solver-Queue Export",
+  "status": "in-progress",
+  "problem": "The play service (QW-008) records human games and their positions, but nothing consumes game_positions yet, so positions people actually reach never feed the training corpus — only autoplay's engine-explored positions do. An entry point (src/quantik_models/play/export.py) exists untracked in the working tree, actively being implemented by another session as of 2026-08-30.",
+  "affected_repositories": ["quantik-models-py"],
+  "affected_contracts": ["game-result.v1"],
+  "dependencies": ["QW-008"],
+  "acceptance_criteria": [
+    "A failing test seeds a store with a position already in a fixture corpus and asserts the exporter drops it, written before the filter logic that makes it pass.",
+    "The canonical-key format mismatch (game_positions.canonical_key is a decimal string; ExactCorpus gives a uint64 array) is handled through one explicit conversion, not by comparing the two forms directly.",
+    "The exporter is read-only against the games database: store.connect (with its WAL/foreign-key pragmas) is used, never a bare sqlite3.connect, and no code path writes to it.",
+    "games.winner is never read for anything other than a report; only game_positions rows travel toward the corpus.",
+    "The exporter is run end to end against the real ~/.local/share/quantik/games.db, its to-solve.qfen.gz is accepted by the existing solver path unmodified, and data/merge_corpus.py accepts the solver's output.",
+    "summary.json records positions found, dropped-as-known, and written, so the drop count (the number that proves the filter worked) is visible without re-deriving it."
+  ]
+}

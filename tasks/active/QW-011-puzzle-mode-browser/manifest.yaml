@@ -1,0 +1,15 @@
+{
+  "id": "QW-011",
+  "title": "Puzzle Mode in the Browser",
+  "status": "generator-done-ui-not-started",
+  "problem": "quantik_models.play.puzzles mines the exact corpus by theme (mate-in-1, only-move, double-threat, endgame, already-lost) and writes a JSON pack, merged as models-py #51 — but no pack is committed to quantik-qfen-visualizer and no picker UI exists there, so the feature is invisible to a player.",
+  "affected_repositories": ["quantik-models-py"],
+  "affected_contracts": [],
+  "dependencies": ["QW-008"],
+  "acceptance_criteria": [
+    "A generated pack (--per-theme >=40 over an exact corpus) is committed as static JSON reachable by the browser, needing no play service and no loaded model.",
+    "already-lost entries carry no solution field, by design, and the UI treats that as a study rather than a graded puzzle.",
+    "double-threat puzzles are checked against the verified property that the winning square is not fixed across a theme's instances.",
+    "The generator's output is documented as consumed by a specific visualizer picker component (named once that component exists), rather than left as an unconsumed artifact."
+  ]
+}

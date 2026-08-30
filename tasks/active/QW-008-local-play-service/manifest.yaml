@@ -1,0 +1,15 @@
+{
+  "id": "QW-008",
+  "title": "Local Play Service — Analysis and Recording",
+  "status": "largely-complete",
+  "problem": "A person can already play the trained networks from a browser, get position analysis, and have finished games recorded to SQLite with symmetry dedup — ten PRs across two repositories, merged 2026-08-29 — but none of it was ever entered as a workspace task packet, so the control plane does not reflect what runs today.",
+  "affected_repositories": ["quantik-models-py"],
+  "affected_contracts": ["game-result.v1", "model-checkpoint.v1"],
+  "dependencies": [],
+  "acceptance_criteria": [
+    "src/quantik_models/play/{registry,opponents,service,record,store,server,export}.py and their tests are the recorded implementation, not a plan.",
+    "GET /api, GET /api/opponents, POST /api/move, POST /api/games, and the analysis endpoint each have a passing focused test in tests/test_play_*.py.",
+    "The seed-dependent finding in docs/autoplay.md (PolicyAgent defaults to argmax; NetMCTSAgent's RNG only ever fed disabled Dirichlet noise, so no pre-2026-08-29 arena seed varied a network agent's play) is cited wherever this initiative's evidence quotes a pre-2026-08-29 margin.",
+    "The visualizer-side gap — the browser client attempts POST /api/games and shows a storage error against a --no-store server — is recorded as a known remaining edge, since quantik-qfen-visualizer is not a registered workspace repository and cannot carry a formal repo task packet here (see decisions.md)."
+  ]
+}
