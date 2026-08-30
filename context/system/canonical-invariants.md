@@ -1,28 +1,66 @@
 # Canonical Invariants
 
-Every statement below is evidence-backed; open differences remain explicit.
+> **Purpose:** Facts true across every Quantik repo whose violation is silent — check these before trusting a number or shipping an encoder.
+> **Load with:** [`repository-map.md`](repository-map.md) (repo ownership) · [`current-architecture.md`](current-architecture.md) (how these fit together) · [`domain-glossary.md`](domain-glossary.md) (terms used below) · [`release-model.md`](release-model.md) (the versioning invariant)
 
-| Invariant | Authoritative evidence | Implementations/tests | Related contract | Ambiguity |
-| --- | --- | --- | --- | --- |
-| Board is 4×4; positions 0–15 are row-major | contracts `docs/game-state.md` | Python `commons.py`, QFEN/tests; Rust `constants.rs` | `qfen.v1`, `bitboard.v1` | none found |
-| Planes are P0 shapes 0–3 then P1 shapes 0–3 | contracts game-state bitboard order | Python `commons.py`/QFEN; Rust `bitboard.rs` | `bitboard.v1` | none found |
-| Shapes 0–3 map A–D; uppercase P0/lowercase P1 | contracts QFEN | Python/Rust QFEN tests | `qfen.v1` | “colour” and “player” terminology varies |
-| Each player has two pieces of each shape | engine constants/validators | Python state validator; Rust board inventory | semantic, not fully schema-contracted | parser layers enforce different subsets |
-| P0 starts; equal counts means P0, one extra P0 means P1 | contracts side-to-move guidance plus engines | Python state validator; Rust game/board | state/selfplay rows | QFEN alone cannot encode turn |
-| Legal placement requires empty target/inventory and no opponent same shape in touched row, column, or 2×2 zone | contracts/domain docs | focused Python move tests; Rust moves/board tests | planned canonical-state contract | low-level constructors differ in strictness |
-| Move application sets plane bit and advances turn at board layer | engine APIs | Python move/board; Rust moves/board | planned operation fixture | functional low-level apply may not track inventory |
-| Any row, column, or 2×2 zone containing four shapes wins, independent of player colour | contracts/README rules | Python game utils; Rust game masks | planned result fixture | winner attribution on arbitrary invalid states is layered |
-| Blocked side loses in high-level board semantics | Python/Rust board result APIs | board/portability tests | not fully contracted | lower-level `is_game_over` may mean winning line only |
-| QFEN emits four top-to-bottom ranks with no whitespace | contracts schema/docs | Python/Rust round-trip tests | `qfen.v1` | syntax parsing may accept states later rejected by constructors |
-| Durable bitboard order is eight unsigned 16-bit values | contracts game-state/storage docs | both engine adapters | `bitboard.v1` | none found |
-| Rust/Python durable state key is version/flags plus eight little-endian u16 planes (18 bytes) | portability evidence and engine serializers | Rust `state.rs`; Python `core.py`/symmetry tests | not a standalone wire ID | overlapping compact formats exist |
-| D4 has eight transforms; default canonicalization also considers 24 shape permutations and does not colour-swap | engine symmetry implementations/tests | Python/Rust symmetry tests | canonical behavior not fully contracted | Python API can explicitly colour-swap; docs are misleading |
-| Canonical representative is lexicographically least serialized payload | engine code/tests | both engines, portability report | planned canonical-state contract | transform/action mapping needs fixtures |
-| Action order/index is shape 0–3 then position 0–15; index = shape×16+position | contracts game-state | both engine tests; models materialization tests | `action-index.v1` | none found |
-| Policy vector/mask has 64 slots; mask bit i represents action i | contracts storage/selfplay | engine adapters; models dataset tests | action/selfplay/observation | models sometimes infers mask from positive visits, not all legal actions |
-| Self-play/observation value is in [-1,1] from row `side_to_move` perspective | contracts selfplay/observation docs | engine exporters/readers; models materializer/network | `selfplay.v1`, `observation.v1` | decisive self-play uses ±1; observation may be continuous |
-| Tensor board is float `[9,4,4]`: planes 0–7 plus all-zero/all-one side-to-move plane | contracts storage docs | Python encoder/tests; models network/tests | `tensor-board.v1` | Rust declares but does not encode tensors directly |
-| Durable identity is serialized bytes, not language numeric hash | Rust canonical key and portability report | Python hash is process-dependent | planned canonical-state contract | no portable numeric hash exists |
-| Invalid states must fail explicitly at contracted adapter boundary | compatibility policy | engine parsers/constructors currently differ | QW-001 | exact parser-vs-constructor error taxonomy unresolved |
+This file is loaded into every repository and every initiative bundle — keep additions
+short and evidence-backed rather than exhaustive. Repository-specific detail belongs in
+`../repositories/<repo>.md`, not here.
 
-Preserve deterministic JSON field/action order and report all differences. Do not infer a stronger invariant from only one repository.
+## Silent-failure invariants
+
+These do not raise an error when violated. The system keeps running.
+
+1. **`tensor-board.v1` is ambiguous — two incompatible encodings share the name.**
+   Everything in training uses `fastboard.encode_tensors`: float32 `(9,4,4)`, channels
+   0–3 the side-to-move's shapes, 4–7 the opponent's, channel 8 the side-to-move flag
+   broadcast over the board — **mover-relative**. `quantik_core.ml_data.qfen_to_tensor`
+   and `fastboard.to_core_tensor` are **colour-ordered** (channel 0 is always player 0's
+   shape A) and are used by nothing in training. Building to the wrong one produces a
+   model that plays legally and confidently wrong on half of all positions, with nothing
+   indicating a fault. **Discriminating fixture:** QFEN `"A.../..../..../...."` — one
+   piece, so `side_to_move == 1` (parity of pieces on the board) — puts that piece's bit
+   at channel 4 under mover-relative, channel 0 under colour-ordered. This already
+   produced one wrong document in three places (`quantik-api-rust/docs/model-serving.md`,
+   corrected 2026-08-28). *Verified 2026-08-30 against
+   `quantik-models-py/src/quantik_models/env/fastboard.py`.*
+
+2. **Quantik has no draws.** Both terminal conditions — a completed line
+   (`win_condition`) and no legal reply (`no_legal_moves`) — are losses **for the side to
+   move**, so the winner is always the last mover. `win_probability = (value + 1) / 2` is
+   therefore exact. *Verified against `fastboard.terminal_status` and
+   `quantik_models/play/service.py`'s `win_probability` field, 2026-08-30.*
+
+3. **Legality masking lives outside the model, by design.** The rules are exact in
+   `quantik-core`; the network never has to approximate them, and no engine in this
+   project can return an illegal move.
+
+4. **Game outcomes never become labels.** Only positions travel to the corpus — from
+   autoplay and from human games alike. Labels come only from the exact oracle. See
+   `domain-glossary.md` for corpus vs. probe.
+
+5. **Contracts are the source of truth.** Schemas live in `quantik-core-contracts`; code
+   is validated against them, never the reverse.
+
+6. **Action index is `shape * 16 + position`; `ACTION_COUNT = 64`; shapes are `"ABCD"`.**
+   Board positions are 0–15, row-major. Policy vectors and legality masks are 64 slots,
+   bit/slot `i` is action `i`.
+
+## Engine-level invariants (evidence table)
+
+| Invariant | Evidence | Open ambiguity |
+| --- | --- | --- |
+| Bitboard planes are P0 shapes 0–3 then P1 shapes 0–3 | contracts `bitboard.v1`; both engines | none found |
+| Shapes 0–3 map A–D; uppercase = P0, lowercase = P1 | contracts QFEN; both engines' QFEN tests | "colour" vs "player" terminology varies |
+| Each player has two pieces of each shape | engine constants/validators | parser layers enforce different subsets |
+| P0 moves first; side to move is the parity of pieces on the board | contracts + both engines | QFEN alone cannot encode whose turn it is |
+| A placement is legal only on an empty square, with a piece left in hand, where the opponent holds no piece of that shape in the touched row, column, or 2×2 zone | contracts/domain docs; focused move tests, both engines | low-level constructors differ in strictness |
+| A row, column, or 2×2 zone holding all four shapes wins, independent of colour | contracts/README rules; both engines | winner attribution on arbitrary invalid states is layered |
+| QFEN is four top-to-bottom ranks, no whitespace | contracts schema/docs; round-trip tests | syntax parsing may accept states constructors later reject |
+| Durable bitboard order is eight u16 values; durable state key is version/flags + 8 little-endian u16 planes (18 bytes) | portability evidence; `state.rs`, `core.py` | overlapping compact formats also exist |
+| Canonical key: D4 (8 transforms) × 24 shape permutations = 192 symmetries, no colour-swap by default; representative is the lexicographically least serialized payload | both engines' symmetry tests, portability report | Python API can explicitly colour-swap; some docs are misleading about it |
+| Durable identity is the serialized bytes, not a language-native hash | Rust canonical key; Python hash is process-dependent | no portable numeric hash exists |
+| Invalid states fail explicitly at the contracted adapter boundary | compatibility policy | engine parsers/constructors differ; QW-001 tracks the exact error taxonomy |
+
+Preserve deterministic JSON field/action order and report all differences. Do not infer a
+stronger invariant from only one repository.

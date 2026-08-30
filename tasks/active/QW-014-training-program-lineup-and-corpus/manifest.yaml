@@ -1,0 +1,15 @@
+{
+  "id": "QW-014",
+  "title": "Training Program — Architecture Lineup, Learning-Rate Correction, and the v3 Corpus Result",
+  "status": "largely-complete",
+  "problem": "Twenty-nine PRs across 2026-08-28/29 built four trained-and-evaluated architectures, found and corrected a shared-learning-rate flaw that reversed three published conclusions, and ran a full active-learning cycle (solve, merge, retrain, evaluate) producing the v3 corpus result — none of it entered as a workspace task packet, so its conclusions risk being re-derived from scratch by a future session.",
+  "affected_repositories": ["quantik-models-py"],
+  "affected_contracts": ["model-checkpoint.v1", "observation.v1"],
+  "dependencies": [],
+  "acceptance_criteria": [
+    "The four architecture papers (docs/architecture-{resnet,mlp,constraint-pool}.md, docs/architectures.md) and the umbrella ADR (docs/decisions/0001-architecture-lineup.md) are the recorded source of truth for the lineup, cited rather than re-derived.",
+    "The learning-rate-sweep finding (docs/learning-rate-sweep.md: cpool and attn need 6e-4, not the ResNet's inherited 2e-3) and the three conclusions it reversed are recorded so a future session does not re-run a lineup at 2e-3 for every architecture.",
+    "The v3 corpus result (docs/corpus-v3.md: held-out policy accuracy did not predict play strength; v3 wins at ply 3 only) is recorded with its stated open question -- the epoch budget -- linked forward to QW-012 rather than restated.",
+    "Every number this initiative's evidence cites states whether it was measured at the 2e-3-for-everyone protocol (superseded) or the swept-rate protocol (current), per the standing warning in WORKSTREAMS.md §11."
+  ]
+}

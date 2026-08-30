@@ -120,9 +120,76 @@
         "consumes": ["tensor-board.v1", "action-index.v1", "selfplay.v1", "arrow-parquet-selfplay.v1", "observation.v1", "game-result.v1", "model-checkpoint.v1"],
         "owner": "quantik-core-contracts"
       },
-      "workflows": [".github/workflows/e2e-data-pipeline.yml", ".github/workflows/train-smoke.yml"],
+      "workflows": [".github/workflows/tests.yml", ".github/workflows/e2e-data-pipeline.yml", ".github/workflows/train-smoke.yml"],
       "release_artifacts": ["model checkpoint", "safetensors", "training report"],
-      "generated_outputs": ["NPZ training view", "checkpoint manifest"]
+      "generated_outputs": ["NPZ training view", "checkpoint manifest", "play-service game recordings (SQLite)", "puzzle pack (JSON)"]
+    },
+    "quantik-api-rust": {
+      "url": "https://github.com/mberlanda/quantik-api-rust",
+      "path": "../quantik-api-rust",
+      "language": "rust",
+      "role": "http-gateway",
+      "default_branch": "main",
+      "package": "quantik-api",
+      "commands": {
+        "test": ["cargo", "test", "--workspace"],
+        "lint": ["cargo", "clippy", "--workspace", "--all-targets", "--all-features", "--", "-D", "warnings"],
+        "format_check": ["cargo", "fmt", "--all", "--", "--check"],
+        "build": ["cargo", "build", "--release"]
+      },
+      "versions": {
+        "repository_source": {"path": "Cargo.toml", "kind": "toml", "pointer": "package.version"},
+        "release_mirrors": [],
+        "supported_contracts_source": null
+      },
+      "contracts": {},
+      "workflows": [],
+      "release_artifacts": [],
+      "generated_outputs": [],
+      "notes": "publish = false in Cargo.toml; not a published crate. Implements the quantik.engine-request.v1 wire protocol via the quantik-core crate rather than reading quantik-core-contracts schemas directly, so no contract IDs are asserted here without a source reference. Has a working GitHub remote (verified 2026-08-30 via git ls-remote and the GitHub page) — WORKSTREAMS.md's 'no git remote' note for this repo is stale."
+    },
+    "quantik-qfen-visualizer": {
+      "url": "https://github.com/mberlanda/quantik-qfen-visualizer",
+      "path": "../quantik-qfen-visualizer",
+      "language": "javascript",
+      "role": "browser-client",
+      "default_branch": "main",
+      "package": null,
+      "commands": {
+        "test": ["npm", "test"],
+        "build": []
+      },
+      "versions": {
+        "repository_source": {"path": "package.json", "kind": "json", "pointer": "/version"},
+        "release_mirrors": [],
+        "supported_contracts_source": null
+      },
+      "contracts": {},
+      "workflows": [],
+      "release_artifacts": [],
+      "generated_outputs": ["quantik.game-trace.v1 exports"],
+      "notes": "package.json has no lint script — omitted rather than guessed. private: true; not published to npm. Speaks quantik.engine-request.v1 (src/engines.js) to quantik-api-rust or the quantik-models-py play service over HTTP, and quantik.game-trace.v1 (src/trace.js) for exports — both verified present in source 2026-08-30, but neither reads a schema file from quantik-core-contracts directly, so no contracts.consumes IDs are asserted here."
+    },
+    "articles": {
+      "url": null,
+      "path": "../articles",
+      "language": "python",
+      "role": "publication",
+      "default_branch": "main",
+      "package": null,
+      "commands": {
+        "build": []
+      },
+      "versions": {
+        "repository_source": null,
+        "release_mirrors": [],
+        "supported_contracts_source": null
+      },
+      "contracts": {},
+      "workflows": [],
+      "release_artifacts": [],
+      "generated_outputs": ["figures (PNG)", "preview HTML"],
+      "notes": "no packaging file — scripts run via quantik-models-py's venv; no test/lint/CI. No git remote (verified 2026-08-30 — local commits on one machine only)."
     }
   },
   "dependencies": [
@@ -131,6 +198,10 @@
     {"from": "quantik-models-py", "to": "quantik-core-contracts", "types": ["contract", "schema", "generated-data", "release-order"]},
     {"from": "quantik-models-py", "to": "quantik-core-py", "types": ["build", "runtime", "generated-data", "semantic-compatibility"]},
     {"from": "quantik-models-py", "to": "quantik-core-rust", "types": ["generated-data", "semantic-compatibility"]},
-    {"from": "quantik-core-py", "to": "quantik-core-rust", "types": ["semantic-compatibility"]}
+    {"from": "quantik-core-py", "to": "quantik-core-rust", "types": ["semantic-compatibility"]},
+    {"from": "quantik-api-rust", "to": "quantik-core-rust", "types": ["build", "runtime"]},
+    {"from": "quantik-qfen-visualizer", "to": "quantik-api-rust", "types": ["runtime", "contract"]},
+    {"from": "quantik-qfen-visualizer", "to": "quantik-models-py", "types": ["runtime", "contract"]},
+    {"from": "articles", "to": "quantik-models-py", "types": ["generated-data"]}
   ]
 }

@@ -16,6 +16,13 @@ workspace coordinates work; implementation remains in the owning repository.
 If an input is missing, classify it as discoverable evidence, an open decision,
 a missing plan, or a blocker. Do not silently invent it.
 
+## Model routing
+
+Route each task by how much judgment remains after the spec is written, not by task
+size. A task whose spec already resolved every judgment call is delegate-tier work;
+review, and any task whose spec cannot be written without a live judgment call, stays
+with the coordinating tier. See `model-routing.md`.
+
 ## Authority
 
 - Read within the assigned namespace and run non-destructive verification.

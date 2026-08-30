@@ -2,7 +2,10 @@
 
 | Repository | Branch | Commit | Dirty | Version | Contracts |
 | --- | --- | --- | --- | --- | --- |
-| `quantik-core-py` | `release/v1.2.0` | `728b03205707` | True | `1.2.0` | `1.2.0` |
-| `quantik-core-rust` | `release/v1.2.0` | `8360a573b35a` | False | `1.2.0` | `1.2.0` |
-| `quantik-core-contracts` | `release/v1.2.0` | `beb26e7e0718` | False | `1.2.0` | `None` |
-| `quantik-models-py` | `main` | `ea8f32ad4fac` | False | `0.1.0` | `1.1.0` |
+| `quantik-core-py` | `None` | `a0cdf6fafc25` | True | `1.2.0` | `1.2.0` |
+| `quantik-core-rust` | `None` | `88dfdeb718c5` | False | `1.2.0` | `1.2.0` |
+| `quantik-core-contracts` | `fix/tensor-board-layout-prose` | `94ae327bdc3b` | False | `1.2.0` | `None` |
+| `quantik-models-py` | `feat/play-solver-export` | `56b7d43cf434` | False | `0.1.0` | `None` |
+| `quantik-api-rust` | `main` | `f81409359767` | True | `0.1.0` | `None` |
+| `quantik-qfen-visualizer` | `main` | `9c080f5c61ee` | False | `0.2.0` | `None` |
+| `articles` | `main` | `7d8b75b59607` | True | `None` | `None` |

@@ -1,0 +1,15 @@
+{
+  "id": "QW-010",
+  "title": "Play UX for Non-Expert Players — Skill Levels and How-to-Play",
+  "status": "not-started",
+  "problem": "The play service (QW-008) exposes twenty opponents keyed by architecture and simulation count, which assumes the player already knows what cpool@128 means. Public deployment (QW-009) needs an easy/medium/hard mapping and a rules explainer, but the level-to-opponent mapping must come from arena numbers, not intuition, because the seat effect (mover 68-88%, responder 15-39%) is larger than the strength gaps between most opponents.",
+  "affected_repositories": ["quantik-models-py"],
+  "affected_contracts": [],
+  "dependencies": ["QW-008"],
+  "acceptance_criteria": [
+    "A written derivation, with numbers, maps each skill level to a specific opponent spec, sourced from docs/oracle-benchmark.md and the lineup arena tables and controlling for the seat effect explicitly (balanced-seat win rates, not raw ones).",
+    "The derivation is reviewed and approved before any quantik-qfen-visualizer UI change is made against it.",
+    "A collapsible how-to-play explainer's rule text is drafted and checked against quantik-core-contracts' own rule statement for consistency.",
+    "The 'advanced' toggle that exposes the full twenty-opponent roster is specified, not just the default simplified view."
+  ]
+}
