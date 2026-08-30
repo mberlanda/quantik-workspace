@@ -1,0 +1,20 @@
+{
+  "acceptance_criteria": [
+    "docs/corpus-structure.md states policy density per corpus, the per-ply label table, both schemas with byte costs, and the ply floor, with the measured numbers.",
+    "A v1 dense-to-mask converter round-trips a real v1 slice bit-exactly in both directions, and REFUSES a row whose policy_target is not uniform over its support rather than silently discarding a weighting.",
+    "Plies 0-2 are labelled by back-induction from v3's ply-3 rows, guarded by an assertion that v3's ply-3 key set equals the complete canonical level03.npy - back-induction from an incomplete level is silently wrong.",
+    "The induced plies 0-2 values are confirmed against a direct root-only oracle solve of levels 2 and 1, not accepted on the strength of the induction alone.",
+    "The shallow probe reports the random-legal-play baseline beside every policy number, because mass-on-optimal at ply 0 is 1.000 for any distribution and reads as a perfect score without it.",
+    "The 55 rows are folded in through data/merge_corpus.py to a NEW file with a new hash, never an in-place rewrite of an existing corpus.",
+    "No strength claim is made from 55 rows; whether shallow labels change play is settled in the QW-024 arena, and the initiative says so."
+  ],
+  "affected_contracts": [],
+  "affected_repositories": [
+    "quantik-models-py"
+  ],
+  "created": "2026-08-30",
+  "id": "QW-027",
+  "problem": "The corpora are quoted by row count, and the row count describes the value corpus while badly misdescribing the policy corpus. Only about 8% of rows carry a policy label (250,000 of v1's 3,087,356; 255,058 of v2's; 271,676 of v3's) and the density is flat across all three, so a corpus that 'grew by 323,568 rows' did not necessarily grow its policy signal. Per-ply label counts at plies 7-12 are identical round numbers in every corpus (60k/60k/30k/20k/20k/20k) with zero at ply 13: a fixed sampling cap, not coverage. v1 and v2/v3 use incompatible policy schemas (dense float32 (N,64) plus a weight, 282 bytes/row, versus a uint64 optimal_mask at 30) which is why nothing merges them, though the conversion is exact both ways. And no corpus reaches below ply 3 at all: plies 0-2 are 55 canonical positions and no model has seen one. Measured against exact back-inducted targets, the flagship cpool checkpoints are indistinguishable from random legal play on shallow policy (mass-on-optimal 0.160 and 0.336 against baselines of 0.170 and 0.331) while scoring 99.6% on the held-out probe.",
+  "status": "not-started",
+  "title": "Corpus Label Structure and the Shallow-Ply Floor"
+}
