@@ -1,15 +1,73 @@
 {
-  "id": "QW-005",
-  "title": "Search and H2H Active-Learning Feedback Loop",
-  "status": "plan-required",
-  "problem": "Search summaries, game results, observations, self-play, books, and checkpoints exist as disconnected stages; no implemented mechanism selects informative positions, writes discoveries back, or proves the next corpus/model is better.",
-  "affected_repositories": ["quantik-core-contracts", "quantik-core-rust", "quantik-models-py"],
-  "affected_contracts": ["search-summary.v1", "game-result.v1", "observation.v1", "selfplay.v1", "opening-book.v1", "model-checkpoint.v1"],
-  "dependencies": ["QW-002", "QW-003", "QW-004", "QW-006", "QW-007"],
   "acceptance_criteria": [
     "An approved design specification and PR-sized implementation plan define the smallest measurable v1 loop.",
     "Selection inputs, disagreement semantics, book write-back authority, iteration state, and reproducibility are explicit.",
     "Evaluation gates compare candidate and baseline with declared sample size, confidence, and regression policy.",
     "One bounded loop iteration produces traceable artifacts and either promotes or rejects the candidate without manual data surgery."
+  ],
+  "affected_contracts": [
+    "search-summary.v1",
+    "game-result.v1",
+    "observation.v1",
+    "selfplay.v1",
+    "opening-book.v1",
+    "model-checkpoint.v1"
+  ],
+  "affected_repositories": [
+    "quantik-core-contracts",
+    "quantik-core-rust",
+    "quantik-models-py"
+  ],
+  "dependencies": [
+    "QW-002",
+    "QW-003",
+    "QW-004",
+    "QW-006",
+    "QW-007"
+  ],
+  "id": "QW-005",
+  "problem": "Search summaries, game results, observations, self-play, books, and checkpoints exist as disconnected stages; no implemented mechanism selects informative positions, writes discoveries back, or proves the next corpus/model is better.",
+  "status": "plan-required",
+  "title": "Search and H2H Active-Learning Feedback Loop",
+  "work_items": [
+    {
+      "allowed_paths": [
+        "REPLACE_WITH_EXPLICIT_PATHS"
+      ],
+      "branch": "plan/qw-005-quantik-core-contracts",
+      "decisions": [],
+      "depends_on": [],
+      "id": "W1",
+      "invariants": [],
+      "packet": "repos/quantik-core-contracts/W1-plan-required.md",
+      "repository": "quantik-core-contracts",
+      "status": "plan-required"
+    },
+    {
+      "allowed_paths": [
+        "REPLACE_WITH_EXPLICIT_PATHS"
+      ],
+      "branch": "plan/qw-005-quantik-core-rust",
+      "decisions": [],
+      "depends_on": [],
+      "id": "W2",
+      "invariants": [],
+      "packet": "repos/quantik-core-rust/W2-plan-required.md",
+      "repository": "quantik-core-rust",
+      "status": "plan-required"
+    },
+    {
+      "allowed_paths": [
+        "REPLACE_WITH_EXPLICIT_PATHS"
+      ],
+      "branch": "plan/qw-005-quantik-models-py",
+      "decisions": [],
+      "depends_on": [],
+      "id": "W3",
+      "invariants": [],
+      "packet": "repos/quantik-models-py/W3-plan-required.md",
+      "repository": "quantik-models-py",
+      "status": "plan-required"
+    }
   ]
 }
