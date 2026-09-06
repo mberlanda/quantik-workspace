@@ -165,7 +165,7 @@
       "repository": "quantik-qfen-visualizer",
       "packet": "repos/quantik-qfen-visualizer/V2-mode-selection.md",
       "branch": "feat/mode-chooser",
-      "status": "planned",
+      "status": "completed",
       "allowed_paths": [
         "index.html",
         "src/app.js",
@@ -177,8 +177,8 @@
       "depends_on": [],
       "decisions": [
         "decisions.md#D4",
-        "decisions.md#O1",
-        "decisions.md#O2"
+        "decisions.md#D7",
+        "decisions.md#D8"
       ],
       "invariants": [
         "context/system/canonical-invariants.md#I5"

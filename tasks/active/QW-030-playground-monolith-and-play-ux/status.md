@@ -74,9 +74,29 @@ exact-match script list, outside V1's `allowed_paths` — same pattern as M1's
 `server.py` deviation. V2 and V3 will likely hit the identical conflict when
 they add `modes.js` and `rules.js`.
 
-**Next action:** V2 (`feat/mode-chooser`) next in the visualizer, per the
-ordering in `initiative.md` (V1 before V3 for the storage helper; V2 and V1
-both touch `app.js` so sequenced rather than parallel). Separately: merge
-`quantik-models-py` #64, #65, #66 in that order (M4 needs M3's `--copy` flag)
-when the user is ready, then `quantik-models-py` M5 — blocked on the
-visualizer's V1–V5, which is in progress.
+**V2 implemented, 2026-09-06 — PR open, not merged, stacked on V1.**
+`quantik-qfen-visualizer` PR #9 (`feat/mode-chooser`, based on `feat/lab-drawer`
+since both touch `app.js`): four mode buttons — Play a model, Watch two
+engines, Two players, Just the board — render as the first thing on the page.
+New `src/modes.js` (`MODES` + pure `applyMode`) sets the drawer's two
+controller selects; "Just the board" is a genuine pass-through, and an
+unrecognized mode id resolves to that same pass-through rather than throwing.
+`settings.js` gained a normalized `mode` field. Resolved both open decisions
+in `decisions.md`: **D7** — the chooser persists across visits (new visitors
+still see a neutral, unhighlighted prompt); **D8** — a classical-only roster
+is offered under "Play a model" rather than hidden or disabled, with zero
+special-case code since the opponent picker already shows whatever
+`GET /api/opponents` returns. `npm test` → 77/77. Rendered and driven live via
+Claude in Chrome: picked "Two players," confirmed both drawer selects flipped
+to Human, reloaded and confirmed the highlight and controllers both
+persisted, then picked "Just the board" and confirmed it passed the Human/Human
+assignment through unchanged. Same `test/index.test.js` script-list deviation
+as V1 (flagged in both PRs). Full record in `handoffs/quantik-qfen-visualizer.md`.
+
+**Next action:** V3 (`feat/how-to-play`) next in the visualizer — depends on
+V1's `layout.js` storage helper, which is landed (in #8, not yet merged) and
+will need V2 (#9) as its base for the same "both touch `app.js`" reason,
+continuing the stack. Separately: merge `quantik-models-py` #64, #65, #66 in
+that order (M4 needs M3's `--copy` flag) when the user is ready, then
+`quantik-models-py` M5 — blocked on the visualizer's V1–V5, which is in
+progress.
