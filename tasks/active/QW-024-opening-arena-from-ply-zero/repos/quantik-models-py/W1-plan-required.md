@@ -1,3 +1,10 @@
+# W1 — quantik-models-py
+
+Repository: `quantik-models-py`
+Branch: `plan/qw-024-quantik-models-py` (one PR)
+
+## Objective
+
 # quantik-models-py
 
 ## Objective
@@ -27,3 +34,15 @@ Run the opening arena and write up what it says about ordering at ply 0.
   `uniform-mcts` sit inside it or below it?
 - The single training seed is named as a limitation.
 - Handoff records the arena seed, `TEMP`, `TEMP_PLIES`, and the output directory.
+
+## Implementation and scope
+
+Not yet planned. Replace this item's placeholder `allowed_paths` in `manifest.yaml` with explicit repository-relative paths, select the `decisions`/`invariants` references it actually needs, and split into further work items wherever another branch/PR is needed.
+
+## Completion criteria and verification
+
+Not yet planned. State observable acceptance checks and exact repository commands here before dispatch.
+
+## Handoff
+
+Record item ID, branch, PR, starting/final revisions, dependency evidence, actual commands/results, and remaining blockers.
