@@ -1,3 +1,10 @@
+# W1 — quantik-models-py
+
+Repository: `quantik-models-py`
+Branch: `plan/qw-021-quantik-models-py` (one PR)
+
+## Objective
+
 # quantik-models-py
 
 ## Objective
@@ -32,3 +39,15 @@ in the arena — after replacing the held-out partition that this destroys.
 - The write-up reports arena results with seat controlled, and states held-out accuracy
   separately and secondarily.
 - Handoff lists every document and article that quoted 99.63% and what was done to each.
+
+## Implementation and scope
+
+Not yet planned. Replace this item's placeholder `allowed_paths` in `manifest.yaml` with explicit repository-relative paths, select the `decisions`/`invariants` references it actually needs, and split into further work items wherever another branch/PR is needed.
+
+## Completion criteria and verification
+
+Not yet planned. State observable acceptance checks and exact repository commands here before dispatch.
+
+## Handoff
+
+Record item ID, branch, PR, starting/final revisions, dependency evidence, actual commands/results, and remaining blockers.
