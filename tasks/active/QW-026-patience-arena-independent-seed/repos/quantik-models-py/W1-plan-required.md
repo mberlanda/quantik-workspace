@@ -1,3 +1,10 @@
+# W1 — quantik-models-py
+
+Repository: `quantik-models-py`
+Branch: `plan/qw-026-quantik-models-py` (one PR)
+
+## Objective
+
 # quantik-models-py task
 
 Objective: re-run the arena/shift evaluation `scripts/evaluate_lineup.sh` was
@@ -36,3 +43,15 @@ rough magnitude on the second seed, and whether the ply-3 result (6.5 points,
 `cpool` ahead) does too.
 
 Handoff path: create `handoffs/` only once a handoff exists.
+
+## Implementation and scope
+
+Not yet planned. Replace this item's placeholder `allowed_paths` in `manifest.yaml` with explicit repository-relative paths, select the `decisions`/`invariants` references it actually needs, and split into further work items wherever another branch/PR is needed.
+
+## Completion criteria and verification
+
+Not yet planned. State observable acceptance checks and exact repository commands here before dispatch.
+
+## Handoff
+
+Record item ID, branch, PR, starting/final revisions, dependency evidence, actual commands/results, and remaining blockers.
