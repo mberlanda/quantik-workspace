@@ -1,3 +1,10 @@
+# W1 — quantik-api-rust
+
+Repository: `quantik-api-rust`
+Branch: `plan/qw-020-quantik-api-rust` (one PR)
+
+## Objective
+
 # quantik-api-rust
 
 ## Objective
@@ -27,3 +34,15 @@ container-level smoke test.
 - The smoke test runs against the pulled image in CI.
 - The image size is recorded in the handoff, for both variants once both exist.
 - Handoff records the decision made for criterion 4.
+
+## Implementation and scope
+
+Not yet planned. Replace this item's placeholder `allowed_paths` in `manifest.yaml` with explicit repository-relative paths, select the `decisions`/`invariants` references it actually needs, and split into further work items wherever another branch/PR is needed.
+
+## Completion criteria and verification
+
+Not yet planned. State observable acceptance checks and exact repository commands here before dispatch.
+
+## Handoff
+
+Record item ID, branch, PR, starting/final revisions, dependency evidence, actual commands/results, and remaining blockers.
