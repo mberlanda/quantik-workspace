@@ -1,0 +1,28 @@
+{
+  "id": "QW-030",
+  "title": "The Playground — One-Port Monolith and Non-Expert Play UX",
+  "status": "planned",
+  "problem": "quantik-models 1.0.0 is on PyPI, but `pip install quantik-models` serves no browser app: play/__main__.py defaults --static to parents[4]/quantik-qfen-visualizer, a sibling-checkout path that exists only inside the quantik-ns workspace. The app is therefore reachable only to someone who has cloned two repositories, and the Docker image is the only artifact where the UI and the API share a port. Separately, the app that would be served reads as an engine debugging tool — a QFEN text field, two controller dropdowns keyed by architecture name, raw seed and endpoint-override inputs — which is the wrong first screen for the public deployment QW-009 is building toward, and it shows `Not recorded: ... 503` at the end of every game against a storeless server.",
+  "affected_repositories": [
+    "quantik-models-py",
+    "quantik-qfen-visualizer"
+  ],
+  "affected_contracts": [],
+  "dependencies": [
+    "QW-008",
+    "QW-009",
+    "QW-010",
+    "QW-024"
+  ],
+  "acceptance_criteria": [
+    "`pip install 'quantik-models[serve,hub]'` followed by `quantik-models-play` serves the browser app and the JSON API on one port with no sibling checkout, no --static flag, and no network beyond the one-time weight fetch. Verified from a venv created outside the quantik-ns tree.",
+    "The vendored app under src/quantik_models/play/app/ is present in both the sdist and the wheel, checked by scripts/check_dist.py, and a test asserts that every script and stylesheet index.html references exists in the vendored tree — so a partial sync fails CI rather than shipping a blank page.",
+    "quantik-qfen-visualizer remains the source of truth for the app and remains openable from file:// with no runtime dependency. The vendored copy is produced by scripts/sync_visualizer.py and records the source commit in app/SOURCE.json.",
+    "The first screen offers a mode of play, not a control panel. Modes are prompted lightly; QFEN entry, seed, per-player controller selects, endpoint overrides, service base, and trace import/export all move into one collapsed disclosure at the bottom of the page.",
+    "A collapsible how-to-play explainer states Quantik's placement restriction and win condition, and its text is checked for consistency against quantik-core-contracts' own rule statement.",
+    "GET /api reports whether the server has a store, and a client talking to a storeless server records nothing and shows no storage error. A public visitor never sees a 503.",
+    "The Docker image pulls the published brpoplpush weights at build time rather than baking in a local runs/ copy, and carries docker/NOTICE's MIT-code / CC-BY-NC-4.0-weights split into the image.",
+    "No skill-level ladder is shipped by this initiative. The level-to-opponent mapping stays blocked on QW-024's ply-0/ply-1 arena, per QW-010 decision 4, which explicitly rejected deriving levels from the existing ply-3/6/9 tables. The UI prepares the slot; the data lands separately.",
+    "Every change is an atomic commit on its own branch with its own PR, and every quantik-qfen-visualizer src/*.js behaviour change has a failing test written before it."
+  ]
+}

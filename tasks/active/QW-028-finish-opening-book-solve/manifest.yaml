@@ -1,0 +1,14 @@
+{
+  "acceptance_criteria": [
+    "Repository-scoped completion evidence is recorded."
+  ],
+  "affected_contracts": [],
+  "affected_repositories": [
+    "quantik-models-py"
+  ],
+  "created": "2026-08-31",
+  "id": "QW-028",
+  "problem": "To be refined.",
+  "status": "planned",
+  "title": "Finish the Opening Book Solve"
+}
