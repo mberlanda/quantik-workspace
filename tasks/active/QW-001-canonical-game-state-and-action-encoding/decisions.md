@@ -5,9 +5,9 @@ All six decisions below are resolved as of 2026-09-06, grounded in what
 reading both codebases, not assumed), not invented from scratch. Normative
 text lives in `quantik-core-contracts`:
 
-- [`docs/symmetry-transposition.md`](../../../../quantik-core-contracts/docs/symmetry-transposition.md)
+- [`docs/symmetry-transposition.md`](https://github.com/mberlanda/quantik-core-contracts/blob/main/docs/symmetry-transposition.md)
   (decisions 1, 2, 5)
-- [`docs/game-state.md`](../../../../quantik-core-contracts/docs/game-state.md)
+- [`docs/game-state.md`](https://github.com/mberlanda/quantik-core-contracts/blob/main/docs/game-state.md)
   (decisions 3, 4)
 - `fixtures/symmetry/symmetry-v1.json` and
   `fixtures/invalid-states/invalid-state-v1.json` (golden cases for all of
