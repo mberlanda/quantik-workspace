@@ -14,11 +14,39 @@
     "quantik-core-contracts"
   ],
   "created": "2026-08-30",
-  "id": "QW-018",
-  "problem": "The engine response returns a single move and discards everything the search already computed. quantik-api-rust/src/lib.rs:192 returns Ok((result.best_move, None)) \u2014 MinimaxResult.pv is populated on every search and thrown away. The network emits all 64 logits and a value per forward pass; MCTS has visit counts; the oracle scores every legal move. Nothing distinguishes an estimate from a proof, so a tanh value and an exact oracle result reach the client as the same kind of claim.",
-  "status": "specified-not-built",
-  "title": "Engine Response Type \u2014 Candidates, PV, Certainty",
   "dependencies": [
     "QW-019"
+  ],
+  "id": "QW-018",
+  "problem": "The engine response returns a single move and discards everything the search already computed. quantik-api-rust/src/lib.rs:192 returns Ok((result.best_move, None)) — MinimaxResult.pv is populated on every search and thrown away. The network emits all 64 logits and a value per forward pass; MCTS has visit counts; the oracle scores every legal move. Nothing distinguishes an estimate from a proof, so a tanh value and an exact oracle result reach the client as the same kind of claim.",
+  "status": "specified-not-built",
+  "title": "Engine Response Type — Candidates, PV, Certainty",
+  "work_items": [
+    {
+      "allowed_paths": [
+        "REPLACE_WITH_EXPLICIT_PATHS"
+      ],
+      "branch": "plan/qw-018-quantik-api-rust",
+      "decisions": [],
+      "depends_on": [],
+      "id": "W1",
+      "invariants": [],
+      "packet": "repos/quantik-api-rust/W1-plan-required.md",
+      "repository": "quantik-api-rust",
+      "status": "plan-required"
+    },
+    {
+      "allowed_paths": [
+        "REPLACE_WITH_EXPLICIT_PATHS"
+      ],
+      "branch": "plan/qw-018-quantik-core-contracts",
+      "decisions": [],
+      "depends_on": [],
+      "id": "W2",
+      "invariants": [],
+      "packet": "repos/quantik-core-contracts/W2-plan-required.md",
+      "repository": "quantik-core-contracts",
+      "status": "plan-required"
+    }
   ]
 }
