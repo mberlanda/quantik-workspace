@@ -1,7 +1,7 @@
 {
   "id": "QW-001",
   "title": "Canonical Game State and Action Encoding Contract",
-  "status": "partially-resolved",
+  "status": "resolved-pending-merge",
   "problem": "State identity, canonicalization, action remapping, legal masks, and value perspective are implemented across engines and models but are not covered by one executable cross-stack contract.",
   "affected_repositories": ["quantik-core-contracts", "quantik-core-py", "quantik-core-rust", "quantik-models-py"],
   "affected_contracts": ["qfen.v1", "bitboard.v1", "action-index.v1", "tensor-board.v1", "selfplay.v1", "arrow-parquet-selfplay.v1"],

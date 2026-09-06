@@ -1,0 +1,25 @@
+# Handoff
+
+- Initiative / repository: QW-001 / `quantik-models-py`
+- Branch and full commit: `qw-001/canonical-state-action-contract` @ `8aea4a1` (branched fresh off `main`, **not** stacked on `feat/serve-app-from-package` — see below)
+- Dirty-state before/after: `feat/serve-app-from-package` (the branch checked out when this task started) had a live `opencode` process (a different AI CLI, local Ollama model, PID confirmed via `ps`/`lsof`) actively mid-edit on unrelated QW-030 work; left entirely untouched. Once that process exited and the branch was confirmed clean and in sync with `origin/feat/serve-app-from-package`, a **new** branch was cut from `origin/main` for this work. `main` itself was clean before and after.
+- PR: https://github.com/mberlanda/quantik-models-py/pull/63 (open, CI pending at time of writing)
+- Files changed:
+  - `src/quantik_models/env/fastboard.py` — `_spatial_permutations()` rewritten to match `quantik_core.symmetry.D4Index`'s per-cell formulas exactly; new `transform_index()` combinator
+  - `tests/test_fastboard.py` — 4 new tests (2 unconditional index-lock tests, 2 `skipif`-gated on the unreleased core API)
+  - `tests/test_policy_value_net.py` — 1 new test (`test_masked_log_softmax_all_false_row_is_uniform_not_nan`)
+  - `CHANGELOG.md` — `## Unreleased` entry
+- Decisions and assumptions:
+  - The D4 index reorder is a bug fix, not a judgment call — the alternative (leaving numpy's index order as-is and just documenting a lookup table between the two numberings) was considered and rejected: it would leave the ambiguity live forever instead of removing it, for no benefit, once the blast-radius check confirmed no persisted artifact references the raw `spatial` index (every call site draws it fresh via `random_symmetries` and consumes it within the same call — checked across `train/`, `selfplay/`, and `tests/`).
+  - `quantik-core`'s pyproject.toml dependency floor (`>=1.2,<2`) was deliberately **not** bumped to a not-yet-published version number — there is no such release to pin to yet. The two tests needing the new API are `skipif`-gated instead, per this repo's own documented convention for exactly this situation (`DEVELOPMENT.md`'s sibling-checkout note).
+  - Did not create a new ADR under `docs/decisions/` for the index-reorder — treated as a correctness fix with no real rejected alternative, not an architecture decision.
+- Commands and exact results:
+  - `.venv/bin/python -m pytest -q` (sibling `../quantik-core-py` checkout installed editable) → 648 passed
+  - `.venv/bin/python -m mypy` → `Success: no issues found in 61 source files`
+  - Verified the CI-safety gate directly: temporarily installed published `quantik-core==1.2.0`, ran `pytest tests/test_fastboard.py -v` → 20 passed, 2 skipped (clean, non-"could not import" reason); reinstalled the sibling checkout and confirmed all 22 pass for real
+- Generated evidence: `test_transform_actions_matches_core_remap_action_index` sweeps all 192 transforms × 64 actions against `quantik_core.SymmetryHandler.remap_action_index`; `test_spatial_perms_match_core_d4_mappings` locks the reordered table index-for-index against `quantik_core.SymmetryHandler.D4_MAPPINGS`.
+- Known gaps / follow-up:
+  - PR #63's CI had not resolved at the time of this handoff — check `gh pr checks 63 --repo mberlanda/quantik-models-py` before treating this as done.
+  - Once a `quantik-core` release publishes `remap_action_index`/`inverse_transform_index`, bump this repo's dependency floor; the two `skipif`-gated tests will then run for real in CI without further code changes.
+  - `feat/serve-app-from-package` (QW-030, unrelated) still has 8 unmerged commits sitting on origin — not this task's concern, noted only so it isn't mistaken for abandoned/lost work.
+- Prohibited or unperformed remote actions: none. PR opened, not merged — merge is the user's call.
