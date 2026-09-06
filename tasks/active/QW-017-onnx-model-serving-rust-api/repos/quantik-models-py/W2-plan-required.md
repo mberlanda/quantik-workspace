@@ -1,3 +1,10 @@
+# W2 — quantik-models-py
+
+Repository: `quantik-models-py`
+Branch: `plan/qw-017-quantik-models-py` (one PR)
+
+## Objective
+
 # quantik-models-py
 
 ## Objective
@@ -25,3 +32,15 @@ without a Python runtime. Include `"A.../..../..../...."` as the discriminating 
 - A Python-side test asserts the fixtures still match the current encoder, so drift is
   caught here rather than as a mysterious Rust failure.
 - Handoff records the commit and the `onnx_hash` of each graph used.
+
+## Implementation and scope
+
+Not yet planned. Replace this item's placeholder `allowed_paths` in `manifest.yaml` with explicit repository-relative paths, select the `decisions`/`invariants` references it actually needs, and split into further work items wherever another branch/PR is needed.
+
+## Completion criteria and verification
+
+Not yet planned. State observable acceptance checks and exact repository commands here before dispatch.
+
+## Handoff
+
+Record item ID, branch, PR, starting/final revisions, dependency evidence, actual commands/results, and remaining blockers.
