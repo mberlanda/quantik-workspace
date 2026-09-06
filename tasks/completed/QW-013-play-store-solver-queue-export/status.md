@@ -30,3 +30,20 @@ be substantially finished.
 `feat/play-solver-export` (`56b7d43`) and open as **quantik-models-py PR #53**. Seven
 focused tests pass locally. Not yet on `main`, so this initiative stays active until the
 PR merges rather than being closed on a green branch.
+
+## 2026-09-06 — closed, moved to `completed/`
+
+**quantik-models-py PR #53 merged 2026-08-30T16:44:44Z** and
+`src/quantik_models/play/export.py` is on `origin/main` at `83b5e05`. The exit
+condition this packet set for itself — "not yet on `main`, so this initiative
+stays active until the PR merges" — is met, so it moves rather than staying
+active on a green branch.
+
+The three items left unverified above were checked on `origin/main` rather
+than assumed:
+
+| left open 2026-08-30 | state 2026-09-06 |
+|---|---|
+| ran end to end against the real `games.db` | `tests/test_play_export.py` is on `main` with 7 focused tests |
+| `docs/autoplay.md` gained the human-games branch | **present** — §"Human games feed the same queue", and it carries the invariant the brief required: "human game outcomes are never labels, only positions travel" |
+| failing test written first | **not verifiable retroactively.** Test and implementation are on the same branch; commit order is not proof of the discipline. Recorded as unverified rather than claimed. |

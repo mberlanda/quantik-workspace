@@ -1,6 +1,9 @@
 # QW-028 Status
 
-**not-started.** Discovered and costed 2026-08-30.
+**not-started.** Discovered and costed 2026-08-30. **Every claim in "Verified"
+below was re-checked against the working tree on 2026-09-06 and still holds** —
+both solves are untouched at 10,000/901,916 and 64,000/105,632, neither directory
+has an `.npz`, and all six `level0N.npy` are still byte-identical to `runs/canonical/`.
 
 ## Verified
 

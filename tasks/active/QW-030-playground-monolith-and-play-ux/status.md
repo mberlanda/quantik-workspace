@@ -27,5 +27,5 @@ mode (QW-011) was considered and excluded.
 
 **Next action:** `quantik-models-py` M1 — vendor the app and re-point
 `DEFAULT_STATIC`. It is the change every other one is aimed at, and its
-verification step (a wheel installed in a venv **outside** `/Users/mauroberlanda/Code/quantik-ns`)
+verification step (a wheel installed in a venv **outside** `~/Code/quantik-ns`)
 is the step that would have caught the bug before 1.0.0 shipped.

@@ -86,7 +86,7 @@ cd /tmp && python3 -m venv v && ./v/bin/pip install /path/to/dist/quantik_models
 ./v/bin/python -c "from quantik_models.play.__main__ import DEFAULT_STATIC; print(DEFAULT_STATIC, DEFAULT_STATIC.is_dir())"
 ```
 
-It must be run from **outside** `/Users/mauroberlanda/Code/quantik-ns` — inside
+It must be run from **outside** `~/Code/quantik-ns` — inside
 the workspace the old sibling path resolves and the bug hides. That is exactly how
 it survived to 1.0.0.
 
