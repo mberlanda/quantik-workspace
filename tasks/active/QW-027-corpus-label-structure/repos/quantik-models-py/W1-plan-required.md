@@ -1,3 +1,10 @@
+# W1 — quantik-models-py
+
+Repository: `quantik-models-py`
+Branch: `plan/qw-027-quantik-models-py` (one PR)
+
+## Objective
+
 # quantik-models-py
 
 ## Objective
@@ -35,3 +42,15 @@ Document what the corpora contain, make v1 mergeable, and label plies 0-2.
 - `induct_shallow.py` reproduces 55 positions whose values match a direct oracle solve.
 - `shallow_probe.py` prints the baseline on every row it reports.
 - Focused tests pass; handoff records the commit and the new corpus hash.
+
+## Implementation and scope
+
+Not yet planned. Replace this item's placeholder `allowed_paths` in `manifest.yaml` with explicit repository-relative paths, select the `decisions`/`invariants` references it actually needs, and split into further work items wherever another branch/PR is needed.
+
+## Completion criteria and verification
+
+Not yet planned. State observable acceptance checks and exact repository commands here before dispatch.
+
+## Handoff
+
+Record item ID, branch, PR, starting/final revisions, dependency evidence, actual commands/results, and remaining blockers.
