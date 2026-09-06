@@ -1,15 +1,53 @@
 {
-  "id": "QW-004",
-  "title": "Opening Probe Contract and Runtime",
-  "status": "plan-required",
-  "problem": "Opening-book data exists, but there is no compact opening-probe contract or symmetry-safe engine abstraction for portable runtime lookup.",
-  "affected_repositories": ["quantik-core-contracts", "quantik-core-rust"],
-  "affected_contracts": ["opening-book.v1", "opening-probe.v1", "bitboard.v1", "action-index.v1"],
-  "dependencies": ["QW-001"],
   "acceptance_criteria": [
     "An approved contract design and implementation plan define probe keys, values, bounds, move/action transforms, metadata, errors, and migration.",
     "Contracts register opening-probe.v1 with normative fixtures and validators.",
     "Rust implements a fail-fast probe abstraction that handles representative orientation correctly.",
     "Cross-produced evidence covers hits, misses, corrupt data, incompatible versions, and transformed moves."
+  ],
+  "affected_contracts": [
+    "opening-book.v1",
+    "opening-probe.v1",
+    "bitboard.v1",
+    "action-index.v1"
+  ],
+  "affected_repositories": [
+    "quantik-core-contracts",
+    "quantik-core-rust"
+  ],
+  "dependencies": [
+    "QW-001"
+  ],
+  "id": "QW-004",
+  "problem": "Opening-book data exists, but there is no compact opening-probe contract or symmetry-safe engine abstraction for portable runtime lookup.",
+  "status": "plan-required",
+  "title": "Opening Probe Contract and Runtime",
+  "work_items": [
+    {
+      "allowed_paths": [
+        "REPLACE_WITH_EXPLICIT_PATHS"
+      ],
+      "branch": "plan/qw-004-quantik-core-contracts",
+      "decisions": [],
+      "depends_on": [],
+      "id": "W1",
+      "invariants": [],
+      "packet": "repos/quantik-core-contracts/W1-plan-required.md",
+      "repository": "quantik-core-contracts",
+      "status": "plan-required"
+    },
+    {
+      "allowed_paths": [
+        "REPLACE_WITH_EXPLICIT_PATHS"
+      ],
+      "branch": "plan/qw-004-quantik-core-rust",
+      "decisions": [],
+      "depends_on": [],
+      "id": "W2",
+      "invariants": [],
+      "packet": "repos/quantik-core-rust/W2-plan-required.md",
+      "repository": "quantik-core-rust",
+      "status": "plan-required"
+    }
   ]
 }
