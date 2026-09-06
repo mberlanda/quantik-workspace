@@ -1,3 +1,10 @@
+# W1 — articles
+
+Repository: `articles`
+Branch: `plan/qw-016-articles` (one PR)
+
+## Objective
+
 # articles
 
 ## Objective
@@ -29,3 +36,15 @@ single machine.
 - `git remote -v` is non-empty and the drafts are pushed, or `decisions.md` records the
   deliberate alternative and names where the backup lives.
 - Handoff records the published URL and the commit the drafts were pushed at.
+
+## Implementation and scope
+
+Not yet planned. Replace this item's placeholder `allowed_paths` in `manifest.yaml` with explicit repository-relative paths, select the `decisions`/`invariants` references it actually needs, and split into further work items wherever another branch/PR is needed.
+
+## Completion criteria and verification
+
+Not yet planned. State observable acceptance checks and exact repository commands here before dispatch.
+
+## Handoff
+
+Record item ID, branch, PR, starting/final revisions, dependency evidence, actual commands/results, and remaining blockers.
