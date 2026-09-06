@@ -1,3 +1,10 @@
+# W1 — quantik-models-py
+
+Repository: `quantik-models-py`
+Branch: `plan/qw-011-quantik-models-py` (one PR)
+
+## Objective
+
 # quantik-models-py task
 
 Objective: generate a puzzle pack from the current best corpus and hand it off
@@ -28,3 +35,15 @@ Completion criteria: pack generated, spot-checked (a `mate-in-1` and a
 
 Handoff path: create `tasks/active/QW-011-puzzle-mode-browser/handoffs/` only
 once a handoff exists.
+
+## Implementation and scope
+
+Not yet planned. Replace this item's placeholder `allowed_paths` in `manifest.yaml` with explicit repository-relative paths, select the `decisions`/`invariants` references it actually needs, and split into further work items wherever another branch/PR is needed.
+
+## Completion criteria and verification
+
+Not yet planned. State observable acceptance checks and exact repository commands here before dispatch.
+
+## Handoff
+
+Record item ID, branch, PR, starting/final revisions, dependency evidence, actual commands/results, and remaining blockers.
