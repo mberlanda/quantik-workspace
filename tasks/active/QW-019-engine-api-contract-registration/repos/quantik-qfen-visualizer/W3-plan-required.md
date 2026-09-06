@@ -1,3 +1,10 @@
+# W3 — quantik-qfen-visualizer
+
+Repository: `quantik-qfen-visualizer`
+Branch: `plan/qw-019-quantik-qfen-visualizer` (one PR)
+
+## Objective
+
 # quantik-qfen-visualizer
 
 ## Objective
@@ -24,3 +31,15 @@ to changing the repo's build posture, and that choice must be recorded.
 - A failing test exists before the implementation, per `AGENTS.md`.
 - `npm test` passes with the new module registered in `test/index.test.js`.
 - Handoff records how validation was done without adding a runtime dependency.
+
+## Implementation and scope
+
+Not yet planned. Replace this item's placeholder `allowed_paths` in `manifest.yaml` with explicit repository-relative paths, select the `decisions`/`invariants` references it actually needs, and split into further work items wherever another branch/PR is needed.
+
+## Completion criteria and verification
+
+Not yet planned. State observable acceptance checks and exact repository commands here before dispatch.
+
+## Handoff
+
+Record item ID, branch, PR, starting/final revisions, dependency evidence, actual commands/results, and remaining blockers.
