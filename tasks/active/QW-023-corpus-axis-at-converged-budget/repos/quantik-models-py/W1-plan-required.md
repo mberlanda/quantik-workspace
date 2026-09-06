@@ -1,3 +1,10 @@
+# W1 — quantik-models-py
+
+Repository: `quantik-models-py`
+Branch: `plan/qw-023-quantik-models-py` (one PR)
+
+## Objective
+
 # quantik-models-py
 
 ## Objective
@@ -29,3 +36,15 @@ One converged training run on `exact-sampled-v2.npz` and one arena against
   training seed named as a limitation.
 - ADR 0014 updated with the outcome, including if it is null.
 - Handoff records the run directory, epochs, arena seed and both artefacts.
+
+## Implementation and scope
+
+Not yet planned. Replace this item's placeholder `allowed_paths` in `manifest.yaml` with explicit repository-relative paths, select the `decisions`/`invariants` references it actually needs, and split into further work items wherever another branch/PR is needed.
+
+## Completion criteria and verification
+
+Not yet planned. State observable acceptance checks and exact repository commands here before dispatch.
+
+## Handoff
+
+Record item ID, branch, PR, starting/final revisions, dependency evidence, actual commands/results, and remaining blockers.
