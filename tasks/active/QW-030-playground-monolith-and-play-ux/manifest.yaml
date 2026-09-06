@@ -31,7 +31,7 @@
       "repository": "quantik-models-py",
       "packet": "repos/quantik-models-py/M1-vendor-app.md",
       "branch": "feat/serve-app-from-package",
-      "status": "planned",
+      "status": "completed",
       "allowed_paths": [
         "scripts/sync_visualizer.py",
         "src/quantik_models/play/__main__.py",
