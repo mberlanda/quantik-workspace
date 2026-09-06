@@ -7,7 +7,8 @@ workspace coordinates work; implementation remains in the owning repository.
 
 ## Required inputs
 
-- assigned task manifest, initiative, decisions, status, and repository task;
+- assigned atomic work-item packet, allowed paths, branch, and dependency IDs;
+- only the decisions and canonical invariants explicitly referenced by that item;
 - bounded repository/system context;
 - closest repository instructions;
 - exact starting revisions and dirty state;
@@ -21,12 +22,13 @@ a missing plan, or a blocker. Do not silently invent it.
 Route each task by how much judgment remains after the spec is written, not by task
 size. A task whose spec already resolved every judgment call is delegate-tier work;
 review, and any task whose spec cannot be written without a live judgment call, stays
-with the coordinating tier. See `model-routing.md`.
+with the coordinating tier. The coordinator applies `model-routing.md` before dispatch.
 
 ## Authority
 
 - Read within the assigned namespace and run non-destructive verification.
-- Edit only repositories explicitly assigned by the task.
+- Edit only the assigned repository and the work item’s allowed paths.
+- Use one branch and one PR per work item; record evidence by work-item ID.
 - Preserve pre-existing changes and avoid unrelated cleanup.
 - Treat remote writes, review requests, merges, tags, releases, and publication
   as separate actions requiring explicit authority.

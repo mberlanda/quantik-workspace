@@ -11,7 +11,9 @@ short and evidence-backed rather than exhaustive. Repository-specific detail bel
 
 These do not raise an error when violated. The system keeps running.
 
-1. **`tensor-board.v1` is ambiguous — two incompatible encodings share the name.**
+### I1
+
+**`tensor-board.v1` is ambiguous — two incompatible encodings share the name.**
    Everything in training uses `fastboard.encode_tensors`: float32 `(9,4,4)`, channels
    0–3 the side-to-move's shapes, 4–7 the opponent's, channel 8 the side-to-move flag
    broadcast over the board — **mover-relative**. `quantik_core.ml_data.qfen_to_tensor`
@@ -25,24 +27,34 @@ These do not raise an error when violated. The system keeps running.
    corrected 2026-08-28). *Verified 2026-08-30 against
    `quantik-models-py/src/quantik_models/env/fastboard.py`.*
 
-2. **Quantik has no draws.** Both terminal conditions — a completed line
+### I2
+
+**Quantik has no draws.** Both terminal conditions — a completed line
    (`win_condition`) and no legal reply (`no_legal_moves`) — are losses **for the side to
    move**, so the winner is always the last mover. `win_probability = (value + 1) / 2` is
    therefore exact. *Verified against `fastboard.terminal_status` and
    `quantik_models/play/service.py`'s `win_probability` field, 2026-08-30.*
 
-3. **Legality masking lives outside the model, by design.** The rules are exact in
+### I3
+
+**Legality masking lives outside the model, by design.** The rules are exact in
    `quantik-core`; the network never has to approximate them, and no engine in this
    project can return an illegal move.
 
-4. **Game outcomes never become labels.** Only positions travel to the corpus — from
+### I4
+
+**Game outcomes never become labels.** Only positions travel to the corpus — from
    autoplay and from human games alike. Labels come only from the exact oracle. See
    `domain-glossary.md` for corpus vs. probe.
 
-5. **Contracts are the source of truth.** Schemas live in `quantik-core-contracts`; code
+### I5
+
+**Contracts are the source of truth.** Schemas live in `quantik-core-contracts`; code
    is validated against them, never the reverse.
 
-6. **Action index is `shape * 16 + position`; `ACTION_COUNT = 64`; shapes are `"ABCD"`.**
+### I6
+
+**Action index is `shape * 16 + position`; `ACTION_COUNT = 64`; shapes are `"ABCD"`.**
    Board positions are 0–15, row-major. Policy vectors and legality masks are 64 slots,
    bit/slot `i` is action `i`.
 

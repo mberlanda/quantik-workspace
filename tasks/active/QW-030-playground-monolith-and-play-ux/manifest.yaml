@@ -1,8 +1,8 @@
 {
   "id": "QW-030",
-  "title": "The Playground — One-Port Monolith and Non-Expert Play UX",
+  "title": "The Playground \u2014 One-Port Monolith and Non-Expert Play UX",
   "status": "planned",
-  "problem": "quantik-models 1.0.0 is on PyPI, but `pip install quantik-models` serves no browser app: play/__main__.py defaults --static to parents[4]/quantik-qfen-visualizer, a sibling-checkout path that exists only inside the quantik-ns workspace. The app is therefore reachable only to someone who has cloned two repositories, and the Docker image is the only artifact where the UI and the API share a port. Separately, the app that would be served reads as an engine debugging tool — a QFEN text field, two controller dropdowns keyed by architecture name, raw seed and endpoint-override inputs — which is the wrong first screen for the public deployment QW-009 is building toward, and it shows `Not recorded: ... 503` at the end of every game against a storeless server.",
+  "problem": "quantik-models 1.0.0 is on PyPI, but `pip install quantik-models` serves no browser app: play/__main__.py defaults --static to parents[4]/quantik-qfen-visualizer, a sibling-checkout path that exists only inside the quantik-ns workspace. The app is therefore reachable only to someone who has cloned two repositories, and the Docker image is the only artifact where the UI and the API share a port. Separately, the app that would be served reads as an engine debugging tool \u2014 a QFEN text field, two controller dropdowns keyed by architecture name, raw seed and endpoint-override inputs \u2014 which is the wrong first screen for the public deployment QW-009 is building toward, and it shows `Not recorded: ... 503` at the end of every game against a storeless server.",
   "affected_repositories": [
     "quantik-models-py",
     "quantik-qfen-visualizer"
@@ -16,7 +16,7 @@
   ],
   "acceptance_criteria": [
     "`pip install 'quantik-models[serve,hub]'` followed by `quantik-models-play` serves the browser app and the JSON API on one port with no sibling checkout, no --static flag, and no network beyond the one-time weight fetch. Verified from a venv created outside the quantik-ns tree.",
-    "The vendored app under src/quantik_models/play/app/ is present in both the sdist and the wheel, checked by scripts/check_dist.py, and a test asserts that every script and stylesheet index.html references exists in the vendored tree — so a partial sync fails CI rather than shipping a blank page.",
+    "The vendored app under src/quantik_models/play/app/ is present in both the sdist and the wheel, checked by scripts/check_dist.py, and a test asserts that every script and stylesheet index.html references exists in the vendored tree \u2014 so a partial sync fails CI rather than shipping a blank page.",
     "quantik-qfen-visualizer remains the source of truth for the app and remains openable from file:// with no runtime dependency. The vendored copy is produced by scripts/sync_visualizer.py and records the source commit in app/SOURCE.json.",
     "The first screen offers a mode of play, not a control panel. Modes are prompted lightly; QFEN entry, seed, per-player controller selects, endpoint overrides, service base, and trace import/export all move into one collapsed disclosure at the bottom of the page.",
     "A collapsible how-to-play explainer states Quantik's placement restriction and win condition, and its text is checked for consistency against quantik-core-contracts' own rule statement.",
@@ -24,5 +24,225 @@
     "The Docker image pulls the published brpoplpush weights at build time rather than baking in a local runs/ copy, and carries docker/NOTICE's MIT-code / CC-BY-NC-4.0-weights split into the image.",
     "No skill-level ladder is shipped by this initiative. The level-to-opponent mapping stays blocked on QW-024's ply-0/ply-1 arena, per QW-010 decision 4, which explicitly rejected deriving levels from the existing ply-3/6/9 tables. The UI prepares the slot; the data lands separately.",
     "Every change is an atomic commit on its own branch with its own PR, and every quantik-qfen-visualizer src/*.js behaviour change has a failing test written before it."
+  ],
+  "work_items": [
+    {
+      "id": "M1",
+      "repository": "quantik-models-py",
+      "packet": "repos/quantik-models-py/M1-vendor-app.md",
+      "branch": "feat/serve-app-from-package",
+      "status": "planned",
+      "allowed_paths": [
+        "scripts/sync_visualizer.py",
+        "src/quantik_models/play/__main__.py",
+        "src/quantik_models/play/app/**",
+        "pyproject.toml",
+        "MANIFEST.in",
+        "scripts/check_dist.py",
+        "tests/test_play_app_assets.py",
+        ".github/workflows/build.yml"
+      ],
+      "depends_on": [],
+      "decisions": [
+        "decisions.md#D1",
+        "decisions.md#D2",
+        "decisions.md#D3",
+        "decisions.md#D5"
+      ],
+      "invariants": [
+        "context/system/canonical-invariants.md#I5"
+      ]
+    },
+    {
+      "id": "M2",
+      "repository": "quantik-models-py",
+      "packet": "repos/quantik-models-py/M2-recording-capability.md",
+      "branch": "feat/api-advertises-recording",
+      "status": "planned",
+      "allowed_paths": [
+        "src/quantik_models/play/server.py",
+        "tests/test_play_server.py"
+      ],
+      "depends_on": [],
+      "decisions": [
+        "decisions.md#D6"
+      ],
+      "invariants": [
+        "context/system/canonical-invariants.md#I5"
+      ]
+    },
+    {
+      "id": "M3",
+      "repository": "quantik-models-py",
+      "packet": "repos/quantik-models-py/M3-stage-hub-weights.md",
+      "branch": "feat/fetch-stage",
+      "status": "planned",
+      "allowed_paths": [
+        "src/quantik_models/hub.py",
+        "tests/test_hub.py"
+      ],
+      "depends_on": [],
+      "decisions": [],
+      "invariants": [
+        "context/system/canonical-invariants.md#I5"
+      ]
+    },
+    {
+      "id": "M4",
+      "repository": "quantik-models-py",
+      "packet": "repos/quantik-models-py/M4-docker-from-hub.md",
+      "branch": "chore/docker-from-hub",
+      "status": "planned",
+      "allowed_paths": [
+        "docker/Dockerfile",
+        "docker/NOTICE",
+        "docs/play-service.md"
+      ],
+      "depends_on": [
+        "M3"
+      ],
+      "decisions": [
+        "decisions.md#O3"
+      ],
+      "invariants": [
+        "context/system/canonical-invariants.md#I5"
+      ]
+    },
+    {
+      "id": "M5",
+      "repository": "quantik-models-py",
+      "packet": "repos/quantik-models-py/M5-resync-and-document.md",
+      "branch": "docs/one-port-playground",
+      "status": "planned",
+      "allowed_paths": [
+        "src/quantik_models/play/app/**",
+        "README.md",
+        "docs/play-service.md",
+        "DEVELOPMENT.md",
+        "CHANGELOG.md"
+      ],
+      "depends_on": [
+        "M1",
+        "M2",
+        "M4",
+        "V1",
+        "V2",
+        "V3",
+        "V4",
+        "V5"
+      ],
+      "decisions": [
+        "decisions.md#D1",
+        "decisions.md#D2",
+        "decisions.md#D3",
+        "decisions.md#D5",
+        "decisions.md#D6"
+      ],
+      "invariants": [
+        "context/system/canonical-invariants.md#I5"
+      ]
+    },
+    {
+      "id": "V1",
+      "repository": "quantik-qfen-visualizer",
+      "packet": "repos/quantik-qfen-visualizer/V1-lab-drawer.md",
+      "branch": "feat/lab-drawer",
+      "status": "planned",
+      "allowed_paths": [
+        "index.html",
+        "src/app.js",
+        "src/layout.js",
+        "test/layout.test.js"
+      ],
+      "depends_on": [],
+      "decisions": [],
+      "invariants": [
+        "context/system/canonical-invariants.md#I5"
+      ]
+    },
+    {
+      "id": "V2",
+      "repository": "quantik-qfen-visualizer",
+      "packet": "repos/quantik-qfen-visualizer/V2-mode-selection.md",
+      "branch": "feat/mode-chooser",
+      "status": "planned",
+      "allowed_paths": [
+        "index.html",
+        "src/app.js",
+        "src/modes.js",
+        "src/settings.js",
+        "test/modes.test.js",
+        "test/settings.test.js"
+      ],
+      "depends_on": [],
+      "decisions": [
+        "decisions.md#D4",
+        "decisions.md#O1",
+        "decisions.md#O2"
+      ],
+      "invariants": [
+        "context/system/canonical-invariants.md#I5"
+      ]
+    },
+    {
+      "id": "V3",
+      "repository": "quantik-qfen-visualizer",
+      "packet": "repos/quantik-qfen-visualizer/V3-how-to-play.md",
+      "branch": "feat/how-to-play",
+      "status": "planned",
+      "allowed_paths": [
+        "index.html",
+        "src/app.js",
+        "src/rules.js",
+        "test/rules.test.js"
+      ],
+      "depends_on": [],
+      "decisions": [],
+      "invariants": [
+        "context/system/canonical-invariants.md#I5",
+        "context/system/canonical-invariants.md#I2",
+        "context/system/canonical-invariants.md#I3",
+        "context/system/canonical-invariants.md#I6",
+        "context/system/canonical-invariants.md#Engine-level invariants (evidence table)"
+      ]
+    },
+    {
+      "id": "V4",
+      "repository": "quantik-qfen-visualizer",
+      "packet": "repos/quantik-qfen-visualizer/V4-player-surface.md",
+      "branch": "chore/playground-styling",
+      "status": "planned",
+      "allowed_paths": [
+        "src/styles.css"
+      ],
+      "depends_on": [],
+      "decisions": [
+        "decisions.md#D4"
+      ],
+      "invariants": [
+        "context/system/canonical-invariants.md#I5"
+      ]
+    },
+    {
+      "id": "V5",
+      "repository": "quantik-qfen-visualizer",
+      "packet": "repos/quantik-qfen-visualizer/V5-recording-capability.md",
+      "branch": "fix/no-store-is-not-an-error",
+      "status": "planned",
+      "allowed_paths": [
+        "src/play.js",
+        "src/app.js",
+        "test/play.test.js"
+      ],
+      "depends_on": [
+        "M2"
+      ],
+      "decisions": [
+        "decisions.md#D6"
+      ],
+      "invariants": [
+        "context/system/canonical-invariants.md#I5"
+      ]
+    }
   ]
 }

@@ -29,7 +29,7 @@ from .releases import (
 )
 from .repositories import all_status, clone_missing, list_repositories, update_repositories
 from .reports import write_generated
-from .tasks import complete_task, create_task, validate_tasks
+from .tasks import task_status, complete_task, create_task, validate_tasks
 from .validation import validate_all, validate_document_links, validate_generated, validate_locks, validate_workspace
 
 
@@ -94,6 +94,7 @@ def build_parser() -> argparse.ArgumentParser:
     task_context = context.add_parser("task")
     task_context.add_argument("initiative")
     task_context.add_argument("repository")
+    task_context.add_argument("--work-item", help="Atomic work item ID (one branch and PR)")
     task_context.add_argument("--budget", type=int)
     task_context.add_argument("--output", type=Path)
 
@@ -173,7 +174,7 @@ def dispatch(args: argparse.Namespace) -> int:
         if args.task_command == "validate":
             return _validation(validate_tasks(config))
         if args.task_command == "status":
-            return _validation(validate_tasks(config))
+            return _validation(task_status(config))
         print(complete_task(config, args.id)); return 0
     if args.command == "context":
         if args.context_command == "repo":
@@ -181,7 +182,7 @@ def dispatch(args: argparse.Namespace) -> int:
         elif args.context_command == "initiative":
             bundle = initiative_context(config, args.identifier, budget=args.budget)
         elif args.context_command == "task":
-            bundle = initiative_context(config, args.initiative, args.repository, args.budget)
+            bundle = initiative_context(config, args.initiative, args.repository, args.budget, args.work_item)
         else:
             bundle = release_context(config, args.identifier, args.budget)
         _write_or_print(bundle.text, args.output)

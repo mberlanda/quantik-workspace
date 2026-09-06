@@ -3,7 +3,8 @@
   "workspace": {
     "name": "quantik-workspace",
     "repository_layout": "siblings",
-    "context_budget_tokens": 12000
+    "context_budget_tokens": 12000,
+    "work_item_context_budget_tokens": 6000
   },
   "repositories": {
     "quantik-core-py": {
