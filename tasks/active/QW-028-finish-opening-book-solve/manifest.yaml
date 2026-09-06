@@ -1,14 +1,22 @@
 {
   "acceptance_criteria": [
-    "Repository-scoped completion evidence is recorded."
+    "The resume is exercised before hours are committed to it: `exact_oracle --roots-only --append-to` against the existing `frontier.jsonl` reports the correct already-solved count (64,000 of 105,632 for `opening5`). The resume lives in `exact_oracle`'s `already_solved()`, not in the Python, whose docstring describes it as though it were local.",
+    "`runs/oracle/opening/opening-exact.npz` exists and holds every canonical live position at plies 0-6 with an exact value, and plies 0-5 with an exact optimal-move mask.",
+    "`solve_opening.py` prints solved-of-total at start and writes a `progress.json`, so an unfinished solve is legible without comparing `wc -l` across two files - which is the only reason two abandoned solves sat unnoticed.",
+    "Neither partial directory is deleted or restarted from scratch. `opening5` at 60.6% represents about 3.5 hours of solver time.",
+    "The resulting `.npz` is NOT merged into any training corpus by this initiative. The solve collides with the held-out probe at plies 4-6, and the merge is ordered after QW-021's partition design. Solve now, merge later.",
+    "Any re-measured cost figure is taken on an idle machine. The per-ply ladder is a single-ply extrapolation that has already failed by more than an order of magnitude in the other direction."
   ],
   "affected_contracts": [],
   "affected_repositories": [
     "quantik-models-py"
   ],
   "created": "2026-08-31",
+  "dependencies": [
+    "QW-021"
+  ],
   "id": "QW-028",
-  "problem": "To be refined.",
-  "status": "planned",
+  "problem": "scripts/solve_opening.py implements a correct root-only frontier solve with upward back-induction, and was run twice and abandoned both times. runs/oracle/opening stopped at 10,000 of 901,916 ply-6 frontier positions (1.1%); runs/oracle/opening5 stopped at 64,000 of 105,632 ply-5 positions (60.6%). Both counts are exact multiples of the oracle's CHUNK = 2,000 flush size, so both stopped cleanly between flushes and both resume via exact_oracle --append-to. Neither reached opening-exact.npz, so the opening book has contributed zero rows to any corpus - the mechanical reason behind the coverage gap the other opening initiatives work around. The failure was silent in the good way and invisible in the bad way: nothing partial leaked into training, because solve_frontier raises if a single frontier position is unsolved, but nothing was produced either and no check anywhere reports that a solve directory is unfinished.",
+  "status": "not-started",
   "title": "Finish the Opening Book Solve"
 }
