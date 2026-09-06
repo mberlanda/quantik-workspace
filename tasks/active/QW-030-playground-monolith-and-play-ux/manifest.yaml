@@ -147,7 +147,7 @@
       "repository": "quantik-qfen-visualizer",
       "packet": "repos/quantik-qfen-visualizer/V1-lab-drawer.md",
       "branch": "feat/lab-drawer",
-      "status": "planned",
+      "status": "completed",
       "allowed_paths": [
         "index.html",
         "src/app.js",

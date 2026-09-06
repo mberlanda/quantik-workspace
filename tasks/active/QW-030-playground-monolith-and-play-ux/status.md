@@ -58,6 +58,25 @@ this pass. See `handoffs/quantik-models-py.md` for the full record of each.
   and `docker/staging/` are now stale and were flagged rather than
   silently left to look current — both fall outside M4's `allowed_paths`.
 
-**Next action:** merge #64, #65, #66 in that order (M4 needs M3's
-`--copy` flag) when the user is ready, then `quantik-models-py` M5 —
-blocked on the visualizer's V1–V5, which this pass did not touch.
+**V1 implemented, 2026-09-06 — PR open, not merged.** `quantik-qfen-visualizer`
+PR #8 (`feat/lab-drawer`): the QFEN box + Copy/Reset, seed, speed, both
+per-player controller selects, both remote endpoint fields, the service-base
+override, and Export/Import trace all move into one collapsed `<details id="advanced-drawer">`
+at the bottom of the page, labeled "Advanced". Every element id kept
+unchanged. New `src/layout.js` holds the ordered id list, a membership
+predicate, and localStorage read/write for the drawer's open state (same
+defensive shape as `settings.js`'s theme storage). `npm test` → 69/69
+(63 existing + 6 new). Rendered and driven live via Claude in Chrome, including
+a reload to confirm the open state persists. See `handoffs/quantik-qfen-visualizer.md`
+for the full record, including a flagged scope deviation: adding `layout.js` as
+a new classic script required a one-line update to `test/index.test.js`'s
+exact-match script list, outside V1's `allowed_paths` — same pattern as M1's
+`server.py` deviation. V2 and V3 will likely hit the identical conflict when
+they add `modes.js` and `rules.js`.
+
+**Next action:** V2 (`feat/mode-chooser`) next in the visualizer, per the
+ordering in `initiative.md` (V1 before V3 for the storage helper; V2 and V1
+both touch `app.js` so sequenced rather than parallel). Separately: merge
+`quantik-models-py` #64, #65, #66 in that order (M4 needs M3's `--copy` flag)
+when the user is ready, then `quantik-models-py` M5 — blocked on the
+visualizer's V1–V5, which is in progress.
