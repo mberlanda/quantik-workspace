@@ -58,8 +58,8 @@ this pass. See `handoffs/quantik-models-py.md` for the full record of each.
   and `docker/staging/` are now stale and were flagged rather than
   silently left to look current — both fall outside M4's `allowed_paths`.
 
-**V1 implemented, 2026-09-06 — PR open, not merged.** `quantik-qfen-visualizer`
-PR #8 (`feat/lab-drawer`): the QFEN box + Copy/Reset, seed, speed, both
+**V1 implemented and merged, 2026-09-06.** `quantik-qfen-visualizer`
+PR #8 (`feat/lab-drawer`), squash-merged at `67656a2`: the QFEN box + Copy/Reset, seed, speed, both
 per-player controller selects, both remote endpoint fields, the service-base
 override, and Export/Import trace all move into one collapsed `<details id="advanced-drawer">`
 at the bottom of the page, labeled "Advanced". Every element id kept
@@ -74,9 +74,19 @@ exact-match script list, outside V1's `allowed_paths` — same pattern as M1's
 `server.py` deviation. V2 and V3 will likely hit the identical conflict when
 they add `modes.js` and `rules.js`.
 
-**V2 implemented, 2026-09-06 — PR open, not merged, stacked on V1.**
-`quantik-qfen-visualizer` PR #9 (`feat/mode-chooser`, based on `feat/lab-drawer`
-since both touch `app.js`): four mode buttons — Play a model, Watch two
+**V2 implemented and merged, 2026-09-06.**
+`quantik-qfen-visualizer` PR #9 was opened stacked on `feat/lab-drawer`
+(both touch `app.js`); when the user asked to merge PRs one by one, merging
+#8 first (squash) deleted that base branch and GitHub auto-closed #9 rather
+than retargeting it, since a squash commit isn't an ancestor of the stacked
+branch. Rebased `feat/mode-chooser` onto the new `main` (`git rebase --onto
+main 8880327 feat/mode-chooser`, `8880327` being V1's pre-squash tip),
+force-pushed, and reopened as **PR #10** with the same two commits and no
+content changes; #10 squash-merged clean at `21d7b46`. Worth knowing for
+V3–V5: **each stacked PR will need this same rebase-and-reopen once its
+base branch gets squash-merged out from under it** — plan on it rather than
+being surprised by another auto-close.
+Four mode buttons — Play a model, Watch two
 engines, Two players, Just the board — render as the first thing on the page.
 New `src/modes.js` (`MODES` + pure `applyMode`) sets the drawer's two
 controller selects; "Just the board" is a genuine pass-through, and an
@@ -93,10 +103,11 @@ persisted, then picked "Just the board" and confirmed it passed the Human/Human
 assignment through unchanged. Same `test/index.test.js` script-list deviation
 as V1 (flagged in both PRs). Full record in `handoffs/quantik-qfen-visualizer.md`.
 
-**Next action:** V3 (`feat/how-to-play`) next in the visualizer — depends on
-V1's `layout.js` storage helper, which is landed (in #8, not yet merged) and
-will need V2 (#9) as its base for the same "both touch `app.js`" reason,
-continuing the stack. Separately: merge `quantik-models-py` #64, #65, #66 in
-that order (M4 needs M3's `--copy` flag) when the user is ready, then
-`quantik-models-py` M5 — blocked on the visualizer's V1–V5, which is in
-progress.
+**Next action:** V3 (`feat/how-to-play`) next in the visualizer, branched
+fresh off the now-merged `main` (both V1 and V2 are on it, so no stacking
+needed for V3). Per the user's 2026-09-06 instruction to merge PRs one by
+one as they land, V3–V5 will each be merged shortly after their PR opens
+rather than left open for a separate merge decision. Separately: merge
+`quantik-models-py` #64, #65, #66 in that order (M4 needs M3's `--copy`
+flag) when the user is ready, then `quantik-models-py` M5 — blocked on the
+visualizer's V1–V5, which is in progress.
