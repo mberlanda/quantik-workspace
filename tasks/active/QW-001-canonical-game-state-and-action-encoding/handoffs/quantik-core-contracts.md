@@ -1,0 +1,25 @@
+# Handoff
+
+- Initiative / repository: QW-001 / `quantik-core-contracts`
+- Branch and full commit: `qw-001/canonical-state-action-contract` @ `a6961dc3d7d4f4d9486ee9e9f8512edd2ae01413`
+- Dirty-state before/after: clean before (fresh branch off `origin/main`); clean after (all changes committed)
+- PR: https://github.com/mberlanda/quantik-core-contracts/pull/21
+- Files changed:
+  - `contracts.json` — registers `symmetry-fixtures.v1` and `invalid-state-fixtures.v1`
+  - `docs/symmetry-transposition.md` — corrects the D4-only group to the real 192-element D4 × shape-permutation group; adds the `transform_index`/`remap_action_index`/`inverse_transform_index` contract; formalizes the 18-byte canonical key as the sole portable identity
+  - `docs/game-state.md` — adds "Terminal State" and "Invalid-State Validation Boundaries" sections
+  - `docs/implementation-status.md`, `docs/api-portability-testing.md` — status/plan updates pointing at the new fixtures
+  - `schemas/symmetry-fixtures-v1.schema.json`, `schemas/invalid-state-fixtures-v1.schema.json` — new
+  - `fixtures/symmetry/symmetry-v1.json`, `fixtures/invalid-states/invalid-state-v1.json` — new, generated from and cross-checked against `quantik-core-py` (see scratchpad generator scripts referenced in the PR description; not checked into this repo)
+  - `scripts/validate_contracts.py` — new validators for both fixture schemas, including a from-scratch, dependency-free D4/shape-perm reimplementation so the transform_index/expected_action_index fields are cross-checked, not just shape-checked
+  - `tests/test_contracts_validator.py` — new tests for both validators
+  - `.github/workflows/validate-contracts.yml`, `.github/workflows/release-contracts.yml` — added `fixtures/api-portability/*.json` (pre-existing gap), `fixtures/symmetry/*.json`, `fixtures/invalid-states/*.json` to `--schema-glob`
+- Decisions and assumptions: see `../decisions.md` for all six. No wire format changes; `contracts.json.release_version` stays `1.2.0`.
+- Commands and exact results:
+  - `python3 -m unittest discover -s tests` → 42 tests, OK
+  - `python3 scripts/validate_contracts.py --manifest contracts.json --schema-glob 'schemas/**/*.json' --schema-glob 'fixtures/parquet/*.json' --schema-glob 'fixtures/api-portability/*.json' --schema-glob 'fixtures/symmetry/*.json' --schema-glob 'fixtures/invalid-states/*.json' --fixture-glob 'fixtures/**/*.jsonl' --expected-release "$(cat VERSION)"` → passes, 20 json files, 11 fixture rows
+- Generated evidence: the two new fixture files themselves are the evidence; each case in `invalid-state-v1.json` was verified against `quantik_core.state_validator.validate_game_state`/`bb_from_qfen` at generation time (not hand-derived), and `symmetry-v1.json`'s `action_remap_cases` were round-tripped through their own inverse at generation time.
+- Known gaps / follow-up:
+  - The near-terminal "blocked side, board not full" case recommended in `api-portability-testing.md`'s fixture plan was not added to `fixtures/api-portability/game-state-v1.json` in this pass (see `decisions.md`'s "Explicitly out of scope" section for a ready-to-use QFEN).
+  - `fixtures/api-portability/game-state-v1.json` itself still only has 3 cases; the richer "Game-State Fixtures"/"Move Fixtures" lists in `api-portability-testing.md` remain aspirational beyond what `symmetry-v1.json` now covers.
+- Prohibited or unperformed remote actions: none. PR opened, not merged — merge is the user's call.

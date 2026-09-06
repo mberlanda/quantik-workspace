@@ -49,3 +49,32 @@ QREL-2026-001 records contracts candidate action-source coverage and documentati
 First release action: in `quantik-core-contracts`, add source-mode workflow coverage that invokes both checked-out composite actions through relative paths and derives expected release from VERSION; correct stable-versus-planned docs; then rerun `quantik-workspace release validate-candidate QREL-2026-001`. Do not create v1.2.0 until it is green.
 
 First compatibility initiative: execute QW-001 beginning with contracts fixture/schema decisions, especially canonical transform/action remapping and legal-mask meaning. Only then implement repository adapters and collect exact cross-stack evidence.
+
+## Atomic work-item refactor — 2026-09-06
+
+Added `work_items` manifest validation/schema, atomic task scaffolding, item status
+listing, and `context task --work-item`. Each item owns a packet, branch, allowed
+paths, dependencies and explicit decision/canonical-invariant heading references.
+Context includes the operating contract, repository summary, selected packet and
+references, and direct Git inspection. Full initiative documents and sibling
+packets stay outside execution context. The default generated-text limit is 6K;
+this excludes host system/tool prompts and uses an approximate characters/4 count.
+
+QW-030 now contains ten packets, preserving M1–M5/V1–V5 identities and branch names.
+The former repository packets are small planning indexes to preserve links.
+Measured bundles range from 2,269 to 3,479 estimated tokens; M1 is 3,391.
+
+Verification: `make format-check lint test` passed (31 tests), with test-process
+Git signing disabled via `GIT_CONFIG_COUNT=1 GIT_CONFIG_KEY_0=commit.gpgsign
+GIT_CONFIG_VALUE_0=false`; no Git configuration files were changed. `make validate`
+passed, including all 30 initiatives and generated-file freshness. All ten atomic
+bundles generate under 6K; the requested M1 CLI command succeeds. Tests cover
+isolation, budgets, legacy compatibility, planning gates, malformed manifests,
+missing inputs, traversal/symlink escape, dependencies, status and CLI dispatch.
+
+`make smoke` fails at the existing `repos status` version lookup: the models
+checkout has no `project.version` for its configured TOML pointer. Running the
+remaining smoke commands separately confirms repository context succeeds and
+`release drift` encounters the same version lookup failure. Atomic context uses
+direct Git inspection and succeeds independently of this package metadata issue.
+No sibling implementation changes or remote actions were performed.

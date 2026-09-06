@@ -21,3 +21,8 @@ explicit role/input/output/quality-gate structure is retained. Their fixed
 six-agent graph, Python-only architecture, provider libraries, Redis/SQLAlchemy
 runtime, speculative scale targets, and generated demo workflow are not current
 requirements and are not copied here.
+
+For atomic local-agent dispatch, the coordinator uses roles and routing to prepare
+the packet. Send only `context task … --work-item …` output as execution context;
+it already includes the operating contract. Do not append planning files or the
+role’s “Load with” document set.

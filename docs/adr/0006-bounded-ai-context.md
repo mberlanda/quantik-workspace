@@ -11,3 +11,8 @@ Full-repository prompts or opaque vector/database state.
 
 ## Consequences
 Inputs are reviewable and reproducible. Context packets must be refreshed and generation fails explicitly when over budget.
+
+Atomic task execution selects one manifest work item and its explicit heading
+references, with a default 6K generated-text budget. Planning context remains a
+separate command. Budget estimates exclude host system/tool prompts and are not
+model-tokenizer counts.

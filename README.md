@@ -48,11 +48,15 @@ Status reports paths, branch/commit/upstream, dirty/untracked/ahead/behind state
 ```bash
 quantik-workspace context repo quantik-core-rust
 quantik-workspace context initiative QW-001
-quantik-workspace context task QW-001 quantik-core-rust
+quantik-workspace context task QW-030 quantik-models-py --work-item M1 --budget 6000
 quantik-workspace context release QREL-2026-001
 ```
 
 Bundles list included/excluded sources and live revisions. Generation fails explicitly when the approximate budget is exceeded; it does not silently scan or truncate full repositories.
+
+Atomic execution bundles default to at most 6,000 estimated tokens (`workspace.work_item_context_budget_tokens`), further bounded by the global/environment budget. Explicit `--budget` overrides this limit. This measures generated text only, using characters / 4; the host’s system and tool prompts are additional. With the roughly 7.5K OpenCode baseline reported for the local 27B setup, aim for 4–6K generated tokens and check the host’s actual token usage.
+
+Use `context initiative` for planning. Migrated task packets require `--work-item`; legacy repository packets remain readable. See [task format](tasks/README.md).
 
 ## Compatibility
 

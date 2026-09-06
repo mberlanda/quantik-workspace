@@ -12,7 +12,8 @@
       "properties": {
         "name": {"type": "string"},
         "repository_layout": {"type": "string", "enum": ["siblings"]},
-        "context_budget_tokens": {"type": "integer"}
+        "context_budget_tokens": {"type": "integer"},
+        "work_item_context_budget_tokens": {"type": "integer", "minimum": 1}
       }
     },
     "repositories": {"type": "object"},

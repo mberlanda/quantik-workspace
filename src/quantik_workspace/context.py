@@ -8,9 +8,10 @@ import os
 from pathlib import Path
 from typing import Iterable
 
-from .config import WorkspaceConfig
+from .config import WorkspaceConfig, load_data
+from .tasks import scoped_file, read_reference, validate_work_items
 from .repositories import repository_status
-from .versions import read_version_source
+from .git import inspect
 
 
 class ContextBudgetExceeded(ValueError):
@@ -37,8 +38,11 @@ def _read_sources(root: Path, paths: Iterable[Path]) -> tuple[list[str], list[st
 
 
 def _finish(header: str, sections: list[str], sources: list[str], excluded: list[str], budget: int) -> ContextBundle:
+    if budget <= 0:
+        raise ValueError("context budget must be positive")
     preamble = (
         f"# Quantik Workspace Context\n\n{header}\n\n"
+        f"Budget: {budget} approximate tokens for this bundle only; host system/tool prompts are additional.\n\n"
         f"Included sources: {', '.join(sources) if sources else 'none'}\n\n"
         f"Excluded by design: {', '.join(excluded)}\n"
     )
@@ -76,11 +80,16 @@ def repository_context(config: WorkspaceConfig, name: str, budget: int | None = 
     return _finish(dynamic, sections, sources, ["implementation source trees", "unrelated repository packets", "historical task archives"], budget_for(config, budget))
 
 
-def initiative_context(config: WorkspaceConfig, identifier: str, repository: str | None = None, budget: int | None = None) -> ContextBundle:
+def initiative_context(config: WorkspaceConfig, identifier: str, repository: str | None = None, budget: int | None = None, work_item: str | None = None) -> ContextBundle:
     matches = list((config.root / "tasks" / "active").glob(f"{identifier}*"))
     if len(matches) != 1:
         raise ValueError(f"expected one active initiative for {identifier}, found {len(matches)}")
     initiative = matches[0]
+    manifest = load_data(initiative / "manifest.yaml")
+    if work_item:
+        return work_item_context(config, initiative, manifest, repository, work_item, budget)
+    if repository and "work_items" in manifest:
+        raise ValueError("atomic task context requires --work-item; use context initiative for planning")
     paths = [config.root / "context/system/canonical-invariants.md", initiative / "initiative.md", initiative / "plan.md", initiative / "manifest.yaml", initiative / "decisions.md", initiative / "status.md"]
     if repository:
         paths.extend([config.root / f"context/repositories/{repository}.md", initiative / "repos" / f"{repository}.md"])
@@ -103,3 +112,36 @@ def release_context(config: WorkspaceConfig, identifier: str, budget: int | None
     sections, sources = _read_sources(config.root, paths)
     return _finish(f"Purpose: release context for `{identifier}`.", sections, sources, ["implementation source trees", "unrelated initiatives", "other release trains"], budget_for(config, budget))
 
+
+
+def work_item_context(config: WorkspaceConfig, initiative: Path, manifest: dict, repository: str | None, identifier: str, budget: int | None) -> ContextBundle:
+    errors = validate_work_items(initiative, manifest, set(config.repositories))
+    if errors:
+        raise ValueError("; ".join(errors))
+    matches = [item for item in manifest["work_items"] if item["id"] == identifier and item["repository"] == repository]
+    if len(matches) != 1:
+        raise ValueError(f"unknown work item {identifier} for repository {repository}")
+    item = matches[0]
+    if manifest.get("status") == "plan-required" or item.get("status") == "plan-required":
+        raise ValueError("work item requires planning before execution context can be generated")
+    paths = [scoped_file(config.root, "agents/operating-contract.md"),
+             scoped_file(config.root, f"context/repositories/{repository}.md"),
+             scoped_file(initiative, item["packet"])]
+    sections, sources = _read_sources(config.root, paths)
+    for root, refs in ((config.root, item.get("invariants", [])), (initiative, item.get("decisions", []))):
+        for ref in refs:
+            if root == config.root and ref.split("#", 1)[0] != "context/system/canonical-invariants.md":
+                raise ValueError("invariants must reference canonical-invariants.md headings")
+            content = read_reference(root, ref)
+            source = str(root.relative_to(config.root) / ref)
+            sources.append(source)
+            sections.append(f"\n---\n\nSource: `{source}`\n\n{content}\n")
+    status = inspect(config.repository_path(repository)).to_dict()
+    header = (f"Purpose: atomic work item `{manifest['id']}/{identifier}` in `{repository}`.\n\n"
+              f"Checkout exists={status.get('exists')}; Git repository={status.get('is_git')}.\n"
+              f"Current branch: `{status.get('branch')}`; revision: `{status.get('commit')}`; dirty={status.get('dirty')}.\n\n"
+              f"Target branch: `{item['branch']}`. One branch and one PR for this packet.\n"
+              f"Allowed paths (repository-relative): {', '.join(item['allowed_paths'])}.\n"
+              f"Dependencies (require merged handoff evidence): {', '.join(item.get('depends_on', [])) or 'none'}.\n")
+    limit = budget if budget is not None else min(budget_for(config), int(config.data.get("workspace", {}).get("work_item_context_budget_tokens", 6000)))
+    return _finish(header, sections, sources, ["initiative overview and acceptance criteria", "full manifest and status", "unreferenced decisions", "other work items", "other repositories"], limit)
