@@ -34,5 +34,30 @@ including a scope deviation: the PR also fixed a real bug in
 reverse-DNS lookup was hanging macOS CI for ~30s per run, the actual cause
 behind three earlier failed fix attempts. Flagged for coordinator review.
 
-**Next action:** `quantik-models-py` M2 — `GET /api` reports a `recording`
-bool. Unblocks visualizer V5, which is otherwise independent of M1's path.
+**M2–M4 implemented, 2026-09-06 — PRs open, not merged.** All three
+`quantik-models-py` work items are done and green (650 passed, mypy clean
+on each branch) with PRs open; merging each is the user's call, not made in
+this pass. See `handoffs/quantik-models-py.md` for the full record of each.
+
+- **M2** (#64, `feat/api-advertises-recording`): `GET /api` now reports
+  `"recording": <bool>`. Unblocks visualizer V5.
+- **M3** (#65, `feat/fetch-stage`): `hub.stage()` + `--stage`/`--copy` on
+  `quantik-models-fetch`. One gap found and fixed *within this pass*, before
+  merge: the initial symlink-or-copy-on-OSError fallback doesn't cover the
+  Docker case (a symlink into a build stage's own Hub cache resolves fine
+  within that stage, then dangles once a later stage copies the directory
+  alone) — added an explicit `--copy`/`copy=True` to force real files.
+- **M4** (#66, `chore/docker-from-hub`, **stacked on #65** — depends on
+  `--copy`, so merge #65 first): the Docker image now builds from
+  `quantik-models-py` alone (no sibling `quantik-qfen-visualizer` context)
+  and fetches all four published weights from the Hub at build time
+  instead of a hand-staged local `runs/` copy. Built and ran it for real —
+  not just written the Dockerfile — and measured **498 MB** (four
+  architectures; down from 553 MB after dropping the unused
+  `model.safetensors` `--runtime onnx` never opens). `scripts/build_docker_image.sh`
+  and `docker/staging/` are now stale and were flagged rather than
+  silently left to look current — both fall outside M4's `allowed_paths`.
+
+**Next action:** merge #64, #65, #66 in that order (M4 needs M3's
+`--copy` flag) when the user is ready, then `quantik-models-py` M5 —
+blocked on the visualizer's V1–V5, which this pass did not touch.

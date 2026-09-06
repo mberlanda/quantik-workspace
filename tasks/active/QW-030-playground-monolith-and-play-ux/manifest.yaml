@@ -58,7 +58,7 @@
       "repository": "quantik-models-py",
       "packet": "repos/quantik-models-py/M2-recording-capability.md",
       "branch": "feat/api-advertises-recording",
-      "status": "planned",
+      "status": "completed",
       "allowed_paths": [
         "src/quantik_models/play/server.py",
         "tests/test_play_server.py"
@@ -76,7 +76,7 @@
       "repository": "quantik-models-py",
       "packet": "repos/quantik-models-py/M3-stage-hub-weights.md",
       "branch": "feat/fetch-stage",
-      "status": "planned",
+      "status": "completed",
       "allowed_paths": [
         "src/quantik_models/hub.py",
         "tests/test_hub.py"
@@ -92,7 +92,7 @@
       "repository": "quantik-models-py",
       "packet": "repos/quantik-models-py/M4-docker-from-hub.md",
       "branch": "chore/docker-from-hub",
-      "status": "planned",
+      "status": "completed",
       "allowed_paths": [
         "docker/Dockerfile",
         "docker/NOTICE",
