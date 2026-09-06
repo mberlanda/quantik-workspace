@@ -1,0 +1,25 @@
+# Handoff
+
+- Initiative / repository: QW-001 / `quantik-core-rust`
+- Branch and full commit: `qw-001/canonical-state-action-contract` @ `31204b06836916f22b5c26d99d970149e7b58c54`
+- Dirty-state before/after: clean before (fresh branch off `origin/main`); clean after (all changes committed)
+- Contracts source used: local checkout at `../quantik-core-contracts` on branch `qw-001/canonical-state-action-contract` (not an exact tag; contracts PR #21 is unmerged, consistent with the initiative's "checked-out contracts source before any exact tag exists" constraint) — no fixture files were actually read at test time (the new Rust tests keep golden values inline for hermeticity, see below), but the contract *definitions* they implement come from that checkout's `docs/symmetry-transposition.md` and `docs/game-state.md`.
+- PR: https://github.com/mberlanda/quantik-core-rust/pull/41
+- Files changed:
+  - `crates/quantik-core/src/symmetry.rs` — new `SymmetryHandler::remap_action_index`/`inverse_transform_index` (net-new public API; no such function existed before), plus a `D4_INVERSE` table and 6 new test functions
+  - `crates/quantik-core/src/validation.rs` — new module: `InvalidStateReason` enum + `validate_bitboard_state`, the shared full-validation function
+  - `crates/quantik-core/src/lib.rs` — registers `pub mod validation;`
+  - `crates/quantik-core/src/board.rs` — `QuantikBoard::from_bitboard` now calls the shared `validate_bitboard_state` instead of only checking turn-balance and piece counts; 4 new constructor-boundary rejection tests
+  - `crates/quantik-core/src/bench/contracts.rs` — local `validate_bitboard_state` now delegates to the shared one (removed ~20 lines of duplicated logic; `MAX_PIECES_PER_SHAPE`/`WIN_MASKS` imports dropped as now-unused there)
+  - `crates/quantik-core/src/bench/portability.rs` — `project_case` now calls the shared full validator instead of only `current_player` (turn-balance-only) parity check
+  - `crates/quantik-core/tests/portability_report.rs` — new regression test proving the previous gap: `"Aa../..../..../...."` (balanced turn count, illegal same-shape/same-line placement) is now rejected by `build_report`; it was not before this change
+- Decisions and assumptions: see `../decisions.md`, decisions 2 and 4 specifically. Check order in `validate_bitboard_state` (overlap/inventory during the plane pass, then turn balance, then placement legality) was chosen to match `quantik_core.state_validator.validate_game_state` exactly, not the order the old Rust code used (which checked placement legality before turn balance) — this matters only for bitboards invalid in more than one way at once.
+- Commands and exact results:
+  - `cargo test --workspace --all-features` → `203 passed; 0 failed` (lib) + all integration suites green
+  - `cargo fmt --all -- --check` → clean (after running `cargo fmt --all` once to apply 2 files' worth of formatting)
+  - `cargo clippy --workspace --all-targets --all-features -- -D warnings` → clean
+- Generated evidence: `crates/quantik-core/src/symmetry.rs`'s `golden_cases_from_contracts_fixture` test and `crates/quantik-core/src/validation.rs`'s per-variant tests are the cross-language proof points; the golden values were copied from `quantik-core-contracts`' `fixtures/symmetry/symmetry-v1.json` `action_remap_cases` (generated from and cross-checked against `quantik-core-py`) rather than derived independently in Rust, so this is a real cross-language agreement check, not two independent guesses.
+- Known gaps / follow-up:
+  - Not every `current_player`-only call site in `bench/contracts.rs` (lines ~262, ~316, ~2061, ~2114, ~2186 as of this commit) was audited for full-validation parity — only the one flagged by discovery (`bench/portability.rs::project_case`) was fixed. Those other call sites are for different export paths (search-summary/observation rows for specific benchmark flows) and were out of this session's scope; worth a follow-up audit if QW-001 resumes.
+  - The synthetic one-hot `policy_visits` in `bench/contracts.rs::observation_v1_row` is unchanged (QW-006's problem, not QW-001's — see `decisions.md`).
+- Prohibited or unperformed remote actions: none. PR opened, not merged — merge is the user's call. Note: this repo's remote is `https://...` (not SSH like `quantik-core-contracts`); pushing required running `gh auth setup-git` once to install a credential helper for `github.com` — a one-time, non-destructive environment fix, not a repo change.
