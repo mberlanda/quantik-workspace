@@ -1,3 +1,10 @@
+# W1 — quantik-models-py
+
+Repository: `quantik-models-py`
+Branch: `plan/qw-010-quantik-models-py` (one PR)
+
+## Objective
+
 # quantik-models-py task
 
 Objective: produce a written, numbers-backed skill-level derivation document
@@ -5,7 +12,7 @@ Objective: produce a written, numbers-backed skill-level derivation document
 from `play/opponents.py`'s roster, using seat-balanced win rates only.
 
 Relevant modules: `docs/oracle-benchmark.md`, the lineup tables in
-[`WORKSTREAMS.md`](../../../../docs/history/workstreams-archive.md) §11 / `docs/decisions/0001-architecture-lineup.md`,
+[`WORKSTREAMS.md`](../../../../../docs/history/workstreams-archive.md) §11 / `docs/decisions/0001-architecture-lineup.md`,
 `src/quantik_models/play/opponents.py` (the roster this mapping selects from).
 
 Inputs and outputs: reads existing `runs/eval/*/games.json` leaderboards; writes
@@ -31,3 +38,15 @@ UI work references it.
 
 Handoff path: create `tasks/active/QW-010-play-ux-skill-levels/handoffs/` only
 once a handoff exists.
+
+## Implementation and scope
+
+Not yet planned. Replace this item's placeholder `allowed_paths` in `manifest.yaml` with explicit repository-relative paths, select the `decisions`/`invariants` references it actually needs, and split into further work items wherever another branch/PR is needed.
+
+## Completion criteria and verification
+
+Not yet planned. State observable acceptance checks and exact repository commands here before dispatch.
+
+## Handoff
+
+Record item ID, branch, PR, starting/final revisions, dependency evidence, actual commands/results, and remaining blockers.
