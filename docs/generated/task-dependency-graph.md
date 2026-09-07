@@ -27,13 +27,13 @@ flowchart TD
   QW-027["QW-027: Corpus Label Structure and the Shallow-Ply Floor"]
   QW-028["QW-028: Finish the Opening Book Solve"]
   QW-029["QW-029: Shallow-Ply Scoring as a Standing Metric"]
-  QW-030["QW-030: The Playground — One-Port Monolith and Non-Expert Play UX"]
   QW-001["QW-001: Canonical Game State and Action Encoding Contract"]
   QW-008["QW-008: Local Play Service — Analysis and Recording"]
   QW-012["QW-012: Re-run the Architecture Lineup Under --patience"]
   QW-013["QW-013: Play-Store Solver-Queue Export"]
   QW-014["QW-014: Training Program — Architecture Lineup, Learning-Rate Correction, and the v3 Corpus Result"]
   QW-025["QW-025: Publish the dev-data dataset repos"]
+  QW-030["QW-030: The Playground — One-Port Monolith and Non-Expert Play UX"]
   QW-001 --> QW-003
   QW-001 --> QW-004
   QW-002 --> QW-005
@@ -56,12 +56,9 @@ flowchart TD
   QW-012 --> QW-023
   QW-012 --> QW-026
   QW-021 --> QW-028
-  QW-008 --> QW-030
-  QW-009 --> QW-030
-  QW-010 --> QW-030
-  QW-024 --> QW-030
   QW-014 --> QW-012
   QW-008 --> QW-013
+  QW-008 --> QW-030
   class QW-002 ready
   class QW-003 ready
   class QW-004 ready
@@ -85,13 +82,13 @@ flowchart TD
   class QW-027 ready
   class QW-028 blocked
   class QW-029 ready
-  class QW-030 done
   class QW-001 done
   class QW-008 done
   class QW-012 done
   class QW-013 done
   class QW-014 done
   class QW-025 done
+  class QW-030 done
   classDef done fill:#d3f9d8,stroke:#2b8a3e,color:#1b1b1b
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#1b1b1b
   classDef ready fill:#e7f5ff,stroke:#1971c2,color:#1b1b1b
@@ -124,10 +121,10 @@ flowchart TD
 | `QW-027` | ready | L | `quantik-models-py` | - | - | Corpus Label Structure and the Shallow-Ply Floor |
 | `QW-028` | blocked | M | `quantik-models-py` | QW-021 | QW-021 | Finish the Opening Book Solve |
 | `QW-029` | ready | XL | `quantik-models-py` | - | - | Shallow-Ply Scoring as a Standing Metric |
-| `QW-030` | done | - | `quantik-models-py`, `quantik-qfen-visualizer` | QW-008, QW-009, QW-010, QW-024 | QW-009, QW-010, QW-024 | The Playground — One-Port Monolith and Non-Expert Play UX |
 | `QW-001` | done | - | `quantik-core-contracts`, `quantik-core-py`, `quantik-core-rust`, `quantik-models-py` | - | - | Canonical Game State and Action Encoding Contract |
 | `QW-008` | done | - | `quantik-models-py` | - | - | Local Play Service — Analysis and Recording |
 | `QW-012` | done | - | `quantik-models-py` | QW-014 | - | Re-run the Architecture Lineup Under --patience |
 | `QW-013` | done | - | `quantik-models-py` | QW-008 | - | Play-Store Solver-Queue Export |
 | `QW-014` | done | - | `quantik-models-py` | - | - | Training Program — Architecture Lineup, Learning-Rate Correction, and the v3 Corpus Result |
 | `QW-025` | done | - | `quantik-models-py` | - | - | Publish the dev-data dataset repos |
+| `QW-030` | done | - | `quantik-models-py`, `quantik-qfen-visualizer` | QW-008 | - | The Playground — One-Port Monolith and Non-Expert Play UX |

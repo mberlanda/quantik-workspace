@@ -374,29 +374,6 @@
     },
     {
       "affected_repositories": [
-        "quantik-models-py",
-        "quantik-qfen-visualizer"
-      ],
-      "blocked_by": [
-        "QW-009",
-        "QW-010",
-        "QW-024"
-      ],
-      "complexity": null,
-      "dependencies": [
-        "QW-008",
-        "QW-009",
-        "QW-010",
-        "QW-024"
-      ],
-      "done": true,
-      "id": "QW-030",
-      "state": "active",
-      "status": "planned",
-      "title": "The Playground — One-Port Monolith and Non-Expert Play UX"
-    },
-    {
-      "affected_repositories": [
         "quantik-core-contracts",
         "quantik-core-py",
         "quantik-core-rust",
@@ -479,6 +456,22 @@
       "state": "completed",
       "status": "published-and-restore-verified",
       "title": "Publish the dev-data dataset repos"
+    },
+    {
+      "affected_repositories": [
+        "quantik-models-py",
+        "quantik-qfen-visualizer"
+      ],
+      "blocked_by": [],
+      "complexity": null,
+      "dependencies": [
+        "QW-008"
+      ],
+      "done": true,
+      "id": "QW-030",
+      "state": "completed",
+      "status": "completed",
+      "title": "The Playground — One-Port Monolith and Non-Expert Play UX"
     }
   ],
   "schema": "quantik-task-dependency-map.v1"

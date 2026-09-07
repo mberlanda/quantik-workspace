@@ -1,0 +1,118 @@
+{
+  "compatibility": {
+    "additive_changes": [],
+    "breaking_changes": [],
+    "evidence": [
+      "2026-09-07: tag v1.3.1 resolves to a6c1b100529d26d7ce07596d5452e4dca18ad2a5.",
+      "2026-09-07: GitHub Release 'Quantik contracts 1.3.1' (v1.3.1, latest) published 2026-09-06.",
+      "2026-09-07: both composite actions resolve at v1.3.1.",
+      "2026-09-07: quantik-core-py commit d78794a consumes the v1.3.1 opening-book-consistency action."
+    ],
+    "required_checks": [
+      "release-tag-validation",
+      "published-action-smoke"
+    ],
+    "wire_contracts": [
+      "action-index.v1",
+      "arrow-parquet-selfplay.v1",
+      "bitboard.v1",
+      "game-result.v1",
+      "invalid-state-fixtures.v1",
+      "model-checkpoint.v1",
+      "observation.v1",
+      "opening-book-summary.v1",
+      "opening-book.v1",
+      "qfen.v1",
+      "search-summary.v1",
+      "selfplay.v1",
+      "symmetry-fixtures.v1",
+      "tensor-board.v1"
+    ]
+  },
+  "consumers": {
+    "quantik-core-py": {
+      "adopted_commit": "36be0604b6cb8c1fe707616978bbddd13bb8baac",
+      "adopted_tag": "v1.3.0",
+      "adoption_status": "complete",
+      "current_action_ref": "v1.3.1",
+      "current_contracts_release": "1.3.0",
+      "notes": "Consumes the v1.3.1 opening-book-consistency action (commit d78794a). SUPPORTED_CONTRACTS_RELEASE stays 1.3.0: 1.3.1 patched the composite action, not the wire surface.",
+      "required": true,
+      "target_action_ref": "v1.3.1",
+      "target_contracts_release": "1.3.1"
+    },
+    "quantik-core-rust": {
+      "adoption_status": "not-required",
+      "current_action_ref": null,
+      "current_contracts_release": "1.3.0",
+      "notes": "1.3.1 fixes the opening-book-consistency action's release deadlock. Rust's declared CONTRACT_VERSION correctly stays 1.3.0.",
+      "required": false,
+      "target_action_ref": "v1.3.1",
+      "target_contracts_release": "1.3.1"
+    },
+    "quantik-models-py": {
+      "adoption_status": "derived",
+      "current_action_ref": null,
+      "current_contracts_release": null,
+      "notes": "quantik-models-py declares no static contracts release: `export/checkpoint.py::_supported_contract_version()` reads `quantik_core.contracts.SUPPORTED_CONTRACTS_RELEASE` at runtime, so it follows quantik-core-py by construction. Nothing to adopt separately.",
+      "required": false,
+      "target_action_ref": "v1.3.1",
+      "target_contracts_release": "1.3.1"
+    }
+  },
+  "id": "QREL-2026-003",
+  "notes": "Patch release: fixes the opening-book-consistency composite action's release deadlock. No wire-contract change, which is why consumer declarations correctly remain at 1.3.0.",
+  "producer": {
+    "branch": "release/v1.3.1",
+    "commit": "a6c1b100529d26d7ce07596d5452e4dca18ad2a5",
+    "previous_version": "1.3.0",
+    "release_notes": null,
+    "repository": "quantik-core-contracts",
+    "tag": "v1.3.1",
+    "version": "1.3.1"
+  },
+  "published_interfaces": {
+    "github_actions": {
+      "cross-language-smoke": "actions/cross-language-smoke",
+      "opening-book-consistency": "actions/opening-book-consistency"
+    },
+    "reusable_workflows": [
+      ".github/workflows/python-contract.yml",
+      ".github/workflows/rust-contract.yml"
+    ]
+  },
+  "reconciliation": {
+    "method": "Reconstructed retroactively from observed git tags, tag->commit resolution, and published GitHub Releases. The guarded workspace flow (prepared -> candidate-green -> tagged -> published -> producer-verified -> consumer-compatible) was NOT executed for this train; the release happened outside the control plane and this record catches the ledger up to it.",
+    "not_verified": [
+      "No cross-stack portability smoke was executed at 1.3.1 (same adapter breakage as QREL-2026-002).",
+      "quantik-core-rust was not observed to move to the v1.3.1 action ref."
+    ],
+    "reconciled_on": "2026-09-07",
+    "verified": [
+      "2026-09-07: tag v1.3.1 resolves to a6c1b100529d26d7ce07596d5452e4dca18ad2a5.",
+      "2026-09-07: GitHub Release 'Quantik contracts 1.3.1' (v1.3.1, latest) published 2026-09-06.",
+      "2026-09-07: both composite actions resolve at v1.3.1.",
+      "2026-09-07: quantik-core-py commit d78794a consumes the v1.3.1 opening-book-consistency action."
+    ]
+  },
+  "release_order": [
+    "quantik-core-contracts",
+    "quantik-core-py",
+    "quantik-core-rust",
+    "quantik-models-py"
+  ],
+  "status": "completed",
+  "version_sources": {
+    "mirrors": [
+      {
+        "kind": "json",
+        "path": "contracts.json",
+        "pointer": "/release_version"
+      }
+    ],
+    "primary": {
+      "kind": "text",
+      "path": "VERSION"
+    }
+  }
+}
