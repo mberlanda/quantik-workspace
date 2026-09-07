@@ -1,0 +1,20 @@
+{
+  "interfaces": {
+    "cross-language-smoke": {
+      "commit": "b43bec5fe5a1582c73c2c2538c18c76efdb98bf9",
+      "path": "actions/cross-language-smoke",
+      "ref": "v1.2.0"
+    },
+    "opening-book-consistency": {
+      "commit": "b43bec5fe5a1582c73c2c2538c18c76efdb98bf9",
+      "path": "actions/opening-book-consistency",
+      "ref": "v1.2.0"
+    }
+  },
+  "producer": {
+    "commit": "b43bec5fe5a1582c73c2c2538c18c76efdb98bf9",
+    "repository": "mberlanda/quantik-core-contracts",
+    "tag": "v1.2.0",
+    "version": "1.2.0"
+  }
+}

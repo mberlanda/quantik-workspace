@@ -1,0 +1,128 @@
+{
+  "compatibility": {
+    "additive_changes": [
+      "search-summary.v1 registration",
+      "model/data contract additions and release metadata"
+    ],
+    "breaking_changes": [],
+    "evidence": [
+      "2026-09-07: tag v1.2.0 resolves to b43bec5fe5a1582c73c2c2538c18c76efdb98bf9.",
+      "2026-09-07: GitHub Release 'Quantik contracts 1.2.0' (v1.2.0) published 2026-08-28.",
+      "2026-09-07: both composite actions resolve at v1.2.0 (cross-language-smoke, opening-book-consistency).",
+      "2026-09-07: quantik-core-py v1.2.0 (a0cdf6fa) and quantik-core-rust v1.2.0 (88dfdeb7) tagged and released.",
+      "2026-07-21: contracts 35-unit-test suite passed; 15 schema/metadata JSON files and 11 JSONL rows validated locally."
+    ],
+    "required_checks": [
+      "contracts-source-validation",
+      "action-source-smoke",
+      "release-tag-validation",
+      "published-action-smoke",
+      "quantik-core-py-consumer-smoke",
+      "quantik-core-rust-consumer-smoke",
+      "quantik-models-py-consumer-smoke"
+    ],
+    "wire_contracts": [
+      "action-index.v1",
+      "arrow-parquet-selfplay.v1",
+      "bitboard.v1",
+      "game-result.v1",
+      "model-checkpoint.v1",
+      "observation.v1",
+      "opening-book-summary.v1",
+      "opening-book.v1",
+      "qfen.v1",
+      "search-summary.v1",
+      "selfplay.v1",
+      "tensor-board.v1"
+    ]
+  },
+  "consumers": {
+    "quantik-core-py": {
+      "adopted_commit": "a0cdf6fafc252b549a0713658da436cc97bfb113",
+      "adopted_tag": "v1.2.0",
+      "adoption_status": "complete",
+      "current_action_ref": "v1.2.0",
+      "current_contracts_release": "1.1.0",
+      "notes": "Adopted and released as quantik-core-py 1.2.0.",
+      "required": true,
+      "target_action_ref": "v1.2.0",
+      "target_contracts_release": "1.2.0"
+    },
+    "quantik-core-rust": {
+      "adopted_commit": "88dfdeb718c519fc556270c3f9be2a6c0e32e41e",
+      "adopted_tag": "v1.2.0",
+      "adoption_status": "complete",
+      "current_action_ref": "v1.2.0",
+      "current_contracts_release": "1.1.0",
+      "notes": "Adopted and released as quantik-core-rust 1.2.0.",
+      "required": true,
+      "target_action_ref": "v1.2.0",
+      "target_contracts_release": "1.2.0"
+    },
+    "quantik-models-py": {
+      "adoption_status": "derived",
+      "current_action_ref": null,
+      "current_contracts_release": null,
+      "notes": "quantik-models-py declares no static contracts release: `export/checkpoint.py::_supported_contract_version()` reads `quantik_core.contracts.SUPPORTED_CONTRACTS_RELEASE` at runtime, so it follows quantik-core-py by construction. Nothing to adopt separately.",
+      "required": false,
+      "target_action_ref": "v1.2.0",
+      "target_contracts_release": "1.2.0"
+    }
+  },
+  "id": "QREL-2026-001",
+  "notes": "Superseded by QREL-2026-002 (1.3.0) and QREL-2026-003 (1.3.1). This record sat in releases/active/ as `planned` until 2026-09-07 while the release it describes had already shipped on 2026-08-28.",
+  "producer": {
+    "branch": "release/v1.2.0",
+    "commit": "b43bec5fe5a1582c73c2c2538c18c76efdb98bf9",
+    "previous_version": "1.1.0",
+    "release_notes": null,
+    "repository": "quantik-core-contracts",
+    "tag": "v1.2.0",
+    "version": "1.2.0"
+  },
+  "published_interfaces": {
+    "github_actions": {
+      "cross-language-smoke": "actions/cross-language-smoke",
+      "opening-book-consistency": "actions/opening-book-consistency"
+    },
+    "reusable_workflows": [
+      ".github/workflows/python-contract.yml",
+      ".github/workflows/rust-contract.yml"
+    ]
+  },
+  "reconciliation": {
+    "method": "Reconstructed retroactively from observed git tags, tag->commit resolution, and published GitHub Releases. The guarded workspace flow (prepared -> candidate-green -> tagged -> published -> producer-verified -> consumer-compatible) was NOT executed for this train; the release happened outside the control plane and this record catches the ledger up to it.",
+    "not_verified": [
+      "No cross-stack portability smoke was executed at 1.2.0 by this workspace.",
+      "The candidate commit this record originally carried (beb26e7e0718...) was never the tagged commit; v1.2.0 was cut from b43bec5f instead. The original value is superseded, not lost — see git history."
+    ],
+    "reconciled_on": "2026-09-07",
+    "verified": [
+      "2026-09-07: tag v1.2.0 resolves to b43bec5fe5a1582c73c2c2538c18c76efdb98bf9.",
+      "2026-09-07: GitHub Release 'Quantik contracts 1.2.0' (v1.2.0) published 2026-08-28.",
+      "2026-09-07: both composite actions resolve at v1.2.0 (cross-language-smoke, opening-book-consistency).",
+      "2026-09-07: quantik-core-py v1.2.0 (a0cdf6fa) and quantik-core-rust v1.2.0 (88dfdeb7) tagged and released.",
+      "2026-07-21: contracts 35-unit-test suite passed; 15 schema/metadata JSON files and 11 JSONL rows validated locally."
+    ]
+  },
+  "release_order": [
+    "quantik-core-contracts",
+    "quantik-core-py",
+    "quantik-core-rust",
+    "quantik-models-py"
+  ],
+  "status": "completed",
+  "version_sources": {
+    "mirrors": [
+      {
+        "kind": "json",
+        "path": "contracts.json",
+        "pointer": "/release_version"
+      }
+    ],
+    "primary": {
+      "kind": "text",
+      "path": "VERSION"
+    }
+  }
+}

@@ -113,9 +113,9 @@
         "benchmark": []
       },
       "versions": {
-        "repository_source": {"path": "pyproject.toml", "kind": "toml", "pointer": "project.version"},
-        "release_mirrors": [{"path": "src/quantik_models/__init__.py", "pattern": "__version__\\s*=\\s*[\"'](?P<version>[^\"']+)"}],
-        "supported_contracts_source": {"path": "src/quantik_models/export/checkpoint.py", "pattern": "contract_version:\\s*str\\s*=\\s*\"(?P<version>[^\"]+)\""}
+        "repository_source": {"path": "src/quantik_models/__init__.py", "pattern": "__version__\\s*=\\s*[\"'](?P<version>[^\"']+)"},
+        "release_mirrors": [],
+        "supported_contracts_source": null
       },
       "contracts": {
         "consumes": ["tensor-board.v1", "action-index.v1", "selfplay.v1", "arrow-parquet-selfplay.v1", "observation.v1", "game-result.v1", "model-checkpoint.v1"],

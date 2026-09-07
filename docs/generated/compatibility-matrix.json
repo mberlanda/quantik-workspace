@@ -1,16 +1,111 @@
 {
-  "schema": "quantik-compatibility-matrix.v1",
   "entries": [
     {
+      "action_reference": "v1.3.1",
+      "contracts_release": "1.3.1",
+      "evidence": [
+        "2026-09-07: tag v1.3.1 resolves to a6c1b100529d26d7ce07596d5452e4dca18ad2a5.",
+        "2026-09-07: GitHub Release 'Quantik contracts 1.3.1' (v1.3.1, latest) published 2026-09-06.",
+        "2026-09-07: both composite actions resolve at v1.3.1.",
+        "2026-09-07: quantik-core-py commit d78794a consumes the v1.3.1 opening-book-consistency action."
+      ],
+      "notes": "`supported` is withheld: no cross-stack portability smoke has run. Both repository-owned adapters exit 2 because workspace.yaml declares them without their required --contracts-root/--output arguments.",
+      "quantik-core-py": "1.3.0 declaring contracts 1.3.0; consumes the v1.3.1 action",
+      "quantik-core-rust": "1.3.0 declaring contracts 1.3.0",
+      "quantik-models-py": "1.1.0, contracts release derived from quantik-core-py at runtime",
+      "status": "partially-supported",
+      "wire_contracts": [
+        "action-index.v1",
+        "arrow-parquet-selfplay.v1",
+        "bitboard.v1",
+        "game-result.v1",
+        "invalid-state-fixtures.v1",
+        "model-checkpoint.v1",
+        "observation.v1",
+        "opening-book-summary.v1",
+        "opening-book.v1",
+        "qfen.v1",
+        "search-summary.v1",
+        "selfplay.v1",
+        "symmetry-fixtures.v1",
+        "tensor-board.v1"
+      ]
+    },
+    {
+      "action_reference": "v1.3.0",
+      "contracts_release": "1.3.0",
+      "evidence": [
+        "2026-09-07: tag v1.3.0 resolves to 0c4a215d355ed3665c518bf029ea50234c0ac93b.",
+        "2026-09-07: GitHub Release 'Quantik contracts 1.3.0' (v1.3.0) published 2026-09-06.",
+        "2026-09-07: both composite actions resolve at v1.3.0.",
+        "2026-09-07: quantik-core-py 1.3.0 declares SUPPORTED_CONTRACTS_RELEASE = 1.3.0 (tag v1.3.0, 36be0604).",
+        "2026-09-07: quantik-core-rust 1.3.0 declares CONTRACT_VERSION = 1.3.0 (tag v1.3.0, c17abef0)."
+      ],
+      "notes": "Declarations agree across the trio and all tags/releases are published; cross-stack smoke not executed.",
+      "quantik-core-py": "1.3.0 (tag v1.3.0) declaring contracts 1.3.0",
+      "quantik-core-rust": "1.3.0 (tag v1.3.0) declaring contracts 1.3.0",
+      "quantik-models-py": "1.1.0, contracts release derived from quantik-core-py at runtime",
+      "status": "partially-supported",
+      "wire_contracts": [
+        "action-index.v1",
+        "arrow-parquet-selfplay.v1",
+        "bitboard.v1",
+        "game-result.v1",
+        "invalid-state-fixtures.v1",
+        "model-checkpoint.v1",
+        "observation.v1",
+        "opening-book-summary.v1",
+        "opening-book.v1",
+        "qfen.v1",
+        "search-summary.v1",
+        "selfplay.v1",
+        "symmetry-fixtures.v1",
+        "tensor-board.v1"
+      ]
+    },
+    {
+      "action_reference": "v1.2.0",
       "contracts_release": "1.2.0",
-      "wire_contracts": ["qfen.v1", "bitboard.v1", "action-index.v1", "selfplay.v1", "tensor-board.v1", "arrow-parquet-selfplay.v1", "opening-book.v1", "opening-book-summary.v1", "observation.v1", "game-result.v1", "model-checkpoint.v1", "search-summary.v1"],
-      "quantik-core-py": "dirty 1.2.0 candidate over committed 1.1.0",
-      "quantik-core-rust": "1.2.0 candidate",
-      "quantik-models-py": "0.1.0 declaring contracts 1.1.0",
-      "action_reference": null,
-      "status": "migration",
-      "evidence": ["contracts unit and source fixture/schema validation on 2026-07-21"],
-      "notes": "Consumer and published-action evidence incomplete."
+      "evidence": [
+        "2026-09-07: tag v1.2.0 resolves to b43bec5fe5a1582c73c2c2538c18c76efdb98bf9.",
+        "2026-09-07: GitHub Release 'Quantik contracts 1.2.0' (v1.2.0) published 2026-08-28.",
+        "2026-09-07: both composite actions resolve at v1.2.0 (cross-language-smoke, opening-book-consistency).",
+        "2026-09-07: quantik-core-py v1.2.0 (a0cdf6fa) and quantik-core-rust v1.2.0 (88dfdeb7) tagged and released.",
+        "2026-07-21: contracts 35-unit-test suite passed; 15 schema/metadata JSON files and 11 JSONL rows validated locally."
+      ],
+      "notes": "Superseded by 1.3.0/1.3.1. Recorded for history; not a migration target.",
+      "quantik-core-py": "1.2.0 (tag v1.2.0)",
+      "quantik-core-rust": "1.2.0 (tag v1.2.0)",
+      "quantik-models-py": "no static declaration",
+      "status": "deprecated",
+      "wire_contracts": [
+        "action-index.v1",
+        "arrow-parquet-selfplay.v1",
+        "bitboard.v1",
+        "game-result.v1",
+        "model-checkpoint.v1",
+        "observation.v1",
+        "opening-book-summary.v1",
+        "opening-book.v1",
+        "qfen.v1",
+        "search-summary.v1",
+        "selfplay.v1",
+        "tensor-board.v1"
+      ]
+    },
+    {
+      "action_reference": "v1.1.0",
+      "contracts_release": "1.1.0",
+      "evidence": [
+        "Tags were observed, but no exact 1.1.0 cross-stack compatibility suite was ever executed here."
+      ],
+      "notes": "Retained from the 2026-07-21 assessment.",
+      "quantik-core-py": "tag exists",
+      "quantik-core-rust": "tag exists",
+      "quantik-models-py": "no tag/release evidence",
+      "status": "unknown",
+      "wire_contracts": []
     }
-  ]
+  ],
+  "schema": "quantik-compatibility-matrix.v1"
 }

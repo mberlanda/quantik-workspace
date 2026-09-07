@@ -47,9 +47,6 @@ initiatives move.
   correctness/irreversibility risk:** QW-003, QW-007 (cross-language parity, new
   contracts), QW-021 (a wrong train/test partition destroys the current held-out probe and
   the result feeds published article claims).
-- **Housekeeping, not a dispatch at all:** QW-030's `status` is still `planned` and it sits
-  in `active/`, but every one of its 10 work items is `status: completed` and its playground
-  feature already shipped in `quantik-models-py` v1.1.0 — `task complete QW-030` is the
-  right next step, not an agent assignment. See
-  [`../docs/discovery/release-roadmap-2026-09.md`](../docs/discovery/release-roadmap-2026-09.md)
-  for the same staleness pattern on the release-train side.
+- **Where each initiative is headed:** [`../docs/releases/release-plan.md`](../docs/releases/release-plan.md)
+  maps every initiative on this page to the release version it gates, across all five
+  repositories that cut releases.
