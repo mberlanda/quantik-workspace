@@ -1,6 +1,7 @@
 # QW-001 Status
 
-Prepared, not executed. Discovery evidence and repository tasks exist. Contract decisions and fixture design must precede implementation changes.
+**Resolved 2026-09-07.** All four work items (W1–W4) merged. See the closing
+entry below.
 
 ## 2026-08-30 reconciliation
 
@@ -110,3 +111,37 @@ already proven in Rust's hermetic test suite into the actual shared
 `remap_action_index` contract in both languages instead of inventing its
 own D4 action remapping, which is exactly what `repos/quantik-models-py.md`
 asks for ("any D4 augmentation/remapping explicit").
+
+## 2026-09-06 (later the same day) — models-py landed, W4 done
+
+Resumed sooner than "next" implied above — the concurrent models-py work
+this pass was held for had settled by the end of the same day.
+[quantik-models-py#63](https://github.com/mberlanda/quantik-models-py/pull/63)
+(branch `qw-001/canonical-state-action-contract`, merged `cb29681`) found
+most of the ask was already done and correct (`[9,4,4]` mover-relative vs.
+colour-ordered tensors, 64 shape-major actions, `legal_masks` already
+full-legal not visited-subset), and one real bug: `fastboard`'s internal D4
+index enumerated the 8 transforms in a different order than
+`quantik_core.symmetry.D4Index`'s — invisible before this item gave an
+external contract to check against. Fixed, plus new tests locking both
+index spaces to `quantik_core`'s, a 192×64 cross-check of
+`transform_actions` against `SymmetryHandler.remap_action_index`, a
+transform/inverse round-trip test, and the all-false-mask test
+`masked_log_softmax`'s docstring had promised but nothing verified.
+
+**This workspace record had gone stale relative to the code**: W4 sat at
+`plan-required` with an empty `decisions` list and the scaffold's
+`plan/qw-001-quantik-models-py` branch name through the 2026-09-06/07
+atomic-format migration, even though PR #63 had already merged and
+`quantik-core` 1.3.0 (adding `remap_action_index`) had already published to
+PyPI — confirmed by `quantik-models-py`'s own floor bump to `quantik-core
+>=1.3,<2` in [#68](https://github.com/mberlanda/quantik-models-py/pull/68)
+(Release 1.1.0), and by re-running the two previously-skip-gated tests
+locally with no skips. Caught and fixed 2026-09-07: `manifest.yaml`'s W4
+now carries the real `allowed_paths`, `decisions.md#1`/`#2`, the shared
+branch name, `depends_on: [W1, W2, W3]`, and `status: completed`; its
+packet records the actual handoff; `decisions.md`'s PR list and the stale
+"models-py excluded" line are corrected.
+
+**QW-001 is fully resolved.** All four work items (W1–W4) merged. Top-level
+`status` set to `resolved`; moved to `tasks/completed/`.

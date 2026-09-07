@@ -14,9 +14,12 @@ text lives in `quantik-core-contracts`:
   the above)
 
 PRs: [quantik-core-contracts#21](https://github.com/mberlanda/quantik-core-contracts/pull/21),
+[quantik-core-py#47](https://github.com/mberlanda/quantik-core-py/pull/47),
 [quantik-core-rust#41](https://github.com/mberlanda/quantik-core-rust/pull/41),
-and a `quantik-core-py` PR (branch `qw-001/canonical-state-action-contract`).
-`quantik-models-py` is deliberately excluded from this pass — see status.md.
+and [quantik-models-py#63](https://github.com/mberlanda/quantik-models-py/pull/63)
+(all on branch `qw-001/canonical-state-action-contract`). `quantik-models-py`
+was deliberately held out of the first three, then landed the same day once
+they had merged — see status.md.
 
 ## 1. Is canonical equivalence D4 × shape permutation only, or does any interface include colour swap?
 

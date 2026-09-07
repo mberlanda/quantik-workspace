@@ -35,7 +35,7 @@
     "quantik-core-rust",
     "quantik-models-py"
   ],
-  "status": "partially-resolved",
+  "status": "resolved",
   "title": "Canonical Game State and Action Encoding Contract",
   "work_items": [
     {
@@ -119,10 +119,12 @@
     },
     {
       "allowed_paths": [
+        "CHANGELOG.md",
         "src/quantik_models/env/fastboard.py",
         "src/quantik_models/env/*.py",
         "tests/test_fastboard.py",
-        "tests/test_action_layout.py"
+        "tests/test_action_layout.py",
+        "tests/test_policy_value_net.py"
       ],
       "branch": "qw-001/canonical-state-action-contract",
       "decisions": [
@@ -141,7 +143,7 @@
       ],
       "packet": "repos/quantik-models-py/W4-tensor-action-mask-adapters.md",
       "repository": "quantik-models-py",
-      "status": "plan-required"
+      "status": "completed"
     }
   ]
 }
