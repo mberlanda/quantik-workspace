@@ -138,7 +138,7 @@
       "done": false,
       "id": "QW-010",
       "state": "active",
-      "status": "ux-half-superseded-by-QW-030-mapping-blocked-on-QW-024",
+      "status": "planned",
       "title": "Play UX for Non-Expert Players — Skill Levels and How-to-Play"
     },
     {
@@ -185,7 +185,7 @@
       "done": false,
       "id": "QW-016",
       "state": "active",
-      "status": "draft-complete-unpublished",
+      "status": "planned",
       "title": "Season Two Article Publication"
     },
     {
@@ -209,7 +209,8 @@
     {
       "affected_repositories": [
         "quantik-api-rust",
-        "quantik-core-contracts"
+        "quantik-core-contracts",
+        "quantik-qfen-visualizer"
       ],
       "blocked_by": [
         "QW-019"
@@ -221,7 +222,7 @@
       "done": false,
       "id": "QW-018",
       "state": "active",
-      "status": "specified-not-built",
+      "status": "planned",
       "title": "Engine Response Type — Candidates, PV, Certainty"
     },
     {
@@ -244,17 +245,13 @@
       "affected_repositories": [
         "quantik-api-rust"
       ],
-      "blocked_by": [
-        "QW-017"
-      ],
+      "blocked_by": [],
       "complexity": "M",
-      "dependencies": [
-        "QW-017"
-      ],
+      "dependencies": [],
       "done": false,
       "id": "QW-020",
       "state": "active",
-      "status": "not-started",
+      "status": "planned",
       "title": "Container Distribution for the Rust API"
     },
     {

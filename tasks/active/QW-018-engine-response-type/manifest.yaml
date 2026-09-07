@@ -11,33 +11,36 @@
   ],
   "affected_repositories": [
     "quantik-api-rust",
-    "quantik-core-contracts"
+    "quantik-core-contracts",
+    "quantik-qfen-visualizer"
   ],
   "complexity": "L",
-  "complexity_notes": "Design is largely settled by the problem statement already (candidates/PV/certainty); mostly implementation once QW-019's contract lands. Blocked on QW-019.",
+  "complexity_notes": "Design is largely settled by the problem statement (candidates/PV/certainty); the real call is how a required `certainty` field coexists with older servers. W4 added 2026-09-07: acceptance criterion 5 requires the visualizer to tolerate absent fields, and that repository was missing from affected_repositories.",
   "created": "2026-08-30",
   "dependencies": [
     "QW-019"
   ],
   "id": "QW-018",
   "problem": "The engine response returns a single move and discards everything the search already computed. quantik-api-rust/src/lib.rs:192 returns Ok((result.best_move, None)) — MinimaxResult.pv is populated on every search and thrown away. The network emits all 64 logits and a value per forward pass; MCTS has visit counts; the oracle scores every legal move. Nothing distinguishes an estimate from a proof, so a tanh value and an exact oracle result reach the client as the same kind of claim.",
-  "status": "specified-not-built",
+  "status": "planned",
   "title": "Engine Response Type — Candidates, PV, Certainty",
   "work_items": [
     {
       "allowed_paths": [
-        "src/lib.rs"
+        "docs/engine-response-v1.md"
       ],
-      "branch": "plan/qw-018-quantik-api-rust",
+      "branch": "docs/engine-response-candidates",
+      "complexity": "M",
       "decisions": [],
-      "depends_on": [
-        "W2"
-      ],
+      "depends_on": [],
+      "dispatch": "judgment",
       "id": "W1",
-      "invariants": [],
-      "packet": "repos/quantik-api-rust/W1-plan-required.md",
-      "repository": "quantik-api-rust",
-      "status": "plan-required"
+      "invariants": [
+        "context/system/canonical-invariants.md#I5"
+      ],
+      "packet": "repos/quantik-core-contracts/W1-response-design.md",
+      "repository": "quantik-core-contracts",
+      "status": "planned"
     },
     {
       "allowed_paths": [
@@ -45,14 +48,60 @@
         "schemas/engine-response-v1.json",
         "fixtures/engine-response/*"
       ],
-      "branch": "plan/qw-018-quantik-core-contracts",
+      "branch": "feat/engine-response-candidates",
+      "complexity": "M",
       "decisions": [],
-      "depends_on": [],
+      "depends_on": [
+        "W1"
+      ],
+      "dispatch": "mechanical",
       "id": "W2",
-      "invariants": [],
-      "packet": "repos/quantik-core-contracts/W2-plan-required.md",
+      "invariants": [
+        "context/system/canonical-invariants.md#I5"
+      ],
+      "packet": "repos/quantik-core-contracts/W2-extend-response-schema.md",
       "repository": "quantik-core-contracts",
-      "status": "plan-required"
+      "status": "planned"
+    },
+    {
+      "allowed_paths": [
+        "src/lib.rs"
+      ],
+      "branch": "feat/engine-response-candidates",
+      "complexity": "M",
+      "decisions": [],
+      "depends_on": [
+        "W2"
+      ],
+      "dispatch": "mechanical",
+      "id": "W3",
+      "invariants": [
+        "context/system/canonical-invariants.md#I5",
+        "context/system/canonical-invariants.md#I6"
+      ],
+      "packet": "repos/quantik-api-rust/W3-return-pv-and-candidates.md",
+      "repository": "quantik-api-rust",
+      "status": "planned"
+    },
+    {
+      "allowed_paths": [
+        "src/engines.js",
+        "test/engines.test.js"
+      ],
+      "branch": "feat/tolerate-response-fields",
+      "complexity": "S",
+      "decisions": [],
+      "depends_on": [
+        "W2"
+      ],
+      "dispatch": "mechanical",
+      "id": "W4",
+      "invariants": [
+        "context/system/canonical-invariants.md#I5"
+      ],
+      "packet": "repos/quantik-qfen-visualizer/W4-tolerate-response-fields.md",
+      "repository": "quantik-qfen-visualizer",
+      "status": "planned"
     }
   ]
 }

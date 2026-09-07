@@ -11,30 +11,104 @@
     "quantik-api-rust"
   ],
   "complexity": "M",
-  "complexity_notes": "Standard multi-arch Docker/CI work, spec is fully concrete. Blocked on QW-017.",
+  "complexity_notes": "Standard multi-arch Docker/CI work, spec fully concrete. The initiative-level dependency on QW-017 was removed 2026-09-07: acceptance criterion 3 states the base variant 'is shippable before QW-017 and should not wait for it'. Only W5 (the -model variant) waits, and its packet says so.",
   "created": "2026-08-30",
-  "dependencies": [
-    "QW-017"
-  ],
+  "dependencies": [],
   "id": "QW-020",
   "problem": "quantik-api-rust ships as source only. There is no Dockerfile, no image, and no CI that builds one. The section that tracked this carried 'the repo has no git remote, nothing for CI to build from' for weeks; that is false and was false when written — origin is git@github.com:mberlanda/quantik-api-rust.git and local main is in sync at f814093, verified three ways on 2026-08-30. The work is unblocked and simply not started.",
-  "status": "not-started",
+  "status": "planned",
   "title": "Container Distribution for the Rust API",
   "work_items": [
+    {
+      "allowed_paths": [
+        "Dockerfile",
+        ".dockerignore"
+      ],
+      "branch": "feat/dockerfile",
+      "complexity": "M",
+      "decisions": [],
+      "depends_on": [],
+      "dispatch": "mechanical",
+      "id": "W1",
+      "invariants": [],
+      "packet": "repos/quantik-api-rust/W1-dockerfile.md",
+      "repository": "quantik-api-rust",
+      "status": "planned"
+    },
+    {
+      "allowed_paths": [
+        ".github/workflows/publish-image.yml"
+      ],
+      "branch": "ci/publish-image",
+      "complexity": "M",
+      "decisions": [],
+      "depends_on": [
+        "W1"
+      ],
+      "dispatch": "mechanical",
+      "id": "W2",
+      "invariants": [],
+      "packet": "repos/quantik-api-rust/W2-publish-image.md",
+      "repository": "quantik-api-rust",
+      "status": "planned"
+    },
+    {
+      "allowed_paths": [
+        "tests/container_smoke.rs",
+        "Cargo.toml"
+      ],
+      "branch": "test/container-smoke",
+      "complexity": "S",
+      "decisions": [],
+      "depends_on": [
+        "W1"
+      ],
+      "dispatch": "execute-and-record",
+      "id": "W3",
+      "invariants": [
+        "context/system/canonical-invariants.md#I6"
+      ],
+      "packet": "repos/quantik-api-rust/W3-container-smoke.md",
+      "repository": "quantik-api-rust",
+      "status": "planned"
+    },
+    {
+      "allowed_paths": [
+        "README.md",
+        "docs/deployment.md"
+      ],
+      "branch": "docs/deployment-decision",
+      "complexity": "S",
+      "decisions": [],
+      "depends_on": [
+        "W1"
+      ],
+      "dispatch": "judgment",
+      "id": "W4",
+      "invariants": [],
+      "packet": "repos/quantik-api-rust/W4-deployment-decision.md",
+      "repository": "quantik-api-rust",
+      "status": "planned"
+    },
     {
       "allowed_paths": [
         "Dockerfile",
         ".github/workflows/publish-image.yml",
         "tests/container_smoke.rs"
       ],
-      "branch": "plan/qw-020-quantik-api-rust",
+      "branch": "feat/model-image-variant",
+      "complexity": "M",
       "decisions": [],
-      "depends_on": [],
-      "id": "W1",
+      "depends_on": [
+        "W2",
+        "W3"
+      ],
+      "dispatch": "mechanical",
+      "id": "W5",
       "invariants": [],
-      "packet": "repos/quantik-api-rust/W1-plan-required.md",
+      "packet": "repos/quantik-api-rust/W5-model-variant.md",
       "repository": "quantik-api-rust",
-      "status": "plan-required"
+      "status": "planned"
     }
   ]
 }
