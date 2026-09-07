@@ -13,6 +13,8 @@
     "quantik-core-rust",
     "quantik-models-py"
   ],
+  "complexity": "L",
+  "complexity_notes": "2 sequential items, well-bounded acceptance criteria, but genuine weighting/fallback design plus baseline comparison.",
   "dependencies": [
     "QW-001"
   ],

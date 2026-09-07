@@ -18,6 +18,8 @@
     "quantik-core-rust",
     "quantik-models-py"
   ],
+  "complexity": "XL",
+  "complexity_notes": "Depends on QW-002/003/004/006/007, all unfinished - biggest blast radius in the set, full active-learning loop design (selection, write-back authority, promotion gates). Do not dispatch until its dependencies land.",
   "dependencies": [
     "QW-002",
     "QW-003",

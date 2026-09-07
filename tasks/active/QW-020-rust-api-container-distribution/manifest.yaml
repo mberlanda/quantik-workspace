@@ -10,6 +10,8 @@
   "affected_repositories": [
     "quantik-api-rust"
   ],
+  "complexity": "M",
+  "complexity_notes": "Standard multi-arch Docker/CI work, spec is fully concrete. Blocked on QW-017.",
   "created": "2026-08-30",
   "dependencies": [
     "QW-017"

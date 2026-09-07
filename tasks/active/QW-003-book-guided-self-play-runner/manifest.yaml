@@ -15,6 +15,8 @@
     "quantik-core-rust",
     "quantik-models-py"
   ],
+  "complexity": "XL",
+  "complexity_notes": "3 sequential work items (contracts to rust to py), new opening-book/pairing/provenance semantics, canonical-orientation correctness risk in Rust.",
   "dependencies": [
     "QW-001"
   ],

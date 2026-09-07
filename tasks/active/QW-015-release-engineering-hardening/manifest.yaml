@@ -14,6 +14,8 @@
     "quantik-core-rust",
     "quantik-core-py"
   ],
+  "complexity": "S",
+  "complexity_notes": "Only the contracts work item (W1) remains; mechanical fix with exact line numbers already cited.",
   "created": "2026-08-30",
   "dependencies": [],
   "id": "QW-015",

@@ -10,6 +10,8 @@
   "affected_repositories": [
     "quantik-models-py"
   ],
+  "complexity": "M",
+  "complexity_notes": "Fully specified methodology; blocks QW-010/QW-030's skill mapping, so worth prioritizing.",
   "created": "2026-08-30",
   "dependencies": [],
   "id": "QW-024",

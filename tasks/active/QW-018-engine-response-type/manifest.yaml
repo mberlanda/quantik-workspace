@@ -13,6 +13,8 @@
     "quantik-api-rust",
     "quantik-core-contracts"
   ],
+  "complexity": "L",
+  "complexity_notes": "Design is largely settled by the problem statement already (candidates/PV/certainty); mostly implementation once QW-019's contract lands. Blocked on QW-019.",
   "created": "2026-08-30",
   "dependencies": [
     "QW-019"

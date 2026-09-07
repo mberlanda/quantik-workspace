@@ -10,6 +10,8 @@
   "affected_repositories": [
     "quantik-models-py"
   ],
+  "complexity": "M",
+  "complexity_notes": "Methodology fully specified (epochs/lr/seed given) - execution-heavy, not design-heavy.",
   "created": "2026-08-30",
   "dependencies": [
     "QW-012"

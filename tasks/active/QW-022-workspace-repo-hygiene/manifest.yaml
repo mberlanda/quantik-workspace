@@ -10,6 +10,8 @@
     "quantik-models-py",
     "articles"
   ],
+  "complexity": "S",
+  "complexity_notes": "Remaining items are a CI ref-pin decision and a directory cleanup/doc note.",
   "created": "2026-08-30",
   "dependencies": [],
   "id": "QW-022",

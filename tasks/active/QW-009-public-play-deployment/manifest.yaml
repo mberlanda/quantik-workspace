@@ -12,6 +12,8 @@
   "affected_repositories": [
     "quantik-models-py"
   ],
+  "complexity": "M",
+  "complexity_notes": "Decision already made (ONNX over torch, measured) - mostly implementation: evaluator, Dockerfile, GHCR, parity test. Largely complete.",
   "dependencies": [
     "QW-008"
   ],

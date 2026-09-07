@@ -1,0 +1,485 @@
+{
+  "initiatives": [
+    {
+      "affected_repositories": [
+        "quantik-models-py"
+      ],
+      "blocked_by": [],
+      "complexity": "M",
+      "dependencies": [],
+      "done": false,
+      "id": "QW-002",
+      "state": "active",
+      "status": "plan-required",
+      "title": "Versioned ML Pipeline Profiles"
+    },
+    {
+      "affected_repositories": [
+        "quantik-core-contracts",
+        "quantik-core-rust",
+        "quantik-models-py"
+      ],
+      "blocked_by": [],
+      "complexity": "XL",
+      "dependencies": [
+        "QW-001"
+      ],
+      "done": false,
+      "id": "QW-003",
+      "state": "active",
+      "status": "plan-required",
+      "title": "Book-Guided Self-Play Runner"
+    },
+    {
+      "affected_repositories": [
+        "quantik-core-contracts",
+        "quantik-core-rust"
+      ],
+      "blocked_by": [],
+      "complexity": "L",
+      "dependencies": [
+        "QW-001"
+      ],
+      "done": false,
+      "id": "QW-004",
+      "state": "active",
+      "status": "plan-required",
+      "title": "Opening Probe Contract and Runtime"
+    },
+    {
+      "affected_repositories": [
+        "quantik-core-contracts",
+        "quantik-core-rust",
+        "quantik-models-py"
+      ],
+      "blocked_by": [
+        "QW-002",
+        "QW-003",
+        "QW-004",
+        "QW-006",
+        "QW-007"
+      ],
+      "complexity": "XL",
+      "dependencies": [
+        "QW-002",
+        "QW-003",
+        "QW-004",
+        "QW-006",
+        "QW-007"
+      ],
+      "done": false,
+      "id": "QW-005",
+      "state": "active",
+      "status": "plan-required",
+      "title": "Search and H2H Active-Learning Feedback Loop"
+    },
+    {
+      "affected_repositories": [
+        "quantik-core-rust",
+        "quantik-models-py"
+      ],
+      "blocked_by": [],
+      "complexity": "L",
+      "dependencies": [
+        "QW-001"
+      ],
+      "done": false,
+      "id": "QW-006",
+      "state": "active",
+      "status": "plan-required",
+      "title": "Search-Derived Observation Policy Targets"
+    },
+    {
+      "affected_repositories": [
+        "quantik-core-contracts",
+        "quantik-core-py",
+        "quantik-core-rust",
+        "quantik-models-py"
+      ],
+      "blocked_by": [],
+      "complexity": "XL",
+      "dependencies": [
+        "QW-001"
+      ],
+      "done": false,
+      "id": "QW-007",
+      "state": "active",
+      "status": "plan-required",
+      "title": "Checkpoint Consumer Compatibility"
+    },
+    {
+      "affected_repositories": [
+        "quantik-models-py"
+      ],
+      "blocked_by": [],
+      "complexity": "M",
+      "dependencies": [
+        "QW-008"
+      ],
+      "done": false,
+      "id": "QW-009",
+      "state": "active",
+      "status": "largely-complete",
+      "title": "Public Play Deployment — Storeless Docker"
+    },
+    {
+      "affected_repositories": [
+        "quantik-models-py"
+      ],
+      "blocked_by": [
+        "QW-024"
+      ],
+      "complexity": "M",
+      "dependencies": [
+        "QW-008",
+        "QW-012",
+        "QW-024"
+      ],
+      "done": false,
+      "id": "QW-010",
+      "state": "active",
+      "status": "ux-half-superseded-by-QW-030-mapping-blocked-on-QW-024",
+      "title": "Play UX for Non-Expert Players — Skill Levels and How-to-Play"
+    },
+    {
+      "affected_repositories": [
+        "quantik-models-py"
+      ],
+      "blocked_by": [],
+      "complexity": "S",
+      "dependencies": [
+        "QW-008"
+      ],
+      "done": false,
+      "id": "QW-011",
+      "state": "active",
+      "status": "generator-done-ui-not-started",
+      "title": "Puzzle Mode in the Browser"
+    },
+    {
+      "affected_repositories": [
+        "quantik-core-contracts",
+        "quantik-core-rust",
+        "quantik-core-py"
+      ],
+      "blocked_by": [],
+      "complexity": "S",
+      "dependencies": [],
+      "done": false,
+      "id": "QW-015",
+      "state": "active",
+      "status": "largely-complete",
+      "title": "Release-Engineering Hardening"
+    },
+    {
+      "affected_repositories": [
+        "articles"
+      ],
+      "blocked_by": [
+        "QW-015"
+      ],
+      "complexity": "M",
+      "dependencies": [
+        "QW-015"
+      ],
+      "done": false,
+      "id": "QW-016",
+      "state": "active",
+      "status": "draft-complete-unpublished",
+      "title": "Season Two Article Publication"
+    },
+    {
+      "affected_repositories": [
+        "quantik-api-rust",
+        "quantik-models-py"
+      ],
+      "blocked_by": [
+        "QW-019"
+      ],
+      "complexity": "XL",
+      "dependencies": [
+        "QW-019"
+      ],
+      "done": false,
+      "id": "QW-017",
+      "state": "active",
+      "status": "decision-superseded-not-started",
+      "title": "ONNX Model Serving in the Rust API"
+    },
+    {
+      "affected_repositories": [
+        "quantik-api-rust",
+        "quantik-core-contracts"
+      ],
+      "blocked_by": [
+        "QW-019"
+      ],
+      "complexity": "L",
+      "dependencies": [
+        "QW-019"
+      ],
+      "done": false,
+      "id": "QW-018",
+      "state": "active",
+      "status": "specified-not-built",
+      "title": "Engine Response Type — Candidates, PV, Certainty"
+    },
+    {
+      "affected_repositories": [
+        "quantik-core-contracts",
+        "quantik-api-rust",
+        "quantik-qfen-visualizer",
+        "quantik-models-py"
+      ],
+      "blocked_by": [],
+      "complexity": "L",
+      "dependencies": [],
+      "done": false,
+      "id": "QW-019",
+      "state": "active",
+      "status": "not-started",
+      "title": "Register the Phantom Engine API Contracts"
+    },
+    {
+      "affected_repositories": [
+        "quantik-api-rust"
+      ],
+      "blocked_by": [
+        "QW-017"
+      ],
+      "complexity": "M",
+      "dependencies": [
+        "QW-017"
+      ],
+      "done": false,
+      "id": "QW-020",
+      "state": "active",
+      "status": "not-started",
+      "title": "Container Distribution for the Rust API"
+    },
+    {
+      "affected_repositories": [
+        "quantik-models-py"
+      ],
+      "blocked_by": [],
+      "complexity": "XL",
+      "dependencies": [
+        "QW-012"
+      ],
+      "done": false,
+      "id": "QW-021",
+      "state": "active",
+      "status": "not-started",
+      "title": "Opening Coverage Expansion — Plies 0 to 6"
+    },
+    {
+      "affected_repositories": [
+        "quantik-models-py",
+        "articles"
+      ],
+      "blocked_by": [],
+      "complexity": "S",
+      "dependencies": [],
+      "done": false,
+      "id": "QW-022",
+      "state": "active",
+      "status": "partially-resolved",
+      "title": "Workspace Repo Hygiene — Remaining Items"
+    },
+    {
+      "affected_repositories": [
+        "quantik-models-py"
+      ],
+      "blocked_by": [],
+      "complexity": "M",
+      "dependencies": [
+        "QW-012"
+      ],
+      "done": false,
+      "id": "QW-023",
+      "state": "active",
+      "status": "not-started",
+      "title": "Settle the Corpus Axis at Converged Budget"
+    },
+    {
+      "affected_repositories": [
+        "quantik-models-py"
+      ],
+      "blocked_by": [],
+      "complexity": "M",
+      "dependencies": [],
+      "done": false,
+      "id": "QW-024",
+      "state": "active",
+      "status": "ready-to-run",
+      "title": "The Opening Arena — Measuring From Ply 0"
+    },
+    {
+      "affected_repositories": [
+        "quantik-models-py"
+      ],
+      "blocked_by": [],
+      "complexity": "S",
+      "dependencies": [
+        "QW-012"
+      ],
+      "done": false,
+      "id": "QW-026",
+      "state": "active",
+      "status": "not-started",
+      "title": "Re-run the Patience-Lineup Arena on an Independent Seed"
+    },
+    {
+      "affected_repositories": [
+        "quantik-models-py"
+      ],
+      "blocked_by": [],
+      "complexity": "L",
+      "dependencies": [],
+      "done": false,
+      "id": "QW-027",
+      "state": "active",
+      "status": "not-started",
+      "title": "Corpus Label Structure and the Shallow-Ply Floor"
+    },
+    {
+      "affected_repositories": [
+        "quantik-models-py"
+      ],
+      "blocked_by": [
+        "QW-021"
+      ],
+      "complexity": "M",
+      "dependencies": [
+        "QW-021"
+      ],
+      "done": false,
+      "id": "QW-028",
+      "state": "active",
+      "status": "not-started",
+      "title": "Finish the Opening Book Solve"
+    },
+    {
+      "affected_repositories": [
+        "quantik-models-py"
+      ],
+      "blocked_by": [],
+      "complexity": "XL",
+      "dependencies": [],
+      "done": false,
+      "id": "QW-029",
+      "state": "active",
+      "status": "plan-required",
+      "title": "Shallow-Ply Scoring as a Standing Metric"
+    },
+    {
+      "affected_repositories": [
+        "quantik-models-py",
+        "quantik-qfen-visualizer"
+      ],
+      "blocked_by": [
+        "QW-009",
+        "QW-010",
+        "QW-024"
+      ],
+      "complexity": null,
+      "dependencies": [
+        "QW-008",
+        "QW-009",
+        "QW-010",
+        "QW-024"
+      ],
+      "done": true,
+      "id": "QW-030",
+      "state": "active",
+      "status": "planned",
+      "title": "The Playground — One-Port Monolith and Non-Expert Play UX"
+    },
+    {
+      "affected_repositories": [
+        "quantik-core-contracts",
+        "quantik-core-py",
+        "quantik-core-rust",
+        "quantik-models-py"
+      ],
+      "blocked_by": [],
+      "complexity": null,
+      "dependencies": [],
+      "done": true,
+      "id": "QW-001",
+      "state": "completed",
+      "status": "resolved",
+      "title": "Canonical Game State and Action Encoding Contract"
+    },
+    {
+      "affected_repositories": [
+        "quantik-models-py"
+      ],
+      "blocked_by": [],
+      "complexity": null,
+      "dependencies": [],
+      "done": true,
+      "id": "QW-008",
+      "state": "completed",
+      "status": "largely-complete",
+      "title": "Local Play Service — Analysis and Recording"
+    },
+    {
+      "affected_repositories": [
+        "quantik-models-py"
+      ],
+      "blocked_by": [],
+      "complexity": null,
+      "dependencies": [
+        "QW-014"
+      ],
+      "done": true,
+      "id": "QW-012",
+      "state": "completed",
+      "status": "done-seed-confirmation-tracked-as-QW-026",
+      "title": "Re-run the Architecture Lineup Under --patience"
+    },
+    {
+      "affected_repositories": [
+        "quantik-models-py"
+      ],
+      "blocked_by": [],
+      "complexity": null,
+      "dependencies": [
+        "QW-008"
+      ],
+      "done": true,
+      "id": "QW-013",
+      "state": "completed",
+      "status": "merged-py53",
+      "title": "Play-Store Solver-Queue Export"
+    },
+    {
+      "affected_repositories": [
+        "quantik-models-py"
+      ],
+      "blocked_by": [],
+      "complexity": null,
+      "dependencies": [],
+      "done": true,
+      "id": "QW-014",
+      "state": "completed",
+      "status": "largely-complete",
+      "title": "Training Program — Architecture Lineup, Learning-Rate Correction, and the v3 Corpus Result"
+    },
+    {
+      "affected_repositories": [
+        "quantik-models-py"
+      ],
+      "blocked_by": [],
+      "complexity": null,
+      "dependencies": [],
+      "done": true,
+      "id": "QW-025",
+      "state": "completed",
+      "status": "published-and-restore-verified",
+      "title": "Publish the dev-data dataset repos"
+    }
+  ],
+  "schema": "quantik-task-dependency-map.v1"
+}

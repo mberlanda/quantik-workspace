@@ -13,6 +13,8 @@
   "affected_repositories": [
     "quantik-models-py"
   ],
+  "complexity": "M",
+  "complexity_notes": "Single repo, but a real abstraction to design (profile schema, overrides, migration) across pipeline/trainer/CI. No cross-repo coupling.",
   "dependencies": [],
   "id": "QW-002",
   "problem": "The models repository has a working smoke pipeline and trainer, but run tiers are assembled from scattered environment variables and duplicated wrappers rather than one versioned pipeline definition.",
