@@ -39,7 +39,23 @@ single machine.
 
 ## Implementation and scope
 
-Not yet planned. Replace this item's placeholder `allowed_paths` in `manifest.yaml` with explicit repository-relative paths, select the `decisions`/`invariants` references it actually needs, and split into further work items wherever another branch/PR is needed.
+**Criterion 4 is now met, and QW-015 is largely-complete, unblocking
+this.** Verified in the checked-out repository: `articles` has origin
+`git@github.com:mberlanda/quantik-articles.git` (matches the `quantik-ns/
+CLAUDE.md` repo table) and `main` is up to date with `origin/main` — the
+three drafts are pushed. `problem`'s "no git remote... at commit 7d8b75b"
+is stale; a remote was added since.
+
+**Criteria 1-3 remain genuinely open** — `the-deadlock.md` is still 2,831
+words against the 1,750-2,050 house length (the length decision in
+`decisions.md` point 2 is still framed as open, not taken), publication to
+the Wednesday Substack slot isn't something this repo's git history can
+confirm either way, and the validator line numbers need re-checking against
+`quantik-core-contracts` now that QW-015 has landed most of its fix
+(v1.3.1). `allowed_paths` names the draft, `decisions.md`, and its four
+figures. `decisions`/`invariants` stay empty: this is an editorial call,
+not a design one — the length and publish-timing decisions are for
+whoever owns the piece, not a mechanical planning-pass fill.
 
 ## Completion criteria and verification
 
