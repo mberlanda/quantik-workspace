@@ -11,32 +11,48 @@
     "quantik-models-py"
   ],
   "complexity": "S",
-  "complexity_notes": "Mechanical rerun against a fully specified constraint (seed not in a given exclusion list) plus doc updates.",
+  "complexity_notes": "Mechanical rerun against a fully specified constraint (a seed outside a given exclusion list) plus doc propagation. Split into the run and the propagation so the second is purely mechanical.",
   "dependencies": [
     "QW-012"
   ],
   "id": "QW-026",
   "problem": "QW-012's evaluation of the patience-trained lineup ran scripts/evaluate_lineup.sh without overriding SEED, so it took the script's default, 20260829 - the exact value QW-012's own plan.md said not to reuse, already spent on a different comparison (runs/eval/epoch-test/). The cpool/attn ply-6 MCTS-128 margin that run reported is only 0.8 points, small enough that a seed-linked artifact is a live explanation, not a remote one.",
-  "status": "not-started",
+  "status": "planned",
   "title": "Re-run the Patience-Lineup Arena on an Independent Seed",
   "work_items": [
     {
       "allowed_paths": [
-        "scripts/evaluate_lineup.sh",
-        "src/quantik_models/eval/shift.py",
-        "src/quantik_models/arena/*.py",
+        "docs/patience-arena-second-seed.md"
+      ],
+      "branch": "feat/patience-arena-second-seed",
+      "complexity": "S",
+      "decisions": [],
+      "depends_on": [],
+      "dispatch": "execute-and-record",
+      "id": "W1",
+      "invariants": [],
+      "packet": "repos/quantik-models-py/W1-second-seed-run.md",
+      "repository": "quantik-models-py",
+      "status": "planned"
+    },
+    {
+      "allowed_paths": [
         "docs/decisions/0001-architecture-lineup.md",
         "docs/shift-evaluation.md",
         "docs/autoplay.md"
       ],
-      "branch": "plan/qw-026-quantik-models-py",
+      "branch": "docs/patience-seed-caveat",
+      "complexity": "S",
       "decisions": [],
-      "depends_on": [],
-      "id": "W1",
+      "depends_on": [
+        "W1"
+      ],
+      "dispatch": "mechanical",
+      "id": "W2",
       "invariants": [],
-      "packet": "repos/quantik-models-py/W1-plan-required.md",
+      "packet": "repos/quantik-models-py/W2-propagate-seed-caveat.md",
       "repository": "quantik-models-py",
-      "status": "plan-required"
+      "status": "planned"
     }
   ]
 }

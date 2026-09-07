@@ -17,16 +17,17 @@
     "quantik-models-py"
   ],
   "complexity": "L",
-  "complexity_notes": "4 repos but each item is a narrow, single-file change; the one real decision (OpenAPI vs JSON Schema, prefix fix) is contained. Good candidate to unblock QW-017/QW-018/QW-020.",
+  "complexity_notes": "4 repos but each item is a narrow, single-file change; both open decisions (schema format, the quantik. prefix) were settled 2026-09-07 in decisions.md#D2/#D3, so the five work items are mechanical. Unblocks QW-017/QW-018/QW-020 and gates contracts 1.4.0.",
   "created": "2026-08-30",
   "dependencies": [],
   "id": "QW-019",
   "problem": "quantik.engine-request.v1 and quantik.engine-response.v1 are phantom contracts. They use the contract naming convention and the API rejects requests whose schema field does not match, but they appear nowhere in the contracts registry. Verified 2026-08-30: the string is a Rust const at quantik-api-rust/src/lib.rs:22 and a JS literal at quantik-qfen-visualizer/src/engines.js:54, with nothing keeping the two in agreement and no schema either can be validated against. Two further defects ride along: the quantik. prefix breaks the registry's naming convention, and the Python play service is now a third independent implementation of the same wire format.",
-  "status": "not-started",
+  "status": "planned",
   "title": "Register the Phantom Engine API Contracts",
   "work_items": [
     {
       "allowed_paths": [
+        "contracts.json",
         "docs/engine-request-v1.md",
         "docs/engine-response-v1.md",
         "schemas/engine-request-v1.json",
@@ -34,59 +35,118 @@
         "fixtures/engine-request/*",
         "fixtures/engine-response/*"
       ],
-      "branch": "plan/qw-019-quantik-core-contracts",
-      "decisions": [],
+      "branch": "feat/register-engine-contracts",
+      "complexity": "M",
+      "decisions": [
+        "decisions.md#D2",
+        "decisions.md#D3",
+        "decisions.md#D5"
+      ],
       "depends_on": [],
+      "dispatch": "mechanical",
       "id": "W1",
-      "invariants": [],
-      "packet": "repos/quantik-core-contracts/W1-plan-required.md",
+      "invariants": [
+        "context/system/canonical-invariants.md#I5",
+        "context/system/canonical-invariants.md#I6"
+      ],
+      "packet": "repos/quantik-core-contracts/W1-register-engine-contracts.md",
       "repository": "quantik-core-contracts",
-      "status": "plan-required"
+      "status": "planned"
     },
     {
       "allowed_paths": [
-        "src/lib.rs"
+        "src/lib.rs",
+        "Cargo.toml"
       ],
-      "branch": "plan/qw-019-quantik-api-rust",
-      "decisions": [],
+      "branch": "feat/engine-contract-names",
+      "complexity": "S",
+      "decisions": [
+        "decisions.md#D3",
+        "decisions.md#D4"
+      ],
       "depends_on": [
         "W1"
       ],
+      "dispatch": "mechanical",
       "id": "W2",
-      "invariants": [],
-      "packet": "repos/quantik-api-rust/W2-plan-required.md",
+      "invariants": [
+        "context/system/canonical-invariants.md#I5"
+      ],
+      "packet": "repos/quantik-api-rust/W2-engine-contract-names.md",
       "repository": "quantik-api-rust",
-      "status": "plan-required"
+      "status": "planned"
     },
     {
       "allowed_paths": [
-        "src/engines.js"
+        "src/engines.js",
+        "src/play.js",
+        "test/engines.test.js",
+        "test/play.test.js"
       ],
-      "branch": "plan/qw-019-quantik-qfen-visualizer",
-      "decisions": [],
+      "branch": "feat/engine-contract-names",
+      "complexity": "S",
+      "decisions": [
+        "decisions.md#D3"
+      ],
       "depends_on": [
         "W1"
       ],
+      "dispatch": "mechanical",
       "id": "W3",
-      "invariants": [],
-      "packet": "repos/quantik-qfen-visualizer/W3-plan-required.md",
+      "invariants": [
+        "context/system/canonical-invariants.md#I5"
+      ],
+      "packet": "repos/quantik-qfen-visualizer/W3-engine-contract-names.md",
       "repository": "quantik-qfen-visualizer",
-      "status": "plan-required"
+      "status": "planned"
     },
     {
       "allowed_paths": [
-        "src/quantik_models/play/service.py"
+        "src/quantik_models/play/service.py",
+        "src/quantik_models/play/server.py",
+        "tests/test_play_service.py"
       ],
-      "branch": "plan/qw-019-quantik-models-py",
-      "decisions": [],
+      "branch": "feat/engine-contract-names",
+      "complexity": "S",
+      "decisions": [
+        "decisions.md#D3",
+        "decisions.md#D4"
+      ],
       "depends_on": [
         "W1"
       ],
+      "dispatch": "mechanical",
       "id": "W4",
-      "invariants": [],
-      "packet": "repos/quantik-models-py/W4-plan-required.md",
+      "invariants": [
+        "context/system/canonical-invariants.md#I5"
+      ],
+      "packet": "repos/quantik-models-py/W4-engine-contract-names.md",
       "repository": "quantik-models-py",
-      "status": "plan-required"
+      "status": "planned"
+    },
+    {
+      "allowed_paths": [
+        "src/quantik_models/play/app/**",
+        "scripts/sync_visualizer.py"
+      ],
+      "branch": "chore/resync-visualizer-engine-names",
+      "complexity": "S",
+      "decisions": [
+        "decisions.md#D2",
+        "decisions.md#D3"
+      ],
+      "depends_on": [
+        "W3",
+        "W4"
+      ],
+      "dispatch": "mechanical",
+      "id": "W5",
+      "invariants": [
+        "context/system/canonical-invariants.md#I5"
+      ],
+      "packet": "repos/quantik-models-py/W5-resync-vendored-app.md",
+      "repository": "quantik-models-py",
+      "status": "planned"
     }
   ]
 }

@@ -14,30 +14,30 @@
     "quantik-core-rust",
     "quantik-core-py"
   ],
-  "complexity": "S",
-  "complexity_notes": "Only the contracts work item (W1) remains; mechanical fix with exact line numbers already cited.",
+  "complexity": "M",
+  "complexity_notes": "Revised S->M on 2026-09-07. The contracts side is five narrow mechanical items with exact line numbers. W8/W9 were added: quantik-workspace's compatibility smoke cannot run at all because both portability adapters require --contracts-root/--output that the declared command does not pass, which is why the compatibility matrix withholds `supported` at every release.",
   "created": "2026-08-30",
   "dependencies": [],
   "id": "QW-015",
   "problem": "The cross-implementation opening-book check also enforces version lockstep, because both claims live in one dict comparison. validate_opening_book_summary.py:118 puts contract_version into the dict normalize_summary returns, and main() fails at line 142 on rust_summary != python_summary. So 'do the two engines agree about the game?' silently also asks 'are both stacks on the same release?'. Two claims with different lifetimes fused into one comparison; that fusion produced the 1.2.0 release deadlock. Verified still present 2026-08-30.",
-  "status": "largely-complete",
+  "status": "planned",
   "title": "Release-Engineering Hardening",
   "work_items": [
     {
       "allowed_paths": [
         "scripts/validate_opening_book_summary.py",
-        "actions/opening-book-consistency/action.yml",
-        ".github/workflows/validate-contracts.yml",
-        ".github/workflows/release-contracts.yml"
+        "tests/test_validate_opening_book_summary.py"
       ],
-      "branch": "plan/qw-015-quantik-core-contracts",
+      "branch": "fix/unfuse-contract-version",
+      "complexity": "S",
       "decisions": [],
       "depends_on": [],
+      "dispatch": "mechanical",
       "id": "W1",
       "invariants": [],
-      "packet": "repos/quantik-core-contracts/W1-plan-required.md",
+      "packet": "repos/quantik-core-contracts/W1-unfuse-contract-version.md",
       "repository": "quantik-core-contracts",
-      "status": "plan-required"
+      "status": "planned"
     },
     {
       "allowed_paths": [
@@ -64,6 +64,112 @@
       "packet": "repos/quantik-core-py/W3-plan-required.md",
       "repository": "quantik-core-py",
       "status": "completed"
+    },
+    {
+      "allowed_paths": [
+        "actions/opening-book-consistency/action.yml",
+        ".github/workflows/validate-contracts.yml"
+      ],
+      "branch": "ci/drop-expected-release",
+      "complexity": "S",
+      "decisions": [],
+      "depends_on": [
+        "W1"
+      ],
+      "dispatch": "mechanical",
+      "id": "W4",
+      "invariants": [],
+      "packet": "repos/quantik-core-contracts/W4-drop-expected-release.md",
+      "repository": "quantik-core-contracts",
+      "status": "planned"
+    },
+    {
+      "allowed_paths": [
+        "scripts/release_preflight.py",
+        ".github/workflows/release-contracts.yml",
+        "tests/test_release_preflight.py"
+      ],
+      "branch": "feat/release-preflight",
+      "complexity": "M",
+      "decisions": [],
+      "depends_on": [],
+      "dispatch": "mechanical",
+      "id": "W5",
+      "invariants": [],
+      "packet": "repos/quantik-core-contracts/W5-release-preflight.md",
+      "repository": "quantik-core-contracts",
+      "status": "planned"
+    },
+    {
+      "allowed_paths": [
+        "VERSION",
+        "contracts.json",
+        ".github/workflows/validate-contracts.yml",
+        "actions/opening-book-consistency/action.yml"
+      ],
+      "branch": "chore/single-version-literal",
+      "complexity": "S",
+      "decisions": [],
+      "depends_on": [],
+      "dispatch": "mechanical",
+      "id": "W6",
+      "invariants": [],
+      "packet": "repos/quantik-core-contracts/W6-single-version-literal.md",
+      "repository": "quantik-core-contracts",
+      "status": "planned"
+    },
+    {
+      "allowed_paths": [
+        "docs/consistency-checks.md"
+      ],
+      "branch": "test/deadlock-demonstration",
+      "complexity": "S",
+      "decisions": [],
+      "depends_on": [
+        "W1",
+        "W4"
+      ],
+      "dispatch": "execute-and-record",
+      "id": "W7",
+      "invariants": [],
+      "packet": "repos/quantik-core-contracts/W7-deadlock-demonstration.md",
+      "repository": "quantik-core-contracts",
+      "status": "planned"
+    },
+    {
+      "allowed_paths": [
+        "src/quantik_core/api_portability_report.py",
+        "tests/test_api_portability_report.py"
+      ],
+      "branch": "fix/portability-report-defaults",
+      "complexity": "S",
+      "decisions": [],
+      "depends_on": [],
+      "dispatch": "mechanical",
+      "id": "W8",
+      "invariants": [
+        "context/system/canonical-invariants.md#I5"
+      ],
+      "packet": "repos/quantik-core-py/W8-portability-report-defaults.md",
+      "repository": "quantik-core-py",
+      "status": "planned"
+    },
+    {
+      "allowed_paths": [
+        "crates/quantik-core/src/bin/portability_report.rs"
+      ],
+      "branch": "fix/portability-report-defaults",
+      "complexity": "S",
+      "decisions": [],
+      "depends_on": [],
+      "dispatch": "mechanical",
+      "id": "W9",
+      "invariants": [
+        "context/system/canonical-invariants.md#I5"
+      ],
+      "packet": "repos/quantik-core-rust/W9-portability-report-defaults.md",
+      "repository": "quantik-core-rust",
+      "status": "planned"
     }
   ]
 }

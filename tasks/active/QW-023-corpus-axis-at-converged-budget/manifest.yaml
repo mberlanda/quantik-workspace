@@ -11,30 +11,68 @@
     "quantik-models-py"
   ],
   "complexity": "M",
-  "complexity_notes": "Methodology fully specified (epochs/lr/seed given) - execution-heavy, not design-heavy.",
+  "complexity_notes": "Methodology fully specified (corpus, architecture, epochs, patience, lr, seed all given) — execution-heavy, not design-heavy. Split into the run, the arena, and the verdict so only the verdict needs judgment.",
   "created": "2026-08-30",
   "dependencies": [
     "QW-012"
   ],
   "id": "QW-023",
   "problem": "The experiment that would settle whether shallow-ply coverage helps has never been run. Every corpus comparison on disk either compares a converged run against a capped one, or two runs that both hit their cap. patience-cpool (v1) early-stopped at 43 and is converged; patience-cpool-v2 and -v3 both ran all 40 epochs and hit their cap, so neither is. ADR 0014's central finding — that shallow coverage is corpus-caused and epochs cannot buy it — rests on comparing a converged v1 run against non-converged v2/v3 runs, which is the weakest possible form of the right answer.",
-  "status": "not-started",
+  "status": "planned",
   "title": "Settle the Corpus Axis at Converged Budget",
   "work_items": [
     {
       "allowed_paths": [
-        "scripts/run_patience_lineup.sh",
-        "scripts/evaluate_lineup.sh",
-        "src/quantik_models/eval/shift.py"
+        "docs/corpus-axis-converged.md"
       ],
-      "branch": "plan/qw-023-quantik-models-py",
+      "branch": "feat/corpus-axis-converged-run",
+      "complexity": "M",
       "decisions": [],
       "depends_on": [],
+      "dispatch": "execute-and-record",
       "id": "W1",
       "invariants": [],
-      "packet": "repos/quantik-models-py/W1-plan-required.md",
+      "packet": "repos/quantik-models-py/W1-converged-run.md",
       "repository": "quantik-models-py",
-      "status": "plan-required"
+      "status": "planned"
+    },
+    {
+      "allowed_paths": [
+        "docs/corpus-axis-converged.md",
+        "scripts/evaluate_lineup.sh"
+      ],
+      "branch": "feat/corpus-axis-arena",
+      "complexity": "M",
+      "decisions": [],
+      "depends_on": [
+        "W1"
+      ],
+      "dispatch": "execute-and-record",
+      "id": "W2",
+      "invariants": [],
+      "packet": "repos/quantik-models-py/W2-corpus-axis-arena.md",
+      "repository": "quantik-models-py",
+      "status": "planned"
+    },
+    {
+      "allowed_paths": [
+        "docs/corpus-axis-converged.md",
+        "docs/corpus-v3.md"
+      ],
+      "branch": "docs/corpus-axis-verdict",
+      "complexity": "M",
+      "decisions": [],
+      "depends_on": [
+        "W2"
+      ],
+      "dispatch": "judgment",
+      "id": "W3",
+      "invariants": [
+        "context/system/canonical-invariants.md#I4"
+      ],
+      "packet": "repos/quantik-models-py/W3-corpus-axis-verdict.md",
+      "repository": "quantik-models-py",
+      "status": "planned"
     }
   ]
 }

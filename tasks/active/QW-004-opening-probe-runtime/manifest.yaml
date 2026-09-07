@@ -16,17 +16,36 @@
     "quantik-core-rust"
   ],
   "complexity": "L",
-  "complexity_notes": "2 sequential items, new compact contract plus a symmetry-safe Rust abstraction. Contained but real design.",
+  "complexity_notes": "2 repos, contained but real design: the orientation transform is the correctness risk (192 symmetries; a probe that skips the inverse transform returns a legal-looking wrong move silently). W1 is the design gate; W2-W4 implement it. Gates contracts 1.5.0.",
   "dependencies": [
     "QW-001"
   ],
   "id": "QW-004",
   "problem": "Opening-book data exists, but there is no compact opening-probe contract or symmetry-safe engine abstraction for portable runtime lookup.",
-  "status": "plan-required",
+  "status": "planned",
   "title": "Opening Probe Contract and Runtime",
   "work_items": [
     {
       "allowed_paths": [
+        "docs/opening-probe-v1.md"
+      ],
+      "branch": "docs/opening-probe-design",
+      "complexity": "L",
+      "decisions": [],
+      "depends_on": [],
+      "dispatch": "judgment",
+      "id": "W1",
+      "invariants": [
+        "context/system/canonical-invariants.md#I5",
+        "context/system/canonical-invariants.md#I6"
+      ],
+      "packet": "repos/quantik-core-contracts/W1-opening-probe-design.md",
+      "repository": "quantik-core-contracts",
+      "status": "planned"
+    },
+    {
+      "allowed_paths": [
+        "contracts.json",
         "docs/opening-probe-v1.md",
         "schemas/opening-probe-v1.json",
         "fixtures/opening-probe/*",
@@ -34,32 +53,62 @@
         "docs/opening-book-summary-v1.md",
         "schemas/opening-book-v1.json"
       ],
-      "branch": "plan/qw-004-quantik-core-contracts",
-      "decisions": [],
-      "depends_on": [],
-      "id": "W1",
-      "invariants": [],
-      "packet": "repos/quantik-core-contracts/W1-plan-required.md",
-      "repository": "quantik-core-contracts",
-      "status": "plan-required"
-    },
-    {
-      "allowed_paths": [
-        "crates/quantik-core/src/opening_book.rs",
-        "crates/quantik-core/src/opening_probe.rs",
-        "crates/quantik-core/src/bin/probe_builder.rs",
-        "crates/quantik-core/tests/opening_probe.rs"
-      ],
-      "branch": "plan/qw-004-quantik-core-rust",
+      "branch": "feat/register-opening-probe",
+      "complexity": "M",
       "decisions": [],
       "depends_on": [
         "W1"
       ],
+      "dispatch": "mechanical",
       "id": "W2",
-      "invariants": [],
-      "packet": "repos/quantik-core-rust/W2-plan-required.md",
+      "invariants": [
+        "context/system/canonical-invariants.md#I5"
+      ],
+      "packet": "repos/quantik-core-contracts/W2-register-opening-probe.md",
+      "repository": "quantik-core-contracts",
+      "status": "planned"
+    },
+    {
+      "allowed_paths": [
+        "crates/quantik-core/src/opening_probe.rs",
+        "crates/quantik-core/src/opening_book.rs",
+        "crates/quantik-core/src/bin/probe_builder.rs",
+        "crates/quantik-core/tests/opening_probe.rs"
+      ],
+      "branch": "feat/opening-probe",
+      "complexity": "L",
+      "decisions": [],
+      "depends_on": [
+        "W2"
+      ],
+      "dispatch": "mechanical",
+      "id": "W3",
+      "invariants": [
+        "context/system/canonical-invariants.md#I5",
+        "context/system/canonical-invariants.md#I6"
+      ],
+      "packet": "repos/quantik-core-rust/W3-probe-abstraction.md",
       "repository": "quantik-core-rust",
-      "status": "plan-required"
+      "status": "planned"
+    },
+    {
+      "allowed_paths": [
+        "crates/quantik-core/tests/opening_probe.rs"
+      ],
+      "branch": "test/opening-probe-evidence",
+      "complexity": "M",
+      "decisions": [],
+      "depends_on": [
+        "W3"
+      ],
+      "dispatch": "execute-and-record",
+      "id": "W4",
+      "invariants": [
+        "context/system/canonical-invariants.md#I6"
+      ],
+      "packet": "repos/quantik-core-rust/W4-probe-evidence.md",
+      "repository": "quantik-core-rust",
+      "status": "planned"
     }
   ]
 }
