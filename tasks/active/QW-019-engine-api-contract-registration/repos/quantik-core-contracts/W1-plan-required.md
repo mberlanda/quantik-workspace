@@ -34,7 +34,7 @@ that does not accept a real captured request is a rewrite, not a registration.
 
 ## Implementation and scope
 
-Not yet planned. Replace this item's placeholder `allowed_paths` in `manifest.yaml` with explicit repository-relative paths, select the `decisions`/`invariants` references it actually needs, and split into further work items wherever another branch/PR is needed.
+`allowed_paths` in `manifest.yaml`: new engine-request-v1/engine-response-v1 doc/schema/fixtures — verified `contracts.json` has no entry for either name today, confirming `problem`'s "phantom contracts" premise. This is the prerequisite W2/W3/W4 (and QW-018) depend on. decisions/invariants stay empty: decisions.md's four points are already resolved as unheaded prose except naming (point 3, explicitly left open).
 
 ## Completion criteria and verification
 

@@ -13,7 +13,8 @@
   "affected_repositories": [
     "quantik-core-contracts",
     "quantik-api-rust",
-    "quantik-qfen-visualizer"
+    "quantik-qfen-visualizer",
+    "quantik-models-py"
   ],
   "created": "2026-08-30",
   "dependencies": [],
@@ -24,7 +25,12 @@
   "work_items": [
     {
       "allowed_paths": [
-        "REPLACE_WITH_EXPLICIT_PATHS"
+        "docs/engine-request-v1.md",
+        "docs/engine-response-v1.md",
+        "schemas/engine-request-v1.json",
+        "schemas/engine-response-v1.json",
+        "fixtures/engine-request/*",
+        "fixtures/engine-response/*"
       ],
       "branch": "plan/qw-019-quantik-core-contracts",
       "decisions": [],
@@ -37,11 +43,13 @@
     },
     {
       "allowed_paths": [
-        "REPLACE_WITH_EXPLICIT_PATHS"
+        "src/lib.rs"
       ],
       "branch": "plan/qw-019-quantik-api-rust",
       "decisions": [],
-      "depends_on": [],
+      "depends_on": [
+        "W1"
+      ],
       "id": "W2",
       "invariants": [],
       "packet": "repos/quantik-api-rust/W2-plan-required.md",
@@ -50,15 +58,32 @@
     },
     {
       "allowed_paths": [
-        "REPLACE_WITH_EXPLICIT_PATHS"
+        "src/engines.js"
       ],
       "branch": "plan/qw-019-quantik-qfen-visualizer",
       "decisions": [],
-      "depends_on": [],
+      "depends_on": [
+        "W1"
+      ],
       "id": "W3",
       "invariants": [],
       "packet": "repos/quantik-qfen-visualizer/W3-plan-required.md",
       "repository": "quantik-qfen-visualizer",
+      "status": "plan-required"
+    },
+    {
+      "allowed_paths": [
+        "src/quantik_models/play/service.py"
+      ],
+      "branch": "plan/qw-019-quantik-models-py",
+      "decisions": [],
+      "depends_on": [
+        "W1"
+      ],
+      "id": "W4",
+      "invariants": [],
+      "packet": "repos/quantik-models-py/W4-plan-required.md",
+      "repository": "quantik-models-py",
       "status": "plan-required"
     }
   ]
