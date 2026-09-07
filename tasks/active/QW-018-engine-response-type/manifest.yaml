@@ -24,11 +24,13 @@
   "work_items": [
     {
       "allowed_paths": [
-        "REPLACE_WITH_EXPLICIT_PATHS"
+        "src/lib.rs"
       ],
       "branch": "plan/qw-018-quantik-api-rust",
       "decisions": [],
-      "depends_on": [],
+      "depends_on": [
+        "W2"
+      ],
       "id": "W1",
       "invariants": [],
       "packet": "repos/quantik-api-rust/W1-plan-required.md",
@@ -37,7 +39,9 @@
     },
     {
       "allowed_paths": [
-        "REPLACE_WITH_EXPLICIT_PATHS"
+        "docs/engine-response-v1.md",
+        "schemas/engine-response-v1.json",
+        "fixtures/engine-response/*"
       ],
       "branch": "plan/qw-018-quantik-core-contracts",
       "decisions": [],

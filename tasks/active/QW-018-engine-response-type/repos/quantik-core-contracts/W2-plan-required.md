@@ -27,7 +27,7 @@ both round-trip and that the enum rejects a third value.
 
 ## Implementation and scope
 
-Not yet planned. Replace this item's placeholder `allowed_paths` in `manifest.yaml` with explicit repository-relative paths, select the `decisions`/`invariants` references it actually needs, and split into further work items wherever another branch/PR is needed.
+`allowed_paths` in `manifest.yaml`: new `engine-response-v1` doc/schema/fixtures — verified nothing under that name exists in this repo today, confirming `problem`'s premise (hardcoded, unregistered response). This item is itself the prerequisite QW-019 (this initiative's own `dependencies`) needs to land the base contract for — genuinely sequenced, not just cross-referenced. decisions/invariants stay empty.
 
 ## Completion criteria and verification
 
