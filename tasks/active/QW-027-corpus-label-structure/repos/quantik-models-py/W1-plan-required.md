@@ -45,7 +45,7 @@ Document what the corpora contain, make v1 mergeable, and label plies 0-2.
 
 ## Implementation and scope
 
-Not yet planned. Replace this item's placeholder `allowed_paths` in `manifest.yaml` with explicit repository-relative paths, select the `decisions`/`invariants` references it actually needs, and split into further work items wherever another branch/PR is needed.
+`allowed_paths` in `manifest.yaml`: four new files (`docs/corpus-structure.md`, `data/policy_schema.py`, `scripts/induct_shallow.py`, `scripts/shallow_probe.py` — verified none exist yet), the two existing docs it links from, and the existing `merge_corpus.py` it folds the 55 rows through. `runs/canonical/level0{1,2,3}.npy` are read-only inputs. decisions/invariants stay empty: decisions.md's six points are already resolved as unheaded prose.
 
 ## Completion criteria and verification
 
