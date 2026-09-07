@@ -366,19 +366,38 @@
       "work_item": "W2"
     },
     {
-      "branch": "plan/qw-010-quantik-models-py",
-      "complexity": null,
+      "branch": "docs/skill-levels-derivation",
+      "complexity": "M",
       "depends_on": [],
-      "dispatch": null,
+      "dispatch": "judgment",
       "initiative": "QW-010",
       "initiative_blocked_by": [
         "QW-024"
       ],
       "ready": false,
       "repository": "quantik-models-py",
-      "status": "plan-required",
+      "status": "planned",
       "unmet_dependencies": [],
       "work_item": "W1"
+    },
+    {
+      "branch": "feat/skill-levels",
+      "complexity": "S",
+      "depends_on": [
+        "W1"
+      ],
+      "dispatch": "mechanical",
+      "initiative": "QW-010",
+      "initiative_blocked_by": [
+        "QW-024"
+      ],
+      "ready": false,
+      "repository": "quantik-models-py",
+      "status": "planned",
+      "unmet_dependencies": [
+        "W1"
+      ],
+      "work_item": "W2"
     },
     {
       "branch": "plan/qw-011-quantik-models-py",
@@ -521,19 +540,34 @@
       "work_item": "W9"
     },
     {
-      "branch": "plan/qw-016-articles",
-      "complexity": null,
+      "branch": "docs/deadlock-publication-ready",
+      "complexity": "M",
       "depends_on": [],
-      "dispatch": null,
+      "dispatch": "judgment",
       "initiative": "QW-016",
       "initiative_blocked_by": [
         "QW-015"
       ],
       "ready": false,
       "repository": "articles",
-      "status": "plan-required",
+      "status": "planned",
       "unmet_dependencies": [],
       "work_item": "W1"
+    },
+    {
+      "branch": "chore/record-remote-decision",
+      "complexity": "S",
+      "depends_on": [],
+      "dispatch": "judgment",
+      "initiative": "QW-016",
+      "initiative_blocked_by": [
+        "QW-015"
+      ],
+      "ready": false,
+      "repository": "articles",
+      "status": "planned",
+      "unmet_dependencies": [],
+      "work_item": "W2"
     },
     {
       "branch": "plan/qw-017-quantik-api-rust",
@@ -570,38 +604,76 @@
       "work_item": "W2"
     },
     {
-      "branch": "plan/qw-018-quantik-api-rust",
-      "complexity": null,
-      "depends_on": [
-        "W2"
-      ],
-      "dispatch": null,
-      "initiative": "QW-018",
-      "initiative_blocked_by": [
-        "QW-019"
-      ],
-      "ready": false,
-      "repository": "quantik-api-rust",
-      "status": "plan-required",
-      "unmet_dependencies": [
-        "W2"
-      ],
-      "work_item": "W1"
-    },
-    {
-      "branch": "plan/qw-018-quantik-core-contracts",
-      "complexity": null,
+      "branch": "docs/engine-response-candidates",
+      "complexity": "M",
       "depends_on": [],
-      "dispatch": null,
+      "dispatch": "judgment",
       "initiative": "QW-018",
       "initiative_blocked_by": [
         "QW-019"
       ],
       "ready": false,
       "repository": "quantik-core-contracts",
-      "status": "plan-required",
+      "status": "planned",
       "unmet_dependencies": [],
+      "work_item": "W1"
+    },
+    {
+      "branch": "feat/engine-response-candidates",
+      "complexity": "M",
+      "depends_on": [
+        "W1"
+      ],
+      "dispatch": "mechanical",
+      "initiative": "QW-018",
+      "initiative_blocked_by": [
+        "QW-019"
+      ],
+      "ready": false,
+      "repository": "quantik-core-contracts",
+      "status": "planned",
+      "unmet_dependencies": [
+        "W1"
+      ],
       "work_item": "W2"
+    },
+    {
+      "branch": "feat/engine-response-candidates",
+      "complexity": "M",
+      "depends_on": [
+        "W2"
+      ],
+      "dispatch": "mechanical",
+      "initiative": "QW-018",
+      "initiative_blocked_by": [
+        "QW-019"
+      ],
+      "ready": false,
+      "repository": "quantik-api-rust",
+      "status": "planned",
+      "unmet_dependencies": [
+        "W2"
+      ],
+      "work_item": "W3"
+    },
+    {
+      "branch": "feat/tolerate-response-fields",
+      "complexity": "S",
+      "depends_on": [
+        "W2"
+      ],
+      "dispatch": "mechanical",
+      "initiative": "QW-018",
+      "initiative_blocked_by": [
+        "QW-019"
+      ],
+      "ready": false,
+      "repository": "quantik-qfen-visualizer",
+      "status": "planned",
+      "unmet_dependencies": [
+        "W2"
+      ],
+      "work_item": "W4"
     },
     {
       "branch": "feat/register-engine-contracts",
@@ -687,19 +759,87 @@
       "work_item": "W5"
     },
     {
-      "branch": "plan/qw-020-quantik-api-rust",
-      "complexity": null,
+      "branch": "feat/dockerfile",
+      "complexity": "M",
       "depends_on": [],
-      "dispatch": null,
+      "dispatch": "mechanical",
       "initiative": "QW-020",
-      "initiative_blocked_by": [
-        "QW-017"
-      ],
-      "ready": false,
+      "initiative_blocked_by": [],
+      "ready": true,
       "repository": "quantik-api-rust",
-      "status": "plan-required",
+      "status": "planned",
       "unmet_dependencies": [],
       "work_item": "W1"
+    },
+    {
+      "branch": "ci/publish-image",
+      "complexity": "M",
+      "depends_on": [
+        "W1"
+      ],
+      "dispatch": "mechanical",
+      "initiative": "QW-020",
+      "initiative_blocked_by": [],
+      "ready": false,
+      "repository": "quantik-api-rust",
+      "status": "planned",
+      "unmet_dependencies": [
+        "W1"
+      ],
+      "work_item": "W2"
+    },
+    {
+      "branch": "test/container-smoke",
+      "complexity": "S",
+      "depends_on": [
+        "W1"
+      ],
+      "dispatch": "execute-and-record",
+      "initiative": "QW-020",
+      "initiative_blocked_by": [],
+      "ready": false,
+      "repository": "quantik-api-rust",
+      "status": "planned",
+      "unmet_dependencies": [
+        "W1"
+      ],
+      "work_item": "W3"
+    },
+    {
+      "branch": "docs/deployment-decision",
+      "complexity": "S",
+      "depends_on": [
+        "W1"
+      ],
+      "dispatch": "judgment",
+      "initiative": "QW-020",
+      "initiative_blocked_by": [],
+      "ready": false,
+      "repository": "quantik-api-rust",
+      "status": "planned",
+      "unmet_dependencies": [
+        "W1"
+      ],
+      "work_item": "W4"
+    },
+    {
+      "branch": "feat/model-image-variant",
+      "complexity": "M",
+      "depends_on": [
+        "W2",
+        "W3"
+      ],
+      "dispatch": "mechanical",
+      "initiative": "QW-020",
+      "initiative_blocked_by": [],
+      "ready": false,
+      "repository": "quantik-api-rust",
+      "status": "planned",
+      "unmet_dependencies": [
+        "W2",
+        "W3"
+      ],
+      "work_item": "W5"
     },
     {
       "branch": "docs/opening-coverage-partition",

@@ -10,14 +10,14 @@
     "articles"
   ],
   "complexity": "M",
-  "complexity_notes": "Not code, but a real judgment call (cut to house length vs. publish long) plus a fact-recheck against another repo's line numbers.",
+  "complexity_notes": "Not code, but a real judgment call (cut to house length vs publish long) plus a fact-recheck against line numbers QW-015 W1 is about to change. Publication itself stays with the author: pushing to Substack is outward-facing and not an agent action.",
   "created": "2026-08-30",
   "dependencies": [
     "QW-015"
   ],
   "id": "QW-016",
   "problem": "articles/the-deadlock.md is a finished draft with four watermarked 2400x1350 figures and a local preview, and it has never been published. It runs ~2,750 words against a house length of 1,750-2,050, so publishing requires a length decision that has not been taken. The repo also has no git remote — verified 2026-08-30, git remote -v is empty at commit 7d8b75b — so three finished Season Two drafts exist only on one machine.",
-  "status": "draft-complete-unpublished",
+  "status": "planned",
   "title": "Season Two Article Publication",
   "work_items": [
     {
@@ -29,14 +29,31 @@
         "images/14-rollout.png",
         "images/15-philosophers.png"
       ],
-      "branch": "plan/qw-016-articles",
+      "branch": "docs/deadlock-publication-ready",
+      "complexity": "M",
       "decisions": [],
       "depends_on": [],
+      "dispatch": "judgment",
       "id": "W1",
       "invariants": [],
-      "packet": "repos/articles/W1-plan-required.md",
+      "packet": "repos/articles/W1-publication-ready.md",
       "repository": "articles",
-      "status": "plan-required"
+      "status": "planned"
+    },
+    {
+      "allowed_paths": [
+        "decisions.md"
+      ],
+      "branch": "chore/record-remote-decision",
+      "complexity": "S",
+      "decisions": [],
+      "depends_on": [],
+      "dispatch": "judgment",
+      "id": "W2",
+      "invariants": [],
+      "packet": "repos/articles/W2-record-remote-decision.md",
+      "repository": "articles",
+      "status": "planned"
     }
   ]
 }

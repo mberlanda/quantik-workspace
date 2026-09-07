@@ -12,7 +12,7 @@
     "quantik-models-py"
   ],
   "complexity": "M",
-  "complexity_notes": "Narrow file scope, but the mapping derivation needs judgment (seat-effect control), and is hard-blocked on QW-024 - now reflected in dependencies, which previously listed only QW-008/QW-012 (both already done) and omitted the real blocker.",
+  "complexity_notes": "Narrow file scope, but the mapping derivation needs real judgment (seat effect is larger than the gaps being measured) and is hard-blocked on QW-024. QW-030 already shipped the UI slot and the how-to-play explainer, so this initiative supplies data, not UI.",
   "dependencies": [
     "QW-008",
     "QW-012",
@@ -20,22 +20,41 @@
   ],
   "id": "QW-010",
   "problem": "The play service (QW-008) exposes twenty opponents keyed by architecture and simulation count, which assumes the player already knows what cpool@128 means. Public deployment (QW-009) needs an easy/medium/hard mapping and a rules explainer, but the level-to-opponent mapping must come from arena numbers, not intuition, because the seat effect (mover 68-88%, responder 15-39%) is larger than the strength gaps between most opponents.",
-  "status": "ux-half-superseded-by-QW-030-mapping-blocked-on-QW-024",
+  "status": "planned",
   "title": "Play UX for Non-Expert Players — Skill Levels and How-to-Play",
   "work_items": [
     {
       "allowed_paths": [
-        "docs/skill-levels.md",
-        "src/quantik_models/play/opponents.py"
+        "docs/skill-levels.md"
       ],
-      "branch": "plan/qw-010-quantik-models-py",
+      "branch": "docs/skill-levels-derivation",
+      "complexity": "M",
       "decisions": [],
       "depends_on": [],
+      "dispatch": "judgment",
       "id": "W1",
       "invariants": [],
-      "packet": "repos/quantik-models-py/W1-plan-required.md",
+      "packet": "repos/quantik-models-py/W1-skill-levels-derivation.md",
       "repository": "quantik-models-py",
-      "status": "plan-required"
+      "status": "planned"
+    },
+    {
+      "allowed_paths": [
+        "src/quantik_models/play/opponents.py",
+        "tests/test_play_opponents.py"
+      ],
+      "branch": "feat/skill-levels",
+      "complexity": "S",
+      "decisions": [],
+      "depends_on": [
+        "W1"
+      ],
+      "dispatch": "mechanical",
+      "id": "W2",
+      "invariants": [],
+      "packet": "repos/quantik-models-py/W2-skill-levels-implementation.md",
+      "repository": "quantik-models-py",
+      "status": "planned"
     }
   ]
 }
