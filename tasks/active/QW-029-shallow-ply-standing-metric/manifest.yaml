@@ -14,7 +14,8 @@
   "work_items": [
     {
       "allowed_paths": [
-        "REPLACE_WITH_EXPLICIT_PATHS"
+        "scripts/shallow_probe.py",
+        "scripts/evaluate_lineup.sh"
       ],
       "branch": "plan/qw-029-quantik-models-py",
       "decisions": [],
