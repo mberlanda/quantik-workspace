@@ -13,7 +13,7 @@ action orientation with QW-001 and obtain contract review before Rust work.
 
 ## Implementation and scope
 
-Not yet planned. Replace this item's placeholder `allowed_paths` in `manifest.yaml` with explicit repository-relative paths, select the `decisions`/`invariants` references it actually needs, and split into further work items wherever another branch/PR is needed.
+`allowed_paths` in `manifest.yaml`: new opening-probe-v1 doc/schema/fixtures (nothing exists yet — verified, no opening-probe.* anywhere in this repo), plus the existing opening-book-v1/opening-book-summary-v1 doc and schema this must define source-book conversion rules against. `decisions`/`invariants` stay empty: decisions.md's five questions (storage format, value shape, transform storage, mandatory metadata, miss/corruption behavior) are still open.
 
 ## Completion criteria and verification
 
