@@ -104,16 +104,16 @@ flowchart TD
 | `QW-005` | blocked | XL | `quantik-core-contracts`, `quantik-core-rust`, `quantik-models-py` | QW-002, QW-003, QW-004, QW-006, QW-007 | QW-002, QW-003, QW-004, QW-006, QW-007 | Search and H2H Active-Learning Feedback Loop |
 | `QW-006` | ready | L | `quantik-core-rust`, `quantik-models-py` | QW-001 | - | Search-Derived Observation Policy Targets |
 | `QW-007` | ready | XL | `quantik-core-contracts`, `quantik-core-py`, `quantik-core-rust`, `quantik-models-py` | QW-001 | - | Checkpoint Consumer Compatibility |
-| `QW-009` | ready | M | `quantik-models-py` | QW-008 | - | Public Play Deployment — Storeless Docker |
+| `QW-009` | ready | S | `quantik-models-py` | QW-008 | - | Public Play Deployment — Storeless Docker |
 | `QW-010` | blocked | M | `quantik-models-py` | QW-008, QW-012, QW-024 | QW-024 | Play UX for Non-Expert Players — Skill Levels and How-to-Play |
 | `QW-011` | ready | S | `quantik-models-py` | QW-008 | - | Puzzle Mode in the Browser |
-| `QW-015` | ready | S | `quantik-core-contracts`, `quantik-core-rust`, `quantik-core-py` | - | - | Release-Engineering Hardening |
+| `QW-015` | ready | M | `quantik-core-contracts`, `quantik-core-rust`, `quantik-core-py` | - | - | Release-Engineering Hardening |
 | `QW-016` | blocked | M | `articles` | QW-015 | QW-015 | Season Two Article Publication |
 | `QW-017` | blocked | XL | `quantik-api-rust`, `quantik-models-py` | QW-019 | QW-019 | ONNX Model Serving in the Rust API |
 | `QW-018` | blocked | L | `quantik-api-rust`, `quantik-core-contracts` | QW-019 | QW-019 | Engine Response Type — Candidates, PV, Certainty |
 | `QW-019` | ready | L | `quantik-core-contracts`, `quantik-api-rust`, `quantik-qfen-visualizer`, `quantik-models-py` | - | - | Register the Phantom Engine API Contracts |
 | `QW-020` | blocked | M | `quantik-api-rust` | QW-017 | QW-017 | Container Distribution for the Rust API |
-| `QW-021` | ready | XL | `quantik-models-py` | QW-012 | - | Opening Coverage Expansion — Plies 0 to 6 |
+| `QW-021` | ready | XL | `quantik-models-py`, `articles` | QW-012 | - | Opening Coverage Expansion — Plies 0 to 6 |
 | `QW-022` | ready | S | `quantik-models-py`, `articles` | - | - | Workspace Repo Hygiene — Remaining Items |
 | `QW-023` | ready | M | `quantik-models-py` | QW-012 | - | Settle the Corpus Axis at Converged Budget |
 | `QW-024` | ready | M | `quantik-models-py` | - | - | The Opening Arena — Measuring From Ply 0 |

@@ -11,27 +11,49 @@
     "quantik-models-py"
   ],
   "complexity": "M",
-  "complexity_notes": "Fully specified methodology; blocks QW-010/QW-030's skill mapping, so worth prioritizing.",
+  "complexity_notes": "scripts/evaluate_opening_arena.sh is already written and already handles the ply-0 determinism trap (temperature over the first 4 plies) and the uniform-mcts control. What remains is one execute-and-record item and one judgment item. Gates QW-010 and quantik-models-py 1.2.0.",
   "created": "2026-08-30",
   "dependencies": [],
   "id": "QW-024",
   "problem": "No arena on disk starts before ply 3. Every start ply in runs/arena/*.json and runs/eval/*/*/games.json is 3, 4, 5, 6 or 9, so the phase a human game actually opens in is unmeasured for every checkpoint in the family. The mechanical reason is visible in the corpora: no corpus holds a single position from plies 0, 1 or 2, and every checkpoint is correspondingly uniform to three decimal places on the empty board (max legal prior 0.016-0.023). QW-010's skill-level mapping is blocked on this, because a ladder derived from ply-3 numbers ranks opponents on a phase the player never starts in.",
-  "status": "ready-to-run",
+  "status": "planned",
   "title": "The Opening Arena — Measuring From Ply 0",
   "work_items": [
     {
       "allowed_paths": [
-        "scripts/evaluate_opening_arena.sh",
         "docs/opening-arena-ply0.md"
       ],
-      "branch": "plan/qw-024-quantik-models-py",
+      "branch": "feat/opening-arena-results",
+      "complexity": "M",
       "decisions": [],
       "depends_on": [],
+      "dispatch": "execute-and-record",
       "id": "W1",
-      "invariants": [],
-      "packet": "repos/quantik-models-py/W1-plan-required.md",
+      "invariants": [
+        "context/system/canonical-invariants.md#I2"
+      ],
+      "packet": "repos/quantik-models-py/W1-run-opening-arena.md",
       "repository": "quantik-models-py",
-      "status": "plan-required"
+      "status": "planned"
+    },
+    {
+      "allowed_paths": [
+        "docs/opening-arena-ply0.md"
+      ],
+      "branch": "docs/opening-arena-reading",
+      "complexity": "M",
+      "decisions": [],
+      "depends_on": [
+        "W1"
+      ],
+      "dispatch": "judgment",
+      "id": "W2",
+      "invariants": [
+        "context/system/canonical-invariants.md#I2"
+      ],
+      "packet": "repos/quantik-models-py/W2-read-opening-arena.md",
+      "repository": "quantik-models-py",
+      "status": "planned"
     }
   ]
 }

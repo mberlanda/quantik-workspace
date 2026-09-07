@@ -10,7 +10,7 @@
       "done": false,
       "id": "QW-002",
       "state": "active",
-      "status": "plan-required",
+      "status": "planned",
       "title": "Versioned ML Pipeline Profiles"
     },
     {
@@ -43,7 +43,7 @@
       "done": false,
       "id": "QW-004",
       "state": "active",
-      "status": "plan-required",
+      "status": "planned",
       "title": "Opening Probe Contract and Runtime"
     },
     {
@@ -112,14 +112,14 @@
         "quantik-models-py"
       ],
       "blocked_by": [],
-      "complexity": "M",
+      "complexity": "S",
       "dependencies": [
         "QW-008"
       ],
       "done": false,
       "id": "QW-009",
       "state": "active",
-      "status": "largely-complete",
+      "status": "planned",
       "title": "Public Play Deployment — Storeless Docker"
     },
     {
@@ -163,12 +163,12 @@
         "quantik-core-py"
       ],
       "blocked_by": [],
-      "complexity": "S",
+      "complexity": "M",
       "dependencies": [],
       "done": false,
       "id": "QW-015",
       "state": "active",
-      "status": "largely-complete",
+      "status": "planned",
       "title": "Release-Engineering Hardening"
     },
     {
@@ -237,7 +237,7 @@
       "done": false,
       "id": "QW-019",
       "state": "active",
-      "status": "not-started",
+      "status": "planned",
       "title": "Register the Phantom Engine API Contracts"
     },
     {
@@ -259,7 +259,8 @@
     },
     {
       "affected_repositories": [
-        "quantik-models-py"
+        "quantik-models-py",
+        "articles"
       ],
       "blocked_by": [],
       "complexity": "XL",
@@ -269,7 +270,7 @@
       "done": false,
       "id": "QW-021",
       "state": "active",
-      "status": "not-started",
+      "status": "planned",
       "title": "Opening Coverage Expansion — Plies 0 to 6"
     },
     {
@@ -298,7 +299,7 @@
       "done": false,
       "id": "QW-023",
       "state": "active",
-      "status": "not-started",
+      "status": "planned",
       "title": "Settle the Corpus Axis at Converged Budget"
     },
     {
@@ -311,7 +312,7 @@
       "done": false,
       "id": "QW-024",
       "state": "active",
-      "status": "ready-to-run",
+      "status": "planned",
       "title": "The Opening Arena — Measuring From Ply 0"
     },
     {
@@ -326,7 +327,7 @@
       "done": false,
       "id": "QW-026",
       "state": "active",
-      "status": "not-started",
+      "status": "planned",
       "title": "Re-run the Patience-Lineup Arena on an Independent Seed"
     },
     {
@@ -339,7 +340,7 @@
       "done": false,
       "id": "QW-027",
       "state": "active",
-      "status": "not-started",
+      "status": "planned",
       "title": "Corpus Label Structure and the Shallow-Ply Floor"
     },
     {

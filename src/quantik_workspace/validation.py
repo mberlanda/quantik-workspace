@@ -11,7 +11,14 @@ from .config import WorkspaceConfig, load_data
 from .contracts import contract_inventory, validate_fixtures
 from .models import validate_instance
 from .releases import validate_lock, validate_releases
-from .reports import dependency_markdown, dependency_map, task_dependency_markdown, task_dependency_map
+from .reports import (
+    dependency_markdown,
+    dependency_map,
+    dispatch_board,
+    dispatch_board_markdown,
+    task_dependency_markdown,
+    task_dependency_map,
+)
 from .config import dump_data
 from .tasks import validate_tasks
 
@@ -67,6 +74,9 @@ def validate_generated(config: WorkspaceConfig) -> dict[str, Any]:
         config.root / "docs/generated/dependency-graph.json": dump_data(dependency_map(config)),
         config.root / "docs/generated/task-dependency-graph.md": task_dependency_markdown(config),
         config.root / "docs/generated/task-dependency-graph.json": dump_data(task_dependency_map(config)),
+        config.root / "docs/generated/dispatch-board.md": dispatch_board_markdown(config),
+        config.root / "docs/generated/dispatch-board.json": dump_data(
+            {"schema": "quantik-dispatch-board.v1", "work_items": dispatch_board(config)}),
     }
     errors = [f"{path}: generated file is missing or stale" for path, content in expected.items() if not path.is_file() or path.read_text(encoding="utf-8") != content]
     summary = config.root / "docs/generated/repository-summary.md"
