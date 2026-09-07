@@ -18,12 +18,15 @@
   "dependencies": [],
   "id": "QW-015",
   "problem": "The cross-implementation opening-book check also enforces version lockstep, because both claims live in one dict comparison. validate_opening_book_summary.py:118 puts contract_version into the dict normalize_summary returns, and main() fails at line 142 on rust_summary != python_summary. So 'do the two engines agree about the game?' silently also asks 'are both stacks on the same release?'. Two claims with different lifetimes fused into one comparison; that fusion produced the 1.2.0 release deadlock. Verified still present 2026-08-30.",
-  "status": "not-started",
+  "status": "largely-complete",
   "title": "Release-Engineering Hardening",
   "work_items": [
     {
       "allowed_paths": [
-        "REPLACE_WITH_EXPLICIT_PATHS"
+        "scripts/validate_opening_book_summary.py",
+        "actions/opening-book-consistency/action.yml",
+        ".github/workflows/validate-contracts.yml",
+        ".github/workflows/release-contracts.yml"
       ],
       "branch": "plan/qw-015-quantik-core-contracts",
       "decisions": [],
@@ -36,7 +39,7 @@
     },
     {
       "allowed_paths": [
-        "REPLACE_WITH_EXPLICIT_PATHS"
+        ".github/workflows/rust.yml"
       ],
       "branch": "plan/qw-015-quantik-core-rust",
       "decisions": [],
@@ -45,11 +48,11 @@
       "invariants": [],
       "packet": "repos/quantik-core-rust/W2-plan-required.md",
       "repository": "quantik-core-rust",
-      "status": "plan-required"
+      "status": "completed"
     },
     {
       "allowed_paths": [
-        "REPLACE_WITH_EXPLICIT_PATHS"
+        ".github/workflows/contracts.yml"
       ],
       "branch": "plan/qw-015-quantik-core-py",
       "decisions": [],
@@ -58,7 +61,7 @@
       "invariants": [],
       "packet": "repos/quantik-core-py/W3-plan-required.md",
       "repository": "quantik-core-py",
-      "status": "plan-required"
+      "status": "completed"
     }
   ]
 }
