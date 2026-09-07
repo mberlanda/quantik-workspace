@@ -27,6 +27,16 @@
     "status": {
       "type": "string"
     },
+    "complexity": {
+      "type": "string",
+      "enum": ["S", "M", "L", "XL"],
+      "description": "Engineering complexity of this work item. See tasks/dispatch-sizing.md."
+    },
+    "dispatch": {
+      "type": "string",
+      "enum": ["mechanical", "execute-and-record", "judgment"],
+      "description": "What kind of agent this item wants. mechanical: every decision is already made. execute-and-record: run the specified thing and report real output. judgment: a real call to make, so a capable model plus human review."
+    },
     "allowed_paths": {
       "type": "array",
       "items": {

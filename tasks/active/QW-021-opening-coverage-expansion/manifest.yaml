@@ -12,35 +12,146 @@
     "observation.v1"
   ],
   "affected_repositories": [
-    "quantik-models-py"
+    "quantik-models-py",
+    "articles"
   ],
   "complexity": "XL",
-  "complexity_notes": "High-stakes: a wrong partition design destroys the current held-out probe; large compute; results propagate into published article claims.",
+  "complexity_notes": "High-stakes: plies 4-6 ARE the held-out probe, so a wrong partition destroys the 99.63% figure and the articles quoting it. W1 is a hard gate — partition designed and human-reviewed before any labelling run. W2-W7 are then execute-and-record or mechanical. W7 was added 2026-09-07: acceptance criterion 6 covers the articles repo, which was missing from affected_repositories.",
   "created": "2026-08-30",
   "dependencies": [
     "QW-012"
   ],
   "id": "QW-021",
   "problem": "The flagship network trained on zero positions below ply 6, including plies 4 and 5 where the contest lives. This now has a measured payoff rather than a plausible one: adding 109,602 exactly-solved positions at plies 3-6 (the v1 to v2 corpus step) bought about five points of ply-4 probe accuracy and cut value MAE threefold, and took cpool from a 48.9% tie with minimax-d2 to 59.7% from a ply-3 start, improving in BOTH seats. Training the smaller corpus to convergence does not recover it — see ADR 0014. Plies 0-6 hold 1,019,275 canonical live positions, fewer than the 3,087,356 rows already trained on, and the enumerations are already on disk as runs/canonical/level01.npy through level08.npy. Only oracle labelling is missing. The catch is that plies 4-6 ARE the held-out probe.",
-  "status": "not-started",
+  "status": "planned",
   "title": "Opening Coverage Expansion — Plies 0 to 6",
   "work_items": [
     {
       "allowed_paths": [
-        "docs/opening-coverage-partition.md",
-        "src/quantik_models/data/merge_corpus.py",
-        "scripts/evaluate_lineup.sh",
-        "docs/labeling-strategy.md",
-        "docs/models.md"
+        "docs/opening-coverage-partition.md"
       ],
-      "branch": "plan/qw-021-quantik-models-py",
+      "branch": "docs/opening-coverage-partition",
+      "complexity": "L",
       "decisions": [],
       "depends_on": [],
+      "dispatch": "judgment",
       "id": "W1",
-      "invariants": [],
-      "packet": "repos/quantik-models-py/W1-plan-required.md",
+      "invariants": [
+        "context/system/canonical-invariants.md#I4"
+      ],
+      "packet": "repos/quantik-models-py/W1-partition-design.md",
       "repository": "quantik-models-py",
-      "status": "plan-required"
+      "status": "planned"
+    },
+    {
+      "allowed_paths": [
+        "docs/opening-coverage-partition.md",
+        "scripts/solve_opening.py"
+      ],
+      "branch": "feat/opening-label-smoke",
+      "complexity": "S",
+      "decisions": [],
+      "depends_on": [
+        "W1"
+      ],
+      "dispatch": "execute-and-record",
+      "id": "W2",
+      "invariants": [],
+      "packet": "repos/quantik-models-py/W2-label-smoke.md",
+      "repository": "quantik-models-py",
+      "status": "planned"
+    },
+    {
+      "allowed_paths": [
+        "docs/opening-coverage-partition.md",
+        "scripts/solve_opening.py"
+      ],
+      "branch": "feat/label-plies-0-2",
+      "complexity": "M",
+      "decisions": [],
+      "depends_on": [
+        "W2"
+      ],
+      "dispatch": "execute-and-record",
+      "id": "W3",
+      "invariants": [],
+      "packet": "repos/quantik-models-py/W3-label-plies-0-2.md",
+      "repository": "quantik-models-py",
+      "status": "planned"
+    },
+    {
+      "allowed_paths": [
+        "src/quantik_models/data/merge_corpus.py",
+        "docs/labeling-strategy.md"
+      ],
+      "branch": "feat/merge-opening-corpus",
+      "complexity": "S",
+      "decisions": [],
+      "depends_on": [
+        "W3"
+      ],
+      "dispatch": "mechanical",
+      "id": "W4",
+      "invariants": [
+        "context/system/canonical-invariants.md#I4"
+      ],
+      "packet": "repos/quantik-models-py/W4-merge-corpus.md",
+      "repository": "quantik-models-py",
+      "status": "planned"
+    },
+    {
+      "allowed_paths": [
+        "docs/opening-coverage-partition.md",
+        "scripts/evaluate_lineup.sh"
+      ],
+      "branch": "feat/opening-coverage-training",
+      "complexity": "L",
+      "decisions": [],
+      "depends_on": [
+        "W4"
+      ],
+      "dispatch": "execute-and-record",
+      "id": "W5",
+      "invariants": [],
+      "packet": "repos/quantik-models-py/W5-train-and-arena.md",
+      "repository": "quantik-models-py",
+      "status": "planned"
+    },
+    {
+      "allowed_paths": [
+        "docs/models.md",
+        "docs/labeling-strategy.md",
+        "README.md"
+      ],
+      "branch": "docs/rescope-generalization-claim",
+      "complexity": "M",
+      "decisions": [],
+      "depends_on": [
+        "W5"
+      ],
+      "dispatch": "mechanical",
+      "id": "W6",
+      "invariants": [],
+      "packet": "repos/quantik-models-py/W6-rescope-claims.md",
+      "repository": "quantik-models-py",
+      "status": "planned"
+    },
+    {
+      "allowed_paths": [
+        "**/*.md"
+      ],
+      "branch": "docs/rescope-generalization-claim",
+      "complexity": "M",
+      "decisions": [],
+      "depends_on": [
+        "W5"
+      ],
+      "dispatch": "mechanical",
+      "id": "W7",
+      "invariants": [],
+      "packet": "repos/articles/W7-rescope-articles.md",
+      "repository": "articles",
+      "status": "planned"
     }
   ]
 }

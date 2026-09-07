@@ -138,6 +138,84 @@ def task_dependency_markdown(config: WorkspaceConfig) -> str:
     return "\n".join(lines) + "\n"
 
 
+def dispatch_board(config: WorkspaceConfig) -> list[dict[str, Any]]:
+    """Every work item in an active initiative, with whether it can be picked up right now.
+
+    `ready` means the initiative has no unmet dependency and every work item this one
+    declares in `depends_on` is `completed` — i.e. an agent can take it today.
+    """
+    graph = {item["id"]: item for item in task_dependency_map(config)["initiatives"]}
+    rows: list[dict[str, Any]] = []
+    for path in sorted((config.root / "tasks" / "active").glob("*/manifest.yaml")):
+        manifest = load_data(path)
+        initiative = graph.get(manifest["id"], {})
+        if initiative.get("done"):
+            continue
+        items = {item["id"]: item for item in manifest.get("work_items", [])}
+        for item in manifest.get("work_items", []):
+            unmet = [dep for dep in item.get("depends_on", []) if items.get(dep, {}).get("status") != "completed"]
+            rows.append({
+                "initiative": manifest["id"],
+                "work_item": item["id"],
+                "repository": item.get("repository"),
+                "branch": item.get("branch"),
+                "status": item.get("status"),
+                "complexity": item.get("complexity"),
+                "dispatch": item.get("dispatch"),
+                "depends_on": item.get("depends_on", []),
+                "unmet_dependencies": unmet,
+                "initiative_blocked_by": initiative.get("blocked_by", []),
+                "ready": not unmet
+                and not initiative.get("blocked_by")
+                and item.get("status") not in {"completed", "plan-required"},
+            })
+    return rows
+
+
+def dispatch_board_markdown(config: WorkspaceConfig) -> str:
+    """The pick-up-and-go menu: one row per work item, ready ones first."""
+    rows = dispatch_board(config)
+    ready = [row for row in rows if row["ready"]]
+    waiting = [row for row in rows if not row["ready"]]
+    lines = [
+        "# Dispatch Board", "",
+        "Generated from `tasks/active/*/manifest.yaml`. One row per work item — the unit an agent "
+        "is actually assigned. `ready` means nothing blocks it today.", "",
+        "Generate a work item's execution bundle with:", "",
+        "```sh",
+        "quantik-workspace context task <INITIATIVE> <REPOSITORY> --work-item <ID> \\",
+        "  --budget 64000 --output /tmp/<ID>.md",
+        "```", "",
+        f"**{len(ready)} ready now · {len(waiting)} waiting.** "
+        "`dispatch` says what kind of agent an item wants: `mechanical` (every decision already "
+        "made — a small model is enough), `execute-and-record` (run the specified thing, report "
+        "real output), `judgment` (a real call to make — capable model, human review).", "",
+        "## Ready now", "",
+        "| Initiative | Item | Repository | Complexity | Dispatch | Branch |",
+        "| --- | --- | --- | --- | --- | --- |",
+    ]
+    for row in ready:
+        lines.append(
+            f"| `{row['initiative']}` | `{row['work_item']}` | `{row['repository']}` | "
+            f"{row['complexity'] or '-'} | {row['dispatch'] or '-'} | `{row['branch']}` |"
+        )
+    lines.extend([
+        "", "## Waiting", "",
+        "| Initiative | Item | Repository | Complexity | Dispatch | Waiting on |",
+        "| --- | --- | --- | --- | --- | --- |",
+    ])
+    for row in waiting:
+        blockers = ", ".join(
+            [f"{row['initiative']}.{dep}" for dep in row["unmet_dependencies"]]
+            + list(row["initiative_blocked_by"])
+        ) or (row["status"] or "-")
+        lines.append(
+            f"| `{row['initiative']}` | `{row['work_item']}` | `{row['repository']}` | "
+            f"{row['complexity'] or '-'} | {row['dispatch'] or '-'} | {blockers} |"
+        )
+    return "\n".join(lines) + "\n"
+
+
 def repository_summary_markdown(config: WorkspaceConfig) -> str:
     lines = ["# Repository Summary", "", "| Repository | Branch | Commit | Dirty | Version | Contracts |", "| --- | --- | --- | --- | --- | --- |"]
     for row in all_status(config):
@@ -154,6 +232,9 @@ def write_generated(config: WorkspaceConfig) -> list[Path]:
         generated / "dependency-graph.json": dump_data(dependency_map(config)),
         generated / "task-dependency-graph.md": task_dependency_markdown(config),
         generated / "task-dependency-graph.json": dump_data(task_dependency_map(config)),
+        generated / "dispatch-board.md": dispatch_board_markdown(config),
+        generated / "dispatch-board.json": dump_data({"schema": "quantik-dispatch-board.v1",
+                                                      "work_items": dispatch_board(config)}),
     }
     for path, content in outputs.items():
         path.write_text(content, encoding="utf-8")

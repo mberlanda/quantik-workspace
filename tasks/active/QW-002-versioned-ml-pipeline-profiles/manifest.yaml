@@ -14,34 +14,85 @@
     "quantik-models-py"
   ],
   "complexity": "M",
-  "complexity_notes": "Single repo, but a real abstraction to design (profile schema, overrides, migration) across pipeline/trainer/CI. No cross-repo coupling.",
+  "complexity_notes": "One repo, but a real abstraction to design. There is no src/quantik_models/pipeline/ package today. Split so the single open design question is W1 (judgment, human-reviewed) and W2-W4 are mechanical implementations of it.",
   "dependencies": [],
   "id": "QW-002",
   "problem": "The models repository has a working smoke pipeline and trainer, but run tiers are assembled from scattered environment variables and duplicated wrappers rather than one versioned pipeline definition.",
-  "status": "plan-required",
+  "status": "planned",
   "title": "Versioned ML Pipeline Profiles",
   "work_items": [
     {
       "allowed_paths": [
-        "scripts/run_smoke_pipeline.sh",
-        "scripts/verify_smoke_outputs.py",
-        "src/quantik_models/pipeline/*.py",
-        "src/quantik_models/data/materialize.py",
-        "src/quantik_models/train/trainer.py",
-        "src/quantik_models/train/provenance.py",
-        ".github/workflows/e2e-data-pipeline.yml",
-        ".github/workflows/train-smoke.yml",
-        "docs/pipeline.md",
-        "tests/test_pipeline*.py"
+        "docs/pipeline.md"
       ],
-      "branch": "plan/qw-002-quantik-models-py",
+      "branch": "docs/pipeline-profile-design",
+      "complexity": "M",
       "decisions": [],
       "depends_on": [],
+      "dispatch": "judgment",
       "id": "W1",
       "invariants": [],
-      "packet": "repos/quantik-models-py/W1-plan-required.md",
+      "packet": "repos/quantik-models-py/W1-profile-design.md",
       "repository": "quantik-models-py",
-      "status": "plan-required"
+      "status": "planned"
+    },
+    {
+      "allowed_paths": [
+        "src/quantik_models/pipeline/*.py",
+        "tests/test_pipeline_profiles.py",
+        "docs/pipeline.md"
+      ],
+      "branch": "feat/pipeline-profiles",
+      "complexity": "M",
+      "decisions": [],
+      "depends_on": [
+        "W1"
+      ],
+      "dispatch": "mechanical",
+      "id": "W2",
+      "invariants": [],
+      "packet": "repos/quantik-models-py/W2-profile-loading.md",
+      "repository": "quantik-models-py",
+      "status": "planned"
+    },
+    {
+      "allowed_paths": [
+        "src/quantik_models/pipeline/*.py",
+        "scripts/run_smoke_pipeline.sh",
+        "scripts/verify_smoke_outputs.py",
+        "src/quantik_models/train/provenance.py",
+        "tests/test_pipeline_runner.py"
+      ],
+      "branch": "feat/pipeline-runner",
+      "complexity": "M",
+      "decisions": [],
+      "depends_on": [
+        "W2"
+      ],
+      "dispatch": "mechanical",
+      "id": "W3",
+      "invariants": [],
+      "packet": "repos/quantik-models-py/W3-pipeline-runner.md",
+      "repository": "quantik-models-py",
+      "status": "planned"
+    },
+    {
+      "allowed_paths": [
+        ".github/workflows/e2e-data-pipeline.yml",
+        ".github/workflows/train-smoke.yml"
+      ],
+      "branch": "ci/pipeline-profiles",
+      "complexity": "S",
+      "decisions": [],
+      "depends_on": [
+        "W3"
+      ],
+      "dispatch": "mechanical",
+      "id": "W4",
+      "invariants": [],
+      "packet": "repos/quantik-models-py/W4-ci-uses-runner.md",
+      "repository": "quantik-models-py",
+      "status": "planned"
     }
   ]
 }

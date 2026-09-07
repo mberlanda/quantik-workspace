@@ -13,31 +13,128 @@
     "quantik-models-py"
   ],
   "complexity": "L",
-  "complexity_notes": "Single repo, but correctness-sensitive: bit-exact round-trip converter, back-induction with a completeness assertion, independent oracle confirmation.",
+  "complexity_notes": "Single repo, correctness-sensitive rather than design-open: a bit-exact round trip, a back-induction guarded by a set-equality completeness assertion, and independent oracle confirmation. Split into six narrow items, each with its own falsifiable check.",
   "created": "2026-08-30",
   "id": "QW-027",
   "problem": "The corpora are quoted by row count, and the row count describes the value corpus while badly misdescribing the policy corpus. Only about 8% of rows carry a policy label (250,000 of v1's 3,087,356; 255,058 of v2's; 271,676 of v3's) and the density is flat across all three, so a corpus that 'grew by 323,568 rows' did not necessarily grow its policy signal. Per-ply label counts at plies 7-12 are identical round numbers in every corpus (60k/60k/30k/20k/20k/20k) with zero at ply 13: a fixed sampling cap, not coverage. v1 and v2/v3 use incompatible policy schemas (dense float32 (N,64) plus a weight, 282 bytes/row, versus a uint64 optimal_mask at 30) which is why nothing merges them, though the conversion is exact both ways. And no corpus reaches below ply 3 at all: plies 0-2 are 55 canonical positions and no model has seen one. Measured against exact back-inducted targets, the flagship cpool checkpoints are indistinguishable from random legal play on shallow policy (mass-on-optimal 0.160 and 0.336 against baselines of 0.170 and 0.331) while scoring 99.6% on the held-out probe.",
-  "status": "not-started",
+  "status": "planned",
   "title": "Corpus Label Structure and the Shallow-Ply Floor",
   "work_items": [
     {
       "allowed_paths": [
-        "docs/corpus-structure.md",
-        "docs/dev-data.md",
-        "docs/corpus-v3.md",
-        "src/quantik_models/data/policy_schema.py",
-        "scripts/induct_shallow.py",
-        "scripts/shallow_probe.py",
-        "src/quantik_models/data/merge_corpus.py"
+        "docs/corpus-structure.md"
       ],
-      "branch": "plan/qw-027-quantik-models-py",
+      "branch": "docs/corpus-structure",
+      "complexity": "M",
       "decisions": [],
       "depends_on": [],
+      "dispatch": "execute-and-record",
       "id": "W1",
       "invariants": [],
-      "packet": "repos/quantik-models-py/W1-plan-required.md",
+      "packet": "repos/quantik-models-py/W1-measure-corpus-structure.md",
       "repository": "quantik-models-py",
-      "status": "plan-required"
+      "status": "planned"
+    },
+    {
+      "allowed_paths": [
+        "src/quantik_models/data/policy_schema.py",
+        "tests/test_policy_schema.py"
+      ],
+      "branch": "feat/policy-schema-converter",
+      "complexity": "M",
+      "decisions": [],
+      "depends_on": [
+        "W1"
+      ],
+      "dispatch": "mechanical",
+      "id": "W2",
+      "invariants": [
+        "context/system/canonical-invariants.md#I6"
+      ],
+      "packet": "repos/quantik-models-py/W2-policy-schema-converter.md",
+      "repository": "quantik-models-py",
+      "status": "planned"
+    },
+    {
+      "allowed_paths": [
+        "scripts/induct_shallow.py",
+        "tests/test_induct_shallow.py"
+      ],
+      "branch": "feat/induct-shallow",
+      "complexity": "M",
+      "decisions": [],
+      "depends_on": [
+        "W2"
+      ],
+      "dispatch": "mechanical",
+      "id": "W3",
+      "invariants": [
+        "context/system/canonical-invariants.md#I4"
+      ],
+      "packet": "repos/quantik-models-py/W3-induct-shallow.md",
+      "repository": "quantik-models-py",
+      "status": "planned"
+    },
+    {
+      "allowed_paths": [
+        "docs/corpus-structure.md",
+        "scripts/induct_shallow.py"
+      ],
+      "branch": "feat/confirm-shallow-induction",
+      "complexity": "S",
+      "decisions": [],
+      "depends_on": [
+        "W3"
+      ],
+      "dispatch": "execute-and-record",
+      "id": "W4",
+      "invariants": [
+        "context/system/canonical-invariants.md#I4"
+      ],
+      "packet": "repos/quantik-models-py/W4-confirm-induction.md",
+      "repository": "quantik-models-py",
+      "status": "planned"
+    },
+    {
+      "allowed_paths": [
+        "scripts/shallow_probe.py",
+        "tests/test_shallow_probe.py"
+      ],
+      "branch": "fix/shallow-probe-baseline",
+      "complexity": "S",
+      "decisions": [],
+      "depends_on": [
+        "W1"
+      ],
+      "dispatch": "mechanical",
+      "id": "W5",
+      "invariants": [],
+      "packet": "repos/quantik-models-py/W5-shallow-probe-baseline.md",
+      "repository": "quantik-models-py",
+      "status": "planned"
+    },
+    {
+      "allowed_paths": [
+        "src/quantik_models/data/merge_corpus.py",
+        "docs/corpus-structure.md",
+        "docs/dev-data.md",
+        "docs/corpus-v3.md"
+      ],
+      "branch": "feat/merge-shallow-rows",
+      "complexity": "S",
+      "decisions": [],
+      "depends_on": [
+        "W4",
+        "W5"
+      ],
+      "dispatch": "mechanical",
+      "id": "W6",
+      "invariants": [
+        "context/system/canonical-invariants.md#I4"
+      ],
+      "packet": "repos/quantik-models-py/W6-merge-shallow-rows.md",
+      "repository": "quantik-models-py",
+      "status": "planned"
     }
   ]
 }
