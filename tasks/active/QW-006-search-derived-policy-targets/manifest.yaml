@@ -23,7 +23,8 @@
   "work_items": [
     {
       "allowed_paths": [
-        "REPLACE_WITH_EXPLICIT_PATHS"
+        "crates/quantik-core/src/bench/contracts.rs",
+        "crates/quantik-core/tests/observation_policy.rs"
       ],
       "branch": "plan/qw-006-quantik-core-rust",
       "decisions": [],
@@ -36,11 +37,17 @@
     },
     {
       "allowed_paths": [
-        "REPLACE_WITH_EXPLICIT_PATHS"
+        "src/quantik_models/data/materialize.py",
+        "src/quantik_models/data/labels.py",
+        "src/quantik_models/train/supervised.py",
+        "docs/labeling-strategy.md",
+        "tests/test_materialize.py"
       ],
       "branch": "plan/qw-006-quantik-models-py",
       "decisions": [],
-      "depends_on": [],
+      "depends_on": [
+        "W1"
+      ],
       "id": "W2",
       "invariants": [],
       "packet": "repos/quantik-models-py/W2-plan-required.md",
