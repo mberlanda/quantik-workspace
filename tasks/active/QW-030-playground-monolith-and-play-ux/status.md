@@ -34,21 +34,24 @@ including a scope deviation: the PR also fixed a real bug in
 reverse-DNS lookup was hanging macOS CI for ~30s per run, the actual cause
 behind three earlier failed fix attempts. Flagged for coordinator review.
 
-**M2–M4 implemented, 2026-09-06 — PRs open, not merged.** All three
-`quantik-models-py` work items are done and green (650 passed, mypy clean
-on each branch) with PRs open; merging each is the user's call, not made in
-this pass. See `handoffs/quantik-models-py.md` for the full record of each.
+**M2–M4 implemented 2026-09-06, merged 2026-09-07.** All three
+`quantik-models-py` work items are done, green (650 passed, mypy clean
+on each branch), and now merged to `main` in order (#64→#65→#66, per the
+user's 2026-09-07 go-ahead) — all three fast-forwarded clean, no conflicts.
+See `handoffs/quantik-models-py.md` for the full record of each.
 
-- **M2** (#64, `feat/api-advertises-recording`): `GET /api` now reports
-  `"recording": <bool>`. Unblocks visualizer V5.
-- **M3** (#65, `feat/fetch-stage`): `hub.stage()` + `--stage`/`--copy` on
-  `quantik-models-fetch`. One gap found and fixed *within this pass*, before
-  merge: the initial symlink-or-copy-on-OSError fallback doesn't cover the
-  Docker case (a symlink into a build stage's own Hub cache resolves fine
-  within that stage, then dangles once a later stage copies the directory
-  alone) — added an explicit `--copy`/`copy=True` to force real files.
-- **M4** (#66, `chore/docker-from-hub`, **stacked on #65** — depends on
-  `--copy`, so merge #65 first): the Docker image now builds from
+- **M2** (#64, `feat/api-advertises-recording`, squash-merged at `dd61dcd`):
+  `GET /api` now reports `"recording": <bool>`. Unblocks visualizer V5.
+- **M3** (#65, `feat/fetch-stage`, squash-merged at `ccae033`): `hub.stage()`
+  + `--stage`/`--copy` on `quantik-models-fetch`. One gap found and fixed
+  *within this pass*, before merge: the initial symlink-or-copy-on-OSError
+  fallback doesn't cover the Docker case (a symlink into a build stage's own
+  Hub cache resolves fine within that stage, then dangles once a later
+  stage copies the directory alone) — added an explicit `--copy`/`copy=True`
+  to force real files.
+- **M4** (#66, `chore/docker-from-hub`, squash-merged at `e231abc`,
+  **stacked on #65** — genuinely depends on `--copy`, merged right after
+  it): the Docker image now builds from
   `quantik-models-py` alone (no sibling `quantik-qfen-visualizer` context)
   and fetches all four published weights from the Hub at build time
   instead of a hand-staged local `runs/` copy. Built and ran it for real —
@@ -147,16 +150,18 @@ further; flagged as a follow-up in the handoff rather than silently
 skipped. Squash-merged clean at `b9f5982`, plain fast-forward. Full record
 in `handoffs/quantik-qfen-visualizer.md`.
 
-**Next action:** V5 (`fix/no-store-is-not-an-error`) — the last item, and
-the smallest and most isolated. Needs M2's `GET /api` `"recording"` field
-(given directly in the packet, so M2 need not be merged first). TDD
-applies fully here (unlike V4): a failing test comes first for
-`fetchCapabilities` in `src/play.js` and for `recordFinishedGame()`'s three
-cases in `app.js` (recording on → POST happens; off → no POST, no throw;
-`/api` unreachable → falls back to attempting the POST anyway). Per the
-user's 2026-09-06 instruction to merge PRs one by one as they land, V5's PR
-will be merged shortly after it opens. Once V5 lands, all of V1–V5 are
-done; separately: merge `quantik-models-py` #64, #65, #66 in that order
-(M4 needs M3's `--copy` flag) when the user is ready, then
-`quantik-models-py` M5 (`docs/one-port-playground`), which depends on all
-of M1, M2, M4, and V1–V5.
+**`quantik-models-py` M1–M4 are all merged** (`d402e31`, `dd61dcd`,
+`ccae033`, `e231abc`). **Next action:** V5 (`fix/no-store-is-not-an-error`)
+in `quantik-qfen-visualizer` — the last item in the initiative, and the
+smallest and most isolated. It's now unblocked for real (M2 is merged, not
+just spec'd). TDD applies fully here (unlike V4): a failing test comes
+first for `fetchCapabilities` in `src/play.js` and for
+`recordFinishedGame()`'s three cases in `app.js` (recording on → POST
+happens; off → no POST, no throw; `/api` unreachable → falls back to
+attempting the POST anyway). Per the user's 2026-09-06 instruction to merge
+PRs one by one as they land, V5's PR will be merged shortly after it opens.
+Once V5 lands, all of V1–V5 and M1–M4 are done, and `quantik-models-py` M5
+(`docs/one-port-playground`) is unblocked — resync the vendored app,
+document the finished one-port flow. As of this update V5 is being worked
+by another session (`quantik-qfen-visualizer-a0`); this session is holding
+off touching that repo until it reports V5 merged.

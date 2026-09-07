@@ -31,7 +31,7 @@
 ## M2 — `GET /api` reports whether the server has a store
 
 - Initiative / repository: QW-030 / `quantik-models-py`
-- Branch and full commit: `feat/api-advertises-recording` @ `4a88cc3`, based on `main` post-M1 (`d402e319`). Not merged — PR opened, merge is the user's call.
+- Branch and full commit: `feat/api-advertises-recording` @ `4a88cc3`, based on `main` post-M1 (`d402e319`). **Squash-merged to `main` at `dd61dcd`, 2026-09-07.**
 - Dirty-state before/after: clean before and after.
 - PR: https://github.com/mberlanda/quantik-models-py/pull/64
 - Files changed (both in M2's `allowed_paths`):
@@ -41,12 +41,12 @@
 - Commands and exact results: `.venv/bin/python -m pytest -q` → `650 passed`; `.venv/bin/python -m mypy` → `Success: no issues found in 61 source files`. CI on PR #64: all 12 checks green (`https://github.com/mberlanda/quantik-models-py/actions/runs/34056066100` and siblings).
 - Generated evidence: CI run logs on PR #64, all green.
 - Known gaps / follow-up: none. Unblocks visualizer V5 as intended.
-- Prohibited or unperformed remote actions: PR opened, not merged.
+- Prohibited or unperformed remote actions: none — merged 2026-09-07 with the user's explicit go-ahead (squash, in order #64→#65→#66).
 
 ## M3 — `hub.stage()` bridges the Hub cache to a `--models` directory
 
 - Initiative / repository: QW-030 / `quantik-models-py`
-- Branch and full commit: `feat/fetch-stage` @ `d0de769` (amended once — see below), based on `main` post-M1. Not merged — PR opened, merge is the user's call.
+- Branch and full commit: `feat/fetch-stage` @ `d0de769` (amended once — see below), based on `main` post-M1. **Squash-merged to `main` at `ccae033`, 2026-09-07.**
 - Dirty-state before/after: clean before and after.
 - PR: https://github.com/mberlanda/quantik-models-py/pull/65
 - Files changed (both in M3's `allowed_paths`):
@@ -56,16 +56,16 @@
   - **The naming trap, resolved as flagged rather than silently worked around:** a Hub snapshot names its torch weights `model.safetensors` (`export.huggingface.stage` renames on the way *to* the Hub); `stage()` keeps that name. `arena.registry.weights_path` already reads both names; `play.registry.scan_models`'s default (`torch`) runtime does not, so a directory staged this way reads `"ready"` only under `--runtime onnx` today. `play/registry.py` is outside M3's `allowed_paths`, so widening its acceptance is explicitly left as that module's own change, not made here.
   - **A gap found and fixed before this PR merged, not after:** the initial implementation's `_materialize` tried a symlink and fell back to a real copy only on `OSError` — which never fires on Linux, where the symlink itself succeeds. That's not enough for M4 (Docker): a symlink into a build stage's own Hub cache resolves fine *within* that stage and then dangles the instant a later stage's `COPY --from=` carries the destination alone, without the cache behind it — a cross-stage boundary, not a platform capability, so the OSError fallback (aimed at Windows) never triggers for it. Added `copy: bool = False` to `stage()`/`_materialize` and a `--copy` CLI flag to force real files outright, plus two new tests (`copy=True` directly, and the CLI flag). The PR's single commit was amended (force-pushed) to fold this in before merge, per the user's own review-etiquette expectations.
 - Commands and exact results: `.venv/bin/python -m pytest -q` → `650 passed`; `.venv/bin/python -m mypy` → `Success: no issues found in 61 source files`, both after the amendment.
-- Generated evidence: none from CI yet at hand-off time (PR just pushed); the `copy=True` fix was validated by the real M4 Docker build succeeding end-to-end (see M4 below) — the exact scenario it exists for.
+- Generated evidence: CI on PR #65 all green post-amendment; the `copy=True` fix was validated by the real M4 Docker build succeeding end-to-end (see M4 below) — the exact scenario it exists for.
 - Known gaps / follow-up: `play/registry.py`'s `torch`-runtime filename acceptance (see above) is a real, named gap for a future work item, not this one's to fix.
-- Prohibited or unperformed remote actions: PR opened, not merged. Force-pushed the amended commit to this session's own branch only (`feat/fetch-stage`, opened this session) — no shared history rewritten.
+- Prohibited or unperformed remote actions: none — merged 2026-09-07 with the user's explicit go-ahead. Force-pushed the amended commit to this session's own branch only (`feat/fetch-stage`, opened this session) — no shared history rewritten.
 
 ## M4 — the Docker image builds from the Hub, not `runs/`
 
 - Initiative / repository: QW-030 / `quantik-models-py`
-- Branch and full commit: `chore/docker-from-hub` @ `924dc92`, **stacked on `feat/fetch-stage` (M3, #65)** — genuinely depends on `--copy`, not just sequenced after it. Not merged — PR opened, merge is the user's call, and its diff will not be clean until #65 merges first.
+- Branch and full commit: `chore/docker-from-hub` @ `924dc92`, **stacked on `feat/fetch-stage` (M3, #65)** — genuinely depends on `--copy`, not just sequenced after it. **Squash-merged to `main` at `e231abc`, 2026-09-07, immediately after #65** — merged clean, no retargeting needed (both PRs based on `main` directly; #65's commit was already an ancestor of this branch, so #65 merging first meant this diff resolved cleanly).
 - Dirty-state before/after: clean before and after.
-- PR: https://github.com/mberlanda/quantik-models-py/pull/66 (base `main`; currently shows #65's commit too, until #65 lands)
+- PR: https://github.com/mberlanda/quantik-models-py/pull/66 (base `main`). Merged.
 - Files changed (all three in M4's `allowed_paths`):
   - `docker/Dockerfile` — rewritten as two build stages. First: installs `.[serve,hub]`, runs `quantik-models-fetch --all --stage /app/models --copy` against a throwaway `HF_HOME`, then `find /app/models -name model.safetensors -delete` (dead weight under `--runtime onnx`). Second: installs only `.[serve]`, `COPY`s in `NOTICE` and the staged `models/`, adds `org.opencontainers.image.*` labels carrying the licence split, runs `--models models --runtime onnx --no-store` with no `--static` override (package data now finds the app itself, per M1). No more sibling `quantik-qfen-visualizer` build context.
   - `docker/NOTICE` — reworded for `models/` (not `staging/`) and the app as vendored package data rather than a copied sibling checkout; same MIT/CC-BY-NC-4.0 split.
@@ -77,4 +77,4 @@
   - `docker run -d -p 18080:8000 quantik-play:hub-test` then `curl`: `GET /` → `200 text/html`; `GET /api/opponents` → the six classical engines plus `attn@0`/`attn@128`/etc.; `GET /api/models` → all four (`attn`, `cpool`, `mlp`, `resnet`) `"status": "ready"`; `docker exec ... cat NOTICE` and `docker inspect --format '{{json .Config.Labels}}'` both confirmed present and correct. Container stopped and the test image removed afterward.
 - Generated evidence: none from CI (Docker build is not part of this repo's GitHub Actions); the build/run transcript above is the evidence, reproducible with the command in the PR description.
 - Known gaps / follow-up: `scripts/build_docker_image.sh` and `docker/staging/` are now stale (they stage local checkpoints and expect the old sibling-repo build context) and were deliberately left untouched — flagged in both the PR and `docs/play-service.md` as a named follow-up, not silently abandoned.
-- Prohibited or unperformed remote actions: PR opened, not merged. Docker builds and runs were local only — nothing was pushed to a registry (explicitly out of scope, QW-009 criterion 5).
+- Prohibited or unperformed remote actions: none — merged 2026-09-07 with the user's explicit go-ahead. Docker builds and runs were local only — nothing was pushed to a registry (explicitly out of scope, QW-009 criterion 5).
