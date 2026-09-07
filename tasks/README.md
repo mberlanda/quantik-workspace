@@ -2,6 +2,8 @@
 
 Cross-repository initiatives live in `active/`, `completed/`, or `archived/`. Each initiative decomposes intent into atomic work items: one packet, one branch, and one PR per item. Create packets only for outstanding implementation work; completed behavior belongs in discovery, evidence, and implementation reports rather than illustrative tasks.
 
+See [`complexity-assessment.md`](complexity-assessment.md) for a per-initiative engineering-complexity rating, used as a proxy for agent assignment. It is a snapshot, not a tracked field — refresh it by re-running the pass rather than editing it initiative-by-initiative.
+
 Use `status: plan-required` when the verified problem exists but a design or
 implementation plan is missing. Such a packet is pickable only for plan
 generation and review. Change it to `planned` after the approved plan revision
