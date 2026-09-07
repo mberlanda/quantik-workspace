@@ -82,7 +82,7 @@
 ## M5 — re-sync the app and document the result
 
 - Initiative / repository: QW-030 / `quantik-models-py`
-- Branch and full commit: `docs/one-port-playground`, five commits (`a6bd1b9` re-sync, `25ccc33` README, `aef1707` play-service.md, `d5cb77b` DEVELOPMENT.md, `7ffd24d` CHANGELOG.md), based on `main` post-M4 (`e231abc`). Not merged — PR open, merge is the user's call, same as M2–M4 were before.
+- Branch and full commit: `docs/one-port-playground`, five commits (`a6bd1b9` re-sync, `25ccc33` README, `aef1707` play-service.md, `d5cb77b` DEVELOPMENT.md, `7ffd24d` CHANGELOG.md), based on `main` post-M4 (`e231abc`). **Squash-merged to `main` at `d9bffed`, 2026-09-07.**
 - Dirty-state before/after: clean before and after.
 - PR: https://github.com/mberlanda/quantik-models-py/pull/67
 - Files changed (all in M5's `allowed_paths`):
@@ -102,4 +102,4 @@
   - Manual verification transcript: `quantik-models-fetch --all --stage staging` (real fetch, `Fetching 5 files: 100%` × 4 models) → `quantik-models-play --models staging --runtime onnx --no-store --port 18123` printed `runtime onnx`, `models staging (4 ready of 4 found)`, `store disabled` → `curl http://127.0.0.1:18123/api` returned `"recording": false` and the full route list → `curl -o /dev/null -w '%{http_code}' http://127.0.0.1:18123/` → `200`. Server killed and scratch directory removed after.
 - Generated evidence: PR #67's CI run logs, all green; the manual verification transcript above.
 - Known gaps / follow-up: none.
-- Prohibited or unperformed remote actions: PR opened, not merged — merge is the user's call.
+- Prohibited or unperformed remote actions: none — merged 2026-09-07 with the user's explicit go-ahead.

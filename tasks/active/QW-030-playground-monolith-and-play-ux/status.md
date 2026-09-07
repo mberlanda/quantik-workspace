@@ -180,7 +180,7 @@ plain fast-forward. Full record in `handoffs/quantik-qfen-visualizer.md`.
 **All of V1–V5 are now merged.** QW-030's `quantik-qfen-visualizer` side is
 done.
 
-**M5 implemented, 2026-09-07 — PR open, not merged.** `quantik-models-py`
+**M5 implemented and merged, 2026-09-07.** `quantik-models-py`
 PR #67 (`docs/one-port-playground`), five commits, all 12 CI checks green
 (both `pytest (py3.12)` and `pytest (py3.13)`). Re-synced
 `src/quantik_models/play/app/` against the now-finished visualizer `main`
@@ -207,12 +207,14 @@ own. The one local `pytest` failure
 (`test_checkpoint_fixture.py::test_fixture_manifest_validates_through_core_py`)
 is a pre-existing, unrelated `contract_version` drift in the sibling
 `quantik-core-py` checkout — confirmed present on `main` before this
-branch's changes, and absent in CI (no sibling checkout there). Full record
-in `handoffs/quantik-models-py.md`.
+branch's changes, and absent in CI (no sibling checkout there). Squash-merged
+clean at `d9bffed`, plain fast-forward. Full record in
+`handoffs/quantik-models-py.md`.
 
-**Next action: none — this was the last work item in the initiative.**
-V1–V5 and M1–M5 are all implemented; only PR #67's merge is outstanding,
-and that is the user's call, same as M2–M4 were. Once #67 merges, every
-acceptance criterion in `manifest.yaml` has shipping code behind it; closing
-the initiative out (moving it to `tasks/completed/`) is a separate,
-deliberate step for whoever does that, not implied by this record.
+**All of M1–M5 and V1–V5 are now implemented and merged.** Every
+acceptance criterion in `manifest.yaml` has shipping code behind it.
+**Next action: none for either repository's code.** Closing the
+initiative out (moving it to `tasks/completed/`, via `task complete`) is
+a separate, deliberate step this record does not take on its own — left
+for whoever reviews the initiative as a whole, since a workspace session
+mid-execution isn't the right vantage point to declare an initiative done.
