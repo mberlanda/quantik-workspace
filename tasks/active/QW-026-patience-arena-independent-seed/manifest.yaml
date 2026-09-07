@@ -20,7 +20,12 @@
   "work_items": [
     {
       "allowed_paths": [
-        "REPLACE_WITH_EXPLICIT_PATHS"
+        "scripts/evaluate_lineup.sh",
+        "src/quantik_models/eval/shift.py",
+        "src/quantik_models/arena/*.py",
+        "docs/decisions/0001-architecture-lineup.md",
+        "docs/shift-evaluation.md",
+        "docs/autoplay.md"
       ],
       "branch": "plan/qw-026-quantik-models-py",
       "decisions": [],
