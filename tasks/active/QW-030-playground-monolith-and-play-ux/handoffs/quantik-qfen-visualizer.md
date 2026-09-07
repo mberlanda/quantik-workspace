@@ -1,5 +1,30 @@
 # Handoff
 
+## V3 — How to play
+
+- Initiative / repository: QW-030 / `quantik-qfen-visualizer`
+- Branch and full commit: `feat/how-to-play`, branched fresh off the post-V2 `main` (no stacking needed — both V1 and V2 were already merged). **Squash-merged to `main` at `614d527fe180656f3e8d671fec62ef38f5e27f09`, as PR #11.**
+- Dirty-state before/after: clean before and after.
+- PR: https://github.com/mberlanda/quantik-qfen-visualizer/pull/11. Merged.
+- Files changed (across this item's two commits, `fa44cd0` and `30d6b07`, both within V3's `allowed_paths` except the flagged deviation below):
+  - `src/rules.js` (new) — `RULES` (`{title: "How to play", points: [...]}`, three ordered points covering placement, the opponent-shape restriction, and the win condition) and `readHowToPlayOpen`/`writeHowToPlayOpen`, following `layout.js`'s defensive try/catch shape but defaulting toward **open** (not closed) when there's no stored value or the stored value is unreadable — see decision note below.
+  - `test/rules.test.js` (new) — 8 tests: `RULES`'s shape, all three group kinds (row/column/zone) present in the text, the placement restriction's wording present, the win condition's "four different shapes" + colour-independence wording present, default-open on first visit, a persisted closed state surviving a reload, a corrupt value falling back to open, and storage that throws being tolerated.
+  - `index.html` — new `<details id="how-to-play"><summary><strong id="how-to-play-summary"></strong></summary><ol id="how-to-play-points"></ol></details>` inserted inside `board-panel`, directly above `#board-grid` — "near the board," literally adjacent to it. Added `<script src="src/rules.js"></script>` before `app.js`.
+  - `src/app.js` — `Rules = global.QuantikRules`; new `renderRules()` sets the summary text and builds the `<li>` list from `Rules.RULES`, called once from `init()`; `elements.howToPlay.open` is set from `Rules.readHowToPlayOpen()` before the first render and persisted on the element's native `toggle` event via `Rules.writeHowToPlayOpen(...)`, mirroring V1's drawer wiring exactly.
+  - `test/index.test.js` — **outside V3's `allowed_paths`** (see deviation below): the exact-match script-list assertion needed `"src/rules.js"` added, the same one-line pattern as V1's `layout.js` and V2's `modes.js`.
+- Decisions and assumptions:
+  - **Rule wording checked against three files, not one, as the packet asked.** The placement restriction is confirmed verbatim-in-spirit against `quantik-core-contracts/docs/game-state.md` ("no row/column/region holds the same shape from both players" → `ILLEGAL_PLACEMENT`). That file states the win condition more loosely ("completed a winning line") without the "four different shapes" phrasing, so that half was checked against both engines independently: `quantik-core-rust/crates/quantik-core/src/game.rs`'s doc comment ("any win line contains all 4 distinct shapes (regardless of color)") and `quantik-core-py/src/quantik_core/game_utils.py`'s docstring ("a winning line ... with all four [shapes] ... Colors don't matter for winning"). All three sources agree with each other and with what shipped in `rules.js` — one rule stated consistently across the codebase, not a fourth, divergent statement of it.
+  - **Corrupt/unreadable storage fails toward *open*, the opposite of `layout.js`'s drawer (which fails toward closed).** Deliberate: an advanced/debug panel is safe to default closed on any doubt, but hiding the rules from someone who might actually need them is the worse failure mode for an explainer aimed at newcomers.
+  - **Did not reuse `layout.js`'s `readDrawerOpen`/`writeDrawerOpen` directly** — its helpers are hardcoded to the drawer's own storage key and default-closed semantics, neither of which fit this panel's different default (open on first visit) or different storage key, and `layout.js` is outside V3's `allowed_paths` regardless. Implemented as "a local equivalent" per the packet's own fallback language, following the same defensive shape rather than the same function.
+  - Placed the explainer *inside* `board-panel`, directly above `#board-grid`, rather than as a sibling of `content-grid` — reads as more literally "near the board" and keeps it inside the section V4's styling pass will already be touching.
+- **Scope deviation (flagging per "path expansion requires coordinator review"):** `test/index.test.js` touched again, outside V3's `allowed_paths` (`index.html, src/app.js, src/rules.js, test/rules.test.js`) — same one-line addition (`"src/rules.js"`) to the same exact-match script list, third time running (V1's `layout.js`, V2's `modes.js`, now this).
+- Commands and exact results:
+  - `npm test` → `85 passed` (77 already on `main` + 8 new in `test/rules.test.js`), 0 failures.
+  - Rendered `index.html` via `python3 -m http.server 5175` and drove it with Claude in Chrome: fresh load shows "▼ How to play" open directly above the board with all three numbered points rendered correctly; clicked it closed; reloaded the page and confirmed it stayed closed — the persisted state round-tripped through `localStorage` in a real browser, not just the DOM stub `node --test` uses.
+- Generated evidence: no CI workflow exists in this repo; the browser-interaction notes above are the rendering evidence in lieu of a CI artifact or saved screenshot files.
+- Known gaps / follow-up: none.
+- Prohibited or unperformed remote actions: none — merged per the user's 2026-09-06 instruction to merge PRs one by one as they land. This item needed no rebase-and-reopen (unlike V2's #9→#10): it was branched fresh off `main` after both V1 and V2 were already merged, so there was no stacked-on-an-unmerged-branch situation for a squash-merge to break.
+
 ## V2 — Modes of play
 
 - Initiative / repository: QW-030 / `quantik-qfen-visualizer`

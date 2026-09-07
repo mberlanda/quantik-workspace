@@ -103,11 +103,36 @@ persisted, then picked "Just the board" and confirmed it passed the Human/Human
 assignment through unchanged. Same `test/index.test.js` script-list deviation
 as V1 (flagged in both PRs). Full record in `handoffs/quantik-qfen-visualizer.md`.
 
-**Next action:** V3 (`feat/how-to-play`) next in the visualizer, branched
-fresh off the now-merged `main` (both V1 and V2 are on it, so no stacking
-needed for V3). Per the user's 2026-09-06 instruction to merge PRs one by
-one as they land, V3–V5 will each be merged shortly after their PR opens
-rather than left open for a separate merge decision. Separately: merge
-`quantik-models-py` #64, #65, #66 in that order (M4 needs M3's `--copy`
-flag) when the user is ready, then `quantik-models-py` M5 — blocked on the
-visualizer's V1–V5, which is in progress.
+**V3 implemented and merged, 2026-09-06.** `quantik-qfen-visualizer` PR #11
+(`feat/how-to-play`), branched fresh off the already-merged `main` (no
+stacking, no rebase-and-reopen needed this time). New collapsible
+`<details id="how-to-play">` sits directly above the board grid; new
+`src/rules.js` holds a frozen `RULES` object (title + ordered points) and
+localStorage read/write for the panel's open state, deliberately defaulting
+to **open** on a first visit or on corrupt/missing storage — the opposite
+default from `layout.js`'s drawer, since hiding the rules from someone who
+might need them is the worse failure mode. Rule wording was checked against
+three independent sources: `quantik-core-contracts/docs/game-state.md` (the
+placement restriction, stated there as the `ILLEGAL_PLACEMENT` rule),
+`quantik-core-rust`'s `game.rs`, and `quantik-core-py`'s `game_utils.py`
+(both stating the win condition in "four distinct/different shapes,
+regardless of colour" terms); all three agree. `npm test` → 85/85 (77
+existing + 8 new). Rendered and driven live via Claude in Chrome: confirmed
+the panel opens by default, collapsed it, reloaded and confirmed the closed
+state persisted. Same `test/index.test.js` script-list deviation as V1/V2
+(flagged in the PR). Squash-merged clean at `614d527` — a normal
+fast-forward, no auto-close since V3 branched off already-merged `main`
+rather than off another open PR. Full record in
+`handoffs/quantik-qfen-visualizer.md`.
+
+**Next action:** V4 (`chore/playground-styling`) next in the visualizer —
+styling only (`src/styles.css`), no `src/*.js` change and no failing test to
+write; verified purely by rendering and screenshots per the packet. Then V5
+(`fix/no-store-is-not-an-error`), the smallest and most isolated item, which
+needs M2's `GET /api` `"recording"` field (given directly in the packet, so
+M2 need not be merged first). Per the user's 2026-09-06 instruction to merge
+PRs one by one as they land, V4 and V5 will each be merged shortly after
+their PR opens rather than left open for a separate merge decision.
+Separately: merge `quantik-models-py` #64, #65, #66 in that order (M4 needs
+M3's `--copy` flag) when the user is ready, then `quantik-models-py` M5 —
+blocked on the visualizer's V1–V5, now three-fifths done.

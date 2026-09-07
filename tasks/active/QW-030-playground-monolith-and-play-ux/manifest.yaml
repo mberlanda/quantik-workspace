@@ -189,7 +189,7 @@
       "repository": "quantik-qfen-visualizer",
       "packet": "repos/quantik-qfen-visualizer/V3-how-to-play.md",
       "branch": "feat/how-to-play",
-      "status": "planned",
+      "status": "completed",
       "allowed_paths": [
         "index.html",
         "src/app.js",
