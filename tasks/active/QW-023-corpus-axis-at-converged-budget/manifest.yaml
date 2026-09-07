@@ -21,7 +21,9 @@
   "work_items": [
     {
       "allowed_paths": [
-        "REPLACE_WITH_EXPLICIT_PATHS"
+        "scripts/run_patience_lineup.sh",
+        "scripts/evaluate_lineup.sh",
+        "src/quantik_models/eval/shift.py"
       ],
       "branch": "plan/qw-023-quantik-models-py",
       "decisions": [],

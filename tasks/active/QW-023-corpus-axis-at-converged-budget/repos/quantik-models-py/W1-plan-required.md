@@ -39,7 +39,7 @@ One converged training run on `exact-sampled-v2.npz` and one arena against
 
 ## Implementation and scope
 
-Not yet planned. Replace this item's placeholder `allowed_paths` in `manifest.yaml` with explicit repository-relative paths, select the `decisions`/`invariants` references it actually needs, and split into further work items wherever another branch/PR is needed.
+`allowed_paths` in `manifest.yaml`: the two shell entrypoints (`run_patience_lineup.sh`, `evaluate_lineup.sh`) and the shared probe module (`eval/shift.py`) the Objective names. `runs/train/...` and `runs/oracle/...` are read-only inputs, not touched (`runs/` is gitignored). Criterion 5 ("ADR 0014 is updated") targets a file in `quantik-workspace/docs/adr/`, a different repository this initiative's `affected_repositories` doesn't list — noted here since `allowed_paths` can't span repositories, same gap pattern as QW-017's ADR. decisions/invariants stay empty: decisions.md's five points are already resolved as unheaded prose. The real dependency is QW-012 (initiative-level, itself still plan-required).
 
 ## Completion criteria and verification
 
