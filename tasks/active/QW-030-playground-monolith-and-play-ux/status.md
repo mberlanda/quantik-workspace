@@ -125,14 +125,38 @@ fast-forward, no auto-close since V3 branched off already-merged `main`
 rather than off another open PR. Full record in
 `handoffs/quantik-qfen-visualizer.md`.
 
-**Next action:** V4 (`chore/playground-styling`) next in the visualizer —
-styling only (`src/styles.css`), no `src/*.js` change and no failing test to
-write; verified purely by rendering and screenshots per the packet. Then V5
-(`fix/no-store-is-not-an-error`), the smallest and most isolated item, which
-needs M2's `GET /api` `"recording"` field (given directly in the packet, so
-M2 need not be merged first). Per the user's 2026-09-06 instruction to merge
-PRs one by one as they land, V4 and V5 will each be merged shortly after
-their PR opens rather than left open for a separate merge decision.
-Separately: merge `quantik-models-py` #64, #65, #66 in that order (M4 needs
-M3's `--copy` flag) when the user is ready, then `quantik-models-py` M5 —
-blocked on the visualizer's V1–V5, now three-fifths done.
+**V4 implemented and merged, 2026-09-07.** `quantik-qfen-visualizer` PR #12
+(`chore/playground-styling`), branched fresh off the already-merged `main`,
+`src/styles.css` only — no `index.html`, no `src/*.js`, so no
+`test/index.test.js` script-list deviation this time (nothing to add a new
+script tag for). Four commits, one concern each: (1) `order` on
+`.workspace`'s top-level sections so the board paints right after the mode
+chooser, ahead of the (now de-emphasized) game panel's secondary controls,
+examples, and settings — DOM/tab order untouched, only paint order moves;
+(2) real card styling for the mode chooser (unstyled since V2), selected
+state reusing the existing `--player-0` teal via `color-mix()`; (3) widened
+board, narrowed and quieted the side panel's cards; (4) recessive styling
+for the advanced drawer and the how-to-play explainer — hairline border,
+muted label, shared rotating-triangle disclosure, no accent colour on
+either. `npm test` → 85/85, unchanged (CSS-only). Rendered and driven live
+via Claude in Chrome at 1280×1000: confirmed the full visual order,
+clicked a mode card to see the highlight, opened the drawer to confirm no
+card chrome. A narrow-viewport check was attempted but the browser tool's
+resize didn't visibly change the capture in this session — not chased
+further; flagged as a follow-up in the handoff rather than silently
+skipped. Squash-merged clean at `b9f5982`, plain fast-forward. Full record
+in `handoffs/quantik-qfen-visualizer.md`.
+
+**Next action:** V5 (`fix/no-store-is-not-an-error`) — the last item, and
+the smallest and most isolated. Needs M2's `GET /api` `"recording"` field
+(given directly in the packet, so M2 need not be merged first). TDD
+applies fully here (unlike V4): a failing test comes first for
+`fetchCapabilities` in `src/play.js` and for `recordFinishedGame()`'s three
+cases in `app.js` (recording on → POST happens; off → no POST, no throw;
+`/api` unreachable → falls back to attempting the POST anyway). Per the
+user's 2026-09-06 instruction to merge PRs one by one as they land, V5's PR
+will be merged shortly after it opens. Once V5 lands, all of V1–V5 are
+done; separately: merge `quantik-models-py` #64, #65, #66 in that order
+(M4 needs M3's `--copy` flag) when the user is ready, then
+`quantik-models-py` M5 (`docs/one-port-playground`), which depends on all
+of M1, M2, M4, and V1–V5.
