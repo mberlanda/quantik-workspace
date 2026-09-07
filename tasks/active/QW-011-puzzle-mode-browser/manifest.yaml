@@ -19,7 +19,8 @@
   "work_items": [
     {
       "allowed_paths": [
-        "REPLACE_WITH_EXPLICIT_PATHS"
+        "src/quantik_models/play/puzzles.py",
+        "tests/test_play_puzzles.py"
       ],
       "branch": "plan/qw-011-quantik-models-py",
       "decisions": [],
