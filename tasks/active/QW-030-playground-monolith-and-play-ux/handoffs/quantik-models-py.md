@@ -78,3 +78,28 @@
 - Generated evidence: none from CI (Docker build is not part of this repo's GitHub Actions); the build/run transcript above is the evidence, reproducible with the command in the PR description.
 - Known gaps / follow-up: `scripts/build_docker_image.sh` and `docker/staging/` are now stale (they stage local checkpoints and expect the old sibling-repo build context) and were deliberately left untouched — flagged in both the PR and `docs/play-service.md` as a named follow-up, not silently abandoned.
 - Prohibited or unperformed remote actions: none — merged 2026-09-07 with the user's explicit go-ahead. Docker builds and runs were local only — nothing was pushed to a registry (explicitly out of scope, QW-009 criterion 5).
+
+## M5 — re-sync the app and document the result
+
+- Initiative / repository: QW-030 / `quantik-models-py`
+- Branch and full commit: `docs/one-port-playground`, five commits (`a6bd1b9` re-sync, `25ccc33` README, `aef1707` play-service.md, `d5cb77b` DEVELOPMENT.md, `7ffd24d` CHANGELOG.md), based on `main` post-M4 (`e231abc`). Not merged — PR open, merge is the user's call, same as M2–M4 were before.
+- Dirty-state before/after: clean before and after.
+- PR: https://github.com/mberlanda/quantik-models-py/pull/67
+- Files changed (all in M5's `allowed_paths`):
+  - `src/quantik_models/play/app/**` — re-synced via `scripts/sync_visualizer.py` against `quantik-qfen-visualizer`'s `main` at `3d6e134d` (V1–V5, up from `6ae703d` at the last sync). Three new classic scripts (`layout.js`, `modes.js`, `rules.js`) plus every changed file; `SOURCE.json` updated.
+  - `README.md` — "Playing against them" was two commands that didn't actually work from a clean install: `staging/` didn't exist without a prior checkout or training run, and the default `--runtime torch` isn't installed by the `[serve]` extra. Replaced with `quantik-models-fetch --all --stage staging` (M3) then `quantik-models-play --models staging --runtime onnx`.
+  - `docs/play-service.md` — fixed the "Running it" example (still showed `--static`'s pre-M1 sibling-checkout default, and was missing the `runtime` line `__main__.py` prints); new "The vendored app" section (source of truth, D1–D3's release-time-not-per-PR sync, `--static` for live-checkout development); documented `GET /api`'s `"recording"` field (M2/V5, D6) in the existing route list.
+  - `DEVELOPMENT.md` — added the re-sync as release-checklist step 1 (chronologically ahead of the version bump and build it feeds), cross-referencing the existing model-card step rather than sitting physically next to it — see decision note below.
+  - `CHANGELOG.md` — one `### Added` block under `## Unreleased` covering the whole initiative (M1–M4 merged without their own entries), written from the user's point of view. No version bump.
+- Decisions and assumptions:
+  - **Packet said "add the sync step next to the existing step 6 about the Hugging Face model cards"; placed it as step 1 instead, with a cross-reference, not physically adjacent.** The app sync has to happen before the version bump and build (step 3, now 4) that package it — placing it functionally next to the model-card step (which runs *after* PyPI publish) would put a release-blocking step in the wrong chronological position in a checklist meant to be followed in order. Read "next to" as "the same category of release-time-only sync," not "adjacent list position," and made both steps say so in their own text.
+  - Verified the new README commands for real rather than trusting the CLI's `--help` text: a scratch directory, `quantik-models-fetch --all --stage staging` against the live Hub, then `quantik-models-play --models staging --runtime onnx --no-store`, then `curl` against `/` and `/api`.
+- Commands and exact results:
+  - `.venv/bin/python -m pytest -q` → `656 passed, 1 failed` locally. The one failure, `test_checkpoint_fixture.py::test_fixture_manifest_validates_through_core_py`, is a `contract_version` mismatch (1.2.0 vs the sibling `quantik-core-py` checkout's 1.3.0) — confirmed pre-existing and unrelated by stashing this branch's changes and re-running, same failure on `main`. **CI's `pytest` passed clean** (no sibling checkout there, so no drift) — see below.
+  - `.venv/bin/python -m mypy` → `Success: no issues found in 61 source files`.
+  - `.venv/bin/python -m pytest -q tests/test_play_app_assets.py` → `6 passed` (the asset-integrity test catches a partial sync; ran it explicitly against the new tree).
+  - PR #67 CI: all 12 checks green, including both `pytest (py3.12)` and `pytest (py3.13)`.
+  - Manual verification transcript: `quantik-models-fetch --all --stage staging` (real fetch, `Fetching 5 files: 100%` × 4 models) → `quantik-models-play --models staging --runtime onnx --no-store --port 18123` printed `runtime onnx`, `models staging (4 ready of 4 found)`, `store disabled` → `curl http://127.0.0.1:18123/api` returned `"recording": false` and the full route list → `curl -o /dev/null -w '%{http_code}' http://127.0.0.1:18123/` → `200`. Server killed and scratch directory removed after.
+- Generated evidence: PR #67's CI run logs, all green; the manual verification transcript above.
+- Known gaps / follow-up: none.
+- Prohibited or unperformed remote actions: PR opened, not merged — merge is the user's call.

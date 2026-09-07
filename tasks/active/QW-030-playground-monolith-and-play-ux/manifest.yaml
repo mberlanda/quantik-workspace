@@ -113,7 +113,7 @@
       "repository": "quantik-models-py",
       "packet": "repos/quantik-models-py/M5-resync-and-document.md",
       "branch": "docs/one-port-playground",
-      "status": "planned",
+      "status": "completed",
       "allowed_paths": [
         "src/quantik_models/play/app/**",
         "README.md",

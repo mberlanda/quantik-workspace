@@ -178,12 +178,41 @@ with no HTTP status anywhere on the page. Squash-merged clean at `3d6e134`,
 plain fast-forward. Full record in `handoffs/quantik-qfen-visualizer.md`.
 
 **All of V1–V5 are now merged.** QW-030's `quantik-qfen-visualizer` side is
-done. **Next action:** `quantik-models-py` M5 (`docs/one-port-playground`)
-— the last work item in the whole initiative, unblocked now that M1, M2,
-M4, and V1–V5 are all merged. It resyncs the vendored app under
-`src/quantik_models/play/app/` from this now-finished `main` and documents
-the completed one-port flow (`README.md`, `docs/play-service.md`,
-`DEVELOPMENT.md`, `CHANGELOG.md`). That work belongs to the
-`quantik-models-py` session; pinged it (per its own "ping me when V5
-lands" request) so it can pick M5 up and do its own final workspace-tracking
-pass once M5 merges.
+done.
+
+**M5 implemented, 2026-09-07 — PR open, not merged.** `quantik-models-py`
+PR #67 (`docs/one-port-playground`), five commits, all 12 CI checks green
+(both `pytest (py3.12)` and `pytest (py3.13)`). Re-synced
+`src/quantik_models/play/app/` against the now-finished visualizer `main`
+(`3d6e134`, up from `6ae703d`) — every V1–V5 change, plus the three new
+classic scripts. Fixed the `README.md` and `docs/play-service.md`
+quickstarts, which had been quietly broken since before this initiative:
+`quantik-models-play --models staging` implied a `staging/` directory that
+did not exist without a prior checkout, and never named `--runtime onnx`
+even though the `[serve]` extra doesn't install torch. Replaced with
+`quantik-models-fetch --all --stage staging` (M3) then `--runtime onnx`,
+and **verified both commands for real** against the live Hugging Face Hub
+in a scratch directory before writing them down — real fetch, real
+storeless server, `curl` against `/` and `/api`. Added a new
+`docs/play-service.md` section on the vendored app (source of truth,
+release-time-not-per-PR sync per D1–D3, `--static` for live-checkout
+development) and documented `GET /api`'s `recording` field next to the
+existing route list. Added the re-sync to `DEVELOPMENT.md`'s release
+checklist as its own first step, chronologically ahead of the version bump
+rather than physically next to the model-card step the packet named — the
+two now cross-reference each other in the text; the reasoning is recorded
+in `handoffs/quantik-models-py.md`. One `CHANGELOG.md` entry under
+`Unreleased` covers the whole initiative, since M1–M4 merged without their
+own. The one local `pytest` failure
+(`test_checkpoint_fixture.py::test_fixture_manifest_validates_through_core_py`)
+is a pre-existing, unrelated `contract_version` drift in the sibling
+`quantik-core-py` checkout — confirmed present on `main` before this
+branch's changes, and absent in CI (no sibling checkout there). Full record
+in `handoffs/quantik-models-py.md`.
+
+**Next action: none — this was the last work item in the initiative.**
+V1–V5 and M1–M5 are all implemented; only PR #67's merge is outstanding,
+and that is the user's call, same as M2–M4 were. Once #67 merges, every
+acceptance criterion in `manifest.yaml` has shipping code behind it; closing
+the initiative out (moving it to `tasks/completed/`) is a separate,
+deliberate step for whoever does that, not implied by this record.
