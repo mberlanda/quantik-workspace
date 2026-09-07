@@ -40,7 +40,9 @@ existing engine interface, with an encoder proven mover-relative.
 
 ## Implementation and scope
 
-Not yet planned. Replace this item's placeholder `allowed_paths` in `manifest.yaml` with explicit repository-relative paths, select the `decisions`/`invariants` references it actually needs, and split into further work items wherever another branch/PR is needed.
+`allowed_paths` in `manifest.yaml`: `docs/model-serving.md` (to rewrite), `src/lib.rs` (existing engine dispatch, verified: only `lib.rs`/`main.rs` exist today — genuinely greenfield for model inference), a new `model.rs` module, and `Cargo.toml` for the `--features model` gate. The new workspace ADR ("distinct from ADR 0009") lives in `quantik-workspace/docs/adr/`, a third repository this initiative doesn't list as a work item — noted here since `allowed_paths` can't span repositories.
+
+depends_on W2: completion criterion 3 ("parity with the Python evaluator to a stated tolerance") needs W2's fixture set to exist first. decisions/invariants stay empty — decisions.md's seven points are already resolved (unheaded prose) but the Objective's own five-step approach is the operative plan here, not a decisions.md citation.
 
 ## Completion criteria and verification
 

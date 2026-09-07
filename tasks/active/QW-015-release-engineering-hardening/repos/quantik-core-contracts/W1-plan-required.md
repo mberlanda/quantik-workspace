@@ -35,7 +35,30 @@ implementations are compared on. Nothing else about the function changes.
 
 ## Implementation and scope
 
-Not yet planned. Replace this item's placeholder `allowed_paths` in `manifest.yaml` with explicit repository-relative paths, select the `decisions`/`invariants` references it actually needs, and split into further work items wherever another branch/PR is needed.
+**Criteria 1, 2 and 5 are already shipped** — `quantik-core-contracts`
+release v1.3.1 ([#23](https://github.com/mberlanda/quantik-core-contracts/pull/23),
+tag `a6c1b10`), "fix the opening-book-consistency release deadlock":
+`normalize_summary` deliberately keeps `contract_version` out of the
+structural-equality dict (docstring explains exactly the fusion bug
+`problem` describes), and `action.yml`'s `expected-release` default is
+`""`, not a hardcoded release.
+
+**Criteria 3 and 4 have real, verified gaps, not yet planned:**
+- `.github/workflows/validate-contracts.yml:23` still hardcodes
+  `--expected-release 1.3.1` — exactly the "hardcoded release string
+  outside VERSION" criterion 4 asks a grep to find nothing of. It should
+  derive from `VERSION` (e.g. `--expected-release "$(cat VERSION)"`), not
+  be bumped by hand each release.
+- `release-contracts.yml` already asserts `VERSION` matches the tag
+  (`test "$(cat VERSION)" = "$version"`) but does not assert the tag
+  doesn't already exist, nor that downstream action paths resolve at that
+  ref — criterion 3 only partially met.
+
+`allowed_paths` covers both the already-shipped files (for reference) and
+the two workflows with the remaining gap. `decisions`/`invariants` stay
+empty — decisions.md's four points are already resolved (unheaded prose,
+same as QW-009) and don't need re-deciding for this narrower remaining
+scope.
 
 ## Completion criteria and verification
 

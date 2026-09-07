@@ -14,7 +14,7 @@ Preserve the current dirty release worktree.
 
 ## Implementation and scope
 
-Not yet planned. Replace this item's placeholder `allowed_paths` in `manifest.yaml` with explicit repository-relative paths, select the `decisions`/`invariants` references it actually needs, and split into further work items wherever another branch/PR is needed.
+`allowed_paths` in `manifest.yaml`: a new `inference.py` module and test file — verified nothing like it exists (`benchmarks/checkpoint.py` and Rust's `bench/checkpoint.rs` are a false-positive namespace collision: resumable *benchmark-run* checkpointing, unrelated to model weights). depends_on W1. `decisions`/`invariants` stay empty pending W1.
 
 ## Completion criteria and verification
 

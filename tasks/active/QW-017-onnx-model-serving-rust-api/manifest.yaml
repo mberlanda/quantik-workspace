@@ -26,11 +26,16 @@
   "work_items": [
     {
       "allowed_paths": [
-        "REPLACE_WITH_EXPLICIT_PATHS"
+        "docs/model-serving.md",
+        "src/lib.rs",
+        "src/model.rs",
+        "Cargo.toml"
       ],
       "branch": "plan/qw-017-quantik-api-rust",
       "decisions": [],
-      "depends_on": [],
+      "depends_on": [
+        "W2"
+      ],
       "id": "W1",
       "invariants": [],
       "packet": "repos/quantik-api-rust/W1-plan-required.md",
@@ -39,7 +44,10 @@
     },
     {
       "allowed_paths": [
-        "REPLACE_WITH_EXPLICIT_PATHS"
+        "src/quantik_models/env/fastboard.py",
+        "docs/architectures.md",
+        "scripts/export_parity_fixtures.py",
+        "tests/fixtures/onnx-parity/*"
       ],
       "branch": "plan/qw-017-quantik-models-py",
       "decisions": [],

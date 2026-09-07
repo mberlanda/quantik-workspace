@@ -17,12 +17,13 @@
   ],
   "id": "QW-010",
   "problem": "The play service (QW-008) exposes twenty opponents keyed by architecture and simulation count, which assumes the player already knows what cpool@128 means. Public deployment (QW-009) needs an easy/medium/hard mapping and a rules explainer, but the level-to-opponent mapping must come from arena numbers, not intuition, because the seat effect (mover 68-88%, responder 15-39%) is larger than the strength gaps between most opponents.",
-  "status": "not-started",
+  "status": "ux-half-superseded-by-QW-030-mapping-blocked-on-QW-024",
   "title": "Play UX for Non-Expert Players — Skill Levels and How-to-Play",
   "work_items": [
     {
       "allowed_paths": [
-        "REPLACE_WITH_EXPLICIT_PATHS"
+        "docs/skill-levels.md",
+        "src/quantik_models/play/opponents.py"
       ],
       "branch": "plan/qw-010-quantik-models-py",
       "decisions": [],

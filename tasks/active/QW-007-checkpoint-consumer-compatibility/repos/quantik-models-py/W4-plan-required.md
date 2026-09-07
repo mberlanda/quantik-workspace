@@ -14,7 +14,7 @@ environment, tolerance, and exact reference outputs.
 
 ## Implementation and scope
 
-Not yet planned. Replace this item's placeholder `allowed_paths` in `manifest.yaml` with explicit repository-relative paths, select the `decisions`/`invariants` references it actually needs, and split into further work items wherever another branch/PR is needed.
+`allowed_paths` in `manifest.yaml`: `export/checkpoint.py` (the existing checkpoint writer, source of the reference artifacts), the committed 80 KB smoke checkpoint fixture (`tests/fixtures/checkpoints/smoke-best`), and `docs/models.md`. depends_on W1.
 
 ## Completion criteria and verification
 

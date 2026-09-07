@@ -14,7 +14,7 @@ regression tests and report throughput where it affects pipeline feasibility.
 
 ## Implementation and scope
 
-Not yet planned. Replace this item's placeholder `allowed_paths` in `manifest.yaml` with explicit repository-relative paths, select the `decisions`/`invariants` references it actually needs, and split into further work items wherever another branch/PR is needed.
+`allowed_paths` in `manifest.yaml`: the existing search-summary and self-play export examples (informative-position export, guided runs) and `opening_book.rs` (bounded write-back), plus a new test file. depends_on W1. Genuinely provisional pending W1's contract and the initiative's five cross-repo dependencies — see W1's note.
 
 ## Completion criteria and verification
 

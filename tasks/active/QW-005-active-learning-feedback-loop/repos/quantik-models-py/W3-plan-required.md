@@ -14,7 +14,7 @@ configuration reproducible.
 
 ## Implementation and scope
 
-Not yet planned. Replace this item's placeholder `allowed_paths` in `manifest.yaml` with explicit repository-relative paths, select the `decisions`/`invariants` references it actually needs, and split into further work items wherever another branch/PR is needed.
+`allowed_paths` in `manifest.yaml`: the existing arena (H2H match/agents/autoplay/pack/probe/registry) and `eval/shift.py` (regression gate) modules, `data/*.py` (corpus composition), and a new `loop/` package for iteration orchestration (nothing like it exists today — verified). depends_on W2. Provisional pending the same cross-repo dependencies as W1.
 
 ## Completion criteria and verification
 

@@ -45,7 +45,38 @@ once a handoff exists.
 
 ## Implementation and scope
 
-Not yet planned. Replace this item's placeholder `allowed_paths` in `manifest.yaml` with explicit repository-relative paths, select the `decisions`/`invariants` references it actually needs, and split into further work items wherever another branch/PR is needed.
+**Four of five acceptance criteria are already met — verified in the code,
+not assumed:**
+
+1. `tests/test_onnx_evaluator_agreement.py` exists:
+   `test_onnx_and_torch_evaluators_agree_on_a_real_checkpoint` builds a real
+   `cpool` checkpoint via `export_checkpoint` and compares `OnnxEvaluator`
+   against `NetEvaluator`.
+2. `OnnxEvaluator` is implemented (`src/quantik_models/selfplay/evaluator.py`,
+   wired through `arena/registry.load_onnx_evaluator`/`build_agent`), no
+   torch import.
+3. `docker/Dockerfile` pulls weights from the Hub at build time
+   (`RUN pip install ... '.[serve,hub]'`, comment: "no local runs/
+   checkpoint") — this is QW-030 M4
+   ([quantik-models-py#66](https://github.com/mberlanda/quantik-models-py/pull/66)).
+4. `--no-store` 503 behavior is in place: `play/server.py:257` raises
+   `ServiceError(503, "this service was started without a game store")`.
+
+**The one real gap:** no CI workflow publishes the image to GHCR yet.
+`scripts/build_docker_image.sh` only builds locally
+(`docker build -f docker/Dockerfile ...`); no `.github/workflows/*.yml`
+references `ghcr.io` or a `docker push`. `allowed_paths` names a new
+`publish-image.yml` for that step, plus the two files above for context.
+
+This initiative's own tracking had drifted from the code (top-level
+`status` was `not-started`) — corrected to `largely-complete`. `decisions`
+here are already resolved in `decisions.md` (not headed sections, but
+settled prose: runtime is ONNX, visualizer/api-rust out of formal scope,
+GHCR over Docker Hub) rather than left open like most other initiatives'
+`decisions.md` files — still not cited via `decisions.md#Heading` since
+none of the four decisions has an addressable heading to reference.
+`invariants` stays empty: nothing in `canonical-invariants.md` bears on
+image publishing.
 
 ## Completion criteria and verification
 

@@ -35,7 +35,7 @@ Per engine kind, return what it has: minimax gives PV and exact-ish scores with
 
 ## Implementation and scope
 
-Not yet planned. Replace this item's placeholder `allowed_paths` in `manifest.yaml` with explicit repository-relative paths, select the `decisions`/`invariants` references it actually needs, and split into further work items wherever another branch/PR is needed.
+`allowed_paths` in `manifest.yaml`: `src/lib.rs` — confirmed the discard at line 192 and the legality recomputation at 134-156 the Objective names. depends_on W2: the response can't extend a schema that doesn't exist yet (`engine-response.v1` isn't registered — verified, this initiative and QW-019 both need it created first). decisions/invariants stay empty — decisions.md's five points are already resolved (unheaded prose).
 
 ## Completion criteria and verification
 

@@ -26,7 +26,7 @@ before the default is gone changes nothing — the literal still applies.
 
 ## Implementation and scope
 
-Not yet planned. Replace this item's placeholder `allowed_paths` in `manifest.yaml` with explicit repository-relative paths, select the `decisions`/`invariants` references it actually needs, and split into further work items wherever another branch/PR is needed.
+**Completed.** `.github/workflows/rust.yml:91` — the PR-time job carries the comment "expected-release is deliberately not set here: this job checks out [a] sibling's main mid-transition", and no `expected-release` input is passed. Verified in the checked-out repository, not assumed.
 
 ## Completion criteria and verification
 

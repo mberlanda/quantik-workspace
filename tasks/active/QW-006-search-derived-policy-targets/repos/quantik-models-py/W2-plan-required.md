@@ -13,7 +13,7 @@ baseline comparison. Update training/reporting docs with measured evidence.
 
 ## Implementation and scope
 
-Not yet planned. Replace this item's placeholder `allowed_paths` in `manifest.yaml` with explicit repository-relative paths, select the `decisions`/`invariants` references it actually needs, and split into further work items wherever another branch/PR is needed.
+`allowed_paths` in `manifest.yaml`: `data/materialize.py` and `data/labels.py` (validate/weight the new distribution), `train/supervised.py` (consumes it), `docs/labeling-strategy.md`, `test_materialize.py`. depends_on W1. `decisions`/`invariants` stay empty — same open questions as W1.
 
 ## Completion criteria and verification
 

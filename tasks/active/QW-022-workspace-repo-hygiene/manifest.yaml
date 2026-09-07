@@ -19,7 +19,9 @@
   "work_items": [
     {
       "allowed_paths": [
-        "REPLACE_WITH_EXPLICIT_PATHS"
+        ".github/workflows/e2e-data-pipeline.yml",
+        "scripts/solve_opening.py",
+        "scripts/build_probe.py"
       ],
       "branch": "plan/qw-022-quantik-models-py",
       "decisions": [],
@@ -32,7 +34,7 @@
     },
     {
       "allowed_paths": [
-        "REPLACE_WITH_EXPLICIT_PATHS"
+        "README.md"
       ],
       "branch": "plan/qw-022-articles",
       "decisions": [],
@@ -41,7 +43,7 @@
       "invariants": [],
       "packet": "repos/articles/W2-plan-required.md",
       "repository": "articles",
-      "status": "plan-required"
+      "status": "completed"
     }
   ]
 }

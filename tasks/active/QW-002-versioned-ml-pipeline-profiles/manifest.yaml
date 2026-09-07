@@ -21,7 +21,16 @@
   "work_items": [
     {
       "allowed_paths": [
-        "REPLACE_WITH_EXPLICIT_PATHS"
+        "scripts/run_smoke_pipeline.sh",
+        "scripts/verify_smoke_outputs.py",
+        "src/quantik_models/pipeline/*.py",
+        "src/quantik_models/data/materialize.py",
+        "src/quantik_models/train/trainer.py",
+        "src/quantik_models/train/provenance.py",
+        ".github/workflows/e2e-data-pipeline.yml",
+        ".github/workflows/train-smoke.yml",
+        "docs/pipeline.md",
+        "tests/test_pipeline*.py"
       ],
       "branch": "plan/qw-002-quantik-models-py",
       "decisions": [],

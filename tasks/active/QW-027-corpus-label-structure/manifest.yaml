@@ -20,7 +20,13 @@
   "work_items": [
     {
       "allowed_paths": [
-        "REPLACE_WITH_EXPLICIT_PATHS"
+        "docs/corpus-structure.md",
+        "docs/dev-data.md",
+        "docs/corpus-v3.md",
+        "src/quantik_models/data/policy_schema.py",
+        "scripts/induct_shallow.py",
+        "scripts/shallow_probe.py",
+        "src/quantik_models/data/merge_corpus.py"
       ],
       "branch": "plan/qw-027-quantik-models-py",
       "decisions": [],

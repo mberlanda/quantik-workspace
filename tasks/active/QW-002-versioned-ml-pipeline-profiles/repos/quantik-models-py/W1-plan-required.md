@@ -19,7 +19,24 @@ pipeline/scaling docs, and a handoff with exact commands and artifacts.
 
 ## Implementation and scope
 
-Not yet planned. Replace this item's placeholder `allowed_paths` in `manifest.yaml` with explicit repository-relative paths, select the `decisions`/`invariants` references it actually needs, and split into further work items wherever another branch/PR is needed.
+`allowed_paths` in `manifest.yaml` names the real surface: the existing
+runner (`scripts/run_smoke_pipeline.sh`) and verifier
+(`scripts/verify_smoke_outputs.py`) to wrap or replace; `data/materialize.py`,
+`train/trainer.py` and `train/provenance.py` (already records code/corpus/
+hardware/dependency identity per `docs/pipeline.md` — profile identity is the
+one axis it doesn't cover yet) as the stages a profile selects between; the
+two workflows (`e2e-data-pipeline.yml`, `train-smoke.yml`) that need to call
+the same runner CI and local dev use; and a new `src/quantik_models/pipeline/`
+module for the profile schema/runner itself, since no such module exists
+today (verified — no `profile`/`tier` abstraction anywhere in the tree, only
+the scattered env vars and duplicated wrappers `problem` describes).
+
+No `invariants` apply — this is pipeline plumbing, not game-rule or tensor
+encoding surface. No `decisions` selected: `decisions.md`'s five questions
+(config format, stage mandatoriness, override precedence, revision capture,
+legacy-wrapper migration) are genuinely still open, not yet resolved to a
+citable heading — that resolution is real design work for whoever picks this
+up, not a mechanical field to fill during this pass.
 
 ## Completion criteria and verification
 

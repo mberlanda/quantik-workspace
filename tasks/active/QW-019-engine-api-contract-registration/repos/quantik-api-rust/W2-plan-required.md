@@ -25,7 +25,7 @@ Validate against the registered schema instead of comparing a string constant.
 
 ## Implementation and scope
 
-Not yet planned. Replace this item's placeholder `allowed_paths` in `manifest.yaml` with explicit repository-relative paths, select the `decisions`/`invariants` references it actually needs, and split into further work items wherever another branch/PR is needed.
+`allowed_paths` in `manifest.yaml`: `src/lib.rs` — confirmed the exact consts at lines 22-23 (`REQUEST_SCHEMA`/`RESPONSE_SCHEMA` = `"quantik.engine-request.v1"`/`"quantik.engine-response.v1"`). depends_on W1. decisions/invariants stay empty.
 
 ## Completion criteria and verification
 

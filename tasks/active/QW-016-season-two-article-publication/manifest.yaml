@@ -20,7 +20,12 @@
   "work_items": [
     {
       "allowed_paths": [
-        "REPLACE_WITH_EXPLICIT_PATHS"
+        "the-deadlock.md",
+        "decisions.md",
+        "images/12-deadlock.png",
+        "images/13-two-checks.png",
+        "images/14-rollout.png",
+        "images/15-philosophers.png"
       ],
       "branch": "plan/qw-016-articles",
       "decisions": [],

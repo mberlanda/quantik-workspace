@@ -38,7 +38,7 @@ once a handoff exists.
 
 ## Implementation and scope
 
-Not yet planned. Replace this item's placeholder `allowed_paths` in `manifest.yaml` with explicit repository-relative paths, select the `decisions`/`invariants` references it actually needs, and split into further work items wherever another branch/PR is needed.
+`allowed_paths` in `manifest.yaml`: `play/puzzles.py` (the generator, already merged as models-py#51 per `problem`) and its test file — the picker UI itself lives in `quantik-qfen-visualizer`, not a formal `affected_repositories` entry (decisions.md#4). `decisions`/`invariants` stay empty: decisions.md's three questions (which corpus, grouping, already-lost presentation) are open.
 
 ## Completion criteria and verification
 

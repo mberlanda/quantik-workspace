@@ -14,7 +14,7 @@ diagnostics distinct from per-position training rows.
 
 ## Implementation and scope
 
-Not yet planned. Replace this item's placeholder `allowed_paths` in `manifest.yaml` with explicit repository-relative paths, select the `decisions`/`invariants` references it actually needs, and split into further work items wherever another branch/PR is needed.
+`allowed_paths` in `manifest.yaml`: `bench/contracts.rs` is the exporter named in `problem` (confirmed: `policy_visits` is its field), plus a new test file. `decisions`/`invariants` stay empty: decisions.md's five questions (which engines expose what, cross-engine comparability, zero/tie/terminal representation, fallback marking, adoption metrics) are open.
 
 ## Completion criteria and verification
 

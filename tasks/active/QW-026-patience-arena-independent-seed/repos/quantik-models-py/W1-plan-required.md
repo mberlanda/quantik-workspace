@@ -46,7 +46,7 @@ Handoff path: create `handoffs/` only once a handoff exists.
 
 ## Implementation and scope
 
-Not yet planned. Replace this item's placeholder `allowed_paths` in `manifest.yaml` with explicit repository-relative paths, select the `decisions`/`invariants` references it actually needs, and split into further work items wherever another branch/PR is needed.
+`allowed_paths` in `manifest.yaml`: `evaluate_lineup.sh` (the `SEED` default to override), `eval/shift.py` and `arena/*.py` (the evaluation code path), and the three docs criterion 4 names — all confirmed to exist at these exact paths. `runs/train/patience-*/best` are read-only inputs; the first run's output directory (`runs/eval/patience-2026-08-30/`) must not be touched, per decisions.md#2. Closing QW-012's own `status.md`/`manifest.yaml` (criterion 5) happens in `quantik-workspace`, outside this item's `allowed_paths` — that's workspace bookkeeping, not implementation surface, same as every other initiative's handoff writing. decisions/invariants stay empty: decisions.md's three points are already resolved as unheaded prose.
 
 ## Completion criteria and verification
 

@@ -19,7 +19,8 @@
   "work_items": [
     {
       "allowed_paths": [
-        "REPLACE_WITH_EXPLICIT_PATHS"
+        "scripts/evaluate_opening_arena.sh",
+        "docs/opening-arena-ply0.md"
       ],
       "branch": "plan/qw-024-quantik-models-py",
       "decisions": [],

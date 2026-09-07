@@ -23,7 +23,7 @@ Blocked on `quantik-core-contracts` landing criteria 1 and 2.
 
 ## Implementation and scope
 
-Not yet planned. Replace this item's placeholder `allowed_paths` in `manifest.yaml` with explicit repository-relative paths, select the `decisions`/`invariants` references it actually needs, and split into further work items wherever another branch/PR is needed.
+**Completed.** `.github/workflows/contracts.yml:68` carries the same "deliberately not set here" comment at the PR-time job; the one remaining `--expected-release 1.3.0` in this file (line 35) is a different, release-time job, which criterion 1 explicitly keeps. Verified in the checked-out repository, not assumed.
 
 ## Completion criteria and verification
 

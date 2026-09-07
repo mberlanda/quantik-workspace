@@ -34,7 +34,7 @@ to changing the repo's build posture, and that choice must be recorded.
 
 ## Implementation and scope
 
-Not yet planned. Replace this item's placeholder `allowed_paths` in `manifest.yaml` with explicit repository-relative paths, select the `decisions`/`invariants` references it actually needs, and split into further work items wherever another branch/PR is needed.
+`allowed_paths` in `manifest.yaml`: `src/engines.js` — confirmed the literal `schema: "quantik.engine-request.v1"` around line 54. depends_on W1. decisions/invariants stay empty.
 
 ## Completion criteria and verification
 

@@ -37,7 +37,7 @@ Run the opening arena and write up what it says about ordering at ply 0.
 
 ## Implementation and scope
 
-Not yet planned. Replace this item's placeholder `allowed_paths` in `manifest.yaml` with explicit repository-relative paths, select the `decisions`/`invariants` references it actually needs, and split into further work items wherever another branch/PR is needed.
+`allowed_paths` in `manifest.yaml`: `scripts/evaluate_opening_arena.sh` (the runner) and a new write-up doc — no existing doc matches this scope (`docs/benchmarks.md`/`oracle-benchmark.md` are the general figures docs, not this specific measurement), named `docs/opening-arena-ply0.md`. Checkpoints under `runs/train/*/best` are read-only inputs, not touched. decisions/invariants stay empty: decisions.md's six points are already resolved as unheaded prose. Top-level status was already accurate (`ready-to-run`) — untouched.
 
 ## Completion criteria and verification
 

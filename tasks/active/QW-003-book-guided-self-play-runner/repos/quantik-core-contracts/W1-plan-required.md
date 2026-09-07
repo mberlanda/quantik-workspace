@@ -13,7 +13,7 @@ approved design changes the wire surface. Keep historical fixtures readable.
 
 ## Implementation and scope
 
-Not yet planned. Replace this item's placeholder `allowed_paths` in `manifest.yaml` with explicit repository-relative paths, select the `decisions`/`invariants` references it actually needs, and split into further work items wherever another branch/PR is needed.
+`allowed_paths` in `manifest.yaml` names the real surface. `decisions` and `invariants` stay empty: decisions.md's five questions (opening policy shape, orientation remapping, engine-pair manifest fields, provenance granularity, seed derivation) are still genuinely open, and none of canonical-invariants.md's entries bear on a self-play runner's scheduling/provenance surface.
 
 ## Completion criteria and verification
 

@@ -14,7 +14,7 @@ deterministic output. Record size/latency evidence without inventing targets.
 
 ## Implementation and scope
 
-Not yet planned. Replace this item's placeholder `allowed_paths` in `manifest.yaml` with explicit repository-relative paths, select the `decisions`/`invariants` references it actually needs, and split into further work items wherever another branch/PR is needed.
+`allowed_paths` in `manifest.yaml`: the existing `opening_book.rs` to read probe source data from, a new `opening_probe.rs` module and `probe_builder` binary (matching the existing `book_builder.rs` pattern), and a new test file. depends_on W1 per the Objective ("only after the contract is approved"). `decisions`/`invariants` stay empty until W1 resolves the contract.
 
 ## Completion criteria and verification
 

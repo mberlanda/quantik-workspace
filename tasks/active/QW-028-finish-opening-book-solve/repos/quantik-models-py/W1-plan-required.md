@@ -46,7 +46,7 @@ Resume the ply-6 opening solve to completion and produce `opening-exact.npz`.
 
 ## Implementation and scope
 
-Not yet planned. Replace this item's placeholder `allowed_paths` in `manifest.yaml` with explicit repository-relative paths, select the `decisions`/`invariants` references it actually needs, and split into further work items wherever another branch/PR is needed.
+`allowed_paths` in `manifest.yaml`: `scripts/solve_opening.py` — the existing script, confirmed present. `runs/oracle/opening*/` are read-only/output inputs under the gitignored `runs/` tree, not tracked here. Note: the initiative-level `dependencies: [QW-021]` reads as a hard block, but decisions.md#2 explicitly rejects waiting for QW-021's partition design before solving ("nothing else is blocked on" the solve) — only the eventual *merge* into a training corpus is ordered after it, and this initiative explicitly excludes merging (criterion 5). decisions/invariants stay empty: decisions.md's five points are already resolved as unheaded prose.
 
 ## Completion criteria and verification
 
