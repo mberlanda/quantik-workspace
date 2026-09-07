@@ -32,7 +32,7 @@ purposes.
 
 ## Implementation and scope
 
-Not yet planned. Replace this item's placeholder `allowed_paths` in `manifest.yaml` with explicit repository-relative paths, select the `decisions`/`invariants` references it actually needs, and split into further work items wherever another branch/PR is needed.
+`allowed_paths` in `manifest.yaml`: `e2e-data-pipeline.yml` (the unpinned checkout, confirmed still present, no `ref:` set), plus `scripts/solve_opening.py` and `scripts/build_probe.py` — confirmed `.oracle-worktree/` (still present at the workspace root) is referenced by both, so criterion 3's "documented" branch applies, not "removed": the directory is real, load-bearing oracle tooling, just undocumented. decisions/invariants stay empty: decisions.md's four points are already resolved as unheaded prose.
 
 ## Completion criteria and verification
 

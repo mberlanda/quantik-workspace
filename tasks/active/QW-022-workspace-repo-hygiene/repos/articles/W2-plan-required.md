@@ -31,7 +31,7 @@ choice; "no remote at all" is not.
 
 ## Implementation and scope
 
-Not yet planned. Replace this item's placeholder `allowed_paths` in `manifest.yaml` with explicit repository-relative paths, select the `decisions`/`invariants` references it actually needs, and split into further work items wherever another branch/PR is needed.
+**Completed.** QW-016's planning pass found `articles` already has a remote (`git@github.com:mberlanda/quantik-articles.git`) with `main` up to date with `origin/main` — verified in the checked-out repository, not assumed. Criterion 2 is met; no further work item needed. `allowed_paths` names `README.md` since the schema requires a non-empty list and there is no other in-repo artifact this git-config fix touches.
 
 ## Completion criteria and verification
 
