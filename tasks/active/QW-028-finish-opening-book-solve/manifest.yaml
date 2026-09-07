@@ -22,7 +22,7 @@
   "work_items": [
     {
       "allowed_paths": [
-        "REPLACE_WITH_EXPLICIT_PATHS"
+        "scripts/solve_opening.py"
       ],
       "branch": "plan/qw-028-quantik-models-py",
       "decisions": [],
