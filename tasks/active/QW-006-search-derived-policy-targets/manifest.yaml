@@ -1,15 +1,51 @@
 {
-  "id": "QW-006",
-  "title": "Search-Derived Observation Policy Targets",
-  "status": "plan-required",
-  "problem": "The observation exporter records one visit on the selected action instead of the search distribution, producing structurally valid but weak policy supervision for real training.",
-  "affected_repositories": ["quantik-core-rust", "quantik-models-py"],
-  "affected_contracts": ["observation.v1", "search-summary.v1"],
-  "dependencies": ["QW-001"],
   "acceptance_criteria": [
     "An approved plan defines engine-specific policy mass semantics and compatibility with observation.v1.",
     "Rust exports faithful deterministic root policy distributions for supported engines or explicitly marks unsupported cases.",
     "Models materialization/training validates and uses the distributions with documented weighting and fallback behavior.",
     "Evaluation demonstrates label coverage and compares the new target distribution against the one-hot baseline."
+  ],
+  "affected_contracts": [
+    "observation.v1",
+    "search-summary.v1"
+  ],
+  "affected_repositories": [
+    "quantik-core-rust",
+    "quantik-models-py"
+  ],
+  "dependencies": [
+    "QW-001"
+  ],
+  "id": "QW-006",
+  "problem": "The observation exporter records one visit on the selected action instead of the search distribution, producing structurally valid but weak policy supervision for real training.",
+  "status": "plan-required",
+  "title": "Search-Derived Observation Policy Targets",
+  "work_items": [
+    {
+      "allowed_paths": [
+        "REPLACE_WITH_EXPLICIT_PATHS"
+      ],
+      "branch": "plan/qw-006-quantik-core-rust",
+      "decisions": [],
+      "depends_on": [],
+      "id": "W1",
+      "invariants": [],
+      "packet": "repos/quantik-core-rust/W1-plan-required.md",
+      "repository": "quantik-core-rust",
+      "status": "plan-required"
+    },
+    {
+      "allowed_paths": [
+        "REPLACE_WITH_EXPLICIT_PATHS"
+      ],
+      "branch": "plan/qw-006-quantik-models-py",
+      "decisions": [],
+      "depends_on": [],
+      "id": "W2",
+      "invariants": [],
+      "packet": "repos/quantik-models-py/W2-plan-required.md",
+      "repository": "quantik-models-py",
+      "status": "plan-required"
+    }
   ]
 }

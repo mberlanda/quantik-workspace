@@ -1,0 +1,149 @@
+{
+  "acceptance_criteria": [
+    "Normative JSONL fixtures cover state, current player, legal actions, ordering, action indices, symmetries, canonicalization, masks, and value perspective.",
+    "Arrow/Parquet logical and physical schemas carry explicit release and generator metadata.",
+    "Python and Rust repository-owned adapters produce structurally identical reports or classified differences.",
+    "Models consumes the contracted indices and perspectives without undocumented engine internals.",
+    "Unresolved color-swap, stalemate, invalid-state, and transform-remapping behavior is decided or explicitly excluded."
+  ],
+  "affected_contracts": [
+    "qfen.v1",
+    "bitboard.v1",
+    "action-index.v1",
+    "tensor-board.v1",
+    "selfplay.v1",
+    "arrow-parquet-selfplay.v1"
+  ],
+  "affected_repositories": [
+    "quantik-core-contracts",
+    "quantik-core-py",
+    "quantik-core-rust",
+    "quantik-models-py"
+  ],
+  "id": "QW-001",
+  "preserved_invariants": [
+    "4x4 row-major board",
+    "eight player/shape planes",
+    "shape-major 64-action indexing",
+    "side-to-move value perspective",
+    "deterministic serialization"
+  ],
+  "problem": "State identity, canonicalization, action remapping, legal masks, and value perspective are implemented across engines and models but are not covered by one executable cross-stack contract.",
+  "release_order": [
+    "quantik-core-contracts",
+    "quantik-core-py",
+    "quantik-core-rust",
+    "quantik-models-py"
+  ],
+  "status": "resolved",
+  "title": "Canonical Game State and Action Encoding Contract",
+  "work_items": [
+    {
+      "allowed_paths": [
+        ".github/workflows/release-contracts.yml",
+        ".github/workflows/validate-contracts.yml",
+        "contracts.json",
+        "docs/api-portability-testing.md",
+        "docs/game-state.md",
+        "docs/implementation-status.md",
+        "docs/symmetry-transposition.md",
+        "fixtures/invalid-states/invalid-state-v1.json",
+        "fixtures/symmetry/symmetry-v1.json",
+        "schemas/invalid-state-fixtures-v1.schema.json",
+        "schemas/symmetry-fixtures-v1.schema.json",
+        "scripts/validate_contracts.py",
+        "tests/test_contracts_validator.py"
+      ],
+      "branch": "qw-001/canonical-state-action-contract",
+      "decisions": [
+        "decisions.md#1. Is canonical equivalence D4 × shape permutation only, or does any interface include colour swap?",
+        "decisions.md#2. How is a move/action mapped to and from every canonical transform?",
+        "decisions.md#3. Does terminal include blocked-side loss in every contracted operation, or only board/game APIs?",
+        "decisions.md#4. Which invalid-state checks are required at parser, state constructor, and adapter boundaries?",
+        "decisions.md#5. Is the canonical 18-byte key the portable identity, with numeric language hashes explicitly excluded?",
+        "decisions.md#6. Does a self-play legal mask mean all legal actions or only actions with positive visits?"
+      ],
+      "depends_on": [],
+      "id": "W1",
+      "invariants": [
+        "context/system/canonical-invariants.md#I5",
+        "context/system/canonical-invariants.md#I6"
+      ],
+      "packet": "repos/quantik-core-contracts/W1-symmetry-and-invalid-state-contracts.md",
+      "repository": "quantik-core-contracts",
+      "status": "completed"
+    },
+    {
+      "allowed_paths": [
+        "src/quantik_core/symmetry.py",
+        "tests/test_symmetry.py"
+      ],
+      "branch": "qw-001/canonical-state-action-contract",
+      "decisions": [
+        "decisions.md#1. Is canonical equivalence D4 × shape permutation only, or does any interface include colour swap?",
+        "decisions.md#2. How is a move/action mapped to and from every canonical transform?"
+      ],
+      "depends_on": [],
+      "id": "W2",
+      "invariants": [
+        "context/system/canonical-invariants.md#I6"
+      ],
+      "packet": "repos/quantik-core-py/W2-symmetry-handler-adapter.md",
+      "repository": "quantik-core-py",
+      "status": "completed"
+    },
+    {
+      "allowed_paths": [
+        "crates/quantik-core/src/bench/contracts.rs",
+        "crates/quantik-core/src/bench/portability.rs",
+        "crates/quantik-core/src/board.rs",
+        "crates/quantik-core/src/lib.rs",
+        "crates/quantik-core/src/symmetry.rs",
+        "crates/quantik-core/src/validation.rs",
+        "crates/quantik-core/tests/portability_report.rs"
+      ],
+      "branch": "qw-001/canonical-state-action-contract",
+      "decisions": [
+        "decisions.md#2. How is a move/action mapped to and from every canonical transform?",
+        "decisions.md#3. Does terminal include blocked-side loss in every contracted operation, or only board/game APIs?",
+        "decisions.md#4. Which invalid-state checks are required at parser, state constructor, and adapter boundaries?"
+      ],
+      "depends_on": [],
+      "id": "W3",
+      "invariants": [
+        "context/system/canonical-invariants.md#I6"
+      ],
+      "packet": "repos/quantik-core-rust/W3-portability-adapter-and-validation.md",
+      "repository": "quantik-core-rust",
+      "status": "completed"
+    },
+    {
+      "allowed_paths": [
+        "CHANGELOG.md",
+        "src/quantik_models/env/fastboard.py",
+        "src/quantik_models/env/*.py",
+        "tests/test_fastboard.py",
+        "tests/test_action_layout.py",
+        "tests/test_policy_value_net.py"
+      ],
+      "branch": "qw-001/canonical-state-action-contract",
+      "decisions": [
+        "decisions.md#1. Is canonical equivalence D4 × shape permutation only, or does any interface include colour swap?",
+        "decisions.md#2. How is a move/action mapped to and from every canonical transform?"
+      ],
+      "depends_on": [
+        "W1",
+        "W2",
+        "W3"
+      ],
+      "id": "W4",
+      "invariants": [
+        "context/system/canonical-invariants.md#I1",
+        "context/system/canonical-invariants.md#I6"
+      ],
+      "packet": "repos/quantik-models-py/W4-tensor-action-mask-adapters.md",
+      "repository": "quantik-models-py",
+      "status": "completed"
+    }
+  ]
+}

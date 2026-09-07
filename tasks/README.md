@@ -40,6 +40,15 @@ and split further wherever another branch/PR is needed. Set the initiative and
 item to `planned` only after planning review. Execution generation rejects
 `plan-required` items. Existing legacy initiatives remain valid until migrated.
 
+`quantik-workspace task migrate QW-NNN` converts a legacy `repos/<repo>.md`
+initiative in place: one `plan-required` work item per affected repository,
+its packet's Objective carrying that repository's existing text verbatim,
+`allowed_paths` left as the same `REPLACE_WITH_EXPLICIT_PATHS` placeholder
+`task create` writes. It invents nothing — no paths, decisions, or invariants
+— so a migrated item still needs the same planning pass described above
+before dispatch. The initiative-level `status` is left untouched; only the
+work items it generates carry `plan-required`.
+
 Track each item's status in its manifest entry; record handoffs with the item ID,
 branch, PR URL, exact revisions, checks and results. QW-030 is the migrated example.
 

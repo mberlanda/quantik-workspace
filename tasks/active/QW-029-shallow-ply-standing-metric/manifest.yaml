@@ -10,5 +10,20 @@
   "id": "QW-029",
   "problem": "To be refined.",
   "status": "plan-required",
-  "title": "Shallow-Ply Scoring as a Standing Metric"
+  "title": "Shallow-Ply Scoring as a Standing Metric",
+  "work_items": [
+    {
+      "allowed_paths": [
+        "REPLACE_WITH_EXPLICIT_PATHS"
+      ],
+      "branch": "plan/qw-029-quantik-models-py",
+      "decisions": [],
+      "depends_on": [],
+      "id": "W1",
+      "invariants": [],
+      "packet": "repos/quantik-models-py/W1-plan-required.md",
+      "repository": "quantik-models-py",
+      "status": "plan-required"
+    }
+  ]
 }

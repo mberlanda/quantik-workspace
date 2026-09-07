@@ -221,6 +221,68 @@ def create_task(config: WorkspaceConfig, identifier: str, title: str, repositori
     return path
 
 
+def migrate_task(config: WorkspaceConfig, identifier: str) -> Path:
+    """Convert a legacy initiative's one-packet-per-repo layout into atomic work items.
+
+    Each repository's existing `repos/<repo>.md` becomes one `plan-required` work
+    item whose Objective is that packet's own text, verbatim — no paths, decisions,
+    or invariants are invented. `allowed_paths` carries the same
+    `REPLACE_WITH_EXPLICIT_PATHS` placeholder `create_task` writes for a brand-new
+    item; a human/agent planning pass replaces it, selects references, and splits
+    further wherever another branch/PR is needed, per `tasks/README.md`.
+    """
+    matches = list((config.root / "tasks" / "active").glob(f"{identifier}*"))
+    if len(matches) != 1:
+        raise ValueError(f"expected one active initiative for {identifier}, found {len(matches)}")
+    path = matches[0]
+    manifest = load_data(path / "manifest.yaml")
+    if "work_items" in manifest:
+        raise ValueError(f"{manifest.get('id', identifier)} already uses the atomic work-item format")
+    affected = manifest.get("affected_repositories", [])
+    if not affected:
+        raise ValueError(f"{identifier}: no affected_repositories to migrate")
+    legacy = {repository: path / "repos" / f"{repository}.md" for repository in affected}
+    missing = sorted(repository for repository, file in legacy.items() if not file.is_file())
+    if missing:
+        raise ValueError(f"{identifier}: missing legacy packet(s) for {', '.join(missing)}")
+
+    work_items = []
+    for index, repository in enumerate(affected, 1):
+        item_id = f"W{index}"
+        objective = legacy[repository].read_text(encoding="utf-8").strip()
+        branch = f"plan/{manifest['id'].lower()}-{repository}"
+        packet = f"repos/{repository}/{item_id}-plan-required.md"
+        (path / "repos" / repository).mkdir(parents=True, exist_ok=True)
+        (path / packet).write_text(
+            f"# {item_id} — {repository}\n\n"
+            f"Repository: `{repository}`\n"
+            f"Branch: `{branch}` (one PR)\n\n"
+            "## Objective\n\n"
+            f"{objective}\n\n"
+            "## Implementation and scope\n\n"
+            "Not yet planned. Replace this item's placeholder `allowed_paths` in "
+            "`manifest.yaml` with explicit repository-relative paths, select the "
+            "`decisions`/`invariants` references it actually needs, and split into "
+            "further work items wherever another branch/PR is needed.\n\n"
+            "## Completion criteria and verification\n\n"
+            "Not yet planned. State observable acceptance checks and exact "
+            "repository commands here before dispatch.\n\n"
+            "## Handoff\n\n"
+            "Record item ID, branch, PR, starting/final revisions, dependency "
+            "evidence, actual commands/results, and remaining blockers.\n",
+            encoding="utf-8",
+        )
+        legacy[repository].unlink()
+        work_items.append({
+            "id": item_id, "repository": repository, "packet": packet, "branch": branch,
+            "status": "plan-required", "allowed_paths": ["REPLACE_WITH_EXPLICIT_PATHS"],
+            "decisions": [], "invariants": [], "depends_on": [],
+        })
+    manifest["work_items"] = work_items
+    (path / "manifest.yaml").write_text(dump_data(manifest), encoding="utf-8")
+    return path
+
+
 def complete_task(config: WorkspaceConfig, identifier: str) -> Path:
     matches = list((config.root / "tasks" / "active").glob(f"{identifier}*"))
     if len(matches) != 1:

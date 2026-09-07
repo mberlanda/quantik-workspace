@@ -18,5 +18,20 @@
   "id": "QW-028",
   "problem": "scripts/solve_opening.py implements a correct root-only frontier solve with upward back-induction, and was run twice and abandoned both times. runs/oracle/opening stopped at 10,000 of 901,916 ply-6 frontier positions (1.1%); runs/oracle/opening5 stopped at 64,000 of 105,632 ply-5 positions (60.6%). Both counts are exact multiples of the oracle's CHUNK = 2,000 flush size, so both stopped cleanly between flushes and both resume via exact_oracle --append-to. Neither reached opening-exact.npz, so the opening book has contributed zero rows to any corpus - the mechanical reason behind the coverage gap the other opening initiatives work around. The failure was silent in the good way and invisible in the bad way: nothing partial leaked into training, because solve_frontier raises if a single frontier position is unsolved, but nothing was produced either and no check anywhere reports that a solve directory is unfinished.",
   "status": "not-started",
-  "title": "Finish the Opening Book Solve"
+  "title": "Finish the Opening Book Solve",
+  "work_items": [
+    {
+      "allowed_paths": [
+        "REPLACE_WITH_EXPLICIT_PATHS"
+      ],
+      "branch": "plan/qw-028-quantik-models-py",
+      "decisions": [],
+      "depends_on": [],
+      "id": "W1",
+      "invariants": [],
+      "packet": "repos/quantik-models-py/W1-plan-required.md",
+      "repository": "quantik-models-py",
+      "status": "plan-required"
+    }
+  ]
 }

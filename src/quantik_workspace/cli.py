@@ -29,7 +29,7 @@ from .releases import (
 )
 from .repositories import all_status, clone_missing, list_repositories, update_repositories
 from .reports import write_generated
-from .tasks import task_status, complete_task, create_task, validate_tasks
+from .tasks import task_status, complete_task, create_task, migrate_task, validate_tasks
 from .validation import validate_all, validate_document_links, validate_generated, validate_locks, validate_workspace
 
 
@@ -80,6 +80,8 @@ def build_parser() -> argparse.ArgumentParser:
     create.add_argument("id")
     create.add_argument("--title", required=True)
     create.add_argument("--repository", action="append", required=True)
+    migrate = tasks.add_parser("migrate", help="Convert a legacy repos/<repo>.md initiative to atomic work items")
+    migrate.add_argument("id")
     tasks.add_parser("validate")
     tasks.add_parser("status")
     complete = tasks.add_parser("complete")
@@ -171,6 +173,8 @@ def dispatch(args: argparse.Namespace) -> int:
     if args.command == "task":
         if args.task_command == "create":
             print(create_task(config, args.id, args.title, args.repository)); return 0
+        if args.task_command == "migrate":
+            print(migrate_task(config, args.id)); return 0
         if args.task_command == "validate":
             return _validation(validate_tasks(config))
         if args.task_command == "status":

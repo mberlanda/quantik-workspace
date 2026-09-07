@@ -64,21 +64,34 @@
    M2 does have a store. Failing closed here would silently stop recording games
    against every already-deployed service.
 
+### D7
+
+**The mode chooser persists across visits, via a `mode` field on the existing
+   profile.** Resolves O1. Chosen because it matches every other choice already
+   on that profile — `playerName`, `analysisOpponent`, `serviceBase` are all
+   "what you told us last time," and adding one more field is cheaper than
+   introducing a second philosophy for this one setting. A brand-new visitor
+   (no stored profile) still sees a neutral prompt — no button pre-highlighted
+   — because the stored value defaults to `""`, which matches none of the four
+   mode ids; the two controller selects underneath keep the same defaults they
+   had before V2 (human / tactical) until a mode is actually clicked, so
+   nothing about the pre-V2 first-load experience regresses for a visitor who
+   never engages with the chooser at all.
+
+### D8
+
+**A classical-only roster offers the classical engines under "Play a model,"
+   rather than hiding or disabling the mode.** Resolves O2. `applyMode` sets
+   `player1` to the `"service"` controller and leaves the opponent picker
+   (`opponent-0`/`opponent-1`, populated from `GET /api/opponents`) to show
+   whatever the roster actually contains — six classical engines, or six
+   classical plus staged models, with no branching in between. This is the
+   "must read as a deliberate state, not a failure" language from
+   `initiative.md` applied literally: a service with `[serve]` and no staged
+   models is a complete playground, not a degraded one, so the mode that lets
+   you play against it should not announce that something is missing.
+
 ## Open
-
-### O1
-
-**Does the mode chooser persist across visits, or reset to the prompt?**
-   Persisting is friendlier for a returning player and hides the mode concept from
-   someone who used the app once and came back to something different. Not
-   load-bearing; pick one and write down which.
-
-### O2
-
-**What does the app show when the roster is classical-only** — a service with
-   `[serve]` and no staged models? "Play a model" is a mode with nothing behind
-   it. Options: hide the mode, show it disabled with a reason, or offer the
-   classical engines under it. Needs a decision before V2 ships.
 
 ### O3
 

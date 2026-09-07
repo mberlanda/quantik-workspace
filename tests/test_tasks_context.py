@@ -7,13 +7,14 @@ from contextlib import redirect_stdout
 from io import StringIO
 import json
 import os
+import shutil
 import tempfile
 import unittest
 
 from quantik_workspace.cli import main
 from quantik_workspace.config import load_workspace
 from quantik_workspace.context import ContextBudgetExceeded, initiative_context, repository_context
-from quantik_workspace.tasks import create_task, task_status, validate_initiative, validate_tasks
+from quantik_workspace.tasks import create_task, migrate_task, task_status, validate_initiative, validate_tasks
 
 from helpers import minimal_manifest, write_json
 
@@ -56,6 +57,39 @@ class TaskContextTests(unittest.TestCase):
             self.assertIn("tasks/active/QW-124-planned/plan.md", bundle.sources)
             self.assertIn("The delegable plan.", bundle.text)
             self.assertEqual(validate_initiative(path, {"repo"}), [])
+
+    def test_migrate_legacy_task_to_atomic_work_items(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            config = self._workspace(root)
+            path = create_task(config, "QW-126-legacy", "Legacy", ["repo"])
+            manifest = json.loads((path / "manifest.yaml").read_text())
+            manifest.pop("work_items")
+            write_json(path / "manifest.yaml", manifest)
+            shutil.rmtree(path / "repos/repo")
+            (path / "repos/repo.md").write_text("Objective: do the thing.\n", encoding="utf-8")
+            migrated = migrate_task(config, "QW-126")
+            self.assertEqual(migrated, path)
+            self.assertFalse((path / "repos/repo.md").exists())
+            packet = path / "repos/repo/W1-plan-required.md"
+            self.assertTrue(packet.is_file())
+            self.assertIn("Objective: do the thing.", packet.read_text())
+            new_manifest = json.loads((path / "manifest.yaml").read_text())
+            item = new_manifest["work_items"][0]
+            self.assertEqual(item, {
+                "id": "W1", "repository": "repo", "packet": "repos/repo/W1-plan-required.md",
+                "branch": "plan/qw-126-repo", "status": "plan-required",
+                "allowed_paths": ["REPLACE_WITH_EXPLICIT_PATHS"], "decisions": [], "invariants": [], "depends_on": [],
+            })
+            # Original initiative-level status is left untouched by migration.
+            self.assertEqual(new_manifest["status"], manifest["status"])
+            self.assertEqual(validate_initiative(path, {"repo"}), [])
+            with self.assertRaisesRegex(ValueError, "already uses"):
+                migrate_task(config, "QW-126")
+            output = StringIO()
+            with redirect_stdout(output):
+                code = main(["--workspace", str(config.root / "workspace.yaml"), "task", "migrate", "QW-999"])
+            self.assertNotEqual(code, 0)
 
     def _atomic(self, root):
         config = self._workspace(root)

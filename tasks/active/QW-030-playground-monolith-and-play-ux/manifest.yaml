@@ -31,7 +31,7 @@
       "repository": "quantik-models-py",
       "packet": "repos/quantik-models-py/M1-vendor-app.md",
       "branch": "feat/serve-app-from-package",
-      "status": "planned",
+      "status": "completed",
       "allowed_paths": [
         "scripts/sync_visualizer.py",
         "src/quantik_models/play/__main__.py",
@@ -58,7 +58,7 @@
       "repository": "quantik-models-py",
       "packet": "repos/quantik-models-py/M2-recording-capability.md",
       "branch": "feat/api-advertises-recording",
-      "status": "planned",
+      "status": "completed",
       "allowed_paths": [
         "src/quantik_models/play/server.py",
         "tests/test_play_server.py"
@@ -76,7 +76,7 @@
       "repository": "quantik-models-py",
       "packet": "repos/quantik-models-py/M3-stage-hub-weights.md",
       "branch": "feat/fetch-stage",
-      "status": "planned",
+      "status": "completed",
       "allowed_paths": [
         "src/quantik_models/hub.py",
         "tests/test_hub.py"
@@ -92,7 +92,7 @@
       "repository": "quantik-models-py",
       "packet": "repos/quantik-models-py/M4-docker-from-hub.md",
       "branch": "chore/docker-from-hub",
-      "status": "planned",
+      "status": "completed",
       "allowed_paths": [
         "docker/Dockerfile",
         "docker/NOTICE",
@@ -113,7 +113,7 @@
       "repository": "quantik-models-py",
       "packet": "repos/quantik-models-py/M5-resync-and-document.md",
       "branch": "docs/one-port-playground",
-      "status": "planned",
+      "status": "completed",
       "allowed_paths": [
         "src/quantik_models/play/app/**",
         "README.md",
@@ -147,7 +147,7 @@
       "repository": "quantik-qfen-visualizer",
       "packet": "repos/quantik-qfen-visualizer/V1-lab-drawer.md",
       "branch": "feat/lab-drawer",
-      "status": "planned",
+      "status": "completed",
       "allowed_paths": [
         "index.html",
         "src/app.js",
@@ -165,7 +165,7 @@
       "repository": "quantik-qfen-visualizer",
       "packet": "repos/quantik-qfen-visualizer/V2-mode-selection.md",
       "branch": "feat/mode-chooser",
-      "status": "planned",
+      "status": "completed",
       "allowed_paths": [
         "index.html",
         "src/app.js",
@@ -177,8 +177,8 @@
       "depends_on": [],
       "decisions": [
         "decisions.md#D4",
-        "decisions.md#O1",
-        "decisions.md#O2"
+        "decisions.md#D7",
+        "decisions.md#D8"
       ],
       "invariants": [
         "context/system/canonical-invariants.md#I5"
@@ -189,7 +189,7 @@
       "repository": "quantik-qfen-visualizer",
       "packet": "repos/quantik-qfen-visualizer/V3-how-to-play.md",
       "branch": "feat/how-to-play",
-      "status": "planned",
+      "status": "completed",
       "allowed_paths": [
         "index.html",
         "src/app.js",
@@ -211,7 +211,7 @@
       "repository": "quantik-qfen-visualizer",
       "packet": "repos/quantik-qfen-visualizer/V4-player-surface.md",
       "branch": "chore/playground-styling",
-      "status": "planned",
+      "status": "completed",
       "allowed_paths": [
         "src/styles.css"
       ],
@@ -228,7 +228,7 @@
       "repository": "quantik-qfen-visualizer",
       "packet": "repos/quantik-qfen-visualizer/V5-recording-capability.md",
       "branch": "fix/no-store-is-not-an-error",
-      "status": "planned",
+      "status": "completed",
       "allowed_paths": [
         "src/play.js",
         "src/app.js",

@@ -1,7 +1,7 @@
 {
   "acceptance_criteria": [
     "contract_version is excluded from the Rust-vs-Python equality in validate_opening_book_summary.py and kept for the --expected-release assertion, with a test that a version-skewed pair of otherwise identical summaries passes the equality and fails --expected-release.",
-    "expected-release is dropped from both PR-time jobs AND its default: \"1.2.0\" is removed from actions/opening-book-consistency/action.yml:23 \u2014 omitting the input must not silently reintroduce the literal.",
+    "expected-release is dropped from both PR-time jobs AND its default: \"1.2.0\" is removed from actions/opening-book-consistency/action.yml:23 — omitting the input must not silently reintroduce the literal.",
     "A release preflight asserts the tag does not already exist, VERSION matches the tag, and every downstream-referenced action path resolves at that ref.",
     "Each repository derives its version from one literal; a grep for a hardcoded release string outside that source returns nothing.",
     "The deadlock is demonstrated to be gone: a PR that changes only Python, with contracts still on the previous release, goes green without a coordinated tag."
@@ -15,9 +15,50 @@
     "quantik-core-py"
   ],
   "created": "2026-08-30",
+  "dependencies": [],
   "id": "QW-015",
   "problem": "The cross-implementation opening-book check also enforces version lockstep, because both claims live in one dict comparison. validate_opening_book_summary.py:118 puts contract_version into the dict normalize_summary returns, and main() fails at line 142 on rust_summary != python_summary. So 'do the two engines agree about the game?' silently also asks 'are both stacks on the same release?'. Two claims with different lifetimes fused into one comparison; that fusion produced the 1.2.0 release deadlock. Verified still present 2026-08-30.",
   "status": "not-started",
   "title": "Release-Engineering Hardening",
-  "dependencies": []
+  "work_items": [
+    {
+      "allowed_paths": [
+        "REPLACE_WITH_EXPLICIT_PATHS"
+      ],
+      "branch": "plan/qw-015-quantik-core-contracts",
+      "decisions": [],
+      "depends_on": [],
+      "id": "W1",
+      "invariants": [],
+      "packet": "repos/quantik-core-contracts/W1-plan-required.md",
+      "repository": "quantik-core-contracts",
+      "status": "plan-required"
+    },
+    {
+      "allowed_paths": [
+        "REPLACE_WITH_EXPLICIT_PATHS"
+      ],
+      "branch": "plan/qw-015-quantik-core-rust",
+      "decisions": [],
+      "depends_on": [],
+      "id": "W2",
+      "invariants": [],
+      "packet": "repos/quantik-core-rust/W2-plan-required.md",
+      "repository": "quantik-core-rust",
+      "status": "plan-required"
+    },
+    {
+      "allowed_paths": [
+        "REPLACE_WITH_EXPLICIT_PATHS"
+      ],
+      "branch": "plan/qw-015-quantik-core-py",
+      "decisions": [],
+      "depends_on": [],
+      "id": "W3",
+      "invariants": [],
+      "packet": "repos/quantik-core-py/W3-plan-required.md",
+      "repository": "quantik-core-py",
+      "status": "plan-required"
+    }
+  ]
 }
