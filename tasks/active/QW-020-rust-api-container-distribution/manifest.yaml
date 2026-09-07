@@ -21,7 +21,9 @@
   "work_items": [
     {
       "allowed_paths": [
-        "REPLACE_WITH_EXPLICIT_PATHS"
+        "Dockerfile",
+        ".github/workflows/publish-image.yml",
+        "tests/container_smoke.rs"
       ],
       "branch": "plan/qw-020-quantik-api-rust",
       "decisions": [],

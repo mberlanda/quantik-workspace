@@ -37,7 +37,7 @@ container-level smoke test.
 
 ## Implementation and scope
 
-Not yet planned. Replace this item's placeholder `allowed_paths` in `manifest.yaml` with explicit repository-relative paths, select the `decisions`/`invariants` references it actually needs, and split into further work items wherever another branch/PR is needed.
+`allowed_paths` in `manifest.yaml`: new `Dockerfile`, publish workflow and container smoke test — verified genuinely greenfield (no `Dockerfile`, no `.github/workflows/`, no `tests/` directory exist in this repo today). decisions/invariants stay empty: decisions.md's six points are already resolved as unheaded prose, except criterion 4 (this-vs-QW-009 as the public deployment), left open by design.
 
 ## Completion criteria and verification
 
