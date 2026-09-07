@@ -94,12 +94,50 @@ languages, not assumed). PRs:
   `cargo clippy -D warnings`, and `cargo test --workspace --all-features`
   are clean.
 
-**Deliberately not done in this pass, per explicit user instruction**
+`quantik-models-py` was held back at first, per explicit user instruction
 ("hold on quantik-models changes since something else is happening at the
-same time"): the `quantik-models-py` repo task
-(`repos/quantik-models-py.md`) — explicit tensor/action/mask/transform/
-value-perspective contracts, `[9,4,4]` mover-relative vs. colour-ordered
-disambiguation at the consumer, all-legal vs. visited-action mask tests.
+same time") — a live `opencode` process (a different AI CLI, local Ollama
+model) was actively mid-edit on that repo's `feat/serve-app-from-package`
+branch, partway through unrelated QW-030 work. Once confirmed idle (process
+exited, working tree clean, in sync with origin), the models-py task was
+picked back up.
+
+## 2026-09-06 — quantik-models-py
+
+[quantik-models-py#63](https://github.com/mberlanda/quantik-models-py/pull/63)
+(open, branch `qw-001/canonical-state-action-contract` off `main`, **not**
+stacked on `feat/serve-app-from-package`). Verified in code, not assumed:
+most of `repos/quantik-models-py.md`'s ask was already done and well
+documented before this PR — mover-relative vs. colour-ordered `[9,4,4]`
+tensors, 64 shape-major actions, `legal_masks` as the full legal-action
+enumeration, and D4 × shape-permutation augmentation as a deliberate,
+already-tested **batched** re-expression of `quantik_core`'s rules
+(`env/fastboard.py`'s `transform_boards`/`transform_actions`/
+`transform_policies`/`canonical_keys`).
+
+What discovery found and this PR fixes: `fastboard`'s `spatial` index (0..7)
+enumerated the 8 D4 transforms in numpy `rot90`/`fliplr` composition order,
+not `quantik_core.symmetry.D4Index`'s order (rot90/rot270 and reflH/reflD
+were swapped) — invisible before because every existing test only compared
+this module against itself, never against an external contract with a
+specific numbering. Fixed by rewriting the generator to use the same
+per-cell D4 formulas as `quantik_core`/`quantik-core-rust`, verified
+index-for-index by a new test. No stored artifact (checkpoint, corpus) is
+affected — `spatial` values are drawn fresh per augmentation call and never
+persisted. Also added the missing `test_masked_log_softmax_all_false_row_is_uniform_not_nan`
+("all-false mask handling" acceptance criterion) and a `transform_index()`
+combinator.
+
+Two new tests call the still-unreleased `remap_action_index`/
+`inverse_transform_index` and are `skipif`-gated on `hasattr`, because
+`quantik-models-py`'s own `DEVELOPMENT.md` runs CI against the *published*
+`quantik-core` by design, specifically so this repo's CI never depends on
+another repo's in-flight state. Verified both ways locally: skip cleanly
+against the published 1.2.0 wheel, pass for real against the sibling
+`../quantik-core-py` checkout. **Follow-up**: once a `quantik-core` release
+ships with this API, bump `quantik-models-py`'s `quantik-core>=1.2,<2`
+floor and these two tests stop skipping automatically.
+
 Also not done, found but out of scope for QW-001 specifically (see
 decisions.md's "Explicitly out of scope" section): the synthetic one-hot
 `policy_visits` in Rust's `bench/contracts.rs::observation_v1_row`
