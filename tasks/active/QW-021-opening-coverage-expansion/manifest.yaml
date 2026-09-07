@@ -14,6 +14,8 @@
   "affected_repositories": [
     "quantik-models-py"
   ],
+  "complexity": "XL",
+  "complexity_notes": "High-stakes: a wrong partition design destroys the current held-out probe; large compute; results propagate into published article claims.",
   "created": "2026-08-30",
   "dependencies": [
     "QW-012"

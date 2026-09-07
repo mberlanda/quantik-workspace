@@ -2,7 +2,14 @@
 
 Cross-repository initiatives live in `active/`, `completed/`, or `archived/`. Each initiative decomposes intent into atomic work items: one packet, one branch, and one PR per item. Create packets only for outstanding implementation work; completed behavior belongs in discovery, evidence, and implementation reports rather than illustrative tasks.
 
-See [`complexity-assessment.md`](complexity-assessment.md) for a per-initiative engineering-complexity rating, used as a proxy for agent assignment. It is a snapshot, not a tracked field — refresh it by re-running the pass rather than editing it initiative-by-initiative.
+Each initiative's manifest carries an optional `complexity` (`S`/`M`/`L`/`XL`) and
+`complexity_notes` field — an engineering-complexity rating used as a proxy for agent
+assignment; see [`complexity-assessment.md`](complexity-assessment.md) for the scale.
+[`docs/generated/task-dependency-graph.md`](../docs/generated/task-dependency-graph.md) is
+a Mermaid graph plus adjacency table of every initiative's `dependencies`, complexity, and
+done/blocked/ready state, generated from the manifests by `quantik-workspace reports
+generate` and checked for staleness by `quantik-workspace validate generated` — read it (or
+`task-dependency-graph.json`) rather than re-deriving the graph by hand.
 
 Use `status: plan-required` when the verified problem exists but a design or
 implementation plan is missing. Such a packet is pickable only for plan

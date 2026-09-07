@@ -9,6 +9,8 @@
   "affected_repositories": [
     "articles"
   ],
+  "complexity": "M",
+  "complexity_notes": "Not code, but a real judgment call (cut to house length vs. publish long) plus a fact-recheck against another repo's line numbers.",
   "created": "2026-08-30",
   "dependencies": [
     "QW-015"

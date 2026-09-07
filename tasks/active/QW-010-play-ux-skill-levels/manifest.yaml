@@ -11,9 +11,12 @@
   "affected_repositories": [
     "quantik-models-py"
   ],
+  "complexity": "M",
+  "complexity_notes": "Narrow file scope, but the mapping derivation needs judgment (seat-effect control), and is hard-blocked on QW-024 - now reflected in dependencies, which previously listed only QW-008/QW-012 (both already done) and omitted the real blocker.",
   "dependencies": [
     "QW-008",
-    "QW-012"
+    "QW-012",
+    "QW-024"
   ],
   "id": "QW-010",
   "problem": "The play service (QW-008) exposes twenty opponents keyed by architecture and simulation count, which assumes the player already knows what cpool@128 means. Public deployment (QW-009) needs an easy/medium/hard mapping and a rules explainer, but the level-to-opponent mapping must come from arena numbers, not intuition, because the seat effect (mover 68-88%, responder 15-39%) is larger than the strength gaps between most opponents.",

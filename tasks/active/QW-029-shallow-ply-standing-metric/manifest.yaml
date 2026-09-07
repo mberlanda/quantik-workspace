@@ -6,6 +6,8 @@
   "affected_repositories": [
     "quantik-models-py"
   ],
+  "complexity": "XL",
+  "complexity_notes": "Not scopable yet: problem is 'To be refined', no real acceptance criteria - needs a scoping pass before any implementation agent, not an implementation dispatch.",
   "created": "2026-08-31",
   "id": "QW-029",
   "problem": "To be refined.",

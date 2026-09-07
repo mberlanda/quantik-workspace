@@ -11,6 +11,8 @@
   "affected_repositories": [
     "quantik-models-py"
   ],
+  "complexity": "M",
+  "complexity_notes": "Implementation is small (progress reporting; resume already exists in exact_oracle) - wall-clock is hours, agent-complexity is not. Blocked on QW-021.",
   "created": "2026-08-31",
   "dependencies": [
     "QW-021"

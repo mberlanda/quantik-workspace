@@ -15,6 +15,8 @@
     "quantik-core-contracts",
     "quantik-core-rust"
   ],
+  "complexity": "L",
+  "complexity_notes": "2 sequential items, new compact contract plus a symmetry-safe Rust abstraction. Contained but real design.",
   "dependencies": [
     "QW-001"
   ],

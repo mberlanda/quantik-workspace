@@ -12,6 +12,8 @@
   "affected_repositories": [
     "quantik-models-py"
   ],
+  "complexity": "L",
+  "complexity_notes": "Single repo, but correctness-sensitive: bit-exact round-trip converter, back-induction with a completeness assertion, independent oracle confirmation.",
   "created": "2026-08-30",
   "id": "QW-027",
   "problem": "The corpora are quoted by row count, and the row count describes the value corpus while badly misdescribing the policy corpus. Only about 8% of rows carry a policy label (250,000 of v1's 3,087,356; 255,058 of v2's; 271,676 of v3's) and the density is flat across all three, so a corpus that 'grew by 323,568 rows' did not necessarily grow its policy signal. Per-ply label counts at plies 7-12 are identical round numbers in every corpus (60k/60k/30k/20k/20k/20k) with zero at ply 13: a fixed sampling cap, not coverage. v1 and v2/v3 use incompatible policy schemas (dense float32 (N,64) plus a weight, 282 bytes/row, versus a uint64 optimal_mask at 30) which is why nothing merges them, though the conversion is exact both ways. And no corpus reaches below ply 3 at all: plies 0-2 are 55 canonical positions and no model has seen one. Measured against exact back-inducted targets, the flagship cpool checkpoints are indistinguishable from random legal play on shallow policy (mass-on-optimal 0.160 and 0.336 against baselines of 0.170 and 0.331) while scoring 99.6% on the held-out probe.",

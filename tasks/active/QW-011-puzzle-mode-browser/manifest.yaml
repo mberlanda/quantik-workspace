@@ -9,6 +9,8 @@
   "affected_repositories": [
     "quantik-models-py"
   ],
+  "complexity": "S",
+  "complexity_notes": "Under-scoped: the generator is already merged; what's actually left (the visualizer picker UI) lives in quantik-qfen-visualizer, which is not in affected_repositories. Same structural gap pattern as QW-017/QW-023 - needs a work item added before dispatch, the way QW-019's W4 was.",
   "dependencies": [
     "QW-008"
   ],

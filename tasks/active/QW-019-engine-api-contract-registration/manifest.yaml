@@ -16,6 +16,8 @@
     "quantik-qfen-visualizer",
     "quantik-models-py"
   ],
+  "complexity": "L",
+  "complexity_notes": "4 repos but each item is a narrow, single-file change; the one real decision (OpenAPI vs JSON Schema, prefix fix) is contained. Good candidate to unblock QW-017/QW-018/QW-020.",
   "created": "2026-08-30",
   "dependencies": [],
   "id": "QW-019",

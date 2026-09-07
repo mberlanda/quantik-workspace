@@ -16,6 +16,8 @@
     "quantik-core-rust",
     "quantik-models-py"
   ],
+  "complexity": "XL",
+  "complexity_notes": "4 items, cross-language numerical parity (Python and Rust) to a tolerance, new contract plus capability negotiation.",
   "dependencies": [
     "QW-001"
   ],
