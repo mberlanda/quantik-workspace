@@ -14,7 +14,7 @@ and search integration boundaries.
 
 ## Implementation and scope
 
-Not yet planned. Replace this item's placeholder `allowed_paths` in `manifest.yaml` with explicit repository-relative paths, select the `decisions`/`invariants` references it actually needs, and split into further work items wherever another branch/PR is needed.
+`allowed_paths` in `manifest.yaml`: a new `inference.rs` module and test file, plus `Cargo.toml` for the optional, feature-gated runtime dependency the Objective asks for (matching the existing `arrow-parquet` optional-feature pattern). Same namespace-collision caveat as W2 — `bench/checkpoint.rs` is unrelated. depends_on W1.
 
 ## Completion criteria and verification
 

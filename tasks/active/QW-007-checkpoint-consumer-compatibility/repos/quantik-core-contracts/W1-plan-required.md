@@ -13,7 +13,7 @@ architecture evolution compatible or version the contract explicitly.
 
 ## Implementation and scope
 
-Not yet planned. Replace this item's placeholder `allowed_paths` in `manifest.yaml` with explicit repository-relative paths, select the `decisions`/`invariants` references it actually needs, and split into further work items wherever another branch/PR is needed.
+`allowed_paths` in `manifest.yaml`: the existing model-checkpoint-v1 doc/schema, plus a new fixtures directory (none exists yet — verified). `decisions`/`invariants` stay empty: decisions.md's five questions (first runtime format, supported architecture/dtype/device matrix, validation order, tolerance/fixtures, capability-negotiation owner) are open.
 
 ## Completion criteria and verification
 
