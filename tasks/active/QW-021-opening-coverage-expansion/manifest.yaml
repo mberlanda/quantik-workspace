@@ -25,7 +25,11 @@
   "work_items": [
     {
       "allowed_paths": [
-        "REPLACE_WITH_EXPLICIT_PATHS"
+        "docs/opening-coverage-partition.md",
+        "src/quantik_models/data/merge_corpus.py",
+        "scripts/evaluate_lineup.sh",
+        "docs/labeling-strategy.md",
+        "docs/models.md"
       ],
       "branch": "plan/qw-021-quantik-models-py",
       "decisions": [],

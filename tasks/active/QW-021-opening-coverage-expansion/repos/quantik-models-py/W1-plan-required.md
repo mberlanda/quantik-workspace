@@ -42,7 +42,7 @@ in the arena — after replacing the held-out partition that this destroys.
 
 ## Implementation and scope
 
-Not yet planned. Replace this item's placeholder `allowed_paths` in `manifest.yaml` with explicit repository-relative paths, select the `decisions`/`invariants` references it actually needs, and split into further work items wherever another branch/PR is needed.
+`allowed_paths` in `manifest.yaml`: a new partition-design doc (step 1 of the Objective's approach — no filename was given, named here), `data/merge_corpus.py` (confirmed at `src/quantik_models/data/merge_corpus.py`, not the bare `data/merge_corpus.py` the Objective's shorthand implies), `scripts/evaluate_lineup.sh` (the arena), `docs/labeling-strategy.md`, and `docs/models.md` (where the old 99.63% figure most likely needs scoping, pending the actual quotation audit criterion 6 asks for). `runs/canonical/*.npy` and `runs/coverage.md` are read-only inputs, not touched — `runs/` is gitignored. depends_on stays empty within this initiative; the real dependency is QW-012 (initiative-level, itself still plan-required). decisions/invariants stay empty — decisions.md's six points are already resolved as unheaded prose.
 
 ## Completion criteria and verification
 
