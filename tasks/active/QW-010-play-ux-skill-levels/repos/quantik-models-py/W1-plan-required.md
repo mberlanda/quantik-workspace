@@ -41,7 +41,27 @@ once a handoff exists.
 
 ## Implementation and scope
 
-Not yet planned. Replace this item's placeholder `allowed_paths` in `manifest.yaml` with explicit repository-relative paths, select the `decisions`/`invariants` references it actually needs, and split into further work items wherever another branch/PR is needed.
+**Acceptance criteria 4-6 (how-to-play explainer, advanced toggle over the
+full roster) are superseded, not open** — QW-030 (fully shipped, merged
+2026-09-07) built exactly this: a collapsible how-to-play drawer cross-
+checked against `quantik-core-contracts`' rule text (QW-030 V3), and a mode
+chooser with an advanced drawer exposing the full opponent roster (QW-030
+V1/V2/D8), vendored into `quantik-models-py`'s `play/app/`. No further work
+item needed for those three.
+
+**Criteria 1-3 (the ply-0/1 arena and the numbers-backed skill-level
+mapping) remain genuinely open, and are blocked on QW-024** ("The Opening
+Arena — Measuring From Ply 0", itself still `plan-required` in this same
+pass) — QW-030's own `decisions.md#D4` already made this call explicitly:
+"No skill-level ladder ships here... QW-024 is `ready-to-run` and is one
+arena run, not a research programme." `allowed_paths` names the eventual
+artifact (`docs/skill-levels.md`) and the roster it maps onto
+(`play/opponents.py`), but the mapping itself cannot be written — there is
+no ply-0/1 arena on disk to source numbers from. `decisions`/`invariants`
+stay empty.
+
+Top-level `status` corrected from `not-started` (which was wrong for the
+UX half) to reflect both halves' real state.
 
 ## Completion criteria and verification
 
