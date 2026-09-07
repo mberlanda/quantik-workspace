@@ -25,7 +25,14 @@
   "work_items": [
     {
       "allowed_paths": [
-        "REPLACE_WITH_EXPLICIT_PATHS"
+        "docs/selfplay-v1.md",
+        "docs/opening-book-v1.md",
+        "docs/game-result-v1.md",
+        "schemas/selfplay-v1.schema.json",
+        "schemas/opening-book-v1.json",
+        "schemas/game-result-v1.json",
+        "fixtures/selfplay/*",
+        "actions/opening-book-consistency/*"
       ],
       "branch": "plan/qw-003-quantik-core-contracts",
       "decisions": [],
@@ -38,11 +45,19 @@
     },
     {
       "allowed_paths": [
-        "REPLACE_WITH_EXPLICIT_PATHS"
+        "crates/quantik-core/src/opening_book.rs",
+        "crates/quantik-core/src/bench/book_export.rs",
+        "crates/quantik-core/examples/selfplay_export.rs",
+        "crates/quantik-core/src/bin/book_builder.rs",
+        "crates/quantik-core/src/bin/cross_engine_benchmark.rs",
+        "crates/quantik-core/tests/fixtures/selfplay-v1-rust-smoke.jsonl",
+        "crates/quantik-core/tests/selfplay_runner.rs"
       ],
       "branch": "plan/qw-003-quantik-core-rust",
       "decisions": [],
-      "depends_on": [],
+      "depends_on": [
+        "W1"
+      ],
       "id": "W2",
       "invariants": [],
       "packet": "repos/quantik-core-rust/W2-plan-required.md",
@@ -51,11 +66,18 @@
     },
     {
       "allowed_paths": [
-        "REPLACE_WITH_EXPLICIT_PATHS"
+        "src/quantik_models/selfplay/generate.py",
+        "src/quantik_models/selfplay/duel.py",
+        "src/quantik_models/selfplay/mcts.py",
+        "scripts/run_smoke_pipeline.sh",
+        "docs/autoplay.md",
+        "tests/test_selfplay.py"
       ],
       "branch": "plan/qw-003-quantik-models-py",
       "decisions": [],
-      "depends_on": [],
+      "depends_on": [
+        "W2"
+      ],
       "id": "W3",
       "invariants": [],
       "packet": "repos/quantik-models-py/W3-plan-required.md",
