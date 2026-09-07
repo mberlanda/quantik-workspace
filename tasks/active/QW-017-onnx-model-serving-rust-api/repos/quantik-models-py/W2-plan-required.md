@@ -35,7 +35,7 @@ without a Python runtime. Include `"A.../..../..../...."` as the discriminating 
 
 ## Implementation and scope
 
-Not yet planned. Replace this item's placeholder `allowed_paths` in `manifest.yaml` with explicit repository-relative paths, select the `decisions`/`invariants` references it actually needs, and split into further work items wherever another branch/PR is needed.
+`allowed_paths` in `manifest.yaml`: `env/fastboard.py` (the encoder to prove correct against) and `docs/architectures.md` (the correct layout description), plus a new generator script and fixture directory — verified nothing like a Rust-readable parity fixture set exists today. decisions/invariants stay empty, same reasoning as W1.
 
 ## Completion criteria and verification
 
