@@ -151,17 +151,39 @@ skipped. Squash-merged clean at `b9f5982`, plain fast-forward. Full record
 in `handoffs/quantik-qfen-visualizer.md`.
 
 **`quantik-models-py` M1–M4 are all merged** (`d402e31`, `dd61dcd`,
-`ccae033`, `e231abc`). **Next action:** V5 (`fix/no-store-is-not-an-error`)
-in `quantik-qfen-visualizer` — the last item in the initiative, and the
-smallest and most isolated. It's now unblocked for real (M2 is merged, not
-just spec'd). TDD applies fully here (unlike V4): a failing test comes
-first for `fetchCapabilities` in `src/play.js` and for
-`recordFinishedGame()`'s three cases in `app.js` (recording on → POST
-happens; off → no POST, no throw; `/api` unreachable → falls back to
-attempting the POST anyway). Per the user's 2026-09-06 instruction to merge
-PRs one by one as they land, V5's PR will be merged shortly after it opens.
-Once V5 lands, all of V1–V5 and M1–M4 are done, and `quantik-models-py` M5
-(`docs/one-port-playground`) is unblocked — resync the vendored app,
-document the finished one-port flow. As of this update V5 is being worked
-by another session (`quantik-qfen-visualizer-a0`); this session is holding
-off touching that repo until it reports V5 merged.
+`ccae033`, `e231abc`).
+
+**V5 implemented and merged, 2026-09-07.** `quantik-qfen-visualizer` PR #13
+(`fix/no-store-is-not-an-error`), branched fresh off the already-merged
+`main`. New `fetchCapabilities({baseUrl, fetch})` in `src/play.js` reads
+`GET /api`'s `recording` field and defaults to `true` on anything but an
+explicit `false` — an absent field (`decisions.md#D6`), an HTTP error, and
+an unreachable service (a rejecting `fetch`) are all read the same way, so
+a capability probe can never itself become an error banner. `recordGame`
+gained a `recording` option: when off, it skips its POST entirely and
+returns `{recorded: false, skipped: true}`. `app.js` fetches capabilities
+once at startup and passes the answer through; a skip now reads "Not saved
+— this server keeps no record of games." in the same message slot as every
+other end-of-game outcome, not styled as an error. TDD: 7 new tests in
+`test/play.test.js`, watched fail (`fetchCapabilities is not a function`)
+before implementing. `npm test` → 92/92. No `test/index.test.js` deviation
+this time — no new script tag. Rendered and driven live via Claude in
+Chrome against a small local mock of a storeless server (`/api` →
+`{"recording": false}`): confirmed via the page's own console that the real
+wired functions skip the POST correctly, confirmed an unreachable `/api`
+resolves to `{"recording": true}` with no thrown exception, then played a
+full "Watch two engines" autoplay game to completion against the mock and
+watched the end-of-game line read exactly the plain-fact message above,
+with no HTTP status anywhere on the page. Squash-merged clean at `3d6e134`,
+plain fast-forward. Full record in `handoffs/quantik-qfen-visualizer.md`.
+
+**All of V1–V5 are now merged.** QW-030's `quantik-qfen-visualizer` side is
+done. **Next action:** `quantik-models-py` M5 (`docs/one-port-playground`)
+— the last work item in the whole initiative, unblocked now that M1, M2,
+M4, and V1–V5 are all merged. It resyncs the vendored app under
+`src/quantik_models/play/app/` from this now-finished `main` and documents
+the completed one-port flow (`README.md`, `docs/play-service.md`,
+`DEVELOPMENT.md`, `CHANGELOG.md`). That work belongs to the
+`quantik-models-py` session; pinged it (per its own "ping me when V5
+lands" request) so it can pick M5 up and do its own final workspace-tracking
+pass once M5 merges.

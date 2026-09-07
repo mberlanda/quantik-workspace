@@ -228,7 +228,7 @@
       "repository": "quantik-qfen-visualizer",
       "packet": "repos/quantik-qfen-visualizer/V5-recording-capability.md",
       "branch": "fix/no-store-is-not-an-error",
-      "status": "planned",
+      "status": "completed",
       "allowed_paths": [
         "src/play.js",
         "src/app.js",
