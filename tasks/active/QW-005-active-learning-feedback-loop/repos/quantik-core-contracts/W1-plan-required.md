@@ -14,7 +14,7 @@ and migration notes. Do not encode orchestration policy in schemas.
 
 ## Implementation and scope
 
-Not yet planned. Replace this item's placeholder `allowed_paths` in `manifest.yaml` with explicit repository-relative paths, select the `decisions`/`invariants` references it actually needs, and split into further work items wherever another branch/PR is needed.
+`allowed_paths` in `manifest.yaml`: `search-summary-v1` (the disagreement-evidence candidate) and `opening-book-v1` (the write-back target) doc/schema/fixtures. Provisional — this initiative depends on QW-002, QW-003, QW-004, QW-006 and QW-007 (per `dependencies`, all themselves plan-required), so the real artifact classification decisions.md#1-3 ask for can't be made for real until those land; these paths name where that classification will surface, not a chosen design. `decisions`/`invariants` stay empty.
 
 ## Completion criteria and verification
 

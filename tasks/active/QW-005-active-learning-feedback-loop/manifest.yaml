@@ -32,7 +32,11 @@
   "work_items": [
     {
       "allowed_paths": [
-        "REPLACE_WITH_EXPLICIT_PATHS"
+        "docs/search-summary-v1.md",
+        "schemas/search-summary-v1.json",
+        "fixtures/search-summary/*",
+        "docs/opening-book-v1.md",
+        "schemas/opening-book-v1.json"
       ],
       "branch": "plan/qw-005-quantik-core-contracts",
       "decisions": [],
@@ -45,11 +49,16 @@
     },
     {
       "allowed_paths": [
-        "REPLACE_WITH_EXPLICIT_PATHS"
+        "crates/quantik-core/examples/search_summary_export.rs",
+        "crates/quantik-core/examples/selfplay_export.rs",
+        "crates/quantik-core/src/opening_book.rs",
+        "crates/quantik-core/tests/active_learning_loop.rs"
       ],
       "branch": "plan/qw-005-quantik-core-rust",
       "decisions": [],
-      "depends_on": [],
+      "depends_on": [
+        "W1"
+      ],
       "id": "W2",
       "invariants": [],
       "packet": "repos/quantik-core-rust/W2-plan-required.md",
@@ -58,11 +67,17 @@
     },
     {
       "allowed_paths": [
-        "REPLACE_WITH_EXPLICIT_PATHS"
+        "src/quantik_models/arena/*.py",
+        "src/quantik_models/eval/shift.py",
+        "src/quantik_models/data/*.py",
+        "src/quantik_models/loop/*.py",
+        "tests/test_arena.py"
       ],
       "branch": "plan/qw-005-quantik-models-py",
       "decisions": [],
-      "depends_on": [],
+      "depends_on": [
+        "W2"
+      ],
       "id": "W3",
       "invariants": [],
       "packet": "repos/quantik-models-py/W3-plan-required.md",
