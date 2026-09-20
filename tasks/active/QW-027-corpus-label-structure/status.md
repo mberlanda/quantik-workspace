@@ -1,50 +1,5 @@
-# QW-027 Status
 
-**not-started.** Findings measured 2026-08-30; no code written yet.
 
-## Verified
+## 2026-09-20 — W2 merged
 
-- Policy density (8.10% / 7.98% / 7.72%) and the full per-ply label table, read
-  directly from the three `.npz` files.
-- The two schemas and their byte costs, from the arrays themselves.
-- Lossless conversion: 200,000 of 200,000 labelled v1 rows are uniform over
-  their support; `policy_weight` takes only {0, 1}; largest optimal set is 31
-  moves, so a uint64 suffices.
-- v3's ply-3 rows are the complete canonical level — key-set equality against
-  `runs/oracle/opening/level03.npy`, 726 of 726.
-- Back-induction to plies 0-2 runs end to end and yields exact masks for all 55
-  positions.
-- The shallow-probe numbers in the initiative, on five checkpoints.
-- Per-position solve cost, sampled at 14 threads: ply 6 0.018 s (n=200),
-  ply 5 0.100 s (n=200), ply 4 0.722 s (n=200), ply 3 8.75 s (n=20).
-
-## Not yet verified
-
-The plies 0-2 **values** are induced from v3's ply-3 values, so they inherit
-whatever the oracle recorded there. A direct root-only oracle solve of levels 2,
-1 and 0 is the independent check and has not completed — level 2 alone is about
-15 minutes on 14 threads and the empty board is hours, which is itself the
-argument for decision 2. Until it lands, the induced values are consistent with
-v3, not independently confirmed.
-
-Nothing in findings 1-4 depends on this. Finding 5's *policy* numbers do not
-either — the optimal-move masks follow from the same induction, so they carry
-the same caveat, but the near-uniformity of the checkpoints at plies 1-2 is a
-property of the checkpoints and holds regardless.
-
-## Next action
-
-Run the direct solve of levels 2 and 1 to confirm, then work item 1.
-
-## Related
-
-- [`QW-021`](../QW-021-opening-coverage-expansion/initiative.md) — this removes
-  its plies 0-2 criterion and re-costs its solver campaign.
-- [`QW-024`](../QW-024-opening-arena-from-ply-zero/initiative.md) — the arena
-  that would read these targets.
-- [ADR 0014](../../../docs/adr/0014-corpus-coverage-and-epoch-budget-are-separate-axes.md)
-  — finding 1 rules out policy density as a confound in it.
-
-## 2026-09-20 — W1 merged
-
-[models-py#74](https://github.com/mberlanda/quantik-models-py/pull/74) adds `docs/corpus-structure.md`. Confirmed: row totals 3,087,356 / 3,196,958 / 3,520,526; 55 canonical positions at plies 0-2, in no corpus. Corrected: label density is 8.10% / 7.98% / 7.72%, not a flat 8%; the label cap applies to plies 7-12 only (ply 6 uncapped); the v2 to v3 step added 323,568 rows but only 16,618 labels; every v1 policy row is uniform over its support. `corpora.md`'s "mean 4.22, max 31" is v1-only. W1 `allowed_paths` gained `docs/README.md` (docs index test).
+[models-py#75](https://github.com/mberlanda/quantik-models-py/pull/75) adds `data/policy_schema.py` (`dense_to_mask` / `mask_to_dense`, refusing rows not exactly uniform over their support or with weight outside {0,1}). Bit-exact on all 250,000 labelled v1 rows (local, one-off) and on a stride-10 slice in the test. **That real-corpus test skips on CI** (`runs/` is gitignored), so green CI does not exercise the claim. `atol` admits and canonicalises a near-uniform row; the round trip is not within `atol`.

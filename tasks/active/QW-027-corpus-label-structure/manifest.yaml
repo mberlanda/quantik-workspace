@@ -54,8 +54,9 @@
         "context/system/canonical-invariants.md#I6"
       ],
       "packet": "repos/quantik-models-py/W2-policy-schema-converter.md",
+      "pr": "https://github.com/mberlanda/quantik-models-py/pull/75",
       "repository": "quantik-models-py",
-      "status": "planned"
+      "status": "completed"
     },
     {
       "allowed_paths": [

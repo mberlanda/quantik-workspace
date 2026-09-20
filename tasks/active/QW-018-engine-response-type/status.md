@@ -1,22 +1,7 @@
-# QW-018 Status
 
-**specified-not-built.** The specification is this packet; no code exists.
 
-Verified 2026-08-30 — `quantik-api-rust/src/lib.rs:192` still reads
-`Ok((result.best_move, None))`.
+## 2026-09-20 — W2 and W4 merged
 
-Blocked on [`QW-019`](../QW-019-engine-api-contract-registration/initiative.md) by
-decision 4.
-
-Full history: [`workstreams-archive.md`](../../../docs/history/workstreams-archive.md) §6.
-
-## 2026-09-20 — W1 decided and merged
-
-[contracts#27](https://github.com/mberlanda/quantik-core-contracts/pull/27) records the design in `docs/engine-response-v1.md`. All five recommendations were accepted 2026-09-20:
-
-- **Compatibility:** register `engine-response.v2` with `certainty` required; v1 and its fixtures stay frozen.
-- **`certainty`:** `estimate | proof`; minimax earns `proof` only when every score in the response is proven.
-- **`engine_version`:** the artefact that decided the move (`model_id` for checkpoint engines; core revision, or the installed release string, for pure-core engines) plus an optional `engine_config`. Not comparable as strings across implementations; consumers key on `(engine_kind, engine_version, engine_config)`.
-- **Shapes:** `candidates: [{action_index, score, unit}]` with `unit` in `visits|logit|prior|value`, and a flat `pv` array with `pv[0] == action_index`.
-
-W2 registers v2 and moves the design half to `docs/engine-response-v2.md`. W3 needs a core accessor for per-move minimax scores and an MCTS visit list not collapsed by the transposition table. models-py pooling keys change to `(engine_kind, engine_version, engine_config)`.
+- **W2** [contracts#29](https://github.com/mberlanda/quantik-core-contracts/pull/29) registers `engine-response.v2` (`certainty` required, `candidates`, flat `pv`, optional `engine_config`) and moves the design record to `docs/engine-response-v2.md`. v1's schema and captured fixture are untouched; v1's `fixture_glob` narrowed to `engine-response-v1-*.jsonl`. Checked independently with jsonschema 4.26: 7 valid rows pass, 21 of 23 invalid cases rejected by the schema alone; the other two (duplicate candidate `action_index`, `pv[0] != action_index`) are cross-field rules enforced only by the stdlib validator hook. Not enforced anywhere: uniform units within a list, legal-only candidates, `proof` never sent for network/MCTS/beam numbers (producer obligations). `allowed_paths` widened to the five files the registration needs.
+- **W4** [visualizer#15](https://github.com/mberlanda/quantik-qfen-visualizer/pull/15) adds `readEngineResponse` and `engine.lastAnalysis`; absent `certainty` is "unlabelled", unknown schema ids claim nothing, nothing throws. **Gap:** the packet's `allowed_paths` excluded the UI, so `lastAnalysis` renders nowhere yet. `lastAnalysis` is null after a rejected reply (illegal `action_index`); do not assume it tracks every reply. The visualizer has no CI; 96 local tests.
+- W3 (api-rust) is in flight and needs a core accessor for per-move minimax scores that this item's paths may not permit.
