@@ -52,7 +52,9 @@
         "fixtures/opening-probe/*",
         "docs/opening-book-v1.md",
         "docs/opening-book-summary-v1.md",
-        "schemas/opening-book-v1.json"
+        "schemas/opening-book-v1.json",
+        "scripts/validate_contracts.py",
+        "tests/test_contracts_validator.py"
       ],
       "branch": "feat/register-opening-probe",
       "complexity": "M",
@@ -66,8 +68,9 @@
         "context/system/canonical-invariants.md#I5"
       ],
       "packet": "repos/quantik-core-contracts/W2-register-opening-probe.md",
+      "pr": "https://github.com/mberlanda/quantik-core-contracts/pull/30",
       "repository": "quantik-core-contracts",
-      "status": "planned"
+      "status": "completed"
     },
     {
       "allowed_paths": [

@@ -1,7 +1,13 @@
 
 
-## 2026-09-20 — W2 and W4 merged
+## 2026-09-20 — W3 merged; QW-018 is complete apart from a core follow-up
 
-- **W2** [contracts#29](https://github.com/mberlanda/quantik-core-contracts/pull/29) registers `engine-response.v2` (`certainty` required, `candidates`, flat `pv`, optional `engine_config`) and moves the design record to `docs/engine-response-v2.md`. v1's schema and captured fixture are untouched; v1's `fixture_glob` narrowed to `engine-response-v1-*.jsonl`. Checked independently with jsonschema 4.26: 7 valid rows pass, 21 of 23 invalid cases rejected by the schema alone; the other two (duplicate candidate `action_index`, `pv[0] != action_index`) are cross-field rules enforced only by the stdlib validator hook. Not enforced anywhere: uniform units within a list, legal-only candidates, `proof` never sent for network/MCTS/beam numbers (producer obligations). `allowed_paths` widened to the five files the registration needs.
-- **W4** [visualizer#15](https://github.com/mberlanda/quantik-qfen-visualizer/pull/15) adds `readEngineResponse` and `engine.lastAnalysis`; absent `certainty` is "unlabelled", unknown schema ids claim nothing, nothing throws. **Gap:** the packet's `allowed_paths` excluded the UI, so `lastAnalysis` renders nowhere yet. `lastAnalysis` is null after a rejected reply (illegal `action_index`); do not assume it tracks every reply. The visualizer has no CI; 96 local tests.
-- W3 (api-rust) is in flight and needs a core accessor for per-move minimax scores that this item's paths may not permit.
+[api-rust#6](https://github.com/mberlanda/quantik-api-rust/pull/6) makes the gateway emit `engine-response.v2`: `certainty` on every response (minimax `proof` only when its headline score is proven, dropping the heuristic tail; MCTS and beam always `estimate`), `candidates` (max 8, legal, distinct, selected first), a replay-checked `pv` (minimax and beam), `engine_config`, and validation against the registered schema in tests. `engine_version` stays the core revision.
+
+- **Known gap:** minimax and MCTS candidate lists are ranked *subsets* (the core collapses symmetric root children). Complete per-move coverage needs a quantik-core-rust item: a public root-score accessor on `MinimaxResult`, and an MCTS visit list that is orbit-expanded or run without the transposition table. Not yet an owned work item.
+- `Unit` in the gateway has only `visits|value`; it is not a general v2 reader.
+- `is_proven` relies on the core's squashed scale (proven is exactly +-1); a test now pins that a deep unproven search stays strictly inside the interval.
+- **Cross-repo mismatch:** JSON Schema `integer` accepts `1.0` as a visits score; the contracts stdlib hook rejects it. The gateway emits integer counts and a test checks it.
+- api-rust has no CI, so all of this is local evidence (17 lib + 2 integration tests, fmt, clippy). The diff was reviewed unfiltered by the coordinator.
+- The visualizer's `lastAnalysis` renders nowhere yet (W4's paths excluded the UI); a certainty badge is a follow-up item if wanted. The Python play service still emits the v1 shape.
+- The models-py vendored copy of the visualizer is behind visualizer main (`9810407`) and needs `scripts/sync_visualizer.py`.

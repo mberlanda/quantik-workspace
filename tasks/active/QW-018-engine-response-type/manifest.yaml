@@ -87,8 +87,9 @@
         "context/system/canonical-invariants.md#I6"
       ],
       "packet": "repos/quantik-api-rust/W3-return-pv-and-candidates.md",
+      "pr": "https://github.com/mberlanda/quantik-api-rust/pull/6",
       "repository": "quantik-api-rust",
-      "status": "planned"
+      "status": "completed"
     },
     {
       "allowed_paths": [
