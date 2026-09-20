@@ -471,9 +471,9 @@
       "dispatch": "mechanical",
       "initiative": "QW-015",
       "initiative_blocked_by": [],
-      "ready": true,
+      "ready": false,
       "repository": "quantik-core-contracts",
-      "status": "planned",
+      "status": "completed",
       "unmet_dependencies": [],
       "work_item": "W5"
     },
@@ -484,9 +484,9 @@
       "dispatch": "mechanical",
       "initiative": "QW-015",
       "initiative_blocked_by": [],
-      "ready": true,
+      "ready": false,
       "repository": "quantik-core-contracts",
-      "status": "planned",
+      "status": "completed",
       "unmet_dependencies": [],
       "work_item": "W6"
     },
@@ -572,9 +572,7 @@
       ],
       "dispatch": null,
       "initiative": "QW-017",
-      "initiative_blocked_by": [
-        "QW-019"
-      ],
+      "initiative_blocked_by": [],
       "ready": false,
       "repository": "quantik-api-rust",
       "status": "plan-required",
@@ -589,9 +587,7 @@
       "depends_on": [],
       "dispatch": null,
       "initiative": "QW-017",
-      "initiative_blocked_by": [
-        "QW-019"
-      ],
+      "initiative_blocked_by": [],
       "ready": false,
       "repository": "quantik-models-py",
       "status": "plan-required",
@@ -604,10 +600,8 @@
       "depends_on": [],
       "dispatch": "judgment",
       "initiative": "QW-018",
-      "initiative_blocked_by": [
-        "QW-019"
-      ],
-      "ready": false,
+      "initiative_blocked_by": [],
+      "ready": true,
       "repository": "quantik-core-contracts",
       "status": "planned",
       "unmet_dependencies": [],
@@ -621,9 +615,7 @@
       ],
       "dispatch": "mechanical",
       "initiative": "QW-018",
-      "initiative_blocked_by": [
-        "QW-019"
-      ],
+      "initiative_blocked_by": [],
       "ready": false,
       "repository": "quantik-core-contracts",
       "status": "planned",
@@ -640,9 +632,7 @@
       ],
       "dispatch": "mechanical",
       "initiative": "QW-018",
-      "initiative_blocked_by": [
-        "QW-019"
-      ],
+      "initiative_blocked_by": [],
       "ready": false,
       "repository": "quantik-api-rust",
       "status": "planned",
@@ -659,9 +649,7 @@
       ],
       "dispatch": "mechanical",
       "initiative": "QW-018",
-      "initiative_blocked_by": [
-        "QW-019"
-      ],
+      "initiative_blocked_by": [],
       "ready": false,
       "repository": "quantik-qfen-visualizer",
       "status": "planned",
@@ -669,80 +657,6 @@
         "W2"
       ],
       "work_item": "W4"
-    },
-    {
-      "branch": "feat/register-engine-contracts",
-      "complexity": "M",
-      "depends_on": [],
-      "dispatch": "mechanical",
-      "initiative": "QW-019",
-      "initiative_blocked_by": [],
-      "ready": false,
-      "repository": "quantik-core-contracts",
-      "status": "completed",
-      "unmet_dependencies": [],
-      "work_item": "W1"
-    },
-    {
-      "branch": "feat/engine-contract-names",
-      "complexity": "S",
-      "depends_on": [
-        "W1"
-      ],
-      "dispatch": "mechanical",
-      "initiative": "QW-019",
-      "initiative_blocked_by": [],
-      "ready": false,
-      "repository": "quantik-api-rust",
-      "status": "completed",
-      "unmet_dependencies": [],
-      "work_item": "W2"
-    },
-    {
-      "branch": "feat/engine-contract-names",
-      "complexity": "S",
-      "depends_on": [
-        "W1"
-      ],
-      "dispatch": "mechanical",
-      "initiative": "QW-019",
-      "initiative_blocked_by": [],
-      "ready": false,
-      "repository": "quantik-qfen-visualizer",
-      "status": "completed",
-      "unmet_dependencies": [],
-      "work_item": "W3"
-    },
-    {
-      "branch": "feat/engine-contract-names",
-      "complexity": "S",
-      "depends_on": [
-        "W1"
-      ],
-      "dispatch": "mechanical",
-      "initiative": "QW-019",
-      "initiative_blocked_by": [],
-      "ready": false,
-      "repository": "quantik-models-py",
-      "status": "completed",
-      "unmet_dependencies": [],
-      "work_item": "W4"
-    },
-    {
-      "branch": "chore/resync-visualizer-engine-names",
-      "complexity": "S",
-      "depends_on": [
-        "W3",
-        "W4"
-      ],
-      "dispatch": "mechanical",
-      "initiative": "QW-019",
-      "initiative_blocked_by": [],
-      "ready": true,
-      "repository": "quantik-models-py",
-      "status": "planned",
-      "unmet_dependencies": [],
-      "work_item": "W5"
     },
     {
       "branch": "feat/dockerfile",
@@ -766,9 +680,9 @@
       "dispatch": "mechanical",
       "initiative": "QW-020",
       "initiative_blocked_by": [],
-      "ready": true,
+      "ready": false,
       "repository": "quantik-api-rust",
-      "status": "planned",
+      "status": "completed",
       "unmet_dependencies": [],
       "work_item": "W2"
     },
@@ -816,7 +730,6 @@
       "repository": "quantik-api-rust",
       "status": "planned",
       "unmet_dependencies": [
-        "W2",
         "W3"
       ],
       "work_item": "W5"

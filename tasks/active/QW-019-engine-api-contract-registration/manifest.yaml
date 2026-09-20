@@ -152,8 +152,9 @@
         "context/system/canonical-invariants.md#I5"
       ],
       "packet": "repos/quantik-models-py/W5-resync-vendored-app.md",
+      "pr": "https://github.com/mberlanda/quantik-models-py/pull/72",
       "repository": "quantik-models-py",
-      "status": "planned"
+      "status": "completed"
     }
   ]
 }

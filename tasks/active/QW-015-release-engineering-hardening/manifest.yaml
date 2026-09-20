@@ -98,8 +98,9 @@
       "id": "W5",
       "invariants": [],
       "packet": "repos/quantik-core-contracts/W5-release-preflight.md",
+      "pr": "https://github.com/mberlanda/quantik-core-contracts/pull/26",
       "repository": "quantik-core-contracts",
-      "status": "planned"
+      "status": "completed"
     },
     {
       "allowed_paths": [
@@ -116,8 +117,9 @@
       "id": "W6",
       "invariants": [],
       "packet": "repos/quantik-core-contracts/W6-single-version-literal.md",
+      "pr": "https://github.com/mberlanda/quantik-core-contracts/pull/25",
       "repository": "quantik-core-contracts",
-      "status": "planned"
+      "status": "completed"
     },
     {
       "allowed_paths": [

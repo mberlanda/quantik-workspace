@@ -43,3 +43,21 @@ the real file is `tests/test_opening_book_summary_validator.py`.
 Both halves are already tested there (`test_differing_contract_versions_pass_without_expected_release` and
 `test_expected_release_still_enforced_when_explicitly_passed`). The packet wanted one combined test; the split is
 equivalent, so W1 is closed with no new PR. Lesson: check the packet's premise against `main` before dispatch.
+
+## 2026-09-20 — W5 and W6 merged
+
+- **W6** [contracts#25](https://github.com/mberlanda/quantik-core-contracts/pull/25) dropped the redundant
+  `--expected-release 1.3.0` from `validate-contracts.yml`; `validate_contracts.py` already compares `VERSION` to
+  `contracts.json` and every fixture to the manifest release, so no check is lost. The packet's grep criterion could not
+  be met (`VERSION` has no extension; fixtures must carry the release by design), and `minimum_expected_contract_release`
+  in `contracts.json` is a per-stack compatibility floor, not the release literal. Criterion amended, not chased.
+  `actions/opening-book-consistency/action.yml` had already lost its default in #23.
+- **W5** [contracts#26](https://github.com/mberlanda/quantik-core-contracts/pull/26) adds `scripts/release_preflight.py`
+  (tag absent locally and on the remote, `VERSION` equals the tag, action paths exist at the ref; reads git objects,
+  not the working tree) and a `preflight_only` dispatch input on `release-contracts.yml`. The tag-push job re-runs
+  assertions 2 and 3 with `--tag-already-cut`, because the workflow is tag-triggered and assertion 1 cannot hold there.
+- **Follow-ups:**
+  - Contracts CI runs the contract validator, not the test suite, so W5's 13 tests are local evidence only.
+  - The read-only `preflight` job inherits workflow-level `contents: write`.
+  - The local tag check is inert in CI (`checkout` fetches no tags); the `ls-remote` check is the one that fires.
+  - The preflight workflow path is unexercised until dispatched from `main`.
