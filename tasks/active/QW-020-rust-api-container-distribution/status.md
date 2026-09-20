@@ -31,3 +31,16 @@ Tradeoffs recorded:
 - linux/amd64 was not built or tested, and the repository has no CI to run it.
 
 **W1 merged** — [#1](https://github.com/mberlanda/quantik-api-rust/pull/1). The repository has no CI; the local build + `/health` run is the only evidence. W2-W5 are now ready.
+
+## 2026-09-20 — W2 merged
+
+[api-rust#3](https://github.com/mberlanda/quantik-api-rust/pull/3) adds `.github/workflows/publish-image.yml`:
+a `vX.Y.Z` tag push builds `linux/amd64,linux/arm64` and pushes `ghcr.io/<owner>/quantik-api:X.Y.Z` (no `latest`);
+`workflow_dispatch` builds without pushing, tagged by sha. The workflow has never run.
+
+- **Precondition for the first release tag:** `workflow_dispatch` only exists once the workflow is on `main`. Run it
+  from `main` and confirm the QEMU arm64 build completes before pushing a tag.
+- **Risk:** the `gha` cache is ref-scoped, so tag runs start cold. QEMU-emulated arm64 compiling Rust plus bundled
+  SQLite C could be very slow; a dispatch run from `main` warms the cache. W3's smoke test builds natively and will not catch this.
+- Docker actions are pinned at qemu/buildx/login v3, metadata v5, build-push v6 (no fleet precedent); checkout is v7 like the rest.
+- The W2 packet's start revision was stale (`f814093`). W3 and W4 are now ready.

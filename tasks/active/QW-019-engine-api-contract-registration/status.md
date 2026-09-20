@@ -65,3 +65,16 @@ Follow-ups, none blocking:
 - api-rust `Cargo.lock` records `quantik-core` as 1.3.0 (sibling drift). Fold into the QW-020 `CORE_REV` sync item.
 
 W5 is now ready.
+
+## 2026-09-20 — W5 merged
+
+[models-py#72](https://github.com/mberlanda/quantik-models-py/pull/72) re-vendored the visualizer via
+`scripts/sync_visualizer.py` (`SOURCE.json` now records visualizer `9f21762`, #14); no hand edits under `app/`.
+The local visualizer checkout was behind, so the sync ran from a fresh worktree of `origin/main`.
+
+Left over, outside W5's `allowed_paths`:
+
+- `quantik-qfen-visualizer/README.md:72` still shows `quantik.engine-request.v1` (a one-line fix in that repo).
+- The OpenAPI 3.1 document is a separate contracts item (D2).
+
+All five QW-019 items are `completed`; QW-018 is unblocked.

@@ -69,9 +69,9 @@ flowchart TD
   class QW-011 ready
   class QW-015 ready
   class QW-016 blocked
-  class QW-017 blocked
-  class QW-018 blocked
-  class QW-019 ready
+  class QW-017 ready
+  class QW-018 ready
+  class QW-019 done
   class QW-020 ready
   class QW-021 ready
   class QW-022 ready
@@ -108,9 +108,9 @@ flowchart TD
 | `QW-011` | ready | S | `quantik-models-py` | QW-008 | - | Puzzle Mode in the Browser |
 | `QW-015` | ready | M | `quantik-core-contracts`, `quantik-core-rust`, `quantik-core-py` | - | - | Release-Engineering Hardening |
 | `QW-016` | blocked | M | `articles` | QW-015 | QW-015 | Season Two Article Publication |
-| `QW-017` | blocked | XL | `quantik-api-rust`, `quantik-models-py` | QW-019 | QW-019 | ONNX Model Serving in the Rust API |
-| `QW-018` | blocked | L | `quantik-api-rust`, `quantik-core-contracts`, `quantik-qfen-visualizer` | QW-019 | QW-019 | Engine Response Type — Candidates, PV, Certainty |
-| `QW-019` | ready | L | `quantik-core-contracts`, `quantik-api-rust`, `quantik-qfen-visualizer`, `quantik-models-py` | - | - | Register the Phantom Engine API Contracts |
+| `QW-017` | ready | XL | `quantik-api-rust`, `quantik-models-py` | QW-019 | - | ONNX Model Serving in the Rust API |
+| `QW-018` | ready | L | `quantik-api-rust`, `quantik-core-contracts`, `quantik-qfen-visualizer` | QW-019 | - | Engine Response Type — Candidates, PV, Certainty |
+| `QW-019` | done | L | `quantik-core-contracts`, `quantik-api-rust`, `quantik-qfen-visualizer`, `quantik-models-py` | - | - | Register the Phantom Engine API Contracts |
 | `QW-020` | ready | M | `quantik-api-rust` | - | - | Container Distribution for the Rust API |
 | `QW-021` | ready | XL | `quantik-models-py`, `articles` | QW-012 | - | Opening Coverage Expansion — Plies 0 to 6 |
 | `QW-022` | ready | S | `quantik-models-py`, `articles` | - | - | Workspace Repo Hygiene — Remaining Items |

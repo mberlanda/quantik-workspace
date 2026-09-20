@@ -193,9 +193,7 @@
         "quantik-api-rust",
         "quantik-models-py"
       ],
-      "blocked_by": [
-        "QW-019"
-      ],
+      "blocked_by": [],
       "complexity": "XL",
       "dependencies": [
         "QW-019"
@@ -212,9 +210,7 @@
         "quantik-core-contracts",
         "quantik-qfen-visualizer"
       ],
-      "blocked_by": [
-        "QW-019"
-      ],
+      "blocked_by": [],
       "complexity": "L",
       "dependencies": [
         "QW-019"
@@ -235,7 +231,7 @@
       "blocked_by": [],
       "complexity": "L",
       "dependencies": [],
-      "done": false,
+      "done": true,
       "id": "QW-019",
       "state": "active",
       "status": "planned",
