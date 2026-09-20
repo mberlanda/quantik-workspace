@@ -72,3 +72,8 @@ does not fit, that is a sign the item is too big, not that the budget is too sma
 Work whose deliverable is a judgement about evidence — "is there a strength ordering at ply 0?",
 "does this partition destroy the probe?" — is marked `judgment` and stays that way. Splitting it
 finer does not make it safer; it just hides the decision in more places.
+
+## Known gaps in what the board can tell you (2026-09-20)
+
+- **Blockers stated in prose are not encoded.** A packet can say "blocked on QW-017" while its manifest lists only in-initiative `depends_on`; the board then advertises the item as ready and an agent discovers the blocker (QW-020 W5). The validator rejects cross-initiative ids in `depends_on` and there is no "blocked" status. Until that is fixed, read the packet's "Blocked on" line before dispatching, and park the item as `plan-required` if the blocker is real.
+- **Packet premises go stale.** Several items were already done or wrong about their own starting point (QW-015 W1, W4; W2's start revisions). Verify the premise against `origin/main` before doing the work.

@@ -47,7 +47,12 @@
       "allowed_paths": [
         "docs/engine-response-v1.md",
         "schemas/engine-response-v1.json",
-        "fixtures/engine-response/*"
+        "fixtures/engine-response/*",
+        "schemas/engine-response-v2.json",
+        "docs/engine-response-v2.md",
+        "contracts.json",
+        "scripts/validate_contracts.py",
+        "tests/test_contracts_validator.py"
       ],
       "branch": "feat/engine-response-candidates",
       "complexity": "M",
@@ -61,8 +66,9 @@
         "context/system/canonical-invariants.md#I5"
       ],
       "packet": "repos/quantik-core-contracts/W2-extend-response-schema.md",
+      "pr": "https://github.com/mberlanda/quantik-core-contracts/pull/29",
       "repository": "quantik-core-contracts",
-      "status": "planned"
+      "status": "completed"
     },
     {
       "allowed_paths": [
@@ -101,8 +107,9 @@
         "context/system/canonical-invariants.md#I5"
       ],
       "packet": "repos/quantik-qfen-visualizer/W4-tolerate-response-fields.md",
+      "pr": "https://github.com/mberlanda/quantik-qfen-visualizer/pull/15",
       "repository": "quantik-qfen-visualizer",
-      "status": "planned"
+      "status": "completed"
     }
   ]
 }
