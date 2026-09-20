@@ -165,7 +165,7 @@
       "blocked_by": [],
       "complexity": "M",
       "dependencies": [],
-      "done": false,
+      "done": true,
       "id": "QW-015",
       "state": "active",
       "status": "planned",
@@ -175,9 +175,7 @@
       "affected_repositories": [
         "articles"
       ],
-      "blocked_by": [
-        "QW-015"
-      ],
+      "blocked_by": [],
       "complexity": "M",
       "dependencies": [
         "QW-015"

@@ -77,7 +77,9 @@
         "crates/quantik-core/src/opening_probe.rs",
         "crates/quantik-core/src/opening_book.rs",
         "crates/quantik-core/src/bin/probe_builder.rs",
-        "crates/quantik-core/tests/opening_probe.rs"
+        "crates/quantik-core/tests/opening_probe.rs",
+        "crates/quantik-core/src/symmetry.rs",
+        "crates/quantik-core/src/lib.rs"
       ],
       "branch": "feat/opening-probe",
       "complexity": "L",
@@ -92,8 +94,9 @@
         "context/system/canonical-invariants.md#I6"
       ],
       "packet": "repos/quantik-core-rust/W3-probe-abstraction.md",
+      "pr": "https://github.com/mberlanda/quantik-core-rust/pull/44",
       "repository": "quantik-core-rust",
-      "status": "planned"
+      "status": "completed"
     },
     {
       "allowed_paths": [
