@@ -417,9 +417,9 @@
       "dispatch": "mechanical",
       "initiative": "QW-015",
       "initiative_blocked_by": [],
-      "ready": true,
+      "ready": false,
       "repository": "quantik-core-contracts",
-      "status": "planned",
+      "status": "completed",
       "unmet_dependencies": [],
       "work_item": "W1"
     },
@@ -458,12 +458,10 @@
       "dispatch": "mechanical",
       "initiative": "QW-015",
       "initiative_blocked_by": [],
-      "ready": false,
+      "ready": true,
       "repository": "quantik-core-contracts",
       "status": "planned",
-      "unmet_dependencies": [
-        "W1"
-      ],
+      "unmet_dependencies": [],
       "work_item": "W4"
     },
     {
@@ -506,7 +504,6 @@
       "repository": "quantik-core-contracts",
       "status": "planned",
       "unmet_dependencies": [
-        "W1",
         "W4"
       ],
       "work_item": "W7"
