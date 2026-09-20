@@ -33,8 +33,9 @@
       "id": "W1",
       "invariants": [],
       "packet": "repos/quantik-models-py/W1-profile-design.md",
+      "pr": "https://github.com/mberlanda/quantik-models-py/pull/70",
       "repository": "quantik-models-py",
-      "status": "planned"
+      "status": "in-review"
     },
     {
       "allowed_paths": [
