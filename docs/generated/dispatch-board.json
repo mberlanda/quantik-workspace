@@ -134,9 +134,9 @@
       "dispatch": "mechanical",
       "initiative": "QW-004",
       "initiative_blocked_by": [],
-      "ready": true,
+      "ready": false,
       "repository": "quantik-core-contracts",
-      "status": "planned",
+      "status": "completed",
       "unmet_dependencies": [],
       "work_item": "W2"
     },
@@ -149,12 +149,10 @@
       "dispatch": "mechanical",
       "initiative": "QW-004",
       "initiative_blocked_by": [],
-      "ready": false,
+      "ready": true,
       "repository": "quantik-core-rust",
       "status": "planned",
-      "unmet_dependencies": [
-        "W2"
-      ],
+      "unmet_dependencies": [],
       "work_item": "W3"
     },
     {
@@ -589,64 +587,6 @@
       "status": "plan-required",
       "unmet_dependencies": [],
       "work_item": "W2"
-    },
-    {
-      "branch": "docs/engine-response-candidates",
-      "complexity": "M",
-      "depends_on": [],
-      "dispatch": "judgment",
-      "initiative": "QW-018",
-      "initiative_blocked_by": [],
-      "ready": false,
-      "repository": "quantik-core-contracts",
-      "status": "completed",
-      "unmet_dependencies": [],
-      "work_item": "W1"
-    },
-    {
-      "branch": "feat/engine-response-candidates",
-      "complexity": "M",
-      "depends_on": [
-        "W1"
-      ],
-      "dispatch": "mechanical",
-      "initiative": "QW-018",
-      "initiative_blocked_by": [],
-      "ready": false,
-      "repository": "quantik-core-contracts",
-      "status": "completed",
-      "unmet_dependencies": [],
-      "work_item": "W2"
-    },
-    {
-      "branch": "feat/engine-response-candidates",
-      "complexity": "M",
-      "depends_on": [
-        "W2"
-      ],
-      "dispatch": "mechanical",
-      "initiative": "QW-018",
-      "initiative_blocked_by": [],
-      "ready": true,
-      "repository": "quantik-api-rust",
-      "status": "planned",
-      "unmet_dependencies": [],
-      "work_item": "W3"
-    },
-    {
-      "branch": "feat/tolerate-response-fields",
-      "complexity": "S",
-      "depends_on": [
-        "W2"
-      ],
-      "dispatch": "mechanical",
-      "initiative": "QW-018",
-      "initiative_blocked_by": [],
-      "ready": false,
-      "repository": "quantik-qfen-visualizer",
-      "status": "completed",
-      "unmet_dependencies": [],
-      "work_item": "W4"
     },
     {
       "branch": "feat/dockerfile",

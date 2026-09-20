@@ -215,7 +215,7 @@
       "dependencies": [
         "QW-019"
       ],
-      "done": false,
+      "done": true,
       "id": "QW-018",
       "state": "active",
       "status": "planned",

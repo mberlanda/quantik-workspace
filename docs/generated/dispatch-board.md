@@ -9,16 +9,15 @@ quantik-workspace context task <INITIATIVE> <REPOSITORY> --work-item <ID> \
   --budget 64000 --output /tmp/<ID>.md
 ```
 
-**10 ready now · 61 waiting.** `dispatch` says what kind of agent an item wants: `mechanical` (every decision already made — a small model is enough), `execute-and-record` (run the specified thing, report real output), `judgment` (a real call to make — capable model, human review).
+**9 ready now · 58 waiting.** `dispatch` says what kind of agent an item wants: `mechanical` (every decision already made — a small model is enough), `execute-and-record` (run the specified thing, report real output), `judgment` (a real call to make — capable model, human review).
 
 ## Ready now
 
 | Initiative | Item | Repository | Complexity | Dispatch | Branch |
 | --- | --- | --- | --- | --- | --- |
-| `QW-004` | `W2` | `quantik-core-contracts` | M | mechanical | `feat/register-opening-probe` |
+| `QW-004` | `W3` | `quantik-core-rust` | L | mechanical | `feat/opening-probe` |
 | `QW-009` | `W2` | `quantik-models-py` | S | execute-and-record | `docs/verify-storeless-container` |
 | `QW-015` | `W7` | `quantik-core-contracts` | S | execute-and-record | `test/deadlock-demonstration` |
-| `QW-018` | `W3` | `quantik-api-rust` | M | mechanical | `feat/engine-response-candidates` |
 | `QW-021` | `W2` | `quantik-models-py` | S | execute-and-record | `feat/opening-label-smoke` |
 | `QW-023` | `W1` | `quantik-models-py` | M | execute-and-record | `feat/corpus-axis-converged-run` |
 | `QW-024` | `W1` | `quantik-models-py` | M | execute-and-record | `feat/opening-arena-results` |
@@ -38,7 +37,7 @@ quantik-workspace context task <INITIATIVE> <REPOSITORY> --work-item <ID> \
 | `QW-003` | `W2` | `quantik-core-rust` | - | - | QW-003.W1 |
 | `QW-003` | `W3` | `quantik-models-py` | - | - | QW-003.W2 |
 | `QW-004` | `W1` | `quantik-core-contracts` | L | judgment | completed |
-| `QW-004` | `W3` | `quantik-core-rust` | L | mechanical | QW-004.W2 |
+| `QW-004` | `W2` | `quantik-core-contracts` | M | mechanical | completed |
 | `QW-004` | `W4` | `quantik-core-rust` | M | execute-and-record | QW-004.W3 |
 | `QW-005` | `W1` | `quantik-core-contracts` | - | - | QW-002, QW-003, QW-004, QW-006, QW-007 |
 | `QW-005` | `W2` | `quantik-core-rust` | - | - | QW-005.W1, QW-002, QW-003, QW-004, QW-006, QW-007 |
@@ -65,9 +64,6 @@ quantik-workspace context task <INITIATIVE> <REPOSITORY> --work-item <ID> \
 | `QW-016` | `W2` | `articles` | S | judgment | QW-015 |
 | `QW-017` | `W1` | `quantik-api-rust` | - | - | QW-017.W2 |
 | `QW-017` | `W2` | `quantik-models-py` | - | - | plan-required |
-| `QW-018` | `W1` | `quantik-core-contracts` | M | judgment | completed |
-| `QW-018` | `W2` | `quantik-core-contracts` | M | mechanical | completed |
-| `QW-018` | `W4` | `quantik-qfen-visualizer` | S | mechanical | completed |
 | `QW-020` | `W1` | `quantik-api-rust` | M | mechanical | completed |
 | `QW-020` | `W2` | `quantik-api-rust` | M | mechanical | completed |
 | `QW-020` | `W3` | `quantik-api-rust` | S | execute-and-record | completed |
