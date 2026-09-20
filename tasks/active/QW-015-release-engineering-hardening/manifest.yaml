@@ -137,8 +137,9 @@
       "id": "W7",
       "invariants": [],
       "packet": "repos/quantik-core-contracts/W7-deadlock-demonstration.md",
+      "pr": "https://github.com/mberlanda/quantik-core-contracts/pull/31",
       "repository": "quantik-core-contracts",
-      "status": "planned"
+      "status": "completed"
     },
     {
       "allowed_paths": [
