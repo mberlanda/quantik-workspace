@@ -116,6 +116,27 @@ class DispatchBoardTests(unittest.TestCase):
             self.assertIn("# Dispatch Board", markdown)
             self.assertIn("`QW-100`", markdown)
 
+    def test_an_item_in_review_is_taken_and_still_blocks_its_dependents(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            config = self._workspace(root)
+            path = create_task(config, "QW-102-review", "Review", ["repo"])
+            manifest = json.loads((path / "manifest.yaml").read_text())
+            first = manifest["work_items"][0]
+            first.update({"status": "in-review", "complexity": "S", "dispatch": "mechanical"})
+            second = dict(first)
+            second.update({
+                "id": "W2", "branch": "feat/second", "packet": "repos/repo/W2-second.md",
+                "depends_on": ["W1"], "status": "planned",
+            })
+            manifest["work_items"] = [first, second]
+            write_json(path / "manifest.yaml", manifest)
+            (path / "repos/repo/W2-second.md").write_text("# W2\n", encoding="utf-8")
+
+            by_id = {row["work_item"]: row for row in dispatch_board(config)}
+            self.assertFalse(by_id["W1"]["ready"])
+            self.assertFalse(by_id["W2"]["ready"])
+
     def test_plan_required_items_are_never_ready(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
