@@ -44,3 +44,9 @@ a `vX.Y.Z` tag push builds `linux/amd64,linux/arm64` and pushes `ghcr.io/<owner>
   SQLite C could be very slow; a dispatch run from `main` warms the cache. W3's smoke test builds natively and will not catch this.
 - Docker actions are pinned at qemu/buildx/login v3, metadata v5, build-push v6 (no fleet precedent); checkout is v7 like the rest.
 - The W2 packet's start revision was stale (`f814093`). W3 and W4 are now ready.
+
+## 2026-09-20 — W3 and W4 merged
+
+- **W3** [api-rust#4](https://github.com/mberlanda/quantik-api-rust/pull/4) adds `tests/container_smoke.rs`: one request per engine kind read from `/v1/engines`, asserting the action is in the request's `legal_action_indices`. Skips when Docker or the image is absent; hard-fails only if `QUANTIK_API_IMAGE` is set and missing. **api-rust has no CI, so nothing runs it automatically.** It uses a single opening position and all three engines returned 51, so it is not evidence that the engines differ.
+- **W4** [api-rust#5](https://github.com/mberlanda/quantik-api-rust/pull/5) records the deployment decision in `docs/deployment.md`, all five accepted: the Python play container is the only public deployment; the Rust image is a self-host artifact; the visualizer defaults to same origin; bugs route by artifact; the Rust-public preconditions (restrict CORS, CI with a linux/amd64 build, `CORE_REV` sync, a named owner) are written down and nothing changes now.
+- **Follow-ups:** README link to the paper; port mismatch (binary 8000, image 8080, play container 8000); the visualizer's Remote placeholders match neither service's routes. The GHCR registry was not checked for either image.

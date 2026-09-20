@@ -78,3 +78,11 @@ now separable and should land in QW-027 first; what stays here is plies 4-6,
 which is where the probe problem actually lives.
 
 Full history: [`workstreams-archive.md`](../../../docs/history/workstreams-archive.md) §10.
+
+## 2026-09-20 — W1 decided and merged
+
+[models-py#73](https://github.com/mberlanda/quantik-models-py/pull/73) records the partition and judging design in `docs/opening-coverage-partition.md`; all six accepted, with **frontier 5** for the solve scope. The paper found the packet's premise partly wrong: v3 already covers ply 3 fully and ply 4 at 89%, so only plies 0-2 (55 positions) are new coverage; the 99.63% comes from the original 640-position probe, 86 of which are already training rows; `merge_corpus.py` already excludes `probe-large` by canonical key.
+
+- Manifest amendments made here: W1 `allowed_paths` gains `docs/README.md` (the docs index test requires it); W6 gains `scripts/build_report.py` (the only 99.63% occurrence in this repo); W7 gains `articles/preview.html`.
+- **Open:** acceptance criterion 7 (an exact-lookup opening layer in `src/quantik_models/play/`) has no owning work item; a W8 must be decomposed. The QW-027 oracle confirmation of plies 0-2 is still open.
+- W2 is cleared to dispatch.

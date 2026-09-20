@@ -61,3 +61,7 @@ equivalent, so W1 is closed with no new PR. Lesson: check the packet's premise a
   - The read-only `preflight` job inherits workflow-level `contents: write`.
   - The local tag check is inert in CI (`checkout` fetches no tags); the `ls-remote` check is the one that fires.
   - The preflight workflow path is unexercised until dispatched from `main`.
+
+## 2026-09-20 — W4 closed as already done
+
+W4's two steps were satisfied by [contracts#25](https://github.com/mberlanda/quantik-core-contracts/pull/25) (W6): the flag is gone from `validate-contracts.yml` and the `expected-release` input on `actions/opening-book-consistency/action.yml` defaults to `""`, with a comment saying why. Verified on `origin/main`; no PR of its own. Remaining `--expected-release` uses are release-time checks and docs examples.
