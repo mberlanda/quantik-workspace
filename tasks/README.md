@@ -6,6 +6,9 @@ Cross-repository initiatives live in `active/`, `completed/`, or `archived/`. Ea
 fresh agent session, and [`docs/generated/dispatch-board.md`](../docs/generated/dispatch-board.md)
 is the generated menu of what can be picked up right now, one row per work item.
 
+[`HANDOVER.md`](HANDOVER.md) records which initiatives are still on placeholder packets, what
+each one's decision pass has to settle, and the loose ends that are not work items.
+
 Each initiative's manifest carries an optional `complexity` (`S`/`M`/`L`/`XL`) and
 `complexity_notes` field — an engineering-complexity rating used as a proxy for agent
 assignment; see [`complexity-assessment.md`](complexity-assessment.md) for the scale.
