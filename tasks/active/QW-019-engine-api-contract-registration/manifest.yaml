@@ -1,8 +1,8 @@
 {
   "acceptance_criteria": [
-    "Both schemas are registered in quantik-core-contracts with golden fixtures, and the naming is settled — every registered contract is observation.v1, qfen.v1 with no quantik. prefix, so either the prefix goes or the convention is amended in writing.",
+    "Both schemas are registered in quantik-core-contracts with golden fixtures, and the naming is settled \u2014 every registered contract is observation.v1, qfen.v1 with no quantik. prefix, so either the prefix goes or the convention is amended in writing.",
     "The format decision is recorded: OpenAPI 3.1 (JSON Schema 2020-12 compatible, enabling client generation) versus a plain JSON Schema pair.",
-    "The spec is contract-first with CI asserting the implementation matches it — not generated from handlers, which inverts the source of truth.",
+    "The spec is contract-first with CI asserting the implementation matches it \u2014 not generated from handlers, which inverts the source of truth.",
     "All three implementations validate against the registered schema in their own test suites: the Rust const, the JS literal, and the Python play service.",
     "A deliberate migration is recorded if the schema string changes, because a rename breaks every deployed client that pins the old string."
   ],
@@ -76,8 +76,9 @@
         "context/system/canonical-invariants.md#I5"
       ],
       "packet": "repos/quantik-api-rust/W2-engine-contract-names.md",
+      "pr": "https://github.com/mberlanda/quantik-api-rust/pull/2",
       "repository": "quantik-api-rust",
-      "status": "planned"
+      "status": "completed"
     },
     {
       "allowed_paths": [
@@ -100,14 +101,16 @@
         "context/system/canonical-invariants.md#I5"
       ],
       "packet": "repos/quantik-qfen-visualizer/W3-engine-contract-names.md",
+      "pr": "https://github.com/mberlanda/quantik-qfen-visualizer/pull/14",
       "repository": "quantik-qfen-visualizer",
-      "status": "planned"
+      "status": "completed"
     },
     {
       "allowed_paths": [
         "src/quantik_models/play/service.py",
         "src/quantik_models/play/server.py",
-        "tests/test_play_service.py"
+        "tests/test_play_service.py",
+        "tests/test_play_server.py"
       ],
       "branch": "feat/engine-contract-names",
       "complexity": "S",
@@ -124,8 +127,9 @@
         "context/system/canonical-invariants.md#I5"
       ],
       "packet": "repos/quantik-models-py/W4-engine-contract-names.md",
+      "pr": "https://github.com/mberlanda/quantik-models-py/pull/71",
       "repository": "quantik-models-py",
-      "status": "planned"
+      "status": "completed"
     },
     {
       "allowed_paths": [

@@ -695,9 +695,9 @@
       "dispatch": "mechanical",
       "initiative": "QW-019",
       "initiative_blocked_by": [],
-      "ready": true,
+      "ready": false,
       "repository": "quantik-api-rust",
-      "status": "planned",
+      "status": "completed",
       "unmet_dependencies": [],
       "work_item": "W2"
     },
@@ -710,9 +710,9 @@
       "dispatch": "mechanical",
       "initiative": "QW-019",
       "initiative_blocked_by": [],
-      "ready": true,
+      "ready": false,
       "repository": "quantik-qfen-visualizer",
-      "status": "planned",
+      "status": "completed",
       "unmet_dependencies": [],
       "work_item": "W3"
     },
@@ -725,9 +725,9 @@
       "dispatch": "mechanical",
       "initiative": "QW-019",
       "initiative_blocked_by": [],
-      "ready": true,
+      "ready": false,
       "repository": "quantik-models-py",
-      "status": "planned",
+      "status": "completed",
       "unmet_dependencies": [],
       "work_item": "W4"
     },
@@ -741,13 +741,10 @@
       "dispatch": "mechanical",
       "initiative": "QW-019",
       "initiative_blocked_by": [],
-      "ready": false,
+      "ready": true,
       "repository": "quantik-models-py",
       "status": "planned",
-      "unmet_dependencies": [
-        "W3",
-        "W4"
-      ],
+      "unmet_dependencies": [],
       "work_item": "W5"
     },
     {

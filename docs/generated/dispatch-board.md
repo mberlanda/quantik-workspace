@@ -9,7 +9,7 @@ quantik-workspace context task <INITIATIVE> <REPOSITORY> --work-item <ID> \
   --budget 64000 --output /tmp/<ID>.md
 ```
 
-**16 ready now · 60 waiting.** `dispatch` says what kind of agent an item wants: `mechanical` (every decision already made — a small model is enough), `execute-and-record` (run the specified thing, report real output), `judgment` (a real call to make — capable model, human review).
+**14 ready now · 62 waiting.** `dispatch` says what kind of agent an item wants: `mechanical` (every decision already made — a small model is enough), `execute-and-record` (run the specified thing, report real output), `judgment` (a real call to make — capable model, human review).
 
 ## Ready now
 
@@ -20,9 +20,7 @@ quantik-workspace context task <INITIATIVE> <REPOSITORY> --work-item <ID> \
 | `QW-015` | `W1` | `quantik-core-contracts` | S | mechanical | `fix/unfuse-contract-version` |
 | `QW-015` | `W5` | `quantik-core-contracts` | M | mechanical | `feat/release-preflight` |
 | `QW-015` | `W6` | `quantik-core-contracts` | S | mechanical | `chore/single-version-literal` |
-| `QW-019` | `W2` | `quantik-api-rust` | S | mechanical | `feat/engine-contract-names` |
-| `QW-019` | `W3` | `quantik-qfen-visualizer` | S | mechanical | `feat/engine-contract-names` |
-| `QW-019` | `W4` | `quantik-models-py` | S | mechanical | `feat/engine-contract-names` |
+| `QW-019` | `W5` | `quantik-models-py` | S | mechanical | `chore/resync-visualizer-engine-names` |
 | `QW-020` | `W2` | `quantik-api-rust` | M | mechanical | `ci/publish-image` |
 | `QW-020` | `W3` | `quantik-api-rust` | S | execute-and-record | `test/container-smoke` |
 | `QW-020` | `W4` | `quantik-api-rust` | S | judgment | `docs/deployment-decision` |
@@ -74,7 +72,9 @@ quantik-workspace context task <INITIATIVE> <REPOSITORY> --work-item <ID> \
 | `QW-018` | `W3` | `quantik-api-rust` | M | mechanical | QW-018.W2, QW-019 |
 | `QW-018` | `W4` | `quantik-qfen-visualizer` | S | mechanical | QW-018.W2, QW-019 |
 | `QW-019` | `W1` | `quantik-core-contracts` | M | mechanical | completed |
-| `QW-019` | `W5` | `quantik-models-py` | S | mechanical | QW-019.W3, QW-019.W4 |
+| `QW-019` | `W2` | `quantik-api-rust` | S | mechanical | completed |
+| `QW-019` | `W3` | `quantik-qfen-visualizer` | S | mechanical | completed |
+| `QW-019` | `W4` | `quantik-models-py` | S | mechanical | completed |
 | `QW-020` | `W1` | `quantik-api-rust` | M | mechanical | completed |
 | `QW-020` | `W5` | `quantik-api-rust` | M | mechanical | QW-020.W2, QW-020.W3 |
 | `QW-021` | `W2` | `quantik-models-py` | S | execute-and-record | QW-021.W1 |
