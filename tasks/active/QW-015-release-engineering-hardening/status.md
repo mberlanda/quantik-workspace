@@ -28,3 +28,5 @@ Packet correction: W9's `allowed_paths` named `portability_report.rs`, which doe
 `quantik-portability-report.rs`. Fixed in the manifest.
 
 Next after both merge: regenerate the compatibility matrix and check that it can finally report `supported`.
+
+**W8 and W9 merged** — core-py [#49](https://github.com/mberlanda/quantik-core-py/pull/49), core-rust [#43](https://github.com/mberlanda/quantik-core-rust/pull/43). Review found both PRs under-tested (W9 had no tests; W8 covered only the error path and failed `codecov/patch`); tests were added to each before merge, and the W9 mutation check was made to actually fail. Next: regenerate the compatibility matrix and see whether it can report `supported`.

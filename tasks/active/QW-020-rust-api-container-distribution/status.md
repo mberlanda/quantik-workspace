@@ -29,3 +29,5 @@ Tradeoffs recorded:
   `Cargo.toml` (outside `allowed_paths`, and would break local development).
 - **Not built `--locked`**: the lockfile's `quantik-core` entry is the path dependency.
 - linux/amd64 was not built or tested, and the repository has no CI to run it.
+
+**W1 merged** — [#1](https://github.com/mberlanda/quantik-api-rust/pull/1). The repository has no CI; the local build + `/health` run is the only evidence. W2-W5 are now ready.

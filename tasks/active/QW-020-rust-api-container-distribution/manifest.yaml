@@ -34,7 +34,7 @@
       "packet": "repos/quantik-api-rust/W1-dockerfile.md",
       "pr": "https://github.com/mberlanda/quantik-api-rust/pull/1",
       "repository": "quantik-api-rust",
-      "status": "in-review"
+      "status": "completed"
     },
     {
       "allowed_paths": [

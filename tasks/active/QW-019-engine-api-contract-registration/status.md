@@ -39,3 +39,5 @@ Coordinator decisions taken during W1 (the packet was wrong or silent on these):
   A gap worth its own item.
 
 W2-W5 wait on the merge.
+
+**W1 merged** — [#24](https://github.com/mberlanda/quantik-core-contracts/pull/24). Advisor review of the schema/fixtures found no defect; the real `jsonschema` 2020-12 validator accepts all 6 request and 13 response rows. W2-W5 are now ready.

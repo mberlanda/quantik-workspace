@@ -22,3 +22,5 @@ W1 is `in-review`: [quantik-models-py#69](https://github.com/mberlanda/quantik-m
 published release and `workflow_dispatch`, never on push to main; tags the release version and `latest`)
 and documents the MIT-code / CC BY-NC-4.0-weights split in `docs/play-service.md`. pytest 652 passed,
 5 skipped; mypy clean; 11/11 CI checks. Nothing publishes until a release is cut. W2 waits on the merge.
+
+**W1 merged** — [#69](https://github.com/mberlanda/quantik-models-py/pull/69) (`e1c4e60`); models-py `main` CI green. W2 (execute-and-record) is now ready. Nothing publishes until a release is cut.

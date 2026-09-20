@@ -38,3 +38,9 @@ Findings from the inventory that nobody owns yet:
 - The ONNX parity check hard-codes `resnet` and `smoke`.
 - Profiles as package data need a `pyproject.toml` edit (`pyproject.toml:134-136`), which is outside
   W2's `allowed_paths` — widen W2 when it is dispatched. `small`/`target` numbers need measuring.
+
+### Merged, design not yet approved
+
+#70 is merged (models-py `8a4f795`) so the design lives on `main`, but **merging it is not approval of the ten
+judgment calls** in `docs/pipeline.md`. W1 stays `in-review` so W2 does not appear on the dispatch board until the
+design is reviewed; mark W1 `completed` when it is.
