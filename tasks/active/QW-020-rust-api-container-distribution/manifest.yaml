@@ -71,8 +71,9 @@
         "context/system/canonical-invariants.md#I6"
       ],
       "packet": "repos/quantik-api-rust/W3-container-smoke.md",
+      "pr": "https://github.com/mberlanda/quantik-api-rust/pull/4",
       "repository": "quantik-api-rust",
-      "status": "planned"
+      "status": "completed"
     },
     {
       "allowed_paths": [
@@ -89,8 +90,9 @@
       "id": "W4",
       "invariants": [],
       "packet": "repos/quantik-api-rust/W4-deployment-decision.md",
+      "pr": "https://github.com/mberlanda/quantik-api-rust/pull/5",
       "repository": "quantik-api-rust",
-      "status": "planned"
+      "status": "completed"
     },
     {
       "allowed_paths": [

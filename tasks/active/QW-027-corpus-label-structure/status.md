@@ -44,3 +44,7 @@ Run the direct solve of levels 2 and 1 to confirm, then work item 1.
   that would read these targets.
 - [ADR 0014](../../../docs/adr/0014-corpus-coverage-and-epoch-budget-are-separate-axes.md)
   — finding 1 rules out policy density as a confound in it.
+
+## 2026-09-20 — W1 merged
+
+[models-py#74](https://github.com/mberlanda/quantik-models-py/pull/74) adds `docs/corpus-structure.md`. Confirmed: row totals 3,087,356 / 3,196,958 / 3,520,526; 55 canonical positions at plies 0-2, in no corpus. Corrected: label density is 8.10% / 7.98% / 7.72%, not a flat 8%; the label cap applies to plies 7-12 only (ply 6 uncapped); the v2 to v3 step added 323,568 rows but only 16,618 labels; every v1 policy row is uniform over its support. `corpora.md`'s "mean 4.22, max 31" is v1-only. W1 `allowed_paths` gained `docs/README.md` (docs index test).

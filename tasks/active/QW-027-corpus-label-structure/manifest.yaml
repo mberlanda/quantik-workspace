@@ -22,7 +22,8 @@
   "work_items": [
     {
       "allowed_paths": [
-        "docs/corpus-structure.md"
+        "docs/corpus-structure.md",
+        "docs/README.md"
       ],
       "branch": "docs/corpus-structure",
       "complexity": "M",
@@ -32,8 +33,9 @@
       "id": "W1",
       "invariants": [],
       "packet": "repos/quantik-models-py/W1-measure-corpus-structure.md",
+      "pr": "https://github.com/mberlanda/quantik-models-py/pull/74",
       "repository": "quantik-models-py",
-      "status": "planned"
+      "status": "completed"
     },
     {
       "allowed_paths": [
