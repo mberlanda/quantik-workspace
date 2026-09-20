@@ -151,12 +151,13 @@
         "context/system/canonical-invariants.md#I5"
       ],
       "packet": "repos/quantik-core-py/W8-portability-report-defaults.md",
+      "pr": "https://github.com/mberlanda/quantik-core-py/pull/49",
       "repository": "quantik-core-py",
-      "status": "planned"
+      "status": "completed"
     },
     {
       "allowed_paths": [
-        "crates/quantik-core/src/bin/portability_report.rs"
+        "crates/quantik-core/src/bin/quantik-portability-report.rs"
       ],
       "branch": "fix/portability-report-defaults",
       "complexity": "S",
@@ -168,8 +169,9 @@
         "context/system/canonical-invariants.md#I5"
       ],
       "packet": "repos/quantik-core-rust/W9-portability-report-defaults.md",
+      "pr": "https://github.com/mberlanda/quantik-core-rust/pull/43",
       "repository": "quantik-core-rust",
-      "status": "planned"
+      "status": "completed"
     }
   ]
 }

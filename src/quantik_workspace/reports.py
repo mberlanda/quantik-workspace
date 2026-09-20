@@ -142,7 +142,9 @@ def dispatch_board(config: WorkspaceConfig) -> list[dict[str, Any]]:
     """Every work item in an active initiative, with whether it can be picked up right now.
 
     `ready` means the initiative has no unmet dependency and every work item this one
-    declares in `depends_on` is `completed` — i.e. an agent can take it today.
+    declares in `depends_on` is `completed` — i.e. an agent can take it today. An
+    `in-review` item (PR open, not merged) is taken, so it is not ready, and its
+    dependents keep waiting until it is `completed`.
     """
     graph = {item["id"]: item for item in task_dependency_map(config)["initiatives"]}
     rows: list[dict[str, Any]] = []
@@ -167,7 +169,7 @@ def dispatch_board(config: WorkspaceConfig) -> list[dict[str, Any]]:
                 "initiative_blocked_by": initiative.get("blocked_by", []),
                 "ready": not unmet
                 and not initiative.get("blocked_by")
-                and item.get("status") not in {"completed", "plan-required"},
+                and item.get("status") not in {"completed", "in-review", "plan-required"},
             })
     return rows
 

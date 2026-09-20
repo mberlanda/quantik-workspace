@@ -14,3 +14,33 @@ describes has gotten larger, not smaller, over the training program (see new ini
 QW-014). Nothing about that sprawl closes this initiative; it is more evidence for it.
 
 Left active, unchanged in substance.
+
+## 2026-09-20 — W1 (design) in review
+
+W1 is `in-review`: [quantik-models-py#70](https://github.com/mberlanda/quantik-models-py/pull/70) rewrites
+`docs/pipeline.md` with the profile design (35-variable inventory with file:line, TOML schema with
+one-level `extends`, precedence profile -> legacy env -> `--set`, five stages with explicit skip,
+legacy env honoured with a warning, `pipeline-run.json` referencing `train/provenance.py`). Every
+decision carries its rejected alternatives; the ten calls made without an obvious right answer are
+listed at the end of the document.
+
+**Human review gate: W2-W4 do not start until #70 is reviewed and merged.** Start with the
+"Decided without an obvious right answer" list.
+
+Findings from the inventory that nobody owns yet:
+
+- `quantik-models-train` (`trainer.py`) never calls `provenance.capture`, so the CI `smoke-checkpoint`
+  has no `provenance.json`. The fix is in `trainer.py`, outside every W2-W4 `allowed_paths`; it needs
+  its own work item.
+- `train-smoke.yml` never runs `verify_smoke_outputs.py`; only `e2e-data-pipeline.yml` does (W4 territory).
+- `run_smoke_pipeline.sh` is named "smoke" but its defaults are not; the tiny values live only in the
+  workflow `env:` blocks and `examples/train_smoke.sh`.
+- The ONNX parity check hard-codes `resnet` and `smoke`.
+- Profiles as package data need a `pyproject.toml` edit (`pyproject.toml:134-136`), which is outside
+  W2's `allowed_paths` — widen W2 when it is dispatched. `small`/`target` numbers need measuring.
+
+### Merged, design not yet approved
+
+#70 is merged (models-py `8a4f795`) so the design lives on `main`, but **merging it is not approval of the ten
+judgment calls** in `docs/pipeline.md`. W1 stays `in-review` so W2 does not appear on the dispatch board until the
+design is reviewed; mark W1 `completed` when it is.

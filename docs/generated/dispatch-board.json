@@ -8,9 +8,9 @@
       "dispatch": "judgment",
       "initiative": "QW-002",
       "initiative_blocked_by": [],
-      "ready": true,
+      "ready": false,
       "repository": "quantik-models-py",
-      "status": "planned",
+      "status": "in-review",
       "unmet_dependencies": [],
       "work_item": "W1"
     },
@@ -342,9 +342,9 @@
       "dispatch": "mechanical",
       "initiative": "QW-009",
       "initiative_blocked_by": [],
-      "ready": true,
+      "ready": false,
       "repository": "quantik-models-py",
-      "status": "planned",
+      "status": "completed",
       "unmet_dependencies": [],
       "work_item": "W1"
     },
@@ -357,12 +357,10 @@
       "dispatch": "execute-and-record",
       "initiative": "QW-009",
       "initiative_blocked_by": [],
-      "ready": false,
+      "ready": true,
       "repository": "quantik-models-py",
       "status": "planned",
-      "unmet_dependencies": [
-        "W1"
-      ],
+      "unmet_dependencies": [],
       "work_item": "W2"
     },
     {
@@ -520,9 +518,9 @@
       "dispatch": "mechanical",
       "initiative": "QW-015",
       "initiative_blocked_by": [],
-      "ready": true,
+      "ready": false,
       "repository": "quantik-core-py",
-      "status": "planned",
+      "status": "completed",
       "unmet_dependencies": [],
       "work_item": "W8"
     },
@@ -533,9 +531,9 @@
       "dispatch": "mechanical",
       "initiative": "QW-015",
       "initiative_blocked_by": [],
-      "ready": true,
+      "ready": false,
       "repository": "quantik-core-rust",
-      "status": "planned",
+      "status": "completed",
       "unmet_dependencies": [],
       "work_item": "W9"
     },
@@ -682,9 +680,9 @@
       "dispatch": "mechanical",
       "initiative": "QW-019",
       "initiative_blocked_by": [],
-      "ready": true,
+      "ready": false,
       "repository": "quantik-core-contracts",
-      "status": "planned",
+      "status": "completed",
       "unmet_dependencies": [],
       "work_item": "W1"
     },
@@ -697,12 +695,10 @@
       "dispatch": "mechanical",
       "initiative": "QW-019",
       "initiative_blocked_by": [],
-      "ready": false,
+      "ready": true,
       "repository": "quantik-api-rust",
       "status": "planned",
-      "unmet_dependencies": [
-        "W1"
-      ],
+      "unmet_dependencies": [],
       "work_item": "W2"
     },
     {
@@ -714,12 +710,10 @@
       "dispatch": "mechanical",
       "initiative": "QW-019",
       "initiative_blocked_by": [],
-      "ready": false,
+      "ready": true,
       "repository": "quantik-qfen-visualizer",
       "status": "planned",
-      "unmet_dependencies": [
-        "W1"
-      ],
+      "unmet_dependencies": [],
       "work_item": "W3"
     },
     {
@@ -731,12 +725,10 @@
       "dispatch": "mechanical",
       "initiative": "QW-019",
       "initiative_blocked_by": [],
-      "ready": false,
+      "ready": true,
       "repository": "quantik-models-py",
       "status": "planned",
-      "unmet_dependencies": [
-        "W1"
-      ],
+      "unmet_dependencies": [],
       "work_item": "W4"
     },
     {
@@ -765,9 +757,9 @@
       "dispatch": "mechanical",
       "initiative": "QW-020",
       "initiative_blocked_by": [],
-      "ready": true,
+      "ready": false,
       "repository": "quantik-api-rust",
-      "status": "planned",
+      "status": "completed",
       "unmet_dependencies": [],
       "work_item": "W1"
     },
@@ -780,12 +772,10 @@
       "dispatch": "mechanical",
       "initiative": "QW-020",
       "initiative_blocked_by": [],
-      "ready": false,
+      "ready": true,
       "repository": "quantik-api-rust",
       "status": "planned",
-      "unmet_dependencies": [
-        "W1"
-      ],
+      "unmet_dependencies": [],
       "work_item": "W2"
     },
     {
@@ -797,12 +787,10 @@
       "dispatch": "execute-and-record",
       "initiative": "QW-020",
       "initiative_blocked_by": [],
-      "ready": false,
+      "ready": true,
       "repository": "quantik-api-rust",
       "status": "planned",
-      "unmet_dependencies": [
-        "W1"
-      ],
+      "unmet_dependencies": [],
       "work_item": "W3"
     },
     {
@@ -814,12 +802,10 @@
       "dispatch": "judgment",
       "initiative": "QW-020",
       "initiative_blocked_by": [],
-      "ready": false,
+      "ready": true,
       "repository": "quantik-api-rust",
       "status": "planned",
-      "unmet_dependencies": [
-        "W1"
-      ],
+      "unmet_dependencies": [],
       "work_item": "W4"
     },
     {
