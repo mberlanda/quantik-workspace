@@ -13,26 +13,26 @@ jobs:
   drift:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           path: quantik-workspace
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           repository: mberlanda/quantik-core-py
           path: quantik-core-py
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           repository: mberlanda/quantik-core-rust
           path: quantik-core-rust
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           repository: mberlanda/quantik-core-contracts
           path: quantik-core-contracts
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           repository: mberlanda/quantik-models-py
           path: quantik-models-py
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
       - working-directory: quantik-workspace
@@ -41,7 +41,7 @@ jobs:
         run: quantik-workspace repos status --json > repository-status.json
       - working-directory: quantik-workspace
         run: quantik-workspace release drift --json > release-drift.json || true
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: scheduled-drift-evidence
           path: |
