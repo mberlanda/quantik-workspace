@@ -9,13 +9,12 @@ quantik-workspace context task <INITIATIVE> <REPOSITORY> --work-item <ID> \
   --budget 64000 --output /tmp/<ID>.md
 ```
 
-**10 ready now · 48 waiting.** `dispatch` says what kind of agent an item wants: `mechanical` (every decision already made — a small model is enough), `execute-and-record` (run the specified thing, report real output), `judgment` (a real call to make — capable model, human review).
+**9 ready now · 45 waiting.** `dispatch` says what kind of agent an item wants: `mechanical` (every decision already made — a small model is enough), `execute-and-record` (run the specified thing, report real output), `judgment` (a real call to make — capable model, human review).
 
 ## Ready now
 
 | Initiative | Item | Repository | Complexity | Dispatch | Branch |
 | --- | --- | --- | --- | --- | --- |
-| `QW-004` | `W4` | `quantik-core-rust` | M | execute-and-record | `test/opening-probe-evidence` |
 | `QW-009` | `W2` | `quantik-models-py` | S | execute-and-record | `docs/verify-storeless-container` |
 | `QW-016` | `W1` | `articles` | M | judgment | `docs/deadlock-publication-ready` |
 | `QW-016` | `W2` | `articles` | S | judgment | `chore/record-remote-decision` |
@@ -37,12 +36,9 @@ quantik-workspace context task <INITIATIVE> <REPOSITORY> --work-item <ID> \
 | `QW-003` | `W1` | `quantik-core-contracts` | - | - | plan-required |
 | `QW-003` | `W2` | `quantik-core-rust` | - | - | QW-003.W1 |
 | `QW-003` | `W3` | `quantik-models-py` | - | - | QW-003.W2 |
-| `QW-004` | `W1` | `quantik-core-contracts` | L | judgment | completed |
-| `QW-004` | `W2` | `quantik-core-contracts` | M | mechanical | completed |
-| `QW-004` | `W3` | `quantik-core-rust` | L | mechanical | completed |
-| `QW-005` | `W1` | `quantik-core-contracts` | - | - | QW-002, QW-003, QW-004, QW-006, QW-007 |
-| `QW-005` | `W2` | `quantik-core-rust` | - | - | QW-005.W1, QW-002, QW-003, QW-004, QW-006, QW-007 |
-| `QW-005` | `W3` | `quantik-models-py` | - | - | QW-005.W2, QW-002, QW-003, QW-004, QW-006, QW-007 |
+| `QW-005` | `W1` | `quantik-core-contracts` | - | - | QW-002, QW-003, QW-006, QW-007 |
+| `QW-005` | `W2` | `quantik-core-rust` | - | - | QW-005.W1, QW-002, QW-003, QW-006, QW-007 |
+| `QW-005` | `W3` | `quantik-models-py` | - | - | QW-005.W2, QW-002, QW-003, QW-006, QW-007 |
 | `QW-006` | `W1` | `quantik-core-rust` | - | - | plan-required |
 | `QW-006` | `W2` | `quantik-models-py` | - | - | QW-006.W1 |
 | `QW-007` | `W1` | `quantik-core-contracts` | - | - | plan-required |

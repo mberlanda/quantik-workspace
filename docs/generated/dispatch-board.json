@@ -113,64 +113,6 @@
       "work_item": "W3"
     },
     {
-      "branch": "docs/opening-probe-design",
-      "complexity": "L",
-      "depends_on": [],
-      "dispatch": "judgment",
-      "initiative": "QW-004",
-      "initiative_blocked_by": [],
-      "ready": false,
-      "repository": "quantik-core-contracts",
-      "status": "completed",
-      "unmet_dependencies": [],
-      "work_item": "W1"
-    },
-    {
-      "branch": "feat/register-opening-probe",
-      "complexity": "M",
-      "depends_on": [
-        "W1"
-      ],
-      "dispatch": "mechanical",
-      "initiative": "QW-004",
-      "initiative_blocked_by": [],
-      "ready": false,
-      "repository": "quantik-core-contracts",
-      "status": "completed",
-      "unmet_dependencies": [],
-      "work_item": "W2"
-    },
-    {
-      "branch": "feat/opening-probe",
-      "complexity": "L",
-      "depends_on": [
-        "W2"
-      ],
-      "dispatch": "mechanical",
-      "initiative": "QW-004",
-      "initiative_blocked_by": [],
-      "ready": false,
-      "repository": "quantik-core-rust",
-      "status": "completed",
-      "unmet_dependencies": [],
-      "work_item": "W3"
-    },
-    {
-      "branch": "test/opening-probe-evidence",
-      "complexity": "M",
-      "depends_on": [
-        "W3"
-      ],
-      "dispatch": "execute-and-record",
-      "initiative": "QW-004",
-      "initiative_blocked_by": [],
-      "ready": true,
-      "repository": "quantik-core-rust",
-      "status": "planned",
-      "unmet_dependencies": [],
-      "work_item": "W4"
-    },
-    {
       "branch": "plan/qw-005-quantik-core-contracts",
       "complexity": null,
       "depends_on": [],
@@ -179,7 +121,6 @@
       "initiative_blocked_by": [
         "QW-002",
         "QW-003",
-        "QW-004",
         "QW-006",
         "QW-007"
       ],
@@ -200,7 +141,6 @@
       "initiative_blocked_by": [
         "QW-002",
         "QW-003",
-        "QW-004",
         "QW-006",
         "QW-007"
       ],
@@ -223,7 +163,6 @@
       "initiative_blocked_by": [
         "QW-002",
         "QW-003",
-        "QW-004",
         "QW-006",
         "QW-007"
       ],

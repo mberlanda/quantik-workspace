@@ -114,8 +114,9 @@
         "context/system/canonical-invariants.md#I6"
       ],
       "packet": "repos/quantik-core-rust/W4-probe-evidence.md",
+      "pr": "https://github.com/mberlanda/quantik-core-rust/pull/45",
       "repository": "quantik-core-rust",
-      "status": "planned"
+      "status": "completed"
     }
   ]
 }

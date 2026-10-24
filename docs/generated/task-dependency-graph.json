@@ -33,29 +33,12 @@
     {
       "affected_repositories": [
         "quantik-core-contracts",
-        "quantik-core-rust"
-      ],
-      "blocked_by": [],
-      "complexity": "L",
-      "dependencies": [
-        "QW-001"
-      ],
-      "done": false,
-      "id": "QW-004",
-      "state": "active",
-      "status": "planned",
-      "title": "Opening Probe Contract and Runtime"
-    },
-    {
-      "affected_repositories": [
-        "quantik-core-contracts",
         "quantik-core-rust",
         "quantik-models-py"
       ],
       "blocked_by": [
         "QW-002",
         "QW-003",
-        "QW-004",
         "QW-006",
         "QW-007"
       ],
@@ -204,39 +187,6 @@
     },
     {
       "affected_repositories": [
-        "quantik-api-rust",
-        "quantik-core-contracts",
-        "quantik-qfen-visualizer"
-      ],
-      "blocked_by": [],
-      "complexity": "L",
-      "dependencies": [
-        "QW-019"
-      ],
-      "done": true,
-      "id": "QW-018",
-      "state": "active",
-      "status": "planned",
-      "title": "Engine Response Type — Candidates, PV, Certainty"
-    },
-    {
-      "affected_repositories": [
-        "quantik-core-contracts",
-        "quantik-api-rust",
-        "quantik-qfen-visualizer",
-        "quantik-models-py"
-      ],
-      "blocked_by": [],
-      "complexity": "L",
-      "dependencies": [],
-      "done": true,
-      "id": "QW-019",
-      "state": "active",
-      "status": "planned",
-      "title": "Register the Phantom Engine API Contracts"
-    },
-    {
-      "affected_repositories": [
         "quantik-api-rust"
       ],
       "blocked_by": [],
@@ -382,6 +332,22 @@
     },
     {
       "affected_repositories": [
+        "quantik-core-contracts",
+        "quantik-core-rust"
+      ],
+      "blocked_by": [],
+      "complexity": "L",
+      "dependencies": [
+        "QW-001"
+      ],
+      "done": true,
+      "id": "QW-004",
+      "state": "completed",
+      "status": "planned",
+      "title": "Opening Probe Contract and Runtime"
+    },
+    {
+      "affected_repositories": [
         "quantik-models-py"
       ],
       "blocked_by": [],
@@ -435,6 +401,39 @@
       "state": "completed",
       "status": "largely-complete",
       "title": "Training Program — Architecture Lineup, Learning-Rate Correction, and the v3 Corpus Result"
+    },
+    {
+      "affected_repositories": [
+        "quantik-api-rust",
+        "quantik-core-contracts",
+        "quantik-qfen-visualizer"
+      ],
+      "blocked_by": [],
+      "complexity": "L",
+      "dependencies": [
+        "QW-019"
+      ],
+      "done": true,
+      "id": "QW-018",
+      "state": "completed",
+      "status": "planned",
+      "title": "Engine Response Type — Candidates, PV, Certainty"
+    },
+    {
+      "affected_repositories": [
+        "quantik-core-contracts",
+        "quantik-api-rust",
+        "quantik-qfen-visualizer",
+        "quantik-models-py"
+      ],
+      "blocked_by": [],
+      "complexity": "L",
+      "dependencies": [],
+      "done": true,
+      "id": "QW-019",
+      "state": "completed",
+      "status": "planned",
+      "title": "Register the Phantom Engine API Contracts"
     },
     {
       "affected_repositories": [

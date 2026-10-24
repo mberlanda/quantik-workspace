@@ -13,7 +13,7 @@
 3. **`engine_version` is the `model_id` for model engines.** The core revision says
    which *code* ran, not which *network*. An exported game whose `engine_version` is a
    core commit is unattributable later. Shared with
-   [`QW-017`](../QW-017-onnx-model-serving-rust-api/decisions.md) decision 6.
+   [`QW-017`](../../active/QW-017-onnx-model-serving-rust-api/decisions.md) decision 6.
 
 4. **QW-019 first.** Rejected: shipping the fields now and registering later. The
    response is already hardcoded in two repositories with nothing keeping them in
