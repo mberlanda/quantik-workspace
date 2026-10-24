@@ -29,8 +29,8 @@ in the packet's `status.md`.
 | 3 | Substack article | [`QW-016`](../../tasks/active/QW-016-season-two-article-publication/initiative.md) |
 | 4 | Model serving in the Rust API | [`QW-017`](../../tasks/active/QW-017-onnx-model-serving-rust-api/initiative.md) |
 | 5 | Publishing checkpoints to Hugging Face | done — live at <https://huggingface.co/brpoplpush> |
-| 6 | API response type | [`QW-018`](../../tasks/active/QW-018-engine-response-type/initiative.md) |
-| 7 | Engine API contract | [`QW-019`](../../tasks/active/QW-019-engine-api-contract-registration/initiative.md) |
+| 6 | API response type | [`QW-018`](../../tasks/completed/QW-018-engine-response-type/initiative.md) |
+| 7 | Engine API contract | [`QW-019`](../../tasks/completed/QW-019-engine-api-contract-registration/initiative.md) |
 | 8 | Dockerize the API | [`QW-020`](../../tasks/active/QW-020-rust-api-container-distribution/initiative.md) |
 | 9 | NN as an opt-in add-on | folded into [`QW-017`](../../tasks/active/QW-017-onnx-model-serving-rust-api/initiative.md) — it is §4's packaging and has no value without it |
 | 10 | Coverage expansion | [`QW-021`](../../tasks/active/QW-021-opening-coverage-expansion/initiative.md) |

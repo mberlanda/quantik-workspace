@@ -29,7 +29,7 @@
 
 6. **`engine_version` carries the `model_id`**, never a filename or display label, so an
    exported game records which network played. Shared with
-   [`QW-018`](../QW-018-engine-response-type/initiative.md).
+   [`QW-018`](../../completed/QW-018-engine-response-type/initiative.md).
 
 7. **The parity oracle is the Python play service**, which already runs these graphs
    against these fixtures. Rejected: hand-written expected tensors — they encode the

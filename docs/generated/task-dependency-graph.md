@@ -6,7 +6,6 @@ Generated from `tasks/{active,completed,archived}/*/manifest.yaml`. Archived ini
 flowchart TD
   QW-002["QW-002: Versioned ML Pipeline Profiles"]
   QW-003["QW-003: Book-Guided Self-Play Runner"]
-  QW-004["QW-004: Opening Probe Contract and Runtime"]
   QW-005["QW-005: Search and H2H Active-Learning Feedback Loop"]
   QW-006["QW-006: Search-Derived Observation Policy Targets"]
   QW-007["QW-007: Checkpoint Consumer Compatibility"]
@@ -16,8 +15,6 @@ flowchart TD
   QW-015["QW-015: Release-Engineering Hardening"]
   QW-016["QW-016: Season Two Article Publication"]
   QW-017["QW-017: ONNX Model Serving in the Rust API"]
-  QW-018["QW-018: Engine Response Type — Candidates, PV, Certainty"]
-  QW-019["QW-019: Register the Phantom Engine API Contracts"]
   QW-020["QW-020: Container Distribution for the Rust API"]
   QW-021["QW-021: Opening Coverage Expansion — Plies 0 to 6"]
   QW-022["QW-022: Workspace Repo Hygiene — Remaining Items"]
@@ -28,14 +25,16 @@ flowchart TD
   QW-028["QW-028: Finish the Opening Book Solve"]
   QW-029["QW-029: Shallow-Ply Scoring as a Standing Metric"]
   QW-001["QW-001: Canonical Game State and Action Encoding Contract"]
+  QW-004["QW-004: Opening Probe Contract and Runtime"]
   QW-008["QW-008: Local Play Service — Analysis and Recording"]
   QW-012["QW-012: Re-run the Architecture Lineup Under --patience"]
   QW-013["QW-013: Play-Store Solver-Queue Export"]
   QW-014["QW-014: Training Program — Architecture Lineup, Learning-Rate Correction, and the v3 Corpus Result"]
+  QW-018["QW-018: Engine Response Type — Candidates, PV, Certainty"]
+  QW-019["QW-019: Register the Phantom Engine API Contracts"]
   QW-025["QW-025: Publish the dev-data dataset repos"]
   QW-030["QW-030: The Playground — One-Port Monolith and Non-Expert Play UX"]
   QW-001 --> QW-003
-  QW-001 --> QW-004
   QW-002 --> QW-005
   QW-003 --> QW-005
   QW-004 --> QW-005
@@ -50,17 +49,17 @@ flowchart TD
   QW-008 --> QW-011
   QW-015 --> QW-016
   QW-019 --> QW-017
-  QW-019 --> QW-018
   QW-012 --> QW-021
   QW-012 --> QW-023
   QW-012 --> QW-026
   QW-021 --> QW-028
+  QW-001 --> QW-004
   QW-014 --> QW-012
   QW-008 --> QW-013
+  QW-019 --> QW-018
   QW-008 --> QW-030
   class QW-002 ready
   class QW-003 ready
-  class QW-004 ready
   class QW-005 blocked
   class QW-006 ready
   class QW-007 ready
@@ -70,8 +69,6 @@ flowchart TD
   class QW-015 done
   class QW-016 ready
   class QW-017 ready
-  class QW-018 done
-  class QW-019 done
   class QW-020 ready
   class QW-021 ready
   class QW-022 ready
@@ -82,10 +79,13 @@ flowchart TD
   class QW-028 blocked
   class QW-029 ready
   class QW-001 done
+  class QW-004 done
   class QW-008 done
   class QW-012 done
   class QW-013 done
   class QW-014 done
+  class QW-018 done
+  class QW-019 done
   class QW-025 done
   class QW-030 done
   classDef done fill:#d3f9d8,stroke:#2b8a3e,color:#1b1b1b
@@ -99,8 +99,7 @@ flowchart TD
 | --- | --- | --- | --- | --- | --- | --- |
 | `QW-002` | ready | M | `quantik-models-py` | - | - | Versioned ML Pipeline Profiles |
 | `QW-003` | ready | XL | `quantik-core-contracts`, `quantik-core-rust`, `quantik-models-py` | QW-001 | - | Book-Guided Self-Play Runner |
-| `QW-004` | ready | L | `quantik-core-contracts`, `quantik-core-rust` | QW-001 | - | Opening Probe Contract and Runtime |
-| `QW-005` | blocked | XL | `quantik-core-contracts`, `quantik-core-rust`, `quantik-models-py` | QW-002, QW-003, QW-004, QW-006, QW-007 | QW-002, QW-003, QW-004, QW-006, QW-007 | Search and H2H Active-Learning Feedback Loop |
+| `QW-005` | blocked | XL | `quantik-core-contracts`, `quantik-core-rust`, `quantik-models-py` | QW-002, QW-003, QW-004, QW-006, QW-007 | QW-002, QW-003, QW-006, QW-007 | Search and H2H Active-Learning Feedback Loop |
 | `QW-006` | ready | L | `quantik-core-rust`, `quantik-models-py` | QW-001 | - | Search-Derived Observation Policy Targets |
 | `QW-007` | ready | XL | `quantik-core-contracts`, `quantik-core-py`, `quantik-core-rust`, `quantik-models-py` | QW-001 | - | Checkpoint Consumer Compatibility |
 | `QW-009` | ready | S | `quantik-models-py` | QW-008 | - | Public Play Deployment — Storeless Docker |
@@ -109,8 +108,6 @@ flowchart TD
 | `QW-015` | done | M | `quantik-core-contracts`, `quantik-core-rust`, `quantik-core-py` | - | - | Release-Engineering Hardening |
 | `QW-016` | ready | M | `articles` | QW-015 | - | Season Two Article Publication |
 | `QW-017` | ready | XL | `quantik-api-rust`, `quantik-models-py` | QW-019 | - | ONNX Model Serving in the Rust API |
-| `QW-018` | done | L | `quantik-api-rust`, `quantik-core-contracts`, `quantik-qfen-visualizer` | QW-019 | - | Engine Response Type — Candidates, PV, Certainty |
-| `QW-019` | done | L | `quantik-core-contracts`, `quantik-api-rust`, `quantik-qfen-visualizer`, `quantik-models-py` | - | - | Register the Phantom Engine API Contracts |
 | `QW-020` | ready | M | `quantik-api-rust` | - | - | Container Distribution for the Rust API |
 | `QW-021` | ready | XL | `quantik-models-py`, `articles` | QW-012 | - | Opening Coverage Expansion — Plies 0 to 6 |
 | `QW-022` | ready | S | `quantik-models-py`, `articles` | - | - | Workspace Repo Hygiene — Remaining Items |
@@ -121,9 +118,12 @@ flowchart TD
 | `QW-028` | blocked | M | `quantik-models-py` | QW-021 | QW-021 | Finish the Opening Book Solve |
 | `QW-029` | ready | XL | `quantik-models-py` | - | - | Shallow-Ply Scoring as a Standing Metric |
 | `QW-001` | done | - | `quantik-core-contracts`, `quantik-core-py`, `quantik-core-rust`, `quantik-models-py` | - | - | Canonical Game State and Action Encoding Contract |
+| `QW-004` | done | L | `quantik-core-contracts`, `quantik-core-rust` | QW-001 | - | Opening Probe Contract and Runtime |
 | `QW-008` | done | - | `quantik-models-py` | - | - | Local Play Service — Analysis and Recording |
 | `QW-012` | done | - | `quantik-models-py` | QW-014 | - | Re-run the Architecture Lineup Under --patience |
 | `QW-013` | done | - | `quantik-models-py` | QW-008 | - | Play-Store Solver-Queue Export |
 | `QW-014` | done | - | `quantik-models-py` | - | - | Training Program — Architecture Lineup, Learning-Rate Correction, and the v3 Corpus Result |
+| `QW-018` | done | L | `quantik-api-rust`, `quantik-core-contracts`, `quantik-qfen-visualizer` | QW-019 | - | Engine Response Type — Candidates, PV, Certainty |
+| `QW-019` | done | L | `quantik-core-contracts`, `quantik-api-rust`, `quantik-qfen-visualizer`, `quantik-models-py` | - | - | Register the Phantom Engine API Contracts |
 | `QW-025` | done | - | `quantik-models-py` | - | - | Publish the dev-data dataset repos |
 | `QW-030` | done | - | `quantik-models-py`, `quantik-qfen-visualizer` | QW-008 | - | The Playground — One-Port Monolith and Non-Expert Play UX |

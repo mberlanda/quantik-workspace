@@ -19,7 +19,7 @@
 5. **The naming stays honest.** The contract is authoritative; the container is a
    distribution artifact. Do not name or document the image as though it defines the
    engine interface — that is `engine-request` / `engine-response`, which
-   [`QW-019`](../QW-019-engine-api-contract-registration/initiative.md) registers.
+   [`QW-019`](../../completed/QW-019-engine-api-contract-registration/initiative.md) registers.
 
 6. **Whether this or QW-009 is *the* public deployment is deliberately left open here**
    and is criterion 4. Recorded now: they are not interchangeable — QW-009 serves the

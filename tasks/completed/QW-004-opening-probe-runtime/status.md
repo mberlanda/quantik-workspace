@@ -8,3 +8,10 @@
 - **Judgment calls the paper left open, decided in W3** (W4 builds against them): no `verify=false` opt-out (checksum and sortedness always run); padding bytes are not checked; the builder derives `source_book.book_id` as SHA-256 over the projected rows because the Rust book has no `book_id` column (`--book-id` overrides); `coverage_complete` is true only when the book had no unsolved rows. These should be folded into `docs/opening-probe-v1.md`.
 - **No owner yet:** the quantik-core-py analogue of `find_canonical_with_transform` (the packet's Python side). Same shape as the QW-018 core-accessor gap.
 - `corrupt-action-above-63` is unchecked in Rust: the binary format cannot express it (action 64 does not fit a 64-bit set).
+
+## 2026-09-20 — W4 merged (recorded 2026-10-24)
+
+[core-rust#45](https://github.com/mberlanda/quantik-core-rust/pull/45) adds `evidence_from_a_real_book` to `tests/opening_probe.rs`. Probe source is the 22 exactly-solved references in `benchmarks/positions-v1.json`, not a shipped book (none exists in the repo): 22/22 hits equal the solver's moves, 15 misses return nothing, 6 corrupt and 4 incompatible files are refused, and 7488/7488 transformed lookups are legal against an independently implemented D4 x shape-permutation transform. Mutation check (inverse replaced by `t*`) fails the test.
+
+- **Limit:** plies 7..=13 only; nothing shows how the probe behaves on an opening-depth book.
+- **Still open, unowned:** the `rust.yml` contracts-checkout step so fixture tests run in CI, and the quantik-core-py `find_canonical_with_transform` analogue.
