@@ -7,9 +7,10 @@
         "2026-09-07: tag v1.3.1 resolves to a6c1b100529d26d7ce07596d5452e4dca18ad2a5.",
         "2026-09-07: GitHub Release 'Quantik contracts 1.3.1' (v1.3.1, latest) published 2026-09-06.",
         "2026-09-07: both composite actions resolve at v1.3.1.",
-        "2026-09-07: quantik-core-py commit d78794a consumes the v1.3.1 opening-book-consistency action."
+        "2026-09-07: quantik-core-py commit d78794a consumes the v1.3.1 opening-book-consistency action.",
+        "2026-11-02: `quantik-workspace compatibility full --execute` ran both portability adapters (exit 0) on the quantik-core-py and quantik-core-rust checkouts, both declaring contracts 1.3.0; their api-portability-report.v1 outputs agree on all 3 cases and on the action-index.v1, bitboard.v1 and qfen.v1 IDs. The checkouts are post-tag commits, not the v1.3.0 tags."
       ],
-      "notes": "`supported` is withheld: no cross-stack portability smoke has run. Both repository-owned adapters exit 2 because workspace.yaml declares them without their required --contracts-root/--output arguments.",
+      "notes": "`supported` is withheld: the portability smoke has now run (2026-11-02) and passes for py and rust, but on post-tag checkouts declaring 1.3.0, not at the v1.3.1 contracts tag, and it covers 3 cases over 3 wire IDs only. The earlier adapter failure (exit 2) no longer reproduces; the adapters take optional arguments.",
       "quantik-core-py": "1.3.0 declaring contracts 1.3.0; consumes the v1.3.1 action",
       "quantik-core-rust": "1.3.0 declaring contracts 1.3.0",
       "quantik-models-py": "1.1.0, contracts release derived from quantik-core-py at runtime",
@@ -39,9 +40,10 @@
         "2026-09-07: GitHub Release 'Quantik contracts 1.3.0' (v1.3.0) published 2026-09-06.",
         "2026-09-07: both composite actions resolve at v1.3.0.",
         "2026-09-07: quantik-core-py 1.3.0 declares SUPPORTED_CONTRACTS_RELEASE = 1.3.0 (tag v1.3.0, 36be0604).",
-        "2026-09-07: quantik-core-rust 1.3.0 declares CONTRACT_VERSION = 1.3.0 (tag v1.3.0, c17abef0)."
+        "2026-09-07: quantik-core-rust 1.3.0 declares CONTRACT_VERSION = 1.3.0 (tag v1.3.0, c17abef0).",
+        "2026-11-02: `quantik-workspace compatibility full --execute` ran both portability adapters (exit 0) on the quantik-core-py and quantik-core-rust checkouts, both declaring contracts 1.3.0; their api-portability-report.v1 outputs agree on all 3 cases and on the action-index.v1, bitboard.v1 and qfen.v1 IDs. The checkouts are post-tag commits, not the v1.3.0 tags."
       ],
-      "notes": "Declarations agree across the trio and all tags/releases are published; cross-stack smoke not executed.",
+      "notes": "Declarations agree across the trio and all tags/releases are published. Cross-stack portability smoke executed 2026-11-02 and passed on post-tag checkouts (not the v1.3.0 tags); `supported` stays withheld until it runs at the tags.",
       "quantik-core-py": "1.3.0 (tag v1.3.0) declaring contracts 1.3.0",
       "quantik-core-rust": "1.3.0 (tag v1.3.0) declaring contracts 1.3.0",
       "quantik-models-py": "1.1.0, contracts release derived from quantik-core-py at runtime",
