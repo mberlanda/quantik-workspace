@@ -35,7 +35,7 @@
       "dispatch": "mechanical",
       "id": "W1",
       "invariants": [],
-      "packet": "repos/quantik-core-contracts/W1-unfuse-contract-version.md",
+      "packet": "repos/quantik-core-contracts/W1-unfuse-contract-version-complete.md",
       "pr": "https://github.com/mberlanda/quantik-core-contracts/pull/23",
       "repository": "quantik-core-contracts",
       "status": "completed"
@@ -49,7 +49,7 @@
       "depends_on": [],
       "id": "W2",
       "invariants": [],
-      "packet": "repos/quantik-core-rust/W2-plan-required.md",
+      "packet": "repos/quantik-core-rust/W2-plan-required-complete.md",
       "repository": "quantik-core-rust",
       "status": "completed"
     },
@@ -62,7 +62,7 @@
       "depends_on": [],
       "id": "W3",
       "invariants": [],
-      "packet": "repos/quantik-core-py/W3-plan-required.md",
+      "packet": "repos/quantik-core-py/W3-plan-required-complete.md",
       "repository": "quantik-core-py",
       "status": "completed"
     },
@@ -80,7 +80,7 @@
       "dispatch": "mechanical",
       "id": "W4",
       "invariants": [],
-      "packet": "repos/quantik-core-contracts/W4-drop-expected-release.md",
+      "packet": "repos/quantik-core-contracts/W4-drop-expected-release-complete.md",
       "pr": "https://github.com/mberlanda/quantik-core-contracts/pull/25",
       "repository": "quantik-core-contracts",
       "status": "completed"
@@ -98,7 +98,7 @@
       "dispatch": "mechanical",
       "id": "W5",
       "invariants": [],
-      "packet": "repos/quantik-core-contracts/W5-release-preflight.md",
+      "packet": "repos/quantik-core-contracts/W5-release-preflight-complete.md",
       "pr": "https://github.com/mberlanda/quantik-core-contracts/pull/26",
       "repository": "quantik-core-contracts",
       "status": "completed"
@@ -117,7 +117,7 @@
       "dispatch": "mechanical",
       "id": "W6",
       "invariants": [],
-      "packet": "repos/quantik-core-contracts/W6-single-version-literal.md",
+      "packet": "repos/quantik-core-contracts/W6-single-version-literal-complete.md",
       "pr": "https://github.com/mberlanda/quantik-core-contracts/pull/25",
       "repository": "quantik-core-contracts",
       "status": "completed"
@@ -136,7 +136,7 @@
       "dispatch": "execute-and-record",
       "id": "W7",
       "invariants": [],
-      "packet": "repos/quantik-core-contracts/W7-deadlock-demonstration.md",
+      "packet": "repos/quantik-core-contracts/W7-deadlock-demonstration-complete.md",
       "pr": "https://github.com/mberlanda/quantik-core-contracts/pull/31",
       "repository": "quantik-core-contracts",
       "status": "completed"
@@ -155,7 +155,7 @@
       "invariants": [
         "context/system/canonical-invariants.md#I5"
       ],
-      "packet": "repos/quantik-core-py/W8-portability-report-defaults.md",
+      "packet": "repos/quantik-core-py/W8-portability-report-defaults-complete.md",
       "pr": "https://github.com/mberlanda/quantik-core-py/pull/49",
       "repository": "quantik-core-py",
       "status": "completed"
@@ -173,7 +173,7 @@
       "invariants": [
         "context/system/canonical-invariants.md#I5"
       ],
-      "packet": "repos/quantik-core-rust/W9-portability-report-defaults.md",
+      "packet": "repos/quantik-core-rust/W9-portability-report-defaults-complete.md",
       "pr": "https://github.com/mberlanda/quantik-core-rust/pull/43",
       "repository": "quantik-core-rust",
       "status": "completed"

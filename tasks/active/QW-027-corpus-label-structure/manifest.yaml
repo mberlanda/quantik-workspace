@@ -32,7 +32,7 @@
       "dispatch": "execute-and-record",
       "id": "W1",
       "invariants": [],
-      "packet": "repos/quantik-models-py/W1-measure-corpus-structure.md",
+      "packet": "repos/quantik-models-py/W1-measure-corpus-structure-complete.md",
       "pr": "https://github.com/mberlanda/quantik-models-py/pull/74",
       "repository": "quantik-models-py",
       "status": "completed"
@@ -53,7 +53,7 @@
       "invariants": [
         "context/system/canonical-invariants.md#I6"
       ],
-      "packet": "repos/quantik-models-py/W2-policy-schema-converter.md",
+      "packet": "repos/quantik-models-py/W2-policy-schema-converter-complete.md",
       "pr": "https://github.com/mberlanda/quantik-models-py/pull/75",
       "repository": "quantik-models-py",
       "status": "completed"
@@ -74,7 +74,7 @@
       "invariants": [
         "context/system/canonical-invariants.md#I4"
       ],
-      "packet": "repos/quantik-models-py/W3-induct-shallow.md",
+      "packet": "repos/quantik-models-py/W3-induct-shallow-complete.md",
       "pr": "https://github.com/mberlanda/quantik-models-py/pull/76",
       "repository": "quantik-models-py",
       "status": "completed"

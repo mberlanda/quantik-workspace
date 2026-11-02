@@ -70,3 +70,11 @@ branch, PR URL, exact revisions, checks and results. QW-030 is the migrated exam
 
 `task status` reports active initiatives with each item’s tracked status, repository,
 branch, packet, and dependencies. It does not infer merged state from Git.
+
+## Completed packets
+
+When a work item reaches `completed` inside an initiative that is still open, rename its
+packet to `<name>-complete.md` (for example `W1-run-opening-arena-complete.md`) and update the
+manifest `packet` path in the same change. The suffix tells an agent browsing `repos/` that
+the packet is history, not work to pick up. Packets of a work item that is not completed keep
+their plain name. `task validate` fails if a manifest points at a missing packet.
