@@ -33,8 +33,9 @@
         "context/system/canonical-invariants.md#I2"
       ],
       "packet": "repos/quantik-models-py/W1-run-opening-arena.md",
+      "pr": "https://github.com/mberlanda/quantik-models-py/pull/78",
       "repository": "quantik-models-py",
-      "status": "planned"
+      "status": "completed"
     },
     {
       "allowed_paths": [

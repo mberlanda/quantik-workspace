@@ -20,8 +20,8 @@ quantik-workspace context task <INITIATIVE> <REPOSITORY> --work-item <ID> \
 | `QW-016` | `W2` | `articles` | S | judgment | `chore/record-remote-decision` |
 | `QW-021` | `W2` | `quantik-models-py` | S | execute-and-record | `feat/opening-label-smoke` |
 | `QW-023` | `W1` | `quantik-models-py` | M | execute-and-record | `feat/corpus-axis-converged-run` |
-| `QW-024` | `W1` | `quantik-models-py` | M | execute-and-record | `feat/opening-arena-results` |
-| `QW-026` | `W1` | `quantik-models-py` | S | execute-and-record | `feat/patience-arena-second-seed` |
+| `QW-024` | `W2` | `quantik-models-py` | M | judgment | `docs/opening-arena-reading` |
+| `QW-026` | `W2` | `quantik-models-py` | S | mechanical | `docs/patience-seed-caveat` |
 | `QW-027` | `W4` | `quantik-models-py` | S | execute-and-record | `feat/confirm-shallow-induction` |
 | `QW-027` | `W5` | `quantik-models-py` | S | mechanical | `fix/shallow-probe-baseline` |
 
@@ -66,8 +66,8 @@ quantik-workspace context task <INITIATIVE> <REPOSITORY> --work-item <ID> \
 | `QW-022` | `W2` | `articles` | - | - | completed |
 | `QW-023` | `W2` | `quantik-models-py` | M | execute-and-record | QW-023.W1 |
 | `QW-023` | `W3` | `quantik-models-py` | M | judgment | QW-023.W2 |
-| `QW-024` | `W2` | `quantik-models-py` | M | judgment | QW-024.W1 |
-| `QW-026` | `W2` | `quantik-models-py` | S | mechanical | QW-026.W1 |
+| `QW-024` | `W1` | `quantik-models-py` | M | execute-and-record | completed |
+| `QW-026` | `W1` | `quantik-models-py` | S | execute-and-record | completed |
 | `QW-027` | `W1` | `quantik-models-py` | M | execute-and-record | completed |
 | `QW-027` | `W2` | `quantik-models-py` | M | mechanical | completed |
 | `QW-027` | `W3` | `quantik-models-py` | M | mechanical | completed |
