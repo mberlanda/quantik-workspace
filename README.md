@@ -32,6 +32,10 @@ repositories:
 
 Bootstrap creates a workspace-local virtual environment, installs this dependency-free package, validates configuration, and reports missing/dirty repositories. It never overwrites checkouts or requires GitHub authentication. Preview missing clones with `quantik-workspace repos clone`; add `--execute` explicitly to clone.
 
+## Roadmap
+
+Open work grouped by epic, with the initiatives that support each: [docs/roadmap.md](docs/roadmap.md).
+
 ## Status and task packets
 
 ```bash
