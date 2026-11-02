@@ -16,7 +16,7 @@ consumer as lagging a version nobody is working toward.
 
 | Repository | Latest | Ledger |
 |---|---|---|
-| `quantik-core-contracts` | `v1.3.1` | QREL-2026-001 (1.2.0), QREL-2026-002 (1.3.0), QREL-2026-003 (1.3.1), all `completed` |
+| `quantik-core-contracts` | `v1.3.0` | QREL-2026-001 (1.2.0), QREL-2026-002 (1.3.0), both `completed` |
 | `quantik-core-py` | `v1.3.0` | declares contracts 1.3.0 |
 | `quantik-core-rust` | `v1.3.0` | declares contracts 1.3.0 |
 | `quantik-models-py` | `v1.1.0` | contracts release derived from `quantik-core-py` at runtime |
@@ -24,16 +24,15 @@ consumer as lagging a version nobody is working toward.
 | `quantik-qfen-visualizer` | *never tagged* | `0.2.0` in `package.json`, no `v0.2.0` tag |
 
 The compatibility matrix withholds `supported` at every release, including the current
-one. The blocker is mechanical and named in
-[`../generated/compatibility-matrix.md`](../generated/compatibility-matrix.md): both
-repository-owned portability adapters exit 2 because `workspace.yaml` declares them without
-their required `--contracts-root` and `--output` arguments. Until that is fixed, no cut can
-honestly claim cross-stack evidence. It is the cheapest high-value fix on this page.
+one. The portability adapters now run (their arguments are optional) and the smoke passes
+for Python and Rust, but only on post-tag checkouts and over 3 cases, so no cut has tag-exact
+cross-stack evidence yet. See [`../generated/compatibility-matrix.md`](../generated/compatibility-matrix.md).
+Running the smoke at each release tag is the cheapest way to close that gap.
 
 ## Core trio — `quantik-core-contracts`, `quantik-core-py`, `quantik-core-rust`
 
 The three share a minor line; contracts may take patch releases the consumers do not follow
-(1.3.1 is exactly that). Tag contracts first, then **py before rust** — rust's tag build
+(a patch tag of this kind, 1.3.1, was withdrawn: its tag and release no longer exist on origin). Tag contracts first, then **py before rust** — rust's tag build
 checks out py at the same ref.
 
 | Version | Tag | What it carries | Gated on | Kind |

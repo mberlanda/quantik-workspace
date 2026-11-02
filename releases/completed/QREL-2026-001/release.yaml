@@ -70,7 +70,7 @@
     }
   },
   "id": "QREL-2026-001",
-  "notes": "Superseded by QREL-2026-002 (1.3.0) and QREL-2026-003 (1.3.1). This record sat in releases/active/ as `planned` until 2026-09-07 while the release it describes had already shipped on 2026-08-28.",
+  "notes": "Superseded by QREL-2026-002 (1.3.0). This record sat in releases/active/ as `planned` until 2026-09-07 while the release it describes had already shipped on 2026-08-28.",
   "producer": {
     "branch": "release/v1.2.0",
     "commit": "b43bec5fe5a1582c73c2c2538c18c76efdb98bf9",
