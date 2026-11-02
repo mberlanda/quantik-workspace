@@ -1,6 +1,43 @@
 {
   "entries": [
     {
+      "action_reference": "v1.4.0",
+      "contracts_release": "1.4.0",
+      "evidence": [
+        "2026-11-02: tag v1.4.0 (annotated) resolves to 722fe4c10d684e897bac51d468b99a54a87d2906 on quantik-core-contracts.",
+        "2026-11-02: GitHub Release for v1.4.0 is live on quantik-core-contracts.",
+        "2026-11-02: both composite actions resolve at v1.4.0.",
+        "2026-11-02: tag v1.4.0 (annotated) resolves to c7517cb252b37dabb5217158e5e698c61c6d6e5f on quantik-core-py.",
+        "2026-11-02: tag v1.4.0 (annotated) resolves to 6f8272dae3ad2a4554927fb61ca1c1cbf886439a on quantik-core-rust.",
+        "2026-11-02: CI green on each merge commit."
+      ],
+      "notes": "Tagged 2026-11-02 on contracts, core-py and core-rust; PyPI and crates.io publish pending (still 1.3.0). Portability smoke passed 2026-11-02 on post-tag checkouts, but tag-exact evidence is not yet recorded, so `supported` stays withheld.",
+      "quantik-core-py": "1.4.0 (tag v1.4.0, publish pending) declaring contracts 1.4.0",
+      "quantik-core-rust": "1.4.0 (tag v1.4.0, publish pending) declaring contracts 1.4.0",
+      "quantik-models-py": "1.1.0, contracts release derived from quantik-core-py at runtime",
+      "status": "partially-supported",
+      "wire_contracts": [
+        "action-index.v1",
+        "arrow-parquet-selfplay.v1",
+        "bitboard.v1",
+        "engine-request.v1",
+        "engine-response.v1",
+        "engine-response.v2",
+        "game-result.v1",
+        "invalid-state-fixtures.v1",
+        "model-checkpoint.v1",
+        "observation.v1",
+        "opening-book-summary.v1",
+        "opening-book.v1",
+        "opening-probe.v1",
+        "qfen.v1",
+        "search-summary.v1",
+        "selfplay.v1",
+        "symmetry-fixtures.v1",
+        "tensor-board.v1"
+      ]
+    },
+    {
       "action_reference": "v1.3.0",
       "contracts_release": "1.3.0",
       "evidence": [

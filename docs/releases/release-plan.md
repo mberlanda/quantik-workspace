@@ -16,9 +16,9 @@ consumer as lagging a version nobody is working toward.
 
 | Repository | Latest | Ledger |
 |---|---|---|
-| `quantik-core-contracts` | `v1.3.0` | QREL-2026-001 (1.2.0), QREL-2026-002 (1.3.0), both `completed` |
-| `quantik-core-py` | `v1.3.0` | declares contracts 1.3.0 |
-| `quantik-core-rust` | `v1.3.0` | declares contracts 1.3.0 |
+| `quantik-core-contracts` | `v1.4.0` | QREL-2026-001 (1.2.0), QREL-2026-002 (1.3.0), QREL-2026-004 (1.4.0), all `completed` |
+| `quantik-core-py` | `v1.4.0` | tagged, publish pending (PyPI still 1.3.0, #51); declares contracts 1.4.0 |
+| `quantik-core-rust` | `v1.4.0` | tagged, publish pending (crates.io still 1.3.0, #48); declares contracts 1.4.0 |
 | `quantik-models-py` | `v1.1.0` | contracts release derived from `quantik-core-py` at runtime |
 | `quantik-api-rust` | *never tagged* | `0.1.0` in `Cargo.toml`, no `v0.1.0` tag |
 | `quantik-qfen-visualizer` | *never tagged* | `0.2.0` in `package.json`, no `v0.2.0` tag |
@@ -37,16 +37,12 @@ checks out py at the same ref.
 
 | Version | Tag | What it carries | Gated on | Kind |
 |---|---|---|---|---|
-| 1.4.0 | `v1.4.0` | Register `engine-request.v1` / `engine-response.v1`; settle the `quantik.` prefix | QW-019 | additive + a recorded rename migration |
-| 1.5.0 | `v1.5.0` | Opening-probe contract and symmetry-safe runtime; engine response type (candidates, PV, certainty) | QW-004, QW-018 | additive |
+| 1.4.0 | `v1.4.0` | Consolidates the former 1.4.0 and 1.5.0 rows: `engine-request.v1` / `engine-response.v1` (settling the `quantik.` prefix), the opening-probe contract and `engine-response.v2`. Tagged 2026-11-02, publish pending (PyPI and crates.io still 1.3.0) | QW-019, QW-004, QW-018 | additive + a recorded rename migration |
 | 1.6.0 | `v1.6.0` | Checkpoint consumer compatibility: capability negotiation, cross-language numerical parity | QW-007 | additive — **verify**, the checkpoint surface is the one most likely to break |
 | 1.7.0 | `v1.7.0` | Book-guided self-play: opening-book, pairing and provenance semantics | QW-003 | additive |
 | 1.8.0 | `v1.8.0` | Search and H2H active-learning feedback loop | QW-005 | additive |
 
-**1.4.0 first, and soon.** QW-019 is the highest-leverage cut on this page: it is `ready`,
-its only real decision is contained, and it unblocks QW-017, QW-018 and QW-020 — three
-initiatives representing every remaining `quantik-api-rust` release. Nothing else in the
-ladder unblocks as much per unit of work.
+**1.4.0 shipped as one release.** QW-019, QW-004 and QW-018 all merged before the cut, so the planned 1.4.0 and 1.5.0 rows were consolidated; 1.5.0 is no longer a separate planned release. It is tagged on all three repositories (2026-11-02) and publishing is deferred (mberlanda/quantik-core-py#51, mberlanda/quantik-core-rust#48).
 
 QW-006 (search-derived policy targets) touches `quantik-core-rust` and `quantik-models-py`
 but registers no contract. It rides whichever core minor is open when it lands and gates no
