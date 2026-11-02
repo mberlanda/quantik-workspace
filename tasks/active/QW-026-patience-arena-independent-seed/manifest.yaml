@@ -32,8 +32,9 @@
       "id": "W1",
       "invariants": [],
       "packet": "repos/quantik-models-py/W1-second-seed-run.md",
+      "pr": "https://github.com/mberlanda/quantik-models-py/pull/77",
       "repository": "quantik-models-py",
-      "status": "planned"
+      "status": "completed"
     },
     {
       "allowed_paths": [
