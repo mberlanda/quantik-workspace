@@ -35,7 +35,7 @@
       "dispatch": "mechanical",
       "id": "W1",
       "invariants": [],
-      "packet": "repos/quantik-models-py/W1-publish-image-workflow.md",
+      "packet": "repos/quantik-models-py/W1-publish-image-workflow-complete.md",
       "pr": "https://github.com/mberlanda/quantik-models-py/pull/69",
       "repository": "quantik-models-py",
       "status": "completed"

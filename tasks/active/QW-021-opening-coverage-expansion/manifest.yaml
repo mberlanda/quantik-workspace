@@ -40,7 +40,7 @@
       "invariants": [
         "context/system/canonical-invariants.md#I4"
       ],
-      "packet": "repos/quantik-models-py/W1-partition-design.md",
+      "packet": "repos/quantik-models-py/W1-partition-design-complete.md",
       "pr": "https://github.com/mberlanda/quantik-models-py/pull/73",
       "repository": "quantik-models-py",
       "status": "completed"
