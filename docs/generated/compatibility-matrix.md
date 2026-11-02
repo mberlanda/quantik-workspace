@@ -7,9 +7,8 @@ exists. The portability smoke now passes for Python and Rust, but on post-tag ch
 
 | Contracts | Wire IDs | Python | Rust | Models | Action ref | Status | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1.3.1 | 14 registered | 1.3.0 declaring contracts 1.3.0; consumes the v1.3.1 action | 1.3.0 declaring contracts 1.3.0 | 1.1.0, contracts release derived from quantik-core-py at runtime | v1.3.1 | partially-supported | `supported` is withheld: the portability smoke passed on 2026-11-02 for Python and Rust, but on post-tag checkouts declaring 1.3.0, not at the v1.3.1 tag, and over 3 cases / 3 wire IDs only. The earlier exit-2 adapter failure no longer reproduces. |
 | 1.3.0 | 14 registered | 1.3.0 (tag v1.3.0) declaring contracts 1.3.0 | 1.3.0 (tag v1.3.0) declaring contracts 1.3.0 | 1.1.0, contracts release derived from quantik-core-py at runtime | v1.3.0 | partially-supported | Declarations agree across the trio and all tags/releases are published. Portability smoke passed 2026-11-02 on post-tag checkouts, not the v1.3.0 tags. |
-| 1.2.0 | 12 registered | 1.2.0 (tag v1.2.0) | 1.2.0 (tag v1.2.0) | no static declaration | v1.2.0 | deprecated | Superseded by 1.3.0/1.3.1. Recorded for history; not a migration target. |
+| 1.2.0 | 12 registered | 1.2.0 (tag v1.2.0) | 1.2.0 (tag v1.2.0) | no static declaration | v1.2.0 | deprecated | Superseded by 1.3.0. Recorded for history; not a migration target. |
 | 1.1.0 | 0 registered | tag exists | tag exists | no tag/release evidence | v1.1.0 | unknown | Retained from the 2026-07-21 assessment. |
 
 Machine-readable matrices must validate against `schemas/compatibility-matrix.schema.json`.
